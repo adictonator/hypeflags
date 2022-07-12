@@ -1,0 +1,11 @@
+{% if variant.title %}
+  {%- assign price = variant.price -%}
+{% else %}
+  {%- assign price = 1999 -%}
+{% endif %}
+
+{%- assign money_price = price | money -%}
+
+<span class="price-item" data-sale-price>
+  {{ money_price }}
+</span>

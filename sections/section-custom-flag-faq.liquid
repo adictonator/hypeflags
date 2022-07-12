@@ -1,0 +1,71 @@
+{% if section.blocks.size > 0 and product.id == 3824189505584 %}
+
+<section id="page-section-{{ block.id }}" class="custom-flag-faq-wrap page-width">
+  <h2>Frequently Asked Questions</h2>
+  
+  <div class="custom-faq-wrap">
+    {% for faq in section.blocks %}  
+    <div class="custom-flag-faq-item is-collapsed">
+      <h5>
+        {{ faq.settings.title }}
+
+        <button>
+            <span></span><span></span>
+        </button>
+      </h5>
+      {{ faq.settings.content }}
+    </div>
+    {% endfor %}
+  </div>
+  
+</section>
+
+
+<script>
+  jQuery(function() {
+   $('.custom-flag-faq-item').on('click touch', function(e) {
+    	e.preventDefault()
+        
+        const _this = $(this)
+        
+        $(this).find('p').slideToggle('fast', function() {
+        	_this.toggleClass('is-collapsed');
+        });
+    })
+  })
+</script>
+
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Custom Product FAQ",
+    "settings": [],
+	"blocks":[
+	{
+		"type":"post",
+		"name":"Post",
+		"settings": [
+          {
+              "type": "text",
+              "id": "title",
+              "label": "FAQ Title",
+              "default": "Question"
+          },
+          {
+              "type": "richtext",
+              "id": "content",
+              "label": "FAQ Content",
+              "default": "<p>Question</p>"
+          }
+        ]
+		}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

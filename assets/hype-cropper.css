@@ -1,0 +1,98 @@
+.pcr-result {
+  margin: 0 !important;
+  background: transparent !important;
+  width: 75px;
+  min-width: auto !important;
+  outline: none;
+  position: absolute;
+  right: -5px;
+  bottom: 31px;
+  text-transform: uppercase;
+  padding: 0 !important;
+}
+.pcr-result:focus {
+  box-shadow: none !important;
+}
+   
+
+@media(max-width:767px) {
+  .pcr-result {
+    left: 130px;
+    text-align: center;
+    bottom: 16px;
+    right: 0;
+    margin: 0 auto !important;
+  }
+}
+
+.low-res-warning-indicator {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  background: rgba(255, 195, 0, 0.08);
+  border: 1px solid rgba(255, 195, 0, 0.24);
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 8px 14px 8px 34px;
+  margin-bottom: 14px;
+}
+.low-res-warning-indicator:before {
+  content: '';
+  background: url(warning-ind.svg) no-repeat;
+  background-position: center;
+  width: 24px;
+  height: 24px;
+  background-color: #FFC300;
+  border-radius: 4px 0px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.low-res-warning-indicator.visible {
+  display: flex;
+}
+
+.low-res-warning-indicator.low-res-warning-indicator--secondary {
+  padding: 8px 8px 8px 36px;
+  margin-right: 25px;
+}
+.low-res-warning-indicator.low-res-warning-indicator--secondary:before {
+  content: '';
+  background: url(warning-ind-secondarya.svg) no-repeat;
+  background-position: center;
+  top: auto;
+  left: 13px;
+  background-size: contain;
+  width: 15px;
+  height: 15px;
+}
+
+.low-res-warning-indicator p,
+.low-res-warning-indicator.low-res-warning-indicator--secondary p {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #162950;
+  letter-spacing: 0;
+}
+
+@media(max-width:767px) {
+  .low-res-warning-indicator.visible {
+    display: block;
+  }
+
+  .low-res-warning-indicator.low-res-warning-indicator--secondary {
+    padding-left: 18px;
+    margin-right: 0;
+  }
+  
+  .low-res-warning-indicator.low-res-warning-indicator--secondary:before {
+    left: 8px;
+  }
+  
+  .low-res-warning-indicator.low-res-warning-indicator--secondary p {
+/*     font-size: 63%; */
+    margin-left: 5px;
+  }
+}

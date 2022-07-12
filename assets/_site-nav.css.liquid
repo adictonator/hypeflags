@@ -1,0 +1,112 @@
+.site-nav__link {
+  display: block;
+  white-space: nowrap;
+}
+.site-nav--centered .site-nav__link {
+  padding-top: 0;
+  color: #fff;
+  font-weight: bold;
+}
+.site-nav__link .icon-chevron-down {
+  width: calc(8em / 16);
+  height: calc(8em / 16);
+  margin-left: 0.5rem;
+}
+.site-nav__link.site-nav--active-dropdown {
+  border: 1px solid #e4e4e4;
+  border-bottom: 1px solid transparent;
+  z-index: 2;
+}
+.site-nav__link:focus .site-nav__label,
+.site-nav__link:not([disabled]):hover .site-nav__label {
+  border-bottom-color: black;
+  border-bottom: none;
+}
+
+.site-nav__label {
+  border-bottom: 1px solid transparent;
+  border: none;
+  /*   font-weight: bold; */
+  font-size: 16px;
+}
+.site-nav__link--active .site-nav__label {
+  border-bottom-color: black;
+}
+
+.site-nav__label_active {
+  border-bottom: 1px solid transparent;
+  border: none;
+  font-weight: bold;
+  font-size: 16px;
+}
+.site-nav__link--active .site-nav__label_active {
+  border-bottom-color: black;
+}
+
+.site-nav__link--button {
+  border: none;
+  background-color: transparent;
+  padding: 3px 10px;
+}
+@media only screen and (max-width: 989px) {
+  .site-nav__link--button {
+    font-size: 18px;
+  }
+}
+.site-nav__link--button:focus,
+.site-nav__link--button:hover {
+  color: #404040;
+}
+
+a.site-nav__link.site-nav__link--main::after,
+a.mobile-nav__link::after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  margin-top: 2px;
+  content: "";
+  display: block;
+  height: 2px;
+  background: #000000;
+  transition: width 0.3s ease 0s;
+  width: 0;
+}
+
+a.site-nav__link.site-nav__link--main:hover::after,
+.site-nav--active a.site-nav__link.site-nav__link--main::after{
+  width: 100%;
+}
+
+.site-nav__link.site-nav__link--main.site-nav__link--active {
+  color: #000;
+}
+
+.mobile-nav__link.mobile-nav__link--active {
+  color: #de003d;
+}
+
+.site-nav {
+    position: relative;
+    width: 100%;
+}
+.site-nav a {
+  padding: 3px 20px;
+  font-family: Futura,sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  color: #000;
+  line-height: 1.5;
+}
+.site-nav .site-nav--active a {
+  color: #de003d;
+}
+/* .site-nav .site-nav--active a:hover {
+  color: #de003d;
+} */
+
+
+@media (max-width: 989px) {
+  .site-nav a {
+    padding: 3px 8px;
+  }
+}

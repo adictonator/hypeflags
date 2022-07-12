@@ -1,0 +1,56 @@
+@import url("{{'_site-nav.css' | asset_url }}");
+@import url("{{'_mobile-nav.css' | asset_url }}");
+@import url("{{'_cart-icon.css' | asset_url }}");
+  
+  
+div[data-section-type="header-section"] {
+  width: 100%;
+  z-index: 999;
+  position: relative;
+  box-shadow: 0 6px 20px 0 rgba(0, 23, 37, 0.15);
+}
+
+.site-header__menu {
+  display: none;
+}
+
+/* Logo */
+.site-header__logo-image {
+  width: 190px;
+}
+.site-header__logo {
+  margin: 0;
+}
+.site-header__mobile-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 74.45px;
+  z-index: 999;
+  position: relative;
+  background-color: #fff;
+}
+
+@media (max-width: 767px) {
+  div[data-section-type="header-section"] {
+    box-shadow: none;
+  }
+  .site-header__mobile-nav {
+    padding: 0 18px;
+  }
+  
+  .site-header__icon {
+      display: inline-block;
+      vertical-align: middle;
+      padding: 10px 11px;
+      margin: 0;
+  }
+  
+  #AccessibleNav {
+  	display: none;
+  }
+  
+  .site-header__logo-image {
+    width: auto;
+  }
+}

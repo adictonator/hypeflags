@@ -1,0 +1,272 @@
+<div data-section-id="{{ section.id }}" data-section-type="featured-content">
+  <div id="content" class="hf all-reviews-page shipping-handling has-cust-form">
+    <div class="page-sections def-width">
+      <div class="rating-heading page-heading">
+        <h3>{{ section.settings.heading | escape }}</h3>
+      </div>
+      
+      <div class="hf rating-info-section ship-handle-wrapper">                
+        <div class="map-wrap">
+          <img src="{{ section.settings.map_img | img_url: 'x1000' }}" alt="map" />
+        </div>
+
+        <div class="map-info-wrap">
+          <div class="map-info-item">
+            <div class="map-info-content">
+              <h5 style="--icon: url({{ section.settings.ship_ben_icon1 | asset_url }})">{{ section.settings.ship_ben_title1 }}</h5>
+              {{ section.settings.ship_ben_content1 }}
+            </div>
+          </div>
+          <div class="map-info-item">
+            <div class="map-info-content">
+              <h5 style="--icon: url({{ section.settings.ship_ben_icon2 | asset_url }})">{{ section.settings.ship_ben_title2 }}</h5>
+              {{ section.settings.ship_ben_content2 }}
+            </div>
+          </div>
+          <div class="map-info-item">
+            <div class="map-info-content">
+              <h5 style="--icon: url({{ section.settings.ship_ben_icon3 | asset_url }})">{{ section.settings.ship_ben_title3 }}</h5>
+              {{ section.settings.ship_ben_content3 }}
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {% for block in section.blocks %}
+      	{% case block.type %}
+      		{% when 'block-2' %}
+              	<div class="hf rating-info-section">
+                  <div class="rating-heading policy-wrap">
+                    <h3>{{ block.settings.heading | escape }}</h3>
+                    {{ block.settings.content }}
+                  </div>
+                  
+                  <div class="ship-types-wrap">
+                    <div class="ship-type">
+                      <h5>{{ block.settings.heading1 | escape }}</h5>
+                      {{ block.settings.content1 }}
+                    </div>
+                    
+                    <div class="ship-type">
+                      <h5>{{ block.settings.heading2 | escape }}</h5>
+                      {{ block.settings.content2 }}
+                    </div>
+                  </div>
+                </div>
+      
+
+      		{% when 'block-4' %}
+              	<div class="hf rating-info-section warehouse-sec">
+                  <div>
+                    <div class="rating-heading">
+                      <h3>{{ block.settings.warehouse_heading | escape }}</h3>
+                    </div>
+
+                    <div class="warehouse-section-wrap">
+                      <div class="warehouse-area">
+                        <h5 style="--icon:url({{ block.settings.ship_ben_icon1 | asset_url }})">{{ block.settings.warehouse_title1 }}</h5>
+                        {{ block.settings.warehouse_content1 }}
+                      </div>
+                      <div class="warehouse-area">
+                        <h5 style="--icon:url({{ block.settings.ship_ben_icon2 | asset_url }})">{{ block.settings.warehouse_title2 }}</h5>
+                        {{ block.settings.warehouse_content2 }}
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="ship-handle-bottom-pimg">
+                  	<img src="{{ block.settings.bottom_place_hldr_img | img_url:'1000x1000' }}" />
+                  </div>
+                </div>
+      	{% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Custom Settings",
+	"settings": [
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Page Title",
+			"default": "SHIPPING AND HANDLING"
+		},
+		{
+			"type": "image_picker",
+			"id": "map_img",
+			"label": "Map Image"
+		},
+        {
+            "type": "text",
+            "id": "ship_ben_title1",
+            "label": "Block Title #1",
+            "default": "Same Day Shipping"
+        },
+        {
+            "type": "richtext",
+            "id": "ship_ben_content1",
+            "label": "Block Content #1",
+            "default": "<p>Lorem ipsum</p>"
+        },
+        {
+            "type": "text",
+            "id": "ship_ben_icon1",
+            "label": "Block Icon #1",
+            "info": "Enter the name of the file with extension",
+			"default": "bx-package.svg"
+        },
+        {
+            "type": "text",
+            "id": "ship_ben_title2",
+            "label": "Block Title #2",
+            "default": "Same Day Shipping"
+        },
+        {
+            "type": "richtext",
+            "id": "ship_ben_content2",
+            "label": "Block Content #2",
+            "default": "<p>Lorem ipsum</p>"
+        },
+        {
+            "type": "text",
+            "id": "ship_ben_icon2",
+            "label": "Block Icon #2",
+            "info": "Enter the name of the file with extension",
+			"default": "frame-ship.svg"
+        },
+        {
+            "type": "text",
+            "id": "ship_ben_title3",
+            "label": "Block Title #3",
+            "default": "Same Day Shipping"
+        },
+        {
+            "type": "richtext",
+            "id": "ship_ben_content3",
+            "label": "Block Content #3",
+            "default": "<p>Lorem ipsum</p>"
+        },
+        {
+            "type": "text",
+            "id": "ship_ben_icon3",
+            "label": "Block Icon #3",
+            "info": "Enter the name of the file with extension",
+			"default": "plane-ship.svg"
+        }
+	],
+	"blocks": [
+		{
+            "type": "block-2",
+            "name": "Our Policy Section",
+			"limit": 1,
+			"settings": [
+				{
+                    "type": "text",
+                    "id": "heading",
+                    "label": "Section Heading",
+                    "default": "Our Shipping Policies"
+				},
+				{
+                    "type": "richtext",
+                    "id": "content",
+                    "label": "Content",
+                    "default": "<p>Lorem</p>"
+				},
+				{
+                    "type": "text",
+                    "id": "heading1",
+                    "label": "Section Heading",
+                    "default": "Domestic Shipping (within USA)"
+				},
+				{
+                    "type": "textarea",
+                    "id": "content1",
+                    "label": "Section Content",
+                    "default": "<p>Loremm</p>"
+				},
+				{
+                    "type": "text",
+                    "id": "heading2",
+                    "label": "Section Heading",
+                    "default": "International Shipping"
+				},
+				{
+                    "type": "textarea",
+                    "id": "content2",
+                    "label": "Section Content",
+                    "default": "<p>Loremm</p>"
+				}
+			]
+		},
+		{
+            "type": "block-4",
+            "name": "Warehouses Section",
+			"limit": 1,
+			"settings": [
+				{
+					"type": "text",
+					"id": "warehouse_heading",
+					"label": "Warehouse Section Heading",
+					"default": "Our Warehouses"
+				},
+				{
+					"type": "text",
+					"id": "ship_ben_icon1",
+					"label": "Block Icon",
+                    "info": "Enter the name of the file with extension",
+					"default": "west-ware.svg"
+				},
+				{
+					"type": "text",
+					"id": "warehouse_title1",
+					"label": "Warehouse Area"
+				},
+				{
+					"type": "text",
+					"id": "warehouse_content1",
+					"label": "Warehouse Text"
+				},
+				{
+					"type": "text",
+					"id": "ship_ben_icon2",
+					"label": "Block Icon",
+                    "info": "Enter the name of the file with extension",
+					"default": "east-ware.svg"
+				},
+				{
+					"type": "text",
+					"id": "warehouse_title2",
+					"label": "Warehouse Area"
+				},
+				{
+					"type": "text",
+					"id": "warehouse_content2",
+					"label": "Warehouse Text"
+				},
+				{
+					"type": "image_picker",
+					"id": "bottom_place_hldr_img",
+					"label": "Placeholder Image"
+				}
+			]
+		},
+		{
+            "type": "block-5",
+            "name": "Bottom Placeholder Image",
+			"limit": 1,
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "bottom_place_hldr_img",
+					"label": "Placeholder Image"
+				}
+			]
+		}
+	]
+  }
+{% endschema %}
+

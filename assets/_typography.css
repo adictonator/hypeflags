@@ -1,0 +1,306 @@
+@font-face {
+  font-family: 'Futura-Tag';
+  font-weight: 500;
+  font-style: normal;
+/*   src: url("futura_medium_bt.ttf") format("truetype"); */
+  src: url("Futura_Heavy_font.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Futura;
+  font-weight: 400;
+  font-style: normal;
+  src: url("https://fonts.shopifycdn.com/futura/futura_n4.df36ce3d9db534a4d7947f4aa825495ed740e410.woff2?h1=aHlwZWZsYWdzLmNvbQ&hmac=f02bd7a72924adf06e3ae1c9c79a9f1dd8541011c07b22bb81457fbd0f362ded")
+      format("woff2"),
+    url("https://fonts.shopifycdn.com/futura/futura_n4.6bce24beb4ba1ff4ddeb20f7cd6e2fa513a3d6ec.woff?h1=aHlwZWZsYWdzLmNvbQ&hmac=ac89f20d7de54d8846be99363e52f39e02d7a6f4dfeb17d607797be11923c054")
+      format("woff");
+}
+
+@font-face {
+  font-family: Futura;
+  font-weight: 500;
+  font-style: normal;
+  src: url("https://fonts.shopifycdn.com/futura/futura_n5.5632c6d8a6da9141ef40e51d14264a007bcae7e5.woff2?h1=aHlwZWZsYWdzLmNvbQ&hmac=cbbad0ccf90afc9eeeb4e5537bfef274ad353b7e254eef30dffc8d759ae2afcf")
+      format("woff2"),
+    url("https://fonts.shopifycdn.com/futura/futura_n5.ea788239cf399e57dbdfe80e24bba751e5c2a36c.woff?h1=aHlwZWZsYWdzLmNvbQ&hmac=490bd598cb951d5223e38f8a53e2cc91192f5deb21711f6931998bbe50b4ae10")
+      format("woff");
+}
+ 
+@font-face {
+  font-family: Futura;
+  font-weight: 700;
+  font-style: normal;
+  src: url("https://fonts.shopifycdn.com/futura/futura_n7.153f8fffad8e901382179997bbb87aa7a5ff33b3.woff2?h1=aHlwZWZsYWdzLmNvbQ&hmac=fd21784134aafe070fa84dffdb4995a2a1ddc842859c08a0a583c4000e4df548")
+      format("woff2"),
+    url("https://fonts.shopifycdn.com/futura/futura_n7.711e9243b3eccc2745ecf4731eba61651a122376.woff?h1=aHlwZWZsYWdzLmNvbQ&hmac=18f024a955382dd3ec0d41c006df01d24b8385377faf4237f4f2cc2d1e55c490")
+      format("woff");
+}
+
+@font-face {
+  font-family: Futura;
+  font-weight: 700;
+  font-style: normal;
+  src: url("https://fonts.shopifycdn.com/futura/futura_n7.153f8fffad8e901382179997bbb87aa7a5ff33b3.woff2?h1=aHlwZWZsYWdzLmNvbQ&hmac=fd21784134aafe070fa84dffdb4995a2a1ddc842859c08a0a583c4000e4df548")
+      format("woff2"),
+    url("https://fonts.shopifycdn.com/futura/futura_n7.711e9243b3eccc2745ecf4731eba61651a122376.woff?h1=aHlwZWZsYWdzLmNvbQ&hmac=18f024a955382dd3ec0d41c006df01d24b8385377faf4237f4f2cc2d1e55c490")
+      format("woff");
+}
+
+@font-face {
+  font-family: Futura;
+  font-weight: 700;
+  font-style: normal;
+  src: url("https://fonts.shopifycdn.com/futura/futura_n7.153f8fffad8e901382179997bbb87aa7a5ff33b3.woff2?h1=aHlwZWZsYWdzLmNvbQ&hmac=fd21784134aafe070fa84dffdb4995a2a1ddc842859c08a0a583c4000e4df548")
+      format("woff2"),
+    url("https://fonts.shopifycdn.com/futura/futura_n7.711e9243b3eccc2745ecf4731eba61651a122376.woff?h1=aHlwZWZsYWdzLmNvbQ&hmac=18f024a955382dd3ec0d41c006df01d24b8385377faf4237f4f2cc2d1e55c490")
+      format("woff");
+}
+
+@font-face {
+  font-family: Futura;
+  font-weight: 500;
+  font-style: oblique;
+  src: url("https://fonts.shopifycdn.com/futura/futura_o5.2374ce1c635b408a1f07994a3de4a936fc50f767.woff2?h1=aHlwZWZsYWdzLmNvbQ&hmac=838d5e246d9315da37348e33c101901cecf4920039d17f97901eba233e330cb4")
+      format("woff2"),
+    url("https://fonts.shopifycdn.com/futura/futura_o5.1bf4df2c089a877c3ba2d33a9d4c7908742bfc89.woff?h1=aHlwZWZsYWdzLmNvbQ&hmac=40ddc2e9ec8e44b209a85c6d8f26b0b355e2217498618213212bd7f5c8257d2e")
+      format("woff");
+}
+
+@font-face {
+  font-family: Futura;
+  font-weight: 700;
+  font-style: oblique;
+  src: url("https://fonts.shopifycdn.com/futura/futura_o7.ece1472e1fefbb598873ba72dc2bfa2e050347c1.woff2?h1=aHlwZWZsYWdzLmNvbQ&hmac=be069a3826a1ffe06210f9efda46fa23c3ccc3a2c17765827a0e549c25e55424")
+      format("woff2"),
+    url("https://fonts.shopifycdn.com/futura/futura_o7.7028291332320745f0217c346c800da7522a22b2.woff?h1=aHlwZWZsYWdzLmNvbQ&hmac=5009c26ee56391705bccd8131549b8a2267b8b57550f55603b39f7525cfd12e8")
+      format("woff");
+}
+
+blockquote {
+  font-size: 1em;
+  font-style: normal;
+  text-align: center;
+  padding: 0 30px;
+  margin: 0;
+}
+.rte blockquote {
+  border-color: #e4e4e4;
+  border-width: 1px 0;
+  border-style: solid;
+  padding: 30px 0;
+  margin-bottom: 27.5px;
+}
+blockquote p + cite {
+  margin-top: 27.5px;
+}
+blockquote cite {
+  display: block;
+  font-size: 0.85em;
+  font-weight: 500;
+}
+blockquote cite::before {
+  content: "\2014 \0020";
+}
+
+code,
+pre {
+  font-family: Consolas, monospace;
+  font-size: 1em;
+}
+
+pre {
+  overflow: auto;
+}
+
+body,
+input,
+textarea,
+button,
+select {
+  font-size: 18px;
+  font-family: Futura, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  color: black;
+  line-height: 1.5;
+}
+
+@media only screen and (max-width: 989px) {
+  input,
+  textarea,
+  select,
+  button {
+    font-size: 16px;
+  }
+}
+.medium-up--push-one-twelfth .section-header {
+  font-size: 22px;
+}
+
+/*================ Headings ================*/
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  margin: 0 0 17.5px;
+  font-family: Futura, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.2;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+h1 a,
+.h1 a,
+h2 a,
+.h2 a,
+h3 a,
+.h3 a,
+h4 a,
+.h4 a,
+h5 a,
+.h5 a,
+h6 a,
+.h6 a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: inherit;
+}
+
+h1,
+.h1 {
+  font-size: 2em;
+  text-transform: none;
+  letter-spacing: 0;
+}
+@media only screen and (max-width: 749px) {
+  h1,
+  .h1 {
+    font-size: 1.83333em;
+  }
+}
+
+h2,
+.h2 {
+  font-size: 1.16667em;
+  text-transform: uppercase;
+  letter-spacing: normal;
+}
+@media only screen and (max-width: 749px) {
+  h2,
+  .h2 {
+    font-size: 1em;
+  }
+}
+
+h3,
+.h3 {
+  font-size: 1.5em;
+  text-transform: none;
+  letter-spacing: 0;
+}
+@media only screen and (max-width: 749px) {
+  h3,
+  .h3 {
+    font-size: 1.16667em;
+  }
+}
+
+h4,
+.h4 {
+  font-size: 1em;
+}
+@media only screen and (max-width: 749px) {
+  h4,
+  .h4 {
+    font-size: 0.88889em;
+  }
+}
+
+h5,
+.h5 {
+  font-size: 0.83333em;
+}
+@media only screen and (max-width: 749px) {
+  h5,
+  .h5 {
+    font-size: 0.77778em;
+  }
+}
+
+h6,
+.h6 {
+  font-size: 0.77778em;
+}
+@media only screen and (max-width: 749px) {
+  h6,
+  .h6 {
+    font-size: 0.72222em;
+  }
+}
+
+/*================ RTE headings ================*/
+.rte {
+  color: #6d6d6d;
+  margin-bottom: 35px;
+}
+.rte:last-child {
+  margin-bottom: 0;
+}
+.rte h1,
+.rte .h1,
+.rte h2,
+.rte .h2,
+.rte h3,
+.rte .h3,
+.rte h4,
+.rte .h4,
+.rte h5,
+.rte .h5,
+.rte h6,
+.rte .h6 {
+  margin-top: 55px;
+  margin-bottom: 27.5px;
+}
+.rte h1:first-child,
+.rte .h1:first-child,
+.rte h2:first-child,
+.rte .h2:first-child,
+.rte h3:first-child,
+.rte .h3:first-child,
+.rte h4:first-child,
+.rte .h4:first-child,
+.rte h5:first-child,
+.rte .h5:first-child,
+.rte h6:first-child,
+.rte .h6:first-child {
+  margin-top: 0;
+}
+.rte li {
+  margin-bottom: 4px;
+  list-style: inherit;
+}
+.rte li:last-child {
+  margin-bottom: 0;
+}
+
+.rte-setting {
+  /*   margin-bottom: $section-spacing-small / 1.8; // same as p */
+  margin-bottom: 32px;
+}
+@media only screen and (max-width: 749px) {
+  .rte-setting {
+    margin-bottom: 24px;
+  }
+}
+.rte-setting:last-child {
+  margin-bottom: 0;
+}

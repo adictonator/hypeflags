@@ -1,0 +1,99 @@
+#shopify-section-home-product-services {
+  max-width: 1260px;
+  padding: 80px 0;
+  margin: 0 auto;  
+}
+.home-service-icon-container {
+  display: grid;
+  justify-content: center;
+/*   grid-template-columns: repeat(3, minmax(250px, 400px)); */
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+}
+
+.home-service-icon-container .service-icon-wrapper {
+  width: 100%;
+  background: #fff;
+  padding: 35px;
+/*   box-shadow: -4px -8px 25px rgba(15, 12, 46, 0.06),
+    8px 16px 25px rgba(15, 12, 46, 0.06); */
+  box-shadow: 0px 45px 90px rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+  min-height: 315px;
+/*   max-width: 350px; */
+  text-align: center;
+  justify-self: center;
+  position: relative;
+  counter-increment: section;
+/*   padding: 32px; */
+}
+.home-service-icon-container .service-icon-wrapper h4,
+.home-service-icon-container .service-icon-wrapper .h4 {
+/*   font-family: Futura, sans-serif; */
+  font-weight: bold;
+  text-transform: none;
+  font-size: 24px;
+  color: #000;
+  text-align: center;
+  line-height: 35px;
+  max-width: 250px;
+  margin: 0 auto 12px;
+  letter-spacing: 0.2px;
+}
+
+.home-service-icon-container .service-icon-wrapper img {
+  width: 84px;
+  margin-bottom: 15px;
+}
+.home-service-icon-container .service-icon-wrapper p {
+  font-size: 16px;
+  font-weight: 500;
+  color: #606163;
+  text-align:center
+}
+
+
+@media(max-width: 1279px) {
+  #shopify-section-home-product-services {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+@media(max-width: 1024px) {
+  #shopify-section-home-product-services {
+    padding: 42px 32px 50px;
+  }
+  .home-service-icon-container .service-icon-wrapper h4,
+  .home-service-icon-container .service-icon-wrapper .h4 {
+    font-size: 18px;
+    line-height: 25px;
+    max-width: 150px;
+  }
+  .home-service-icon-container .service-icon-wrapper img {
+    margin-bottom: 10px;
+  }
+  
+  .home-service-icon-container .service-icon-wrapper p {
+    font-size: 14px;
+  }
+}
+
+@media(max-width: 767px) {
+  .home-service-icon-container {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .home-service-icon-container .service-icon-wrapper img {
+    width: 64px;
+    margin-bottom: 15px;
+  }
+  .home-service-icon-container .service-icon-wrapper {
+    padding: 30px;
+    min-height: auto;
+  }
+  
+  #shopify-section-footer .site-footer {
+    margin-top: 0;
+  }
+}

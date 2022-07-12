@@ -1,0 +1,245 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css"/>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+{{ 'hype-cropper.css' | asset_url | stylesheet_tag }}
+
+<div class="hype-cropper-wrapper">
+  <div class="__inner_d" style="position: relative; width:100vw; height: 100%; overflow:scroll;">
+  <div class="hype-cropper">
+    <div class="hype-cropper__head">
+      <a href="#" class="btn btn--tertiary btn--black" data-reset-cropper>Cancel</a>
+      <h3>Customize Your Flag</h3>
+      <a href="#" class="btn" data-method="getCroppedCanvas">Confirm</a>
+<!--       <h3>Customize Your Flag</h3>
+      <span class="cross-cropper" title="Cancel Editing" data-reset-cropper>&times;</span> -->
+    </div>
+
+    <div class="hype-cropper__body" style="position: relative">
+      <canvas id="cs" style="display:none"></canvas>
+      
+	  <div class="hype-cropper__body--image" style="position: relative">
+        <img id="image_picture" alt="Picture" style="display: none;">
+      </div>
+      
+      <div class="hype-cropper__body--side docs-buttons" id="actions">
+        <div class="low-res-warning-indicator">
+          <p>The file is below our suggested resolution. Your flag may appear blurry or pixelated.</p>
+        </div>
+        <div class="hype-controls">
+          <span data-method="rotate" data-option="-90">
+            <svg width="22" height="26" viewBox="0 0 22 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.01067 9.67717L3.12533 7.79184C2.04933 8.8665 1.2 10.1852 0.670667 11.6038L3.168 12.5385C3.56667 11.4732 4.20267 10.4838 5.01067 9.67717ZM21.3333 15.3318C21.3333 12.4812 20.224 9.80384 18.208 7.79184C16.5133 6.09317 14.344 5.04917 12 4.7585V0.666504L5.33333 5.99984L12 11.3332V7.45184C13.6293 7.72384 15.132 8.48517 16.3227 9.67717C17.8347 11.1878 18.6667 13.1958 18.6667 15.3332C18.6667 15.3345 18.6667 15.3358 18.6667 15.3358C18.6667 15.7758 18.6227 16.2092 18.552 16.6385C18.5427 16.6958 18.5373 16.7558 18.5267 16.8132C18.4493 17.2225 18.3373 17.6212 18.1973 18.0158C17.92 18.7958 17.5227 19.5292 17.0093 20.1945C16.796 20.4732 16.568 20.7438 16.3213 20.9905C16.0773 21.2345 15.816 21.4558 15.544 21.6652C15.48 21.7145 15.416 21.7612 15.3507 21.8078C15.0933 21.9958 14.8267 22.1692 14.5493 22.3252C13.852 22.7145 13.1013 22.9972 12.3147 23.1612C12.1253 23.2012 11.9347 23.2278 11.7413 23.2532C11.6587 23.2652 11.5787 23.2812 11.496 23.2892C10.652 23.3745 9.78933 23.3305 8.96533 23.1518L8.4 25.7585C9.14267 25.9185 9.90533 25.9998 10.6667 25.9998C11.04 25.9998 11.412 25.9785 11.7787 25.9398C11.8707 25.9305 11.9627 25.9118 12.0547 25.8998C12.328 25.8652 12.6 25.8252 12.868 25.7692C12.892 25.7638 12.9147 25.7625 12.9387 25.7572L12.9373 25.7505C13.936 25.5358 14.8933 25.1798 15.7853 24.6905L15.7867 24.6918C15.8 24.6838 15.812 24.6745 15.824 24.6665C16.2027 24.4572 16.5667 24.2172 16.9187 23.9612C17.004 23.8998 17.088 23.8372 17.1707 23.7732C17.5307 23.4945 17.88 23.1998 18.2067 22.8732C18.5373 22.5438 18.8333 22.1892 19.1147 21.8265C19.1427 21.7892 19.18 21.7558 19.208 21.7185L19.2 21.7132C19.816 20.8945 20.304 19.9998 20.6573 19.0505L20.668 19.0545C20.7067 18.9505 20.7347 18.8438 20.7693 18.7385C20.8187 18.5918 20.8693 18.4438 20.912 18.2945C20.9653 18.1078 21.0093 17.9198 21.052 17.7305C21.0813 17.5985 21.116 17.4705 21.14 17.3372C21.1827 17.1092 21.2147 16.8785 21.2413 16.6492C21.2547 16.5478 21.272 16.4492 21.2813 16.3465C21.312 16.0145 21.3307 15.6798 21.3307 15.3425C21.3333 15.3398 21.3333 15.3372 21.3333 15.3318ZM4.26267 20.1292L2.12933 21.7305C2.43467 22.1372 2.76933 22.5225 3.124 22.8745C3.84533 23.5958 4.664 24.2092 5.55467 24.6972L6.836 22.3585C6.16667 21.9918 5.552 21.5318 5.008 20.9865C4.74267 20.7225 4.492 20.4332 4.26267 20.1292ZM2.66667 15.3332C2.66667 15.1398 2.67333 14.9505 2.68667 14.7612L0.0279999 14.5705C0.00933321 14.8225 0 15.0758 0 15.3332C0 16.6185 0.226667 17.8732 0.672 19.0665L3.16933 18.1318C2.836 17.2398 2.66667 16.2985 2.66667 15.3332Z" fill="black"/>
+            </svg>
+          </span>
+          <span data-method="rotate" data-option="90">
+            <svg width="22" height="26" viewBox="0 0 22 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16.6557 20.9892C16.113 21.5318 15.4983 21.9918 14.829 22.3585L16.1103 24.6972C17.001 24.2092 17.8197 23.5958 18.5397 22.8772C18.8957 22.5212 19.2303 22.1358 19.5357 21.7305L17.4023 20.1292C17.1743 20.4332 16.9237 20.7225 16.6557 20.9892ZM18.9797 14.7612C18.993 14.9505 18.9997 15.1398 18.9997 15.3332C18.9997 16.2985 18.8303 17.2398 18.497 18.1318L20.9943 19.0665C21.4397 17.8732 21.6663 16.6185 21.6663 15.3332C21.6663 15.0758 21.657 14.8225 21.6383 14.5718L18.9797 14.7612ZM20.9957 11.6038C20.4663 10.1852 19.617 8.8665 18.541 7.79184L16.6557 9.67717C17.4623 10.4838 18.0997 11.4745 18.4983 12.5385L20.9957 11.6038ZM10.1583 23.2878C10.0957 23.2812 10.033 23.2678 9.97034 23.2598C9.76101 23.2318 9.55301 23.2025 9.34634 23.1598C8.56101 22.9958 7.81167 22.7132 7.11301 22.3238C6.83567 22.1692 6.57034 21.9945 6.31167 21.8065C6.24634 21.7598 6.18234 21.7132 6.11834 21.6638C5.84634 21.4545 5.58501 21.2332 5.34101 20.9892C5.09434 20.7425 4.86767 20.4718 4.65301 20.1932C4.13967 19.5278 3.74234 18.7945 3.46501 18.0145C3.32501 17.6198 3.21301 17.2198 3.13567 16.8118C3.12501 16.7545 3.11967 16.6945 3.11034 16.6372C3.04367 16.2092 2.99967 15.7758 2.99967 15.3358C2.99967 15.3358 2.99967 15.3345 2.99967 15.3332C2.99967 13.1958 3.83167 11.1878 5.34367 9.67717C6.53434 8.48517 8.03701 7.72384 9.66634 7.45184V11.3332L16.333 5.99984L9.66634 0.666504V4.7585C7.32234 5.04917 5.15301 6.09317 3.45834 7.79184C1.44234 9.80517 0.333008 12.4812 0.333008 15.3318C0.333008 15.3318 0.333008 15.3318 0.333008 15.3332C0.333008 15.3372 0.333008 15.3398 0.333008 15.3438C0.333008 15.6812 0.351675 16.0158 0.382341 16.3478C0.391675 16.4492 0.410341 16.5478 0.422341 16.6505C0.450341 16.8798 0.481008 17.1105 0.523675 17.3385C0.549008 17.4718 0.582341 17.5998 0.611675 17.7318C0.654341 17.9212 0.698341 18.1092 0.751675 18.2958C0.794341 18.4452 0.845008 18.5932 0.894341 18.7398C0.929008 18.8452 0.957008 18.9518 0.995675 19.0558L1.00634 19.0518C1.36101 19.9998 1.85034 20.8945 2.46634 21.7132L2.45701 21.7198C2.48501 21.7572 2.52234 21.7905 2.55034 21.8278C2.83167 22.1905 3.12767 22.5452 3.45834 22.8745C3.78501 23.2012 4.13567 23.4958 4.49434 23.7745C4.57834 23.8385 4.66101 23.9012 4.74634 23.9625C5.09967 24.2185 5.46234 24.4585 5.84101 24.6678C5.85434 24.6758 5.86634 24.6852 5.87834 24.6932L5.87967 24.6918C6.77167 25.1812 7.72901 25.5372 8.72767 25.7518L8.72634 25.7585C8.75034 25.7638 8.77301 25.7652 8.79701 25.7705C9.06501 25.8265 9.33701 25.8652 9.61034 25.9012C9.70234 25.9132 9.79434 25.9318 9.88634 25.9412C10.2543 25.9785 10.6263 25.9998 10.9997 25.9998C11.761 25.9998 12.5237 25.9185 13.2623 25.7585L12.697 23.1518C11.8717 23.3305 11.005 23.3745 10.1583 23.2878Z" fill="#000000"/>
+            </svg>
+          </span>
+          <span data-method="scaleX" data-option="-1">
+            <svg width="28" height="25" viewBox="0 0 28 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.67285 18.3265L10.0062 12.9932L4.67285 7.65983V11.6598H0.672852V14.3265H4.67285V18.3265ZM23.3395 11.6598V7.65983L18.0062 12.9932L23.3395 18.3265V14.3265H24.5769H27.3395V11.6598H24.5769H23.3395ZM12.6729 20.9932H15.3395V24.9932H12.6729V20.9932ZM12.6729 14.3265H15.3395V18.3265H12.6729V14.3265ZM12.6729 7.65983H15.3395V11.6598H12.6729V7.65983ZM12.6729 0.993164H15.3395V4.99316H12.6729V0.993164Z" fill="black"/>
+            </svg>
+          </span>
+          <span data-method="scaleY" data-option="-1">
+            <svg width="24" height="28" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13.3333 4.6665V3.8425V0.666504H10.6667V3.8425V4.6665H6.66667L12 9.99984L17.3333 4.6665H13.3333ZM13.3333 27.3332V23.3332H17.3333L12 17.9998L6.66667 23.3332H10.6667V27.3332H13.3333ZM0 12.6665H4V15.3332H0V12.6665ZM6.66667 12.6665H10.6667V15.3332H6.66667V12.6665ZM13.3333 12.6665H17.3333V15.3332H13.3333V12.6665ZM20 12.6665H24V15.3332H20V12.6665Z" fill="black"/>
+            </svg>
+          </span>
+        </div>
+
+        <div class="hype-color-picker" style="z-index: 2; position: relative">
+          <div class="hype-color-picker--pickr"></div>
+          <span class="hype-eye-drop">
+            <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.03017 13.7596L0.0301683 17.7596C-0.0558317 18.1006 0.0451683 18.4606 0.293168 18.7086C0.482168 18.8976 0.738168 19.0016 1.00017 19.0016C1.08117 19.0016 1.16217 18.9916 1.24217 18.9716L5.24217 17.9716C5.41817 17.9276 5.57917 17.8366 5.70717 17.7086L13.9992 9.41657L15.2932 10.7086L16.7072 9.29457L15.4132 8.00257L18.0002 5.41557C18.3782 5.03757 18.5862 4.53557 18.5862 4.00157C18.5862 3.46757 18.3782 2.96557 18.0002 2.58757L16.4142 1.00157C15.6582 0.24557 14.3422 0.24557 13.5862 1.00157L10.9972 3.59057L9.69917 2.29457L8.28517 3.70857L9.58317 5.00457L1.29317 13.2946C1.16517 13.4226 1.07417 13.5836 1.03017 13.7596ZM2.90317 14.5136L10.9982 6.41857L12.5842 8.00257L4.48817 16.0986L2.37417 16.6276L2.90317 14.5136Z" fill="black"/>
+            </svg>
+          </span>
+          <div class="h-hex-code">
+            <span data-hex-color></span>
+            <span data-hex-code>
+              <input type="text" value="000000">
+            </span>
+          </div>
+        </div>
+
+        <div class="hype-zoom" style="z-index: 2; position: relative">
+          <span>
+            <span>Zoom In & Out</span>
+<!--             <span data-crop-zoom>50%</span> -->
+          </span>
+          <div id="hype-zoom--slider" data-method="zoom" data-option="0.01"></div>
+        </div>
+        
+        <div class="hype-cropper-mobile-group">
+          <div class="hype-color-picker">
+            <span data-open-cp-popup>
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.1002 3.14423C15.0632 2.45723 10.0067 4.35023 6.69465 8.14073C3.84765 11.4047 2.55315 15.7637 3.14415 20.1002C3.93915 25.9412 8.33115 30.9107 14.0717 32.4692C15.3677 32.8217 16.6892 33.0002 17.9987 33.0002L18.2117 32.9987C19.7597 32.9747 21.1712 32.1752 21.9857 30.8597C22.7972 29.5457 22.8842 27.9302 22.2152 26.5412L21.9167 25.9172C21.2897 24.6152 21.7352 23.5622 22.0577 23.0492C22.8662 21.7622 24.4982 21.2342 25.9217 21.9167L26.5397 22.2122C27.1577 22.5092 27.8147 22.6607 28.4912 22.6607C30.9407 22.6607 32.9627 20.6642 33.0002 18.2102C33.0212 16.8302 32.8427 15.4367 32.4707 14.0702C30.9107 8.33123 25.9412 3.93923 20.1002 3.14423ZM27.8372 19.5077L27.2192 19.2122C24.4772 17.8952 21.1142 18.9152 19.5167 21.4532C18.4097 23.2172 18.2972 25.3172 19.2107 27.2162L19.5092 27.8402C19.7357 28.3112 19.7087 28.8362 19.4327 29.2817C19.1552 29.7302 18.6947 29.9927 18.1667 30.0002H17.9987C16.9547 30.0002 15.8972 29.8562 14.8562 29.5757C10.2617 28.3292 6.75165 24.3572 6.11715 19.6967C5.63565 16.1642 6.64515 12.7622 8.95665 10.1132C11.2367 7.50023 14.5337 6.00023 18.0002 6.00023C18.5612 6.00023 19.1312 6.03923 19.6967 6.11723C24.3572 6.75173 28.3292 10.2632 29.5757 14.8562C29.8727 15.9512 30.0152 17.0672 29.9987 18.1667C29.9807 19.3772 28.7312 19.9412 27.8372 19.5077Z" fill="black"/>
+            <path d="M11.25 24C12.4926 24 13.5 22.9926 13.5 21.75C13.5 20.5074 12.4926 19.5 11.25 19.5C10.0074 19.5 9 20.5074 9 21.75C9 22.9926 10.0074 24 11.25 24Z" fill="black"/>
+            <path d="M11.25 18C12.4926 18 13.5 16.9926 13.5 15.75C13.5 14.5074 12.4926 13.5 11.25 13.5C10.0074 13.5 9 14.5074 9 15.75C9 16.9926 10.0074 18 11.25 18Z" fill="black"/>
+            <path d="M15.75 13.5C16.9926 13.5 18 12.4926 18 11.25C18 10.0074 16.9926 9 15.75 9C14.5074 9 13.5 10.0074 13.5 11.25C13.5 12.4926 14.5074 13.5 15.75 13.5Z" fill="black"/>
+            <path d="M21.75 13.5C22.9926 13.5 24 12.4926 24 11.25C24 10.0074 22.9926 9 21.75 9C20.5074 9 19.5 10.0074 19.5 11.25C19.5 12.4926 20.5074 13.5 21.75 13.5Z" fill="black"/>
+            </svg>
+            </span>
+          </div>
+          
+          <div class="hype-zoom">
+            <div class="hype-zoom--btn-group">
+              <span data-method="zoom" data-option="0.1">
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.5 9H13.5V13.5H9V16.5H13.5V21H16.5V16.5H21V13.5H16.5V9Z" fill="black"/>
+                <path d="M15 3C8.3835 3 3 8.3835 3 15C3 21.6165 8.3835 27 15 27C17.769 27 20.3145 26.0475 22.3455 24.468L28.9395 31.062L31.0605 28.941L24.4665 22.347C26.0475 20.3145 27 17.769 27 15C27 8.3835 21.6165 3 15 3ZM15 24C10.0365 24 6 19.9635 6 15C6 10.0365 10.0365 6 15 6C19.9635 6 24 10.0365 24 15C24 19.9635 19.9635 24 15 24Z" fill="black"/>
+                </svg>
+              </span>
+              <span data-method="zoom" data-option="-0.1">
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 13.5H21V16.5H9V13.5Z" fill="black"/>
+                <path d="M15 27C17.769 27 20.3145 26.0475 22.3455 24.468L28.9395 31.062L31.0605 28.941L24.4665 22.347C26.0475 20.3145 27 17.769 27 15C27 8.3835 21.6165 3 15 3C8.3835 3 3 8.3835 3 15C3 21.6165 8.3835 27 15 27ZM15 6C19.9635 6 24 10.0365 24 15C24 19.9635 19.9635 24 15 24C10.0365 24 6 19.9635 6 15C6 10.0365 10.0365 6 15 6Z" fill="black"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="hype-cropper-cp--mob">
+        <span data-close-cp-popup class="cross-cropper">&times;</span>
+      	<div class="hype-color-picker--pickr-mob"></div>
+        <div class="h-hex-code">
+          <span data-hex-color></span>
+          <span data-hex-code><input type="text" value="000000"></span>
+        </div>
+        <span class="hype-eye-drop">
+          <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1.03017 13.7596L0.0301683 17.7596C-0.0558317 18.1006 0.0451683 18.4606 0.293168 18.7086C0.482168 18.8976 0.738168 19.0016 1.00017 19.0016C1.08117 19.0016 1.16217 18.9916 1.24217 18.9716L5.24217 17.9716C5.41817 17.9276 5.57917 17.8366 5.70717 17.7086L13.9992 9.41657L15.2932 10.7086L16.7072 9.29457L15.4132 8.00257L18.0002 5.41557C18.3782 5.03757 18.5862 4.53557 18.5862 4.00157C18.5862 3.46757 18.3782 2.96557 18.0002 2.58757L16.4142 1.00157C15.6582 0.24557 14.3422 0.24557 13.5862 1.00157L10.9972 3.59057L9.69917 2.29457L8.28517 3.70857L9.58317 5.00457L1.29317 13.2946C1.16517 13.4226 1.07417 13.5836 1.03017 13.7596ZM2.90317 14.5136L10.9982 6.41857L12.5842 8.00257L4.48817 16.0986L2.37417 16.6276L2.90317 14.5136Z" fill="black"/>
+          </svg>
+        </span>
+      </div>
+    </div>
+
+<!--     <div class="hype-cropper__foot">
+      <a href="#" class="btn btn--tertiary btn--black" data-reset-cropper>Cancel</a>
+      <a href="#" class="btn" data-method="getCroppedCanvas">Confirm</a>
+    </div> -->
+  </div>
+  </div>
+</div>
+
+<div class="hype-cropper-popup-wrapper">
+  <div class="hype-cropper-popup">
+    <div class="hype-cropper-popup__head">
+    </div>
+    <div class="hype-cropper-popup__body">
+      <h3>Upload Failed</h3>
+      <p>File type not allowed. Please upload PNG or JPEG.</p>
+    </div>
+    <div class="hype-cropper-popup__foot">
+      <button class="btn">Close</button>
+    </div>
+  </div>
+</div>
+
+{% include 'upload_file' %}
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-ui-Slider-Pips/1.11.4/jquery-ui-slider-pips.min.js" integrity="sha512-pVQ8Pa4StWWGWldpcG0HiT+wnRJOYi+6jI6wPxKpgCPSJBChB6huhHFYRFXyg3rhbrNs3L/WqpkSppC5oLsnJw==" crossorigin="anonymous"></script>
+<!-- <script src='https://cdn.jsdelivr.net/npm/@jaames/iro@5/dist/iro.min.js'></script> -->
+<!-- <script src="{{ 'colr_pickr.js' | asset_url }}"></script> -->
+<!-- <script src="{{ 'cropper.js' | asset_url }}" ></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.9/cropper.min.js" integrity="sha512-9pGiHYK23sqK5Zm0oF45sNBAX/JqbZEP7bSDHyt+nT3GddF+VFIcYNqREt0GDpmFVZI3LZ17Zu9nMMc9iktkCw==" crossorigin="anonymous"></script>
+<script src="{{ 'main-v2.js' | asset_url }}" ></script>
+
+<script>  
+  $( "#hype-zoom--slider" ).slider({
+    min: 0.1,
+    max: 4,
+    value: 2,
+    step: 0.01
+  }).append('<div class="highlight"></div>');
+  
+  // Close modal logic.
+  $('body').on('click', '[data-reset-cropper]', function() {
+    document.documentElement.style.overflow = 'visible'
+    const type = $(this).data('reset-cropper')
+    
+    // Show a popup instead.
+    if ( 'warning' == type ) {
+      const text = 'Do you want to delete your file?'
+      displayCropperErrorPopup('Are you sure?', text )
+      return;
+    }
+    else if ( 'error' == type ) {
+      $('.cross-cropper').hide()
+    } else {
+      $('.cross-cropper, .hype-cropper-popup-wrapper').fadeOut()
+    }
+    
+    $('.main_product_slider [data-slick-index=0]').find('div.ex1')
+                        .append('<div id="custom-loader-buffer"></div>')
+    
+    $("img[data-index='1']").attr("src","https://cdn.shopify.com/s/files/1/0254/3868/3184/products/Custom-Flag.jpg");
+    $("img[data-index='1']").removeAttr('style')
+    $(".slider-nav__item img[data-index='1']").attr("src","https://cdn.shopify.com/s/files/1/0254/3868/3184/products/Upload-1_medium.jpg?v=1586952222");
+    $(".hype-cropper-wrapper").fadeOut();
+    $(".cust-flag-up-img-block span").text("Upload Image").removeAttr('title')
+    $("[name='add']").attr("disabled","disabled");  
+    $(".new_url, #inputImage").val('');
+    
+    $('.slider-for__item.ex1').removeClass('custom')
+    
+    // To hide the other button as well.
+    
+    $('.cust-flag-up-img-block').removeClass('success')
+    
+    setTimeout(function() {
+      $('body').find('#custom-loader-buffer').fadeOut('slow', function() {
+          $(this).remove()
+      })
+    }, 500)
+    
+    $('.low-res-warning-indicator').removeClass('visible')
+  });
+  
+  // Close cropper popup.
+  $('body').on('click', '[data-close-cropper-popup]', function() {
+    const type = $(this).attr('data-close-cropper-popup')
+    
+    if ( 'reload' == type ) {
+      location.reload()
+    }
+    
+  	$(this).parents('.hype-cropper-popup-wrapper').fadeOut()
+  })
+  
+  // Window resize logic.
+  let widthd = $(window).width();
+  
+  $(window).on('resize', function() {
+    if ($(window).width() != widthd) {
+      widthd = $(window).width();
+      
+      $('.hype-cropper-wrapper, .cross-cropper').fadeOut()
+      const text = 'Do not resize browser window. Please try again.'
+      displayCropperErrorPopup('Something went wrong!', text, 'warning', 'reload' )
+    }
+  });
+  
+
+$('span[data-open-cp-popup]').on('click', function() {
+  $('.hype-cropper-cp--mob').css('display', 'flex')
+  $('.hype-cropper__body--side, .hype-cropper__foot').css({
+    opacity: 0.1,
+    'pointer-events': 'none'
+  })
+})
+
+$('span[data-close-cp-popup]').on('click', function() {
+  $(this).parent().fadeOut()
+  
+  $('.hype-cropper__body--side, .hype-cropper__foot')
+  .removeAttr('style')
+})
+
+</script>

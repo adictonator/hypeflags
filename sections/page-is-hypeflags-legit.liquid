@@ -1,0 +1,1107 @@
+<div data-section-id="{{ section.id }}" data-section-type="featured-content">
+  <div id="content" class="hf all-reviews-page hf-legit">
+    
+      <!-- start the custom content -->
+      <div class="page-sections">
+      {% for block in section.blocks %}
+          {% if block.type != 'page_title' %}
+                
+          <div class="page-section" {{ block.shopify_attributes }}>
+          {% endif %}
+
+          {% case block.type %}
+
+              {% when 'page_title' %}
+                <div class="row hf hero-section" {% if block.settings.hero_section_bg_img %} style="--bg-img:url({{ block.settings.hero_section_bg_img | img_url: '1928x500' }});--bg-img-mb:url({{ block.settings.hero_section_bg_img_mbl | img_url: '1000x1000' }})" {% endif %}>
+                  
+                  <div class="hf-bg-img-wrap hide-mb">
+                  	<img src="{{ block.settings.hero_section_bg_img | img_url: '1500x500' }}" />
+                  </div>
+                  <div class="hf-bg-img-wrap show-mb">
+                  	<img src="{{ block.settings.hero_section_bg_img_mbl | img_url: 'x1500' }}" />
+                  </div>
+                  <div class="hero-heading">
+                    <h1>{{ block.settings.hero_section_heading | escape }}</h1>
+
+                    {% if block.settings.hero_section_subheading %}
+                    <h5 class="hero-subheading{% if block.settings.hero_section_subheading_bold %} make-bold{% endif %}">{{ block.settings.hero_section_subheading }}</h5>
+                    {% endif %}
+                  </div>
+                  
+                  {% if block.settings.hero_section_bg_tint %}
+                  <div class="hero-bg-tint" style="--bg-tint:{{ block.settings.hero_section_bg_tint | color_modify: 'alpha', 0.85 }}"></div>
+                  {% endif %}
+                  
+                </div>
+            
+              {% when 'text' %}
+            	
+                <div class="hf rating-info-section def-width">
+                  <div class="rating-heading">
+                    <h3>{{ block.settings.rating_section_heading | escape }}</h3>
+                  </div>
+
+                  <div class="rating-stars">
+                    <img src="{{ "star.svg" | asset_url }}">
+                    <img src="{{ "star.svg" | asset_url }}">
+                    <img src="{{ "star.svg" | asset_url }}">
+                    <img src="{{ "star.svg" | asset_url }}">
+                    <img src="{{ "star.svg" | asset_url }}">
+                  </div>
+
+                  <div class="rating-info-wrap">
+                    <div class="avg-rating-count">
+                      <strong>{{ block.settings.rating_section_avg_rv_count }}</strong>
+                      <p>Avg. Review</p>
+                    </div>
+                    <span class="rt-divider"></span>
+                    <div class="total-rating-count">
+                      <strong>{{ block.settings.rating_section_total_rv_count }}</strong>
+                      <p>Total Reviews</p>
+                    </div>
+                  </div>
+
+                </div>
+            
+             {% when 'accordion' %}
+               <section id="page-section-{{ block.id }}" class="">
+                 
+                <div class="review-carousel-container swiper swiper-product-ig">
+                 <div class="row review-carousel-wrap swiper-wrapper">
+                   {% for n in (1..10) %}
+                     {% assign userName = "user_name_" | append: n %}
+                     {% assign userName = block.settings[userName] %}
+                   
+                     {% assign userAvatar = "user_avatar_" | append: n %}
+                   		{% assign userAvatar = block.settings[userAvatar] %}
+                   
+                     {% assign userAddress = "user_address_" | append: n %}
+                    {% assign userAddress = block.settings[userAddress] | default: 'Lorem' %}
+                   
+                     {% assign userRating = "user_rating_" | append: n %}
+                   		{% assign userRating = block.settings[userRating] | plus: 0 | default: 5 %}
+                   
+                     {% assign reviewTitle = "review_title_" | append: n %}
+                    {% assign reviewTitle = block.settings[reviewTitle] | default: 'Amazing' %}
+                   
+                     {% assign reviewContent = "review_content_" | append: n %}
+                   {% assign reviewContent = block.settings[reviewContent] | default: 'Amazing' %}
+                   
+                       {% assign reviewReview = "review_of_review_" | append: n %}
+                   {% assign reviewReview = block.settings[reviewReview] | default: 'Review of The Review' %}
+
+                     {% if userName %}
+                       <div class="review-carousel-item swiper-slide">
+                         <div class="skeleton-loader-cust"></div>
+                         <div class="review-user-info">
+                           <figure>
+                             <img src="{{ userAvatar | img_url: '200x200'  }}" alt="avatar">
+                           </figure>
+                           <div class="user-info">
+                             <div class="verified-wrap">
+                               <span class="user-name">{{ userName }}</span>
+                               <span class="user-verified"></span>
+<!--                                <span class="verified-tool-tip">Verified HypeFlags Customer</span> -->
+                             </div>
+                             <address class="user-address">
+                               {{ userAddress }}
+                             </address>
+                           </div>
+                         </div>
+                         
+                         <div class="user-rating">
+                           {% for i in (1..5) %}
+                           	{% if i == userRating %}
+    							{% break %}
+                             {% else %}
+                               <img src="{{ "star.svg" | asset_url }}">
+                             {% endif %}
+                           {% endfor %}
+                         </div>
+                         
+                         <div class="review-title">{{ reviewTitle }}</div>
+                         
+                         <div class="review-content">{{ reviewContent }}</div>
+                         
+                         <span class="bottom-rev-text">{{ reviewReview }}</span>
+                       </div>
+                     {% endif %}
+                   {% endfor %}
+                 </div>
+<!--                   <button class="review-carousel-btn prev"></button>
+                  <button class="review-carousel-btn next"></button> -->
+                 </div>
+                 
+                 <div class="review-button-wrap">
+                 	<a href="{{ block.settings.review_button_link | url }}" class="btn review-button">{{ block.settings.review_button_txt }}</a>
+                 </div>
+               </section>
+            
+           {% when 'image_with_text' %}
+                <section id="about-hype" class="row about-hype def-width" >
+                  {% if block.settings.about_hype_heading != '' %}
+                  	<div class="rating-heading hyp-lg">
+                    	<h3>{{ block.settings.about_hype_heading | escape }}</h3>
+                  	</div>
+                  {% endif %}
+                  
+                  
+                 {% capture image_layout %}
+                   <div class="{% if block.settings.iwt_layout == 'left' %}left-image{% else %}right-image{% endif %}">
+                     {% if block.settings.iwt_image != blank %}
+                        <img src="{{ block.settings.iwt_image | img_url: '1000x600' }}" alt="HypeFlags">
+                     {% endif %}
+                   </div>
+                 {% endcapture %}
+                  
+                 <div class="about-hype-content">
+                    {% if block.settings.iwt_layout == 'left' %}
+                     {{ image_layout }}
+                   {% endif %}
+                   <div class="about-content">
+                     {% if block.settings.iwt_title != blank %}
+                       <h3 class="text-title">
+                         {{ block.settings.iwt_title | escape }}
+                       </h3>
+                     {% endif %}
+                     {% if block.settings.iwt_text != blank %}
+                       <div class="rte">
+                         {{ block.settings.iwt_text }}
+                       </div>
+                     {% endif %}
+                   </div>
+                   {% if block.settings.iwt_layout == 'right' %}
+                     {{ image_layout }}
+                   {% endif %}
+                 </div>
+                </section>
+            
+            
+            {% when 'custom' %}
+               <section id="page-section-{{ block.id }}" class="ig-feed-cont-wrapper">
+                  <div class="ig-feed-heading">
+                  	<h3>{{ block.settings.ig_sec_heading | escape }}</h3>
+                  </div>
+                 
+                 <div class="review-carousel-container ig-feed-cont swiper swiper-product-ig">
+                   <div class="row review-carousel-wrap ig-feed swiper-wrapper">
+                     {% for n in (1..10) %}
+
+                       {% assign userImg = "ig_user_image_" | append: n %}
+                       {% assign userImg = block.settings[userImg] | default: 'ss' %}
+                       {% assign userName = "ig_user_name_" | append: n %}
+                       {% assign userName = block.settings[userName] %}
+
+                       {% assign userAvatar = "ig_user_avatar_" | append: n %}
+                     {% assign userAvatar = block.settings[userAvatar] %}
+
+                       {% assign userHandle = "ig_user_handle_" | append: n %}
+                      {% assign userHandle = block.settings[userHandle] | default: '@' %}
+
+                       {% if userName %}
+                         <div class="review-carousel-item swiper-slide">
+                           <div class="skeleton-loader-cust"></div>
+                           <figure class="ig-img">
+                             <img src="{{ userImg | img_url: '400x400' }}" alt="ig">
+                           </figure>
+                           <div class="review-user-info">
+                             <figure>
+                               <img src="{{ userAvatar | img_url: '200x200'  }}" alt="avatar">
+                             </figure>
+                             <div class="user-info">
+                               <span class="user-name">{{ userName }}</span>
+                               <address class="user-address">
+                                 {{ userHandle }}
+                               </address>
+                             </div>
+                           </div>
+                         </div>
+                       {% endif %}
+                     {% endfor %}
+                   </div>
+                 </div>
+                 
+                 <div class="review-button-wrap">
+                 	<a href="{{ block.settings.ig_button_link | url }}" class="btn review-button">{{ block.settings.ig_button_txt }}</a>
+                 </div>
+               </section>
+            
+            
+          {% endcase %}
+            
+          {% if block.type != 'page_title' %}
+          </div>
+          {% endif %}
+       {% endfor %}
+        
+       	<div class="clear"></div>
+       </div>
+       <!-- end the custom content -->
+</div>
+</div>
+<!--   <script>
+    jQuery(function($) {
+      
+      $('.review-carousel-wrap').slick({
+      	infinite: true,
+        speed: 500,
+        slidesToShow: 6,
+        dots: false,
+		centerMode: true,
+        cssEase: 'linear',
+        draggable: true,
+        variableWidth: true,
+        arrows: false,
+//         useTransform: false,
+        responsive: [
+        {
+          breakpoint: 750,
+          settings: {
+            slidesToShow: 3,
+            infinite: true,
+            centerMode: true,
+            centerPadding: '80px',
+            dots: false,
+            arrows: false,
+            draggable: true,
+
+          }
+        },
+          {
+          breakpoint: 375,
+          settings: {
+            slidesToShow: 1,
+            infinite: true,
+            centerMode: true,
+            centerPadding: '20px',
+            dots: false,
+            arrows: false,
+
+          }
+        }
+       ]
+      })
+    })    
+        
+  </script> -->
+
+{% schema %}
+{
+    "name": "Custom Settings",
+	  "max_blocks": 40,
+    "blocks": [
+	{
+        "type": "page_title",
+        "name": "Hero Section",
+        "settings": [
+          {
+              "type": "text",
+              "id": "hero_section_heading",
+              "label": "Heading",
+              "default": "Lorem Ipsum"
+            },
+          {
+              "type": "text",
+              "id": "hero_section_subheading",
+              "label": "Sub Heading",
+              "default": "Lorem Ipsum"
+            },
+{
+              "type": "checkbox",
+              "id": "hero_section_subheading_bold",
+              "label": "Make Sub Heading Bold?",
+              "default": true,
+              "info": "Text"
+            },
+
+          {
+            "type": "image_picker",
+            "id": "hero_section_bg_img",
+            "label": "Background Image"
+          },
+{
+            "type": "image_picker",
+            "id": "hero_section_bg_img_mbl",
+            "label": "Background Image (Mobile)"
+          },
+			{
+            "type": "color",
+            "id": "hero_section_bg_tint",
+            "label": "Background Tint"
+          }
+        ]
+      },
+	{
+        "type": "text",
+        "name": "Rating Section",
+        "settings": [
+          {
+              "type": "text",
+              "id": "rating_section_heading",
+              "label": "Rating Section Heading",
+              "default": "Lorem Ipsum"
+            },
+          {
+            "type": "range",
+            "id": "rating_section_rate_count",
+            "min": 1,
+            "max": 5,
+            "step": 1,
+            "label": "Rating",
+            "default": 5
+          },
+			{
+              "type": "text",
+              "id": "rating_section_avg_rv_count",
+              "label": "Average Review Count",
+              "default": "4.98"
+            },
+			{
+              "type": "text",
+              "id": "rating_section_total_rv_count",
+              "label": "Total Reviews Count",
+              "default": "100"
+            }
+        ]
+      },
+      {
+        "type": "image_with_text",
+        "name": "Image with Text",
+        "settings": [
+			{
+	"type":"text",
+"id":"about_hype_heading",
+"label":"Section Heading"
+},
+          {
+            "type": "image_picker",
+            "id": "iwt_image",
+            "label": "Image"
+          },
+          {
+            "type": "select",
+            "id": "iwt_layout",
+            "label": "Position",
+            "default": "left",
+            "options": [
+              {
+                "value": "left",
+                "label": "Image on left"
+              },
+              {
+                "value": "right",
+                "label": "Image on right"
+              }
+            ]
+          },
+         {
+            "type": "select",
+            "id": "iwt_text_align",
+            "label": "Text alignment",
+            "default": "left",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "id": "iwt_title",
+            "label": "Heading",
+            "default": "Image with text"
+          },
+          {
+            "type": "richtext",
+            "id": "iwt_text",
+            "label": "Text",
+            "default": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+          }
+        ]
+      },
+      {
+        "type": "custom",
+        "name": "Instagram Feed",
+        "settings": [
+{
+"type": "text",
+"id": "ig_sec_heading",
+"label": "Heading",
+"default": "READY TO JOIN THE HYPE?"
+},
+{
+"type": "header",
+"content": "Instagram Feed #1"
+},
+{
+"type": "image_picker",
+"id": "ig_user_image_1",
+"label": "Instagram Image"
+},
+{
+"type": "image_picker",
+"id": "ig_user_avatar_1",
+"label": "User Avatar"
+},
+{
+"type": "text",
+"id": "ig_user_name_1",
+"label": "User Name",
+"default": "Test"
+},
+{
+"type": "text",
+"id": "ig_user_handle_1",
+"label": "Instagram Handle",
+"default": "@"
+},
+{
+"type": "header",
+"content": "Instagram Feed #2"
+},
+{
+"type": "image_picker",
+"id": "ig_user_image_2",
+"label": "Instagram Image"
+},
+{
+"type": "image_picker",
+"id": "ig_user_avatar_2",
+"label": "User Avatar"
+},
+{
+"type": "text",
+"id": "ig_user_name_2",
+"label": "User Name",
+"default": "Test"
+},
+{
+"type": "text",
+"id": "ig_user_handle_2",
+"label": "Instagram Handle",
+"default": "@"
+},
+{
+"type": "header",
+"content": "Instagram Feed #3"
+},
+{
+"type": "image_picker",
+"id": "ig_user_image_3",
+"label": "Instagram Image"
+},
+{
+"type": "image_picker",
+"id": "ig_user_avatar_3",
+"label": "User Avatar"
+},
+{
+"type": "text",
+"id": "ig_user_name_3",
+"label": "User Name",
+"default": "Test"
+},
+{
+"type": "text",
+"id": "ig_user_handle_3",
+"label": "Instagram Handle",
+"default": "@"
+},
+{
+"type": "header",
+"content": "Instagram Feed #4"
+},
+{
+"type": "image_picker",
+"id": "ig_user_image_4",
+"label": "Instagram Image"
+},
+{
+"type": "image_picker",
+"id": "ig_user_avatar_4",
+"label": "User Avatar"
+},
+{
+"type": "text",
+"id": "ig_user_name_4",
+"label": "User Name",
+"default": "Test"
+},
+{
+"type": "text",
+"id": "ig_user_handle_4",
+"label": "Instagram Handle",
+"default": "@"
+},
+{
+"type": "header",
+"content": "Instagram Feed #5"
+},
+{
+"type": "image_picker",
+"id": "ig_user_image_5",
+"label": "Instagram Image"
+},
+{
+"type": "image_picker",
+"id": "ig_user_avatar_5",
+"label": "User Avatar"
+},
+{
+"type": "text",
+"id": "ig_user_name_5",
+"label": "User Name",
+"default": "Test"
+},
+{
+"type": "text",
+"id": "ig_user_handle_5",
+"label": "Instagram Handle",
+"default": "@"
+},
+{
+"type": "header",
+"content": "Instagram Feed #6"
+},
+{
+"type": "image_picker",
+"id": "ig_user_image_6",
+"label": "Instagram Image"
+},
+{
+"type": "image_picker",
+"id": "ig_user_avatar_6",
+"label": "User Avatar"
+},
+{
+"type": "text",
+"id": "ig_user_name_6",
+"label": "User Name",
+"default": "Test"
+},
+{
+"type": "text",
+"id": "ig_user_handle_6",
+"label": "Instagram Handle",
+"default": "@"
+},
+{
+"type": "header",
+"content": "Instagram Feed #7"
+},
+{
+"type": "image_picker",
+"id": "ig_user_image_7",
+"label": "Instagram Image"
+},
+{
+"type": "image_picker",
+"id": "ig_user_avatar_7",
+"label": "User Avatar"
+},
+{
+"type": "text",
+"id": "ig_user_name_7",
+"label": "User Name",
+"default": "Test"
+},
+{
+"type": "text",
+"id": "ig_user_handle_7",
+"label": "Instagram Handle",
+"default": "@"
+},
+{
+"type": "header",
+"content": "Instagram Feed #8"
+},
+{
+"type": "image_picker",
+"id": "ig_user_image_8",
+"label": "Instagram Image"
+},
+{
+"type": "image_picker",
+"id": "ig_user_avatar_8",
+"label": "User Avatar"
+},
+{
+"type": "text",
+"id": "ig_user_name_8",
+"label": "User Name",
+"default": "Test"
+},
+{
+"type": "text",
+"id": "ig_user_handle_8",
+"label": "Instagram Handle",
+"default": "@"
+},
+{
+"type": "header",
+"content": "Instagram Feed #9"
+},
+{
+"type": "image_picker",
+"id": "ig_user_image_9",
+"label": "Instagram Image"
+},
+{
+"type": "image_picker",
+"id": "ig_user_avatar_9",
+"label": "User Avatar"
+},
+{
+"type": "text",
+"id": "ig_user_name_9",
+"label": "User Name",
+"default": "Test"
+},
+{
+"type": "text",
+"id": "ig_user_handle_9",
+"label": "Instagram Handle",
+"default": "@"
+},
+{
+            "type": "text",
+            "id": "ig_button_txt",
+            "label": "Button Text",
+			"default": "Shop All Flags"
+          },
+{
+            "type": "url",
+            "id": "ig_button_link",
+            "label": "Button Link"
+          }
+]
+      },
+{
+"type": "accordion",
+"name": "Reviews Carousel",
+"settings": [
+{
+"type": "header",
+"content": "Review #1"
+},
+{
+"type": "image_picker",
+"id": "user_avatar_1",
+"label": "User Avatar"
+},
+{
+"type": "text",
+"id": "user_name_1",
+"label": "User Name",
+"default": "Test"
+},
+{
+"type": "text",
+"id": "user_address_1",
+"label": "User Address",
+"default": "Lorem"
+},
+{
+"type": "text",
+"id": "user_rating_1",
+"label": "User Rating (in number)",
+"default": "5"
+},
+{
+"type": "text",
+"id": "review_title_1",
+"label": "Review Title",
+"default": "Amazing!"
+},
+{
+"type": "richtext",
+"id": "review_content_1",
+"label": "Review Content",
+"default": "<p>Amazing!</p>"
+},
+{
+"type": "text",
+"id": "review_of_review_1",
+"label": "Review of Review",
+"default": "Review of The Review"
+},
+{
+"type": "header",
+"content": "Review #2"
+},
+{
+"type": "image_picker",
+"id": "user_avatar_2",
+"label": "User Avatar"
+},
+{
+"type": "text",
+"id": "user_name_2",
+"label": "User Name",
+"default": "Test"
+},
+{
+"type": "text",
+"id": "user_address_2",
+"label": "User Address",
+"default": "Lorem"
+},
+{
+"type": "text",
+"id": "user_rating_2",
+"label": "User Rating (in number)",
+"default": "5"
+},
+{
+"type": "text",
+"id": "review_title_2",
+"label": "Review Title",
+"default": "Amazing!"
+},
+{
+"type": "richtext",
+"id": "review_content_2",
+"label": "Review Content",
+"default": "<p>Amazing!</p>"
+},
+{
+"type": "text",
+"id": "review_of_review_2",
+"label": "Review of Review",
+"default": "Review of The Review"
+},
+{
+"type": "header",
+"content": "Review #3"
+},
+{
+"type": "image_picker",
+"id": "user_avatar_3",
+"label": "User Avatar"
+},
+{
+"type": "text",
+"id": "user_name_3",
+"label": "User Name",
+"default": "Test"
+},
+{
+"type": "text",
+"id": "user_address_3",
+"label": "User Address",
+"default": "Lorem"
+},
+{
+"type": "text",
+"id": "user_rating_3",
+"label": "User Rating (in number)",
+"default": "5"
+},
+{
+"type": "text",
+"id": "review_title_3",
+"label": "Review Title",
+"default": "Amazing!"
+},
+{
+"type": "richtext",
+"id": "review_content_3",
+"label": "Review Content",
+"default": "<p>Amazing!</p>"
+},
+{
+"type": "text",
+"id": "review_of_review_3",
+"label": "Review of Review",
+"default": "Review of The Review"
+},
+{
+"type": "header",
+"content": "Review #4"
+},
+{
+"type": "image_picker",
+"id": "user_avatar_4",
+"label": "User Avatar"
+},
+{
+"type": "text",
+"id": "user_name_4",
+"label": "User Name",
+"default": "Test"
+},
+{
+"type": "text",
+"id": "user_address_4",
+"label": "User Address",
+"default": "Lorem"
+},
+{
+"type": "text",
+"id": "user_rating_4",
+"label": "User Rating (in number)",
+"default": "5"
+},
+{
+"type": "text",
+"id": "review_title_4",
+"label": "Review Title",
+"default": "Amazing!"
+},
+{
+"type": "richtext",
+"id": "review_content_4",
+"label": "Review Content",
+"default": "<p>Amazing!</p>"
+},
+{
+"type": "text",
+"id": "review_of_review_4",
+"label": "Review of Review",
+"default": "Review of The Review"
+},
+{
+"type": "header",
+"content": "Review #5"
+},
+{
+"type": "image_picker",
+"id": "user_avatar_5",
+"label": "User Avatar"
+},
+{
+"type": "text",
+"id": "user_name_5",
+"label": "User Name",
+"default": "Test"
+},
+{
+"type": "text",
+"id": "user_address_5",
+"label": "User Address",
+"default": "Lorem"
+},
+{
+"type": "text",
+"id": "user_rating_5",
+"label": "User Rating (in number)",
+"default": "5"
+},
+{
+"type": "text",
+"id": "review_title_5",
+"label": "Review Title",
+"default": "Amazing!"
+},
+{
+"type": "richtext",
+"id": "review_content_5",
+"label": "Review Content",
+"default": "<p>Amazing!</p>"
+},
+{
+"type": "text",
+"id": "review_of_review_5",
+"label": "Review of Review",
+"default": "Review of The Review"
+},
+{
+"type": "header",
+"content": "Review #6"
+},
+{
+"type": "image_picker",
+"id": "user_avatar_6",
+"label": "User Avatar"
+},
+{
+"type": "text",
+"id": "user_name_6",
+"label": "User Name",
+"default": "Test"
+},
+{
+"type": "text",
+"id": "user_address_6",
+"label": "User Address",
+"default": "Lorem"
+},
+{
+"type": "text",
+"id": "user_rating_6",
+"label": "User Rating (in number)",
+"default": "5"
+},
+{
+"type": "text",
+"id": "review_title_6",
+"label": "Review Title",
+"default": "Amazing!"
+},
+{
+"type": "richtext",
+"id": "review_content_6",
+"label": "Review Content",
+"default": "<p>Amazing!</p>"
+},
+{
+"type": "text",
+"id": "review_of_review_6",
+"label": "Review of Review",
+"default": "Review of The Review"
+},
+{
+"type": "header",
+"content": "Review #7"
+},
+{
+"type": "image_picker",
+"id": "user_avatar_7",
+"label": "User Avatar"
+},
+{
+"type": "text",
+"id": "user_name_7",
+"label": "User Name",
+"default": "Test"
+},
+{
+"type": "text",
+"id": "user_address_7",
+"label": "User Address",
+"default": "Lorem"
+},
+{
+"type": "text",
+"id": "user_rating_7",
+"label": "User Rating (in number)",
+"default": "5"
+},
+{
+"type": "text",
+"id": "review_title_7",
+"label": "Review Title",
+"default": "Amazing!"
+},
+{
+"type": "richtext",
+"id": "review_content_7",
+"label": "Review Content",
+"default": "<p>Amazing!</p>"
+},
+{
+"type": "text",
+"id": "review_of_review_7",
+"label": "Review of Review",
+"default": "Review of The Review"
+},
+{
+"type": "header",
+"content": "Review #8"
+},
+{
+"type": "image_picker",
+"id": "user_avatar_8",
+"label": "User Avatar"
+},
+{
+"type": "text",
+"id": "user_name_8",
+"label": "User Name",
+"default": "Test"
+},
+{
+"type": "text",
+"id": "user_address_8",
+"label": "User Address",
+"default": "Lorem"
+},
+{
+"type": "text",
+"id": "user_rating_8",
+"label": "User Rating (in number)",
+"default": "5"
+},
+{
+"type": "text",
+"id": "review_title_8",
+"label": "Review Title",
+"default": "Amazing!"
+},
+{
+"type": "richtext",
+"id": "review_content_8",
+"label": "Review Content",
+"default": "<p>Amazing!</p>"
+},
+{
+"type": "text",
+"id": "review_of_review_8",
+"label": "Review of Review",
+"default": "Review of The Review"
+},
+{
+"type": "header",
+"content": "Review #9"
+},
+{
+"type": "image_picker",
+"id": "user_avatar_9",
+"label": "User Avatar"
+},
+{
+"type": "text",
+"id": "user_name_9",
+"label": "User Name",
+"default": "Test"
+},
+{
+"type": "text",
+"id": "user_address_9",
+"label": "User Address",
+"default": "Lorem"
+},
+{
+"type": "text",
+"id": "user_rating_9",
+"label": "User Rating (in number)",
+"default": "5"
+},
+{
+"type": "text",
+"id": "review_title_9",
+"label": "Review Title",
+"default": "Amazing!"
+},
+{
+"type": "richtext",
+"id": "review_content_9",
+"label": "Review Content",
+"default": "<p>Amazing!</p>"
+},
+{
+"type": "text",
+"id": "review_of_review_9",
+"label": "Review of Review",
+"default": "Review of The Review"
+},
+{
+"type": "text",
+"id": "review_button_txt",
+"label": "Button Text"
+},
+{
+"type": "url",
+"id": "review_button_link",
+"label": "Button Link"
+}
+]
+}
+    ]
+  }
+{% endschema %}

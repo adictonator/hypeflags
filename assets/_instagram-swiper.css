@@ -1,0 +1,96 @@
+#shopify-section-instagram-swiper {
+  padding: 80px 0;
+/*   padding: 0; */
+}
+
+#shopify-section-instagram-swiper section {
+  max-width: 1296px;
+  margin: 0 auto;
+}
+#shopify-section-instagram-swiper .section-header {
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+}
+#shopify-section-instagram-swiper .section-header h2 {
+  margin: 0;
+  font-size: 42px;
+  display: block;
+  width: 100%;
+}
+
+.swiper-instagram .ig-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  max-width: 294px;
+}
+/* .swiper-instagram .ig-card:before {
+  content: ' ';  
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 0px 35px -20px rgba(0,0,0,0.5);
+  opacity: 0;
+  transition: opacity 250ms linear;
+} */
+/* .swiper-instagram .ig-card:hover:before {
+  opacity: 1;
+}
+ */
+/* .swiper-instagram .ig-card:hover .ig-user-meta {
+  border-color: #fff;
+} */
+
+
+.swiper-instagram .ig-img {
+  max-width: 294px;
+  width: 100%;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+.ig-user-meta {
+  display: flex;
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #E0E0E0;
+  border-top: 0;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  transition: border 250ms linear;
+  align-items: center;
+}
+
+.ig-user-meta .avatar {
+  border-radius: 50%;
+  width: 60px;
+  margin-right: 18px;
+}
+
+.user-info {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.user-info .user-name {
+  white-space: pre;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+  display: block;
+}
+
+.user-info .user-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+.user-info .user-handle {
+  color: #666666;
+  font-size: 18px;
+  font-style: normal;
+}

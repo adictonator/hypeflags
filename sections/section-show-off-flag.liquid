@@ -1,0 +1,91 @@
+{% if section.blocks.size > 0 and product.id != 3824189505584 %}
+<section id="page-section-{{ block.id }}" class="ig-feed-cont-wrapper product-show-off">
+  	
+  <div class="ig-feed-heading">
+  	<h3>{{  section.settings.heading | escape }}</h3>
+    <h5>{{ section.settings.subtitle }}</h5>
+  </div>
+
+    
+            
+   <div class="review-carousel-container ig-feed-cont swiper swiper-product-ig">
+     <div class="row review-carousel-wrap ig-feed product-showoff-ig-feed swiper-wrapper">
+         {% for block in section.blocks %}
+         {% if block.settings.name %}
+           <div class="review-carousel-item swiper-slide">
+             <div class="skeleton-loader-cust"></div>
+             <figure class="ig-img">
+               <img src="{{ block.settings.image | img_url: '400x400' }}" alt="{{ block.settings.image.alt }}">
+             </figure>
+             <div class="review-user-info">
+               <figure>
+                 <img src="{{ block.settings.avatar | img_url: '200x200'  }}" alt="avatar">
+               </figure>
+               <div class="user-info">
+                 <span class="user-name">{{ block.settings.name }}</span>
+                 <address class="user-address">
+                   {{ block.settings.ig_handle }}
+                 </address>
+               </div>
+             </div>
+           </div>
+         {% endif %}
+        {% endfor %}
+     </div>
+   </div>
+</section>
+
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Show Off Flag Section",
+    "settings": [
+	{
+		"type":"text",
+		"id":"heading",
+		"label":"Heading"
+	},
+	{
+		"type":"html",
+		"id":"subtitle",
+		"label":"Subtitle"
+	}
+	],
+	"blocks":[
+	{
+		"type":"post",
+		"name":"Post",
+		"settings":[
+		{
+			"type":"image_picker",
+			"id":"image",
+			"label":"Image",
+  			"info":"Use image ratio 500x500"
+		},
+		{
+			"type":"text",
+			"id":"name",
+			"label":"Author Name"
+		},
+		{
+			"type":"image_picker",
+			"id":"avatar",
+			"label":"Author Avatar"
+		},
+		{
+			"type":"text",
+			"id":"ig_handle",
+			"label":"Instagram Handle"
+		}
+		]
+	}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

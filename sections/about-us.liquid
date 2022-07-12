@@ -1,0 +1,255 @@
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;800&display=swap" rel="stylesheet">
+
+{% if section.settings.hero_heading %}
+    <div class="about-us-hero-wrap">
+      <svg viewBox="0 0 1279 547" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+	      <path d="M0.000976562 0H1279V383C999.756 389.837 961.501 574 617.501 511C273.501 448 136.917 464.344 0.000976562 547V0Z" fill="#D5003A"/>
+      </svg>
+      	  
+      <div class="hero-wrap page-width">
+        <div class="about-us-hero-text-wrap" data-aos="fade-in" data-aos-duration="2000">
+          <h1 class="about-page-title about-box-title">{{ section.settings.hero_heading }}</h1>
+          {{ section.settings.hero_content }}
+        </div>
+
+        <figure class="about-us-hero-img-wrap">
+          <img src="{{ section.settings.hero_image | asset_url }}" />
+        </figure>
+      </div>
+    </div>
+{% endif %}
+
+<div class="page-width about-us-feature-row">
+  {% if section.settings.our_story %}
+      <div class="about-description_box text-center our-story">
+        <h2 class="about-text text-center" data-aos="fade-in" data-aos-duration="2000">{{ section.settings.our_story }}</h2>
+        <div data-aos="fade-in" data-aos-duration="1900">
+          {{ section.settings.our_story_content }}
+        </div>
+      </div>
+  {% endif %}
+
+  {% for block in section.blocks %}
+    <div class="about-wrapper_box about-box">
+      {% capture image_layout %}
+      <div class="about-image_box medium-up--one-half about-box--{{ forloop.index }}" {% if forloop.index == 2 %}style="max-width: 320px;"{% endif %}>
+        {% if block.settings.image != blank %}
+        	<img src="{{ block.settings.image  | asset_url }}">
+        {% endif %}
+      </div>
+      {% endcapture %}
+
+      <div class="feature-row">
+        {% if block.settings.layout == 'left' %}
+            {{ image_layout }}
+        {% endif %}
+
+        <div class="about-description_box medium-up--one-half feature-row__text--{{ block.settings.layout }}">
+          {% if block.settings.title != blank %}
+          	<h2 class="about-text text-center" data-aos="fade-in" data-aos-duration="2000">{{ block.settings.title }}</h2>
+          {% endif %}
+          
+          {% if block.settings.text != blank%}
+          	<div data-aos="fade-in" data-aos-duration="1900">{{ block.settings.text }}</div>
+            <p></p>
+          {% endif %}
+          
+          {% if forloop.index == 1 %}
+            <div class="about-us-review-count" data-aos="fade-in" data-aos-duration="1800">
+              <div class="rating-stars">
+                <img src="{{ "star.svg" | asset_url }}">
+                <img src="{{ "star.svg" | asset_url }}">
+                <img src="{{ "star.svg" | asset_url }}">
+                <img src="{{ "star.svg" | asset_url }}">
+                <img src="{{ "star.svg" | asset_url }}">
+              </div>
+
+              <div class="rating-count">
+                <div class="avg-rev">
+                  <span>4.98 / 5</span>
+                  <span>Avg. Review</span>
+                </div>
+
+                <div class="ver-rev">
+                  <span>3000+</span>
+                  <span>Verified Reviews</span>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+
+        {% if block.settings.layout == 'right' %}
+        	{{ image_layout }}
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+
+  
+  <div class="about-us-gif-section">
+  	<h2 class="about-text text-center" data-aos="fade-in" data-aos-duration="2000">Behind The Flags</h2>
+    
+    <div class="gif-section-wrap">
+      {% if section.settings.bottom_img_1 != blank %}
+        <div class="gif-section">
+          <figure>
+            <img src="{{ section.settings.bottom_img_1 | img_url: 'x1000' }}">
+          </figure>
+          <h3>{{ section.settings.bottom_title_1 }}</h3>
+        </div>
+      {% endif %}
+
+
+      {% if section.settings.bottom_img_2 %}
+        <div class="gif-section">
+          <figure>
+            <img src="{{ section.settings.bottom_img_2 | img_url: 'x1000' }}">
+          </figure>
+          <h3>{{ section.settings.bottom_title_2 }}</h3>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+ 
+</div>
+
+{% schema %}
+  {
+    "name": "Image With Text",
+    "settings": [
+		{
+		  "type": "text",
+          "id": "hero_heading",
+          "label": "Main Heading"
+		},
+		{
+		  "type": "richtext",
+          "id": "hero_content",
+          "label": "Hero Content"
+		},
+		{
+		  "type": "text",
+          "id": "hero_image",
+          "label": "Hero Image",
+	      "info": "Enter the name of the file with extension"
+		},
+		{
+		  "type": "text",
+          "id": "our_story",
+          "label": "Our Story Heading",
+		  "default": "OUR STORY"
+		},
+		{
+		  "type": "richtext",
+          "id": "our_story_content",
+          "label": "Our Story Content"
+		},
+		{
+			"type":"header",
+			"content": "Bottom Section"
+		},
+		{
+			"type":"image_picker",
+			"id": "bottom_img_1",
+			"label": "Image #1"
+		},
+		{
+			"type":"text",
+			"id": "bottom_title_1",
+			"label": "Title #1",
+			"default": "James Allen"
+		},
+		{
+			"type":"image_picker",
+			"id": "bottom_img_2",
+			"label": "Image #2"
+		},
+		{
+			"type":"text",
+			"id": "bottom_title_2",
+			"label": "Title #2",
+			"default": "Lucas McGinley"
+		}
+	],
+	"blocks": [
+    {
+      "type": "image_text",
+      "name": "Image With Text",
+      "settings": [
+		{
+          "type": "text",
+          "id": "image",
+          "label": "Image",
+	      "info": "Enter the name of the file with extension"
+		},
+		{
+      "type": "select",
+      "id": "layout",
+      "label": {
+        "de": "Fotoausrichtung",
+        "en": "Image alignment",
+        "es": "Alineación de imagen",
+        "fr": "Alignement de l'image",
+        "it": "Allineamento immagine",
+        "ja": "画像アラインメント",
+        "nl": "Afbeelding uitlijnen",
+        "pt-BR": "Alinhamento da imagem",
+        "zh-CN": "图片对齐方式",
+        "zh-TW": "圖片對齊"
+      },
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": {
+            "de": "Links",
+            "en": "Left",
+            "es": "Izquierda",
+            "fr": "Gauche",
+            "it": "Sinistra",
+            "ja": "左",
+            "nl": "Links",
+            "pt-BR": "Esquerda",
+            "zh-CN": "左侧",
+            "zh-TW": "左方"
+          }
+        },
+        {
+          "value": "right",
+          "label": {
+            "de": "Rechts",
+            "en": "Right",
+            "es": "Derecha",
+            "fr": "Droite",
+            "it": "Destra",
+            "ja": "右",
+            "nl": "Rechts",
+            "pt-BR": "Direita",
+            "zh-CN": "右侧",
+            "zh-TW": "右方"
+          }
+        }
+      ]
+    },
+		{
+          "type": "text",
+          "id": "title",
+          "label": "Heading"
+		},
+		{
+          "type": "richtext",
+          "id": "text",
+          "label": "Paragraph"
+		}
+	  ]
+    }
+   ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

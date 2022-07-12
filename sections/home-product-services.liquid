@@ -1,0 +1,87 @@
+{% if section.blocks.size > 0 %}
+<section class="product-services-wrapper!">
+  <div class="product-template__container">
+    <div class="home-service-icon-container">
+      {% for block in section.blocks %}
+      
+          <div class="service-icon-wrapper">
+            <img src="{{ block.settings.icon | asset_url }}"/>
+
+            <div class="custom-service-content-wrapper">
+              {% if block.settings.url %}
+                <h4><a href="{{ block.settings.url }}">{{ block.settings.heading }}</a></h4>
+              {% else %}
+                <h4>{{ block.settings.heading }}</h4>
+              {% endif %}
+              {{ block.settings.text }}
+            </div>
+          </div>
+      
+      {% endfor %}
+      
+    </div>
+  </div>
+</section>
+
+
+{% endif %}
+
+{% schema %}
+  {
+    "name": "HomePage Product Services",
+    "settings": [],
+	"blocks":[
+	{
+		"type":"Image-Text",
+		"name":"Image-Text",
+		"settings":[
+		{
+			"type":"text",
+			"id":"icon",
+			"label":"Section Icon",
+			"info": "Enter the name of the image file with extension"
+		},
+		{
+			"type":"text",
+			"id":"heading",
+			"label":"Title"
+		},
+		{
+			"type":"url",
+			"id":"url",
+			"label":"Select Page",
+			"info": "Assign a page URL to the section title"
+		},
+		{
+			"type":"richtext",
+			"id":"text",
+			"label":"Text"
+		}
+		]
+	}
+	],
+  "presets": [
+    {
+      "name": "HomePage Product Services",
+      "category": {
+        "de": "Kategorie",
+        "en": "Collection",
+        "es": "Colección",
+        "fr": "Collection",
+        "it": "Collezione",
+        "ja": "コレクション",
+        "nl": "Collectie",
+        "pt-BR": "Coleção",
+        "zh-CN": "收藏",
+        "zh-TW": "商品系列"
+      }
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
