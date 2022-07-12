@@ -1,0 +1,7 @@
+{
+  "devDependencies": {
+    "@shopify/prettier-plugin-liquid": "^0.1.4",
+    "prettier": "^2.7.1",
+    "tailwindcss": "^3.1.6"
+  }
+}
