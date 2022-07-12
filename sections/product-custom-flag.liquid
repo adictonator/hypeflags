@@ -78,9 +78,9 @@
 
 				{% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', concierge_install: true, product: product %}
 
-				<div class="upload-image-wrapper flex-col p-10 mt-6 flex justify-center items-center rounded gap-y-2.5 ease-in-out duration-300 hover:cursor-pointer">
+				<div class="upload-image-wrapper flex-col p-10 flex justify-center items-center rounded gap-y-2.5 ease-in-out duration-300 hover:cursor-pointer mt-6">
 					<span class="flex justify-between gap-x-2 items-center upload-text ease-in-out duration-300"
-						>Drag your image here or <strong> browse</strong></span
+						>Drag your image here or <strong>browse</strong></span
 					>
 					<span class="text-[#606163] text-sm">&bull; Format jpg or png (max size 9mb)</span>
 				</div>
@@ -88,18 +88,18 @@
 
 				<span class="flex items-center gap-x-2 mt-4">
 					<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-																																																																								<g opacity="0.5">
-																																																																								<path d="M9 1.5C4.8645 1.5 1.5 4.8645 1.5 9C1.5 13.1355 4.8645 16.5 9 16.5C13.1355 16.5 16.5 13.1355 16.5 9C16.5 4.8645 13.1355 1.5 9 1.5ZM9.75 12.75H8.25V8.25H9.75V12.75ZM9.75 6.75H8.25V5.25H9.75V6.75Z" fill="#606163"/>
-																																																																								</g>
+																								<g opacity="0.5"><path d="M9 1.5C4.8645 1.5 1.5 4.8645 1.5 9C1.5 13.1355 4.8645 16.5 9 16.5C13.1355 16.5 16.5 13.1355 16.5 9C16.5 4.8645 13.1355 1.5 9 1.5ZM9.75 12.75H8.25V8.25H9.75V12.75ZM9.75 6.75H8.25V5.25H9.75V6.75Z" fill="#606163"/></g>
 					</svg>
+
 					<span class="text-[#606163] text-sm italic"
 						>Please review our
-						<a href="#" class="underline hover:underline" data-cust-flag-modal>custom flag policy</a></span
-					>
+						<a href="#" class="underline hover:underline" data-cust-flag-modal>custom flag policy</a>
+					</span>
 				</span>
 
 				{% capture "form_classes" -%}
-					flex justify-between items-stretch my-6 gap-x-4
+					flex justify-between items-stretch my-6 gap-x-4 after:content-[&bull; Made to order | Will Ship in
+					5-7 days]
 				{%- endcapture %}
 
 				{% form 'product', product, class:form_classes, novalidate: 'novalidate', data-product-form: '', data-product-form-redirect-url: '/cart' %}
@@ -119,7 +119,7 @@
 								stroke="currentColor"
 								stroke-width="2"
 							>
-																																																																																																<path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
+																								<path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
 							</svg>
 						</button>
 						<input
@@ -144,7 +144,7 @@
 								stroke="currentColor"
 								stroke-width="2"
 							>
-																																																																																																<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+																								<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
 							</svg>
 						</button>
 					</div>
@@ -171,40 +171,40 @@
 </div>
 
 <script>
-												$(document).ready(function(){
-												$('.product-accordion-item h3').on('click touch', function(e) {
-												e.preventDefault()
+																			$(document).ready(function(){
+																			$('.product-accordion-item h3').on('click touch', function(e) {
+																			e.preventDefault()
 
-												const _this = $(this)
+																			const _this = $(this)
 
-												$(this).parent().find('p, ul').slideToggle('fast', function() {
-												_this.parent().toggleClass('is-collapsed');
-												});
-												})
+																			$(this).parent().find('p, ul').slideToggle('fast', function() {
+																			_this.parent().toggleClass('is-collapsed');
+																			});
+																			})
 
-												$('.b-drop-info').hover(
-												function() {
-												$(this).addClass('show')
-												})
+																			$('.b-drop-info').hover(
+																			function() {
+																			$(this).addClass('show')
+																			})
 
-												$('.b-drop-info').mouseout(function(e) {
+																			$('.b-drop-info').mouseout(function(e) {
 
-												if ( e.relatedTarget &&
-												( $(e.relatedTarget).hasClass('webkit_center') ||
-												$(e.relatedTarget).hasClass('product-single__meta') ||
-												$(e.toElement) == 'p' )
-												) {
-												$(this).removeClass('show')
-												}
-												})
+																			if ( e.relatedTarget &&
+																			( $(e.relatedTarget).hasClass('webkit_center') ||
+																			$(e.relatedTarget).hasClass('product-single__meta') ||
+																			$(e.toElement) == 'p' )
+																			) {
+																			$(this).removeClass('show')
+																			}
+																			})
 
 
-												});
+																			});
 </script>
 
 {% unless product == empty %}
 	<script type="application/json" id="ProductJson-{{ section.id }}">
-																								{{ product | json }}
+																																						{{ product | json }}
 	</script>
 {% endunless %}
 
@@ -214,14 +214,14 @@
 
 	<input type="hidden" class="custom_tag" value="{{ tag_custom }}">
 	<script>
-																								$(document).ready(function(){
-																								$(".product-form__cart-submit").next("div").remove();
-																								var custom_tag = $(".custom_tag").val();
+																																						$(document).ready(function(){
+																																						$(".product-form__cart-submit").next("div").remove();
+																																						var custom_tag = $(".custom_tag").val();
 
-																								if(custom_tag == 'true'){
-																								$("[name='add']").attr("disabled","disabled");
-																								}
-																								});
+																																						if(custom_tag == 'true'){
+																																						$("[name='add']").attr("disabled","disabled");
+																																						}
+																																						});
 	</script>
 {% endif %}
 
@@ -489,48 +489,48 @@
 	</div>
 
 	<style>
-																								.review-user-info {
-																								display: none !important
-																								}
-																								.ig-img,
-																								.review-carousel-item {
-																								width: 250px !important;
-																								height: 250px;
-																								}
-																								.hf-legit .review-carousel-wrap .review-carousel-item, .index-section .review-carousel-wrap .review-carousel-item,
-																								.template-product .review-carousel-wrap .review-carousel-item {
-																								width: 250px !important;
-																								height: 250px !important;
-																								}
+																																						.review-user-info {
+																																						display: none !important
+																																						}
+																																						.ig-img,
+																																						.review-carousel-item {
+																																						width: 250px !important;
+																																						height: 250px;
+																																						}
+																																						.hf-legit .review-carousel-wrap .review-carousel-item, .index-section .review-carousel-wrap .review-carousel-item,
+																																						.template-product .review-carousel-wrap .review-carousel-item {
+																																						width: 250px !important;
+																																						height: 250px !important;
+																																						}
 
-																								.template-product .review-carousel-wrap.ig-feed .review-carousel-item figure.ig-img:after {
-																								content: unset;
-																								}
+																																						.template-product .review-carousel-wrap.ig-feed .review-carousel-item figure.ig-img:after {
+																																						content: unset;
+																																						}
 
-																								.product-form__item.custom-product--qty:after {
-																								content: '• Made to order | will ship in 5-7 days';
-																								position: absolute;
-																								left: 0;
-																								font-size: 15.5px;
-																								font-weight: normal;
-																								cursor: text;
-																								color: #FFA800;
-																								text-transform: capitalize;
-																								letter-spacing: 0;
-																								width: 100%;
-																								bottom: -50px;
-																								height: 40px;
-																								text-align: center;
-																								}
+																																						.product-form__item.custom-product--qty:after {
+																																						content: '• Made to order | will ship in 5-7 days';
+																																						position: absolute;
+																																						left: 0;
+																																						font-size: 15.5px;
+																																						font-weight: normal;
+																																						cursor: text;
+																																						color: #FFA800;
+																																						text-transform: capitalize;
+																																						letter-spacing: 0;
+																																						width: 100%;
+																																						bottom: -50px;
+																																						height: 40px;
+																																						text-align: center;
+																																						}
 
-																								@media(max-width:767px) {
-																								button.btn.product-form__cart-submit {
-																								padding: 8px 16px;
-																								}
+																																						@media(max-width:767px) {
+																																						button.btn.product-form__cart-submit {
+																																						padding: 8px 16px;
+																																						}
 
-																								button.btn.product-form__cart-submit:after {
-																								font-size: 11px;
-																								}
-																								}
+																																						button.btn.product-form__cart-submit:after {
+																																						font-size: 11px;
+																																						}
+																																						}
 	</style>
 {% endif %}
