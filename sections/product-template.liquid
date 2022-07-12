@@ -6,72 +6,72 @@
 {%- assign price = current_variant.price -%}
 
 <div
-	class='product-template__container'
-	id='ProductSection-{{ section.id }}'
-	data-section-id='{{ section.id }}'
-	data-section-type='product'
-	data-enable-history-state='true'
+	class="product-template__container"
+	id="ProductSection-{{ section.id }}"
+	data-section-id="{{ section.id }}"
+	data-section-type="product"
+	data-enable-history-state="true"
 >
-	<div class='product-single{% if section.settings.enable_payment_button %} product-single--{{ section.settings.image_size }}-image{% endif %}'>
-		<div class='product-single__photos product-slider-wrapper{% if section.settings.image_size == 'full' %} product-single__photos--full{% endif %}'>
-			<div class='slider-wrapper'>
+	<div class="product-single{% if section.settings.enable_payment_button %} product-single--{{ section.settings.image_size }}-image{% endif %}">
+		<div class="product-single__photos product-slider-wrapper{% if section.settings.image_size == 'full' %} product-single__photos--full{% endif %}">
+			<div class="slider-wrapper">
 				<div
-					class='main_product_slider _mhh swiper product-single-gallery'
-					style='position: relative; height: auto;'
+					class="main_product_slider _mhh swiper product-single-gallery"
+					style="position: relative; height: auto;"
 				>
-					<div class='skeleton-loader-cust'></div>
+					<div class="skeleton-loader-cust"></div>
 
 					{% if product.tags contains 'Newarrival' %}
-						<img src='{{ 'na-badge.svg' | asset_url }}' class='product-badge'>
+						<img src="{{ 'na-badge.svg' | asset_url }}" class="product-badge">
 					{% elsif product.tags contains 'Bestseller' %}
-						<img src='{{ 'bs-badge.svg' | asset_url }}' class='product-badge'>
+						<img src="{{ 'bs-badge.svg' | asset_url }}" class="product-badge">
 					{% endif %}
 
-					<div class='slider-for!! swiper-wrapper'>
+					<div class="slider-for!! swiper-wrapper">
 						{% for image in product.images %}
 							<div
-								class='slider-for__item ex1  swiper-slide'
-								data-src='{{ image.src | product_img_url: 'master' }}'
+								class="slider-for__item ex1  swiper-slide"
+								data-src="{{ image.src | product_img_url: 'master' }}"
 							>
 								<img
-									data-index='{{ forloop.index }}'
-									src='{{ image.src | product_img_url: '900x' }}'
-									alt='{{ image.alt }}'
+									data-index="{{ forloop.index }}"
+									src="{{ image.src | product_img_url: '900x' }}"
+									alt="{{ image.alt }}"
 								>
 							</div>
 						{% endfor %}
 					</div>
 				</div>
 
-				<div class='swiper product-single-gallery-thumb'>
-					<div class='swiper-wrapper'>
+				<div class="swiper product-single-gallery-thumb">
+					<div class="swiper-wrapper">
 						{% for image in product.images %}
-							<div class='slider-nav__item swiper-slide'>
-								<div class='skeleton-loader-cust'></div>
-								<img src='{{ image.src | product_img_url: 'medium' }}'>
+							<div class="slider-nav__item swiper-slide">
+								<div class="skeleton-loader-cust"></div>
+								<img src="{{ image.src | product_img_url: 'medium' }}">
 							</div>
 						{% endfor %}
 					</div>
 				</div>
 			</div>
-			<div class='swiper-pagination'></div>
+			<div class="swiper-pagination"></div>
 		</div>
 
-		<div class='product-desc'>
-			<div class='product-single__meta'>
-				<h1 class='product-single__title'>{{ product.title }}</h1>
+		<div class="product-desc">
+			<div class="product-single__meta">
+				<h1 class="product-single__title">{{ product.title }}</h1>
 				{% unless product.available %}
-					<div id='sold-out'>
+					<div id="sold-out">
 						{% form 'contact' %}
 							{% if form.posted_successfully? %}
-								<p class='accent-text'>
+								<p class="accent-text">
 									Thanks! We will notify you when this product becomes available!
 								</p>
 							{% else %}
 								<p>
 									<a
-										id='notify-me'
-										href='#'
+										id="notify-me"
+										href="#"
 										><strong
 											>Click here to be notified by email when {{ product.title }} becomes
 											available.</strong
@@ -80,35 +80,35 @@
 								</p>
 							{% endif %}
 							{% if form.errors %}
-								<div class='error feedback accent-text'>
+								<div class="error feedback accent-text">
 									<p>Please provide a valid email address.</p>
 								</div>
 							{% endif %}
 							{% unless form.posted_successfully? %}
-								<div id='notify-me-wrapper' class='clearfix' style='display:none'>
+								<div id="notify-me-wrapper" class="clearfix" style="display:none">
 									{% if customer %}
-										<input type='hidden' name='contact[email]' value='{{ customer.email }}'>
+										<input type="hidden" name="contact[email]" value="{{ customer.email }}">
 									{% else %}
 										<input
-											style='float:left; width:180px;'
-											required='required'
-											type='email'
-											name='contact[email]'
-											placeholder='your@email.com'
-											class='styled-input{% if form.errors contains 'email' %} error{% endif %}'
-											value='{{ contact.fields.email }}'
+											style="float:left; width:180px;"
+											required="required"
+											type="email"
+											name="contact[email]"
+											placeholder="your@email.com"
+											class="styled-input{% if form.errors contains 'email' %} error{% endif %}"
+											value="{{ contact.fields.email }}"
 										>
 									{% endif %}
 									<input
-										type='hidden'
-										name='contact[body]'
-										value='Please notify me when {{ product.title | escape }} becomes available.'
+										type="hidden"
+										name="contact[body]"
+										value="Please notify me when {{ product.title | escape }} becomes available."
 									>
 									<input
-										style='float:left; margin-left:5px;'
-										class='btn styled-submit'
-										type='submit'
-										value='Send'
+										style="float:left; margin-left:5px;"
+										class="btn styled-submit"
+										type="submit"
+										value="Send"
 									>
 								</div>
 							{% endunless %}
@@ -116,7 +116,7 @@
 					</div>
 				{% endunless %}
 
-				<div class='product__price'>
+				<div class="product__price">
 					{% include 'product-price-new', variant: current_variant %}
 				</div>
 
@@ -130,24 +130,24 @@
 					{% assign bkorder = true %}
 				{% endif %}
 
-				<div class='product__meta-wrap'>
+				<div class="product__meta-wrap">
 					{% render 'product-info' %}
 
-					<div class='webkit_center {% if product.id == 3824189505584 %}custom-product--info{% endif %}'>
+					<div class="webkit_center {% if product.id == 3824189505584 %}custom-product--info{% endif %}">
 						{% if bkorder %}
 							{% if product.id != 3824189505584 %}
 								{% if section.settings.shipping_text_os != blank %}
-									<p class='bo-text'>{{ section.settings.shipping_text_os }}</p>
+									<p class="bo-text">{{ section.settings.shipping_text_os }}</p>
 								{% endif %}
 							{% endif %}
 						{% else %}
 							{% if product.id != 3824189505584 %}
 								{% if section.settings.shipping_text != blank %}
 									<p>
-										<span id='prod-info-tooltip'
+										<span id="prod-info-tooltip"
 											>*Before 2pm EST. If placed after, the order will ship the following
 											business day.
-											<a href='https://hypeflags.com/pages/shipping-handling'
+											<a href="https://hypeflags.com/pages/shipping-handling"
 												><em>Our shipping policies</em></a
 											>.
 										</span>
@@ -159,7 +159,7 @@
 					</div>
 
 					{%- if shop.taxes_included or shop.shipping_policy.body != blank -%}
-						<div class='product__policies rte'>
+						<div class="product__policies rte">
 							{%- if shop.taxes_included -%}
 								{{ 'products.product.include_taxes' | t }}
 							{%- endif -%}
@@ -181,39 +181,39 @@
 
 					{% form 'product', product, class:form_classes, novalidate: 'novalidate', data-product-form: '', data-product-form-redirect-url: '/cart' %}
 						{% if section.settings.show_quantity_selector and product.available and product.id != 3824189505584 %}
-							<div class='product-form__item product-form__item--quantity'>
-								<label for='Quantity-{{ section.id }}'>{{ 'products.product.quantity' | t }}</label>
+							<div class="product-form__item product-form__item--quantity">
+								<label for="Quantity-{{ section.id }}">{{ 'products.product.quantity' | t }}</label>
 								<input
-									type='number'
-									id='Quantity-{{ section.id }}'
-									name='quantity'
-									value='1'
-									min='1'
-									class='product-form__input'
-									pattern='[0-9]*'
+									type="number"
+									id="Quantity-{{ section.id }}"
+									name="quantity"
+									value="1"
+									min="1"
+									class="product-form__input"
+									pattern="[0-9]*"
 									data-quantity-input
 								>
 							</div>
 						{% endif %}
 
 						<div
-							class='product-form__error-message-wrapper product-form__error-message-wrapper--hidden'
+							class="product-form__error-message-wrapper product-form__error-message-wrapper--hidden"
 							data-error-message-wrapper
-							role='alert'
+							role="alert"
 						>
 							{% include 'icon-error' %}
-							<span class='product-form__error-message' data-error-message>
+							<span class="product-form__error-message" data-error-message>
 								{{- 'products.product.quantity_minimum_message' | t -}}
 							</span>
 						</div>
 
 						<button
-							type='submit'
-							name='add'
+							type="submit"
+							name="add"
 							{% unless current_variant.available %}
-								disabled='disabled'
+								disabled="disabled"
 							{% endunless %}
-							class='btn bg-brand-red product-form__cart-submit{% if section.settings.enable_payment_button %} btn--secondary-accent{% endif %}'
+							class="bg-brand-red rounded-md w-auto flex-1 text-white py-3 cursor-pointer hover:ring-brand-red hover:bg-transparent hover:ring-2 hover:ring-inset hover:text-brand-red duration-300"
 							data-add-to-cart
 						>
 							<span data-add-to-cart-text>
@@ -228,55 +228,55 @@
 				</div>
 			</div>
 
-			<div class='custom-flag-promo'>
+			<div class="custom-flag-promo">
 				<h3>Looking to customize your own flag?</h3>
 				<p>Custom flags for just $18.99</p>
-				<a href='/products/custom-flag-upload-your-design' class='product-custom-flag'>Get Started</a>
+				<a href="/products/custom-flag-upload-your-design" class="product-custom-flag">Get Started</a>
 			</div>
 		</div>
 	</div>
 </div>
 
 <script>
-							    $(document).ready(function(){
-							     $('.b-drop-info').mouseover(
-							       function() {
-							       $('#prod-info-tooltip').show();
-							     })
+											    $(document).ready(function(){
+											     $('.b-drop-info').mouseover(
+											       function() {
+											       $('#prod-info-tooltip').show();
+											     })
 
-							     $('.b-drop-info').mouseout(function(e) {
+											     $('.b-drop-info').mouseout(function(e) {
 
-							       if ( e.relatedTarget &&
-							           ( $(e.relatedTarget).hasClass('webkit_center') ||
-							            $(e.relatedTarget).hasClass('product-single__meta') ||
-							           $(e.toElement) == 'p' )
-							          ) {
-							     		$('#prod-info-tooltip').hide();
-							       }
-							     })
+											       if ( e.relatedTarget &&
+											           ( $(e.relatedTarget).hasClass('webkit_center') ||
+											            $(e.relatedTarget).hasClass('product-single__meta') ||
+											           $(e.toElement) == 'p' )
+											          ) {
+											     		$('#prod-info-tooltip').hide();
+											       }
+											     })
 
-							//       $('#prod-info-tooltip')
-							//       .mouseover(function() {
-							//       	$('.b-drop-info').trigger('mouseenter')
-							//       })
-							//       .mouseout(function() {
-							//         $('.b-drop-info').trigger('mouseout')
-							//         $('.b-drop-info').removeClass('show')
-							//       })
+											//       $('#prod-info-tooltip')
+											//       .mouseover(function() {
+											//       	$('.b-drop-info').trigger('mouseenter')
+											//       })
+											//       .mouseout(function() {
+											//         $('.b-drop-info').trigger('mouseout')
+											//         $('.b-drop-info').removeClass('show')
+											//       })
 
-							      $('body').click(function (event) {
-							         if(!$(event.target).closest('.b-drop-info').length && !$(event.target).is('#prod-info-tooltip')) {
-							           $("#prod-info-tooltip").hide();
-							         } else if ( $(event.target).closest('.b-drop-info').length > 0 ) {
-							           $("#prod-info-tooltip").show();
-							         }
-							      });
-							    });
+											      $('body').click(function (event) {
+											         if(!$(event.target).closest('.b-drop-info').length && !$(event.target).is('#prod-info-tooltip')) {
+											           $("#prod-info-tooltip").hide();
+											         } else if ( $(event.target).closest('.b-drop-info').length > 0 ) {
+											           $("#prod-info-tooltip").show();
+											         }
+											      });
+											    });
 </script>
 
 {% unless product == empty %}
-	<script type='application/json' id='ProductJson-{{ section.id }}'>
-														{{ product | json }}
+	<script type="application/json" id="ProductJson-{{ section.id }}">
+																						{{ product | json }}
 	</script>
 {% endunless %}
 
@@ -284,16 +284,16 @@
 {% if product.tags contains 'custom' %}
 	{% assign tag_custom = 'true' %}
 
-	<input type='hidden' class='custom_tag' value='{{ tag_custom }}'>
+	<input type="hidden" class="custom_tag" value="{{ tag_custom }}">
 	<script>
-														$(document).ready(function(){
-														$(".product-form__cart-submit").next("div").remove();
-														var custom_tag = $(".custom_tag").val();
+																						$(document).ready(function(){
+																						$(".product-form__cart-submit").next("div").remove();
+																						var custom_tag = $(".custom_tag").val();
 
-														  if(custom_tag == 'true'){
-														  $("[name='add']").attr("disabled","disabled");
-														  }
-														});
+																						  if(custom_tag == 'true'){
+																						  $("[name='add']").attr("disabled","disabled");
+																						  }
+																						});
 	</script>
 {% endif %}
 
@@ -526,14 +526,14 @@
 {% endschema %}
 
 {% if product.id == 3824189505584 %}
-	<div class='cust-flag-privacy-modal'>
-		<div class='inner-body'>
-			<div class='m-head'>
+	<div class="cust-flag-privacy-modal">
+		<div class="inner-body">
+			<div class="m-head">
 				<h4>HypeFlags Custom Flag Policy</h4>
-				<span data-cust-flag-privacy-modal-close title='Close'>&times;</span>
+				<span data-cust-flag-privacy-modal-close title="Close">&times;</span>
 			</div>
 
-			<div class='m-body'>
+			<div class="m-body">
 				<p>
 					Custom flags require an additional 5-7 business day processing time. All orders will ship from the
 					USA.
@@ -561,53 +561,53 @@
 	</div>
 
 	<style>
-														.review-user-info {
-															display: none !important
-														}
-														  .ig-img,
-														  .review-carousel-item {
-														  	width: 250px !important;
-														    height: 250px;
-														  }
-														  .hf-legit .review-carousel-wrap .review-carousel-item, .index-section .review-carousel-wrap .review-carousel-item,
-														  .template-product .review-carousel-wrap .review-carousel-item {
-														    width: 250px !important;
-														    height: 250px !important;
-														  }
+																						.review-user-info {
+																							display: none !important
+																						}
+																						  .ig-img,
+																						  .review-carousel-item {
+																						  	width: 250px !important;
+																						    height: 250px;
+																						  }
+																						  .hf-legit .review-carousel-wrap .review-carousel-item, .index-section .review-carousel-wrap .review-carousel-item,
+																						  .template-product .review-carousel-wrap .review-carousel-item {
+																						    width: 250px !important;
+																						    height: 250px !important;
+																						  }
 
-														  .template-product .review-carousel-wrap.ig-feed .review-carousel-item figure.ig-img:after {
-														  	content: unset;
-														  }
+																						  .template-product .review-carousel-wrap.ig-feed .review-carousel-item figure.ig-img:after {
+																						  	content: unset;
+																						  }
 
-														  button.btn.product-form__cart-submit {
-														    width: 100%;
-														  }
-														/*   button.btn.product-form__cart-submit */
+																						  button.btn.product-form__cart-submit {
+																						    width: 100%;
+																						  }
+																						/*   button.btn.product-form__cart-submit */
 
-														  .product-form__item.custom-product--qty:after {
-														    content: '• Made to order | will ship in 5-7 days';
-														    position: absolute;
-														    left: 0;
-														    font-size: 15.5px;
-														    font-weight: normal;
-														    cursor: text;
-														    color: #FFA800;
-														    text-transform: capitalize;
-														    letter-spacing: 0;
-														    width: 100%;
-														    bottom: -50px;
-														    height: 40px;
-														    text-align: center;
-														  }
+																						  .product-form__item.custom-product--qty:after {
+																						    content: '• Made to order | will ship in 5-7 days';
+																						    position: absolute;
+																						    left: 0;
+																						    font-size: 15.5px;
+																						    font-weight: normal;
+																						    cursor: text;
+																						    color: #FFA800;
+																						    text-transform: capitalize;
+																						    letter-spacing: 0;
+																						    width: 100%;
+																						    bottom: -50px;
+																						    height: 40px;
+																						    text-align: center;
+																						  }
 
-														  @media(max-width:767px) {
-														    button.btn.product-form__cart-submit {
-														      padding: 8px 16px;
-														    }
+																						  @media(max-width:767px) {
+																						    button.btn.product-form__cart-submit {
+																						      padding: 8px 16px;
+																						    }
 
-														    button.btn.product-form__cart-submit:after {
-														      font-size: 11px;
-														    }
-														  }
+																						    button.btn.product-form__cart-submit:after {
+																						      font-size: 11px;
+																						    }
+																						  }
 	</style>
 {% endif %}

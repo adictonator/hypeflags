@@ -1,173 +1,164 @@
 <link
-	rel='stylesheet'
-	href='https://cdnjs.cloudflare.com/ajax/libs/magnify/2.3.3/css/magnify.min.css'
-	integrity='sha512-wzhF4/lKJ2Nc8mKHNzoFP4JZsnTcBOUUBT+lWPcs07mz6lK3NpMH1NKCKDMarjaw8gcYnSBNjjllN4kVbKedbw=='
-	crossorigin='anonymous'
+	rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/magnify/2.3.3/css/magnify.min.css"
+	integrity="sha512-wzhF4/lKJ2Nc8mKHNzoFP4JZsnTcBOUUBT+lWPcs07mz6lK3NpMH1NKCKDMarjaw8gcYnSBNjjllN4kVbKedbw=="
+	crossorigin="anonymous"
 >
 <script
-	src='https://cdnjs.cloudflare.com/ajax/libs/magnify/2.3.3/js/jquery.magnify.min.js'
-	integrity='sha512-YKxHqn7D0M5knQJO2xKHZpCfZ+/Ta7qpEHgADN+AkY2U2Y4JJtlCEHzKWV5ZE87vZR3ipdzNJ4U/sfjIaoHMfw=='
-	crossorigin='anonymous'
+	src="https://cdnjs.cloudflare.com/ajax/libs/magnify/2.3.3/js/jquery.magnify.min.js"
+	integrity="sha512-YKxHqn7D0M5knQJO2xKHZpCfZ+/Ta7qpEHgADN+AkY2U2Y4JJtlCEHzKWV5ZE87vZR3ipdzNJ4U/sfjIaoHMfw=="
+	crossorigin="anonymous"
 >
 </script>
 <script
-	src='https://cdnjs.cloudflare.com/ajax/libs/magnify/2.3.3/js/jquery.magnify-mobile.min.js'
-	integrity='sha512-c3hGxeqPC+hyYCH6xddUy6sg5lgmXomxpN5fkhUxKPOM7OD/+M+Rj1rj02q4MOkn+PUBRGPZVNTMMrREyZS0mA=='
-	crossorigin='anonymous'
+	src="https://cdnjs.cloudflare.com/ajax/libs/magnify/2.3.3/js/jquery.magnify-mobile.min.js"
+	integrity="sha512-c3hGxeqPC+hyYCH6xddUy6sg5lgmXomxpN5fkhUxKPOM7OD/+M+Rj1rj02q4MOkn+PUBRGPZVNTMMrREyZS0mA=="
+	crossorigin="anonymous"
 >
 </script>
 
 <div
-	class='product-template__container'
-	id='ProductSection-{{ section.id }}'
-	data-section-id='{{ section.id }}'
-	data-section-type='product'
-	data-enable-history-state='true'
+	class="product-template__container"
+	id="ProductSection-{{ section.id }}"
+	data-section-id="{{ section.id }}"
+	data-section-type="product"
+	data-enable-history-state="true"
 >
-	<div class='product-single{% if section.settings.enable_payment_button %} product-single--{{ section.settings.image_size }}-image{% endif %}'>
-		<div class='product-single__photos product-slider-wrapper{% if section.settings.image_size == 'full' %} product-single__photos--full{% endif %}'>
-			<div class='slider-wrapper'>
+	<div class="product-single{% if section.settings.enable_payment_button %} product-single--{{ section.settings.image_size }}-image{% endif %}">
+		<div class="product-single__photos product-slider-wrapper{% if section.settings.image_size == 'full' %} product-single__photos--full{% endif %}">
+			<div class="slider-wrapper">
 				<div
-					class='main_product_slider swiper product-single-gallery'
-					style='position: relative; height: auto;'
+					class="main_product_slider swiper product-single-gallery"
+					style="position: relative; height: auto;"
 				>
-					<div class='skeleton-loader-cust'></div>
+					<div class="skeleton-loader-cust"></div>
 
 					{% if product.tags contains 'Newarrival' %}
-						<img src='{{ 'na-badge.svg' | asset_url }}' class='product-badge'>
+						<img src="{{ 'na-badge.svg' | asset_url }}" class="product-badge">
 					{% elsif product.tags contains 'Bestseller' %}
-						<img src='{{ 'bs-badge.svg' | asset_url }}' class='product-badge'>
+						<img src="{{ 'bs-badge.svg' | asset_url }}" class="product-badge">
 					{% endif %}
 
-					<div class='slider-for!! swiper-wrapper'>
+					<div class="slider-for!! swiper-wrapper">
 						{% for image in product.images %}
 							<div
-								class='slider-for__item ex1  swiper-slide'
-								data-src='{{ image.src | product_img_url: 'master' }}'
+								class="slider-for__item ex1  swiper-slide"
+								data-src="{{ image.src | product_img_url: 'master' }}"
 							>
 								<img
-									data-index='{{ forloop.index }}'
-									src='{{ image.src | product_img_url: '900x' }}'
-									alt='{{ image.alt }}'
+									data-index="{{ forloop.index }}"
+									src="{{ image.src | product_img_url: '900x' }}"
+									alt="{{ image.alt }}"
 								>
 							</div>
 						{% endfor %}
 					</div>
 				</div>
 
-				<div class='swiper product-single-gallery-thumb'>
-					<div class='swiper-wrapper'>
+				<div class="swiper product-single-gallery-thumb">
+					<div class="swiper-wrapper">
 						{% for image in product.images %}
-							<div class='slider-nav__item swiper-slide'>
-								<div class='skeleton-loader-cust'></div>
-								<img src='{{ image.src | product_img_url: 'medium' }}'>
+							<div class="slider-nav__item swiper-slide">
+								<div class="skeleton-loader-cust"></div>
+								<img src="{{ image.src | product_img_url: 'medium' }}">
 							</div>
 						{% endfor %}
 					</div>
 				</div>
 			</div>
-			<div class='swiper-pagination'></div>
+			<div class="swiper-pagination"></div>
 		</div>
 
-		<div class='product-desc'>
-			<div class='product-single__meta'>
-				<h1 class='product-single__title'>{{ product.title }}</h1>
-				<div class='product__price'>
+		<div class="product-desc">
+			<div class="product-single__meta">
+				<h1 class="product-single__title">{{ product.title }}</h1>
+				<div class="product__price">
 					{% include 'product-price-new', variant: current_variant %}
 				</div>
 
 				{% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', concierge_install: true, product: product %}
 
-				<div class='upload-image-wrapper flex-col p-10 mt-6 flex justify-center items-center rounded gap-y-2.5 ease-in-out duration-300 hover:cursor-pointer'>
-					<span class='flex justify-between gap-x-2 items-center upload-text ease-in-out duration-300'
+				<div class="upload-image-wrapper flex-col p-10 mt-6 flex justify-center items-center rounded gap-y-2.5 ease-in-out duration-300 hover:cursor-pointer">
+					<span class="flex justify-between gap-x-2 items-center upload-text ease-in-out duration-300"
 						>Drag your image here or <strong> browse</strong></span
 					>
-					<span class='text-[#606163] text-sm'>&bull; Format jpg or png (max size 9mb)</span>
+					<span class="text-[#606163] text-sm">&bull; Format jpg or png (max size 9mb)</span>
 				</div>
-				<input type='file' id='inputImage' name='image' class='canvas_image_upload' style='display:none'>
+				<input type="file" id="inputImage" name="image" class="canvas_image_upload" style="display:none">
 
-				<span class='flex items-center gap-x-2 mt-4'>
-					<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18' fill='none'>
-																														<g opacity="0.5">
-																														<path d="M9 1.5C4.8645 1.5 1.5 4.8645 1.5 9C1.5 13.1355 4.8645 16.5 9 16.5C13.1355 16.5 16.5 13.1355 16.5 9C16.5 4.8645 13.1355 1.5 9 1.5ZM9.75 12.75H8.25V8.25H9.75V12.75ZM9.75 6.75H8.25V5.25H9.75V6.75Z" fill="#606163"/>
-																														</g>
+				<span class="flex items-center gap-x-2 mt-4">
+					<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+																																																																								<g opacity="0.5">
+																																																																								<path d="M9 1.5C4.8645 1.5 1.5 4.8645 1.5 9C1.5 13.1355 4.8645 16.5 9 16.5C13.1355 16.5 16.5 13.1355 16.5 9C16.5 4.8645 13.1355 1.5 9 1.5ZM9.75 12.75H8.25V8.25H9.75V12.75ZM9.75 6.75H8.25V5.25H9.75V6.75Z" fill="#606163"/>
+																																																																								</g>
 					</svg>
-					<span class='text-[#606163] text-sm italic'
+					<span class="text-[#606163] text-sm italic"
 						>Please review our
-						<a href='#' class='underline hover:underline' data-cust-flag-modal>custom flag policy</a></span
+						<a href="#" class="underline hover:underline" data-cust-flag-modal>custom flag policy</a></span
 					>
 				</span>
 
 				{% capture "form_classes" -%}
 					flex justify-between items-stretch my-6 gap-x-4
-					<!--
-						product-form product-form-{{ section.id }}{% unless section.settings.show_variant_labels %} product-form--hide-variant-labels{% endunless %}{% if section.settings.enable_payment_button and product.has_only_default_variant%} product-form--payment-button-no-variants{% endif %}
-					-->
 				{%- endcapture %}
 
 				{% form 'product', product, class:form_classes, novalidate: 'novalidate', data-product-form: '', data-product-form-redirect-url: '/cart' %}
 					<!-- <div class="product-form__input-wrap"> -->
-					<div class='flex items-stretch justify-between'>
+					<div class="flex items-stretch justify-between">
 						<button
-							type='button'
+							type="button"
 							disabled
-							data-qty='minus'
-							class='bg-[#F1F1F1] flex items-center justify-center h-auto rounded w-8 px-2'
+							data-qty="minus"
+							class="bg-[#F1F1F1] flex items-center justify-center h-auto rounded w-8 px-2"
 						>
 							<svg
-								class='text-xs'
-								xmlns='http://www.w3.org/2000/svg'
-								fill='#000'
-								viewBox='0 0 24 24'
-								stroke='currentColor'
-								stroke-width='2'
+								class="text-xs"
+								xmlns="http://www.w3.org/2000/svg"
+								fill="#000"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+								stroke-width="2"
 							>
-																																								<path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
+																																																																																																<path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
 							</svg>
 						</button>
 						<input
-							type='number'
-							id='Quantity-{{ section.id }}'
-							name='quantity'
-							value='1'
-							min='1'
-							class='text-sm border-none w-12 text-center outline-none'
-							pattern='[0-9]*'
+							type="number"
+							id="Quantity-{{ section.id }}"
+							name="quantity"
+							value="1"
+							min="1"
+							class="text-sm border-none w-12 text-center outline-none"
+							pattern="[0-9]*"
 							data-quantity-input
 						>
 						<button
-							type='button'
-							data-qty='add'
-							class='bg-[#F1F1F1] flex items-center justify-center h-auto rounded w-8 px-2'
+							type="button"
+							data-qty="add"
+							class="bg-[#F1F1F1] flex items-center justify-center h-auto rounded w-8 px-2"
 						>
 							<svg
-								xmlns='http://www.w3.org/2000/svg'
-								fill='#000'
-								viewBox='0 0 24 24'
-								stroke='currentColor'
-								stroke-width='2'
+								xmlns="http://www.w3.org/2000/svg"
+								fill="#000"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+								stroke-width="2"
 							>
-																																								<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+																																																																																																<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
 							</svg>
 						</button>
 					</div>
 
 					<button
-						type='submit'
-						name='add'
-						disabled='disabled'
-						class='
-																																			bg-brand-red rounded-md w-auto flex-1
-																																				text-white
-																																				py-3 cursor-pointer
-																																				hover:ring-brand-red hover:bg-transparent
-																																				hover:ring-2 hover:ring-inset
-																																				hover:text-brand-red
-																																				duration-300
-						'
+						type="submit"
+						name="add"
+						disabled="disabled"
+						class="
+																					bg-brand-red rounded-md w-auto flex-1 text-white py-3 cursor-pointer hover:ring-brand-red hover:bg-transparent hover:ring-2 hover:ring-inset hover:text-brand-red duration-300
+						"
 						data-add-to-cart
 					>
-						<span class='text-sm uppercase font-bold tracking-widest' data-add-to-cart-text>
+						<span class="text-sm uppercase font-bold tracking-widest" data-add-to-cart-text>
 							{{ 'products.product.add_to_cart' | t }}
 						</span>
 					</button>
@@ -180,40 +171,40 @@
 </div>
 
 <script>
-					$(document).ready(function(){
-					$('.product-accordion-item h3').on('click touch', function(e) {
-					e.preventDefault()
+												$(document).ready(function(){
+												$('.product-accordion-item h3').on('click touch', function(e) {
+												e.preventDefault()
 
-					const _this = $(this)
+												const _this = $(this)
 
-					$(this).parent().find('p, ul').slideToggle('fast', function() {
-					_this.parent().toggleClass('is-collapsed');
-					});
-					})
+												$(this).parent().find('p, ul').slideToggle('fast', function() {
+												_this.parent().toggleClass('is-collapsed');
+												});
+												})
 
-					$('.b-drop-info').hover(
-					function() {
-					$(this).addClass('show')
-					})
+												$('.b-drop-info').hover(
+												function() {
+												$(this).addClass('show')
+												})
 
-					$('.b-drop-info').mouseout(function(e) {
+												$('.b-drop-info').mouseout(function(e) {
 
-					if ( e.relatedTarget &&
-					( $(e.relatedTarget).hasClass('webkit_center') ||
-					$(e.relatedTarget).hasClass('product-single__meta') ||
-					$(e.toElement) == 'p' )
-					) {
-					$(this).removeClass('show')
-					}
-					})
+												if ( e.relatedTarget &&
+												( $(e.relatedTarget).hasClass('webkit_center') ||
+												$(e.relatedTarget).hasClass('product-single__meta') ||
+												$(e.toElement) == 'p' )
+												) {
+												$(this).removeClass('show')
+												}
+												})
 
 
-					});
+												});
 </script>
 
 {% unless product == empty %}
-	<script type='application/json' id='ProductJson-{{ section.id }}'>
-										{{ product | json }}
+	<script type="application/json" id="ProductJson-{{ section.id }}">
+																								{{ product | json }}
 	</script>
 {% endunless %}
 
@@ -221,16 +212,16 @@
 {% if product.tags contains 'custom' %}
 	{% assign tag_custom = 'true' %}
 
-	<input type='hidden' class='custom_tag' value='{{ tag_custom }}'>
+	<input type="hidden" class="custom_tag" value="{{ tag_custom }}">
 	<script>
-										$(document).ready(function(){
-										$(".product-form__cart-submit").next("div").remove();
-										var custom_tag = $(".custom_tag").val();
+																								$(document).ready(function(){
+																								$(".product-form__cart-submit").next("div").remove();
+																								var custom_tag = $(".custom_tag").val();
 
-										if(custom_tag == 'true'){
-										$("[name='add']").attr("disabled","disabled");
-										}
-										});
+																								if(custom_tag == 'true'){
+																								$("[name='add']").attr("disabled","disabled");
+																								}
+																								});
 	</script>
 {% endif %}
 
@@ -463,14 +454,14 @@
 {% endschema %}
 
 {% if product.id == 3824189505584 %}
-	<div class='cust-flag-privacy-modal'>
-		<div class='inner-body'>
-			<div class='m-head'>
+	<div class="cust-flag-privacy-modal">
+		<div class="inner-body">
+			<div class="m-head">
 				<h4>HypeFlags Custom Flag Policy</h4>
-				<span data-cust-flag-privacy-modal-close title='Close'>&times;</span>
+				<span data-cust-flag-privacy-modal-close title="Close">&times;</span>
 			</div>
 
-			<div class='m-body'>
+			<div class="m-body">
 				<p>
 					Custom flags require an additional 5-7 business day processing time. All orders will ship from the
 					USA.
@@ -498,48 +489,48 @@
 	</div>
 
 	<style>
-										.review-user-info {
-										display: none !important
-										}
-										.ig-img,
-										.review-carousel-item {
-										width: 250px !important;
-										height: 250px;
-										}
-										.hf-legit .review-carousel-wrap .review-carousel-item, .index-section .review-carousel-wrap .review-carousel-item,
-										.template-product .review-carousel-wrap .review-carousel-item {
-										width: 250px !important;
-										height: 250px !important;
-										}
+																								.review-user-info {
+																								display: none !important
+																								}
+																								.ig-img,
+																								.review-carousel-item {
+																								width: 250px !important;
+																								height: 250px;
+																								}
+																								.hf-legit .review-carousel-wrap .review-carousel-item, .index-section .review-carousel-wrap .review-carousel-item,
+																								.template-product .review-carousel-wrap .review-carousel-item {
+																								width: 250px !important;
+																								height: 250px !important;
+																								}
 
-										.template-product .review-carousel-wrap.ig-feed .review-carousel-item figure.ig-img:after {
-										content: unset;
-										}
+																								.template-product .review-carousel-wrap.ig-feed .review-carousel-item figure.ig-img:after {
+																								content: unset;
+																								}
 
-										.product-form__item.custom-product--qty:after {
-										content: '• Made to order | will ship in 5-7 days';
-										position: absolute;
-										left: 0;
-										font-size: 15.5px;
-										font-weight: normal;
-										cursor: text;
-										color: #FFA800;
-										text-transform: capitalize;
-										letter-spacing: 0;
-										width: 100%;
-										bottom: -50px;
-										height: 40px;
-										text-align: center;
-										}
+																								.product-form__item.custom-product--qty:after {
+																								content: '• Made to order | will ship in 5-7 days';
+																								position: absolute;
+																								left: 0;
+																								font-size: 15.5px;
+																								font-weight: normal;
+																								cursor: text;
+																								color: #FFA800;
+																								text-transform: capitalize;
+																								letter-spacing: 0;
+																								width: 100%;
+																								bottom: -50px;
+																								height: 40px;
+																								text-align: center;
+																								}
 
-										@media(max-width:767px) {
-										button.btn.product-form__cart-submit {
-										padding: 8px 16px;
-										}
+																								@media(max-width:767px) {
+																								button.btn.product-form__cart-submit {
+																								padding: 8px 16px;
+																								}
 
-										button.btn.product-form__cart-submit:after {
-										font-size: 11px;
-										}
-										}
+																								button.btn.product-form__cart-submit:after {
+																								font-size: 11px;
+																								}
+																								}
 	</style>
 {% endif %}
