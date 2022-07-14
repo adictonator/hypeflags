@@ -1,0 +1,6 @@
+package-lock.json
+package.json
+mix-manifest.json
+tailwind.config.js
+.prettierrc.json
+raw/*

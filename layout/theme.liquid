@@ -13,11 +13,11 @@
 
 		<!-- Font-awesome -->
 		{% comment %}
-						<link
-									rel='stylesheet'
-									href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'
-									media='screen'
-								>
+																					<link
+																								rel='stylesheet'
+																								href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'
+																								media='screen'
+																							>
 		{% endcomment %}
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,6 +26,7 @@
 			rel="stylesheet"
 		>
 
+		{% comment %}<link rel="stylesheet" href="/assets/app.css">{% endcomment %}
 		{{ 'app.css' | asset_url | stylesheet_tag }}
 
 		<script
@@ -64,35 +65,35 @@
 
 		<!-- Prevent Sorting by Best Seller -->
 		<script>
-															if( document.location.href.indexOf('?sort_by=best-selling') > -1) {
-															  document.location.href = '/collections/all'
-															}
+																														if( document.location.href.indexOf('?sort_by=best-selling') > -1) {
+																														  document.location.href = '/collections/all'
+																														}
 		</script>
 		<!-- /Prevent Sorting by Best Seller -->
 
 		<script>
-															var theme = {
-															  strings: {
-															    addToCart: {{ 'products.product.add_to_cart' | t | json }},
-															    soldOut: {{ 'products.product.sold_out' | t | json }},
-															    unavailable: {{ 'products.product.unavailable' | t | json }},
-															    regularPrice: {{ 'products.product.regular_price' | t | json }},
-															    sale: {{ 'products.product.on_sale' | t | json }},
-															    showMore: {{ 'general.filters.show_more' | t | json }},
-															    showLess: {{ 'general.filters.show_less' | t | json }},
-															    addressError: {{ 'sections.map.address_error' | t | json }},
-															    addressNoResults: {{ 'sections.map.address_no_results' | t | json }},
-															    addressQueryLimit: {{ 'sections.map.address_query_limit_html' | t | json }},
-															    authError: {{ 'sections.map.auth_error_html' | t | json }},
-															    newWindow: {{ 'general.accessibility.link_messages.new_window' | t | json }},
-															    external: {{ 'general.accessibility.link_messages.external' | t | json }},
-															    newWindowExternal: {{ 'general.accessibility.link_messages.new_window_and_external' | t | json }},
-															    quantityMinimumMessage: {{ 'products.product.quantity_minimum_message' | t | json }}
-															  },
-															  moneyFormat: {{ shop.money_format | json }}
-															}
+																														var theme = {
+																														  strings: {
+																														    addToCart: {{ 'products.product.add_to_cart' | t | json }},
+																														    soldOut: {{ 'products.product.sold_out' | t | json }},
+																														    unavailable: {{ 'products.product.unavailable' | t | json }},
+																														    regularPrice: {{ 'products.product.regular_price' | t | json }},
+																														    sale: {{ 'products.product.on_sale' | t | json }},
+																														    showMore: {{ 'general.filters.show_more' | t | json }},
+																														    showLess: {{ 'general.filters.show_less' | t | json }},
+																														    addressError: {{ 'sections.map.address_error' | t | json }},
+																														    addressNoResults: {{ 'sections.map.address_no_results' | t | json }},
+																														    addressQueryLimit: {{ 'sections.map.address_query_limit_html' | t | json }},
+																														    authError: {{ 'sections.map.auth_error_html' | t | json }},
+																														    newWindow: {{ 'general.accessibility.link_messages.new_window' | t | json }},
+																														    external: {{ 'general.accessibility.link_messages.external' | t | json }},
+																														    newWindowExternal: {{ 'general.accessibility.link_messages.new_window_and_external' | t | json }},
+																														    quantityMinimumMessage: {{ 'products.product.quantity_minimum_message' | t | json }}
+																														  },
+																														  moneyFormat: {{ shop.money_format | json }}
+																														}
 
-															document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+																														document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
 		</script>
 
 		{{ 'vendor.css' | asset_url | stylesheet_tag }}
@@ -103,7 +104,7 @@
 		{% include 'judgeme_core' %}
 
 		{% comment %}
-																Conditional stylesheets
+																															Conditional stylesheets
 		{% endcomment %}
 
 		{% if product.id == 4597274214473 %}
@@ -159,9 +160,9 @@
 			<li id="a11y-selection-message">{{ 'general.accessibility.selection_help' | t }}</li>
 		</ul>
 		<style>
-															.jdgm-rev-widg__title{
-															  display:none;
-															}
+																														.jdgm-rev-widg__title{
+																														  display:none;
+																														}
 		</style>
 
 		{%- if template.directory == 'customers' -%}
@@ -178,25 +179,25 @@
 		>
 		</script>
 		<script>
-															    document.addEventListener('contextmenu', event => {
-															      if (typeof event.target.dataset.index !== typeof undefined) {
-															    	event.preventDefault()
-															      }
-															    });
+																														    document.addEventListener('contextmenu', event => {
+																														      if (typeof event.target.dataset.index !== typeof undefined) {
+																														    	event.preventDefault()
+																														      }
+																														    });
 
-															    AOS.init({
-															        once: true
-															      });
+																														    AOS.init({
+																														        once: true
+																														      });
 
-															    $(function() {
-															      setTimeout(() => {
-															          $('body').find('.skeleton-loader-cust').remove()
-															          $('.slider-nav-wrapper').removeClass('_oof')
-															          $('.main_product_slider').removeClass('_mhh')
-															//             $(this).find('.skeleton-loader-cust').remove()
-															//           })
-															      }, 300)
-															    })
+																														    $(function() {
+																														      setTimeout(() => {
+																														          $('body').find('.skeleton-loader-cust').remove()
+																														          $('.slider-nav-wrapper').removeClass('_oof')
+																														          $('.main_product_slider').removeClass('_mhh')
+																														//             $(this).find('.skeleton-loader-cust').remove()
+																														//           })
+																														      }, 300)
+																														    })
 		</script>
 
 		{% if product.id == 3824189505584 %}
@@ -206,5 +207,7 @@
 		{% if content_for_header contains 'upsell-now.herokuapp.com' -%}
 			{%- render 'upsell-now', customer: customer, product: product, template: template, cart: cart -%}
 		{%- endif %}
+
+		{{ 'app.js' | asset_url | script_tag }}
 	</body>
 </html>
