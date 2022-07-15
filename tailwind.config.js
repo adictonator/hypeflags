@@ -1,5 +1,11 @@
 module.exports = {
-	content: ['./sections/*.liquid', './templates/*.liquid'],
+	content: [
+		'./sections/*.liquid',
+		'./templates/*.liquid',
+		'./snippets/*.liquid',
+		'./layout/*.liquid',
+	],
+	darkMode: 'class',
 	theme: {
 		extend: {
 			backgroundImage: {
@@ -7,6 +13,12 @@ module.exports = {
 			},
 			colors: {
 				'brand-red': '#D5003A',
+				'twitter-gray': '#5b7083',
+				'twitter-lightgray': '#8899a6',
+				'twitter-blue': '#1DA1F2',
+			},
+			fontFamily: {
+				tweet: 'Helvetica Neue,sans-serif',
 			},
 		},
 	},
