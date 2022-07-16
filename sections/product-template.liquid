@@ -134,21 +134,8 @@
 					{%- endcapture %}
 
 					{% form 'product', product, class:form_classes, novalidate: 'novalidate', data-product-form: '', data-product-form-redirect-url: '/cart' %}
-					{% if section.settings.show_quantity_selector and product.available and product.id != 3824189505584 %}
-					<div class="product-form__item product-form__item--quantity">
-						<label for="Quantity-{{ section.id }}">{{ 'products.product.quantity' | t }}</label>
-						<input type="number" id="Quantity-{{ section.id }}" name="quantity" value="1" min="1" class="product-form__input" pattern="[0-9]*" data-quantity-input>
-					</div>
-					{% endif %}
 
-					<div class="product-form__error-message-wrapper product-form__error-message-wrapper--hidden" data-error-message-wrapper role="alert">
-						{% include 'icon-error' %}
-						<span class="product-form__error-message" data-error-message>
-							{{- 'products.product.quantity_minimum_message' | t -}}
-						</span>
-					</div>
-
-					<button type="submit" name="add" {% unless current_variant.available %} disabled="disabled" {% endunless %} class="bg-brand-red rounded-md w-auto flex-1 text-white py-3 cursor-pointer hover:ring-brand-red hover:bg-transparent hover:ring-2 hover:ring-inset hover:text-brand-red duration-300" data-add-to-cart>
+					<button type="submit" name="add" {% unless current_variant.available %} disabled="disabled" {% endunless %} class="bg-brand-red rounded-md w-auto flex-1 text-white py-3 cursor-pointer hover:ring-brand-red hover:bg-transparent hover:ring-2 hover:ring-inset hover:text-brand-red duration-300 uppercase font-bold" data-add-to-cart>
 						<span data-add-to-cart-text>
 							{% unless current_variant.available %}
 							{{ 'products.product.sold_out' | t }}
