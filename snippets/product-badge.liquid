@@ -1,0 +1,5 @@
+{% if product.tags contains 'Newarrival' %}
+<img src="{{ 'na-badge.svg' | asset_url }}" class="product-badge">
+{% elsif product.tags contains 'Bestseller' %}
+<img src="{{ 'bs-badge.svg' | asset_url }}" class="product-badge">
+{% endif %}

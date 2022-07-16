@@ -5,40 +5,20 @@
 {%- assign compare_at_price = current_variant.compare_at_price -%}
 {%- assign price = current_variant.price -%}
 
-<div
-	class="product-template__container"
-	id="ProductSection-{{ section.id }}"
-	data-section-id="{{ section.id }}"
-	data-section-type="product"
-	data-enable-history-state="true"
->
+<div class="product-template__container" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true">
 	<div class="product-single{% if section.settings.enable_payment_button %} product-single--{{ section.settings.image_size }}-image{% endif %}">
 		<div class="product-single__photos product-slider-wrapper{% if section.settings.image_size == 'full' %} product-single__photos--full{% endif %}">
 			<div class="slider-wrapper">
-				<div
-					class="main_product_slider _mhh swiper product-single-gallery"
-					style="position: relative; height: auto;"
-				>
+				<div class="main_product_slider _mhh swiper product-single-gallery" style="position: relative; height: auto;">
 					<div class="skeleton-loader-cust"></div>
 
-					{% if product.tags contains 'Newarrival' %}
-						<img src="{{ 'na-badge.svg' | asset_url }}" class="product-badge">
-					{% elsif product.tags contains 'Bestseller' %}
-						<img src="{{ 'bs-badge.svg' | asset_url }}" class="product-badge">
-					{% endif %}
+					{% render 'product-badge', product: product %}
 
 					<div class="slider-for!! swiper-wrapper">
 						{% for image in product.images %}
-							<div
-								class="slider-for__item ex1  swiper-slide"
-								data-src="{{ image.src | product_img_url: 'master' }}"
-							>
-								<img
-									data-index="{{ forloop.index }}"
-									src="{{ image.src | product_img_url: '900x' }}"
-									alt="{{ image.alt }}"
-								>
-							</div>
+						<div class="slider-for__item ex1  swiper-slide" data-src="{{ image.src | product_img_url: 'master' }}">
+							<img data-index="{{ forloop.index }}" src="{{ image.src | product_img_url: '900x' }}" alt="{{ image.alt }}">
+						</div>
 						{% endfor %}
 					</div>
 				</div>
@@ -46,10 +26,10 @@
 				<div class="swiper product-single-gallery-thumb">
 					<div class="swiper-wrapper">
 						{% for image in product.images %}
-							<div class="slider-nav__item swiper-slide">
-								<div class="skeleton-loader-cust"></div>
-								<img src="{{ image.src | product_img_url: 'medium' }}">
-							</div>
+						<div class="slider-nav__item swiper-slide">
+							<div class="skeleton-loader-cust"></div>
+							<img src="{{ image.src | product_img_url: 'medium' }}">
+						</div>
 						{% endfor %}
 					</div>
 				</div>
@@ -61,59 +41,36 @@
 			<div class="product-single__meta">
 				<h1 class="product-single__title">{{ product.title }}</h1>
 				{% unless product.available %}
-					<div id="sold-out">
-						{% form 'contact' %}
-							{% if form.posted_successfully? %}
-								<p class="accent-text">
-									Thanks! We will notify you when this product becomes available!
-								</p>
-							{% else %}
-								<p>
-									<a
-										id="notify-me"
-										href="#"
-										><strong
-											>Click here to be notified by email when {{ product.title }} becomes
-											available.</strong
-										></a
-									>
-								</p>
-							{% endif %}
-							{% if form.errors %}
-								<div class="error feedback accent-text">
-									<p>Please provide a valid email address.</p>
-								</div>
-							{% endif %}
-							{% unless form.posted_successfully? %}
-								<div id="notify-me-wrapper" class="clearfix" style="display:none">
-									{% if customer %}
-										<input type="hidden" name="contact[email]" value="{{ customer.email }}">
-									{% else %}
-										<input
-											style="float:left; width:180px;"
-											required="required"
-											type="email"
-											name="contact[email]"
-											placeholder="your@email.com"
-											class="styled-input{% if form.errors contains 'email' %} error{% endif %}"
-											value="{{ contact.fields.email }}"
-										>
-									{% endif %}
-									<input
-										type="hidden"
-										name="contact[body]"
-										value="Please notify me when {{ product.title | escape }} becomes available."
-									>
-									<input
-										style="float:left; margin-left:5px;"
-										class="btn styled-submit"
-										type="submit"
-										value="Send"
-									>
-								</div>
-							{% endunless %}
-						{% endform %}
+				<div id="sold-out">
+					{% form 'contact' %}
+					{% if form.posted_successfully? %}
+					<p class="accent-text">
+						Thanks! We will notify you when this product becomes available!
+					</p>
+					{% else %}
+					<p>
+						<a id="notify-me" href="#"><strong>Click here to be notified by email when {{ product.title }} becomes
+								available.</strong></a>
+					</p>
+					{% endif %}
+					{% if form.errors %}
+					<div class="error feedback accent-text">
+						<p>Please provide a valid email address.</p>
 					</div>
+					{% endif %}
+					{% unless form.posted_successfully? %}
+					<div id="notify-me-wrapper" class="clearfix" style="display:none">
+						{% if customer %}
+						<input type="hidden" name="contact[email]" value="{{ customer.email }}">
+						{% else %}
+						<input style="float:left; width:180px;" required="required" type="email" name="contact[email]" placeholder="your@email.com" class="styled-input{% if form.errors contains 'email' %} error{% endif %}" value="{{ contact.fields.email }}">
+						{% endif %}
+						<input type="hidden" name="contact[body]" value="Please notify me when {{ product.title | escape }} becomes available.">
+						<input style="float:left; margin-left:5px;" class="btn styled-submit" type="submit" value="Send">
+					</div>
+					{% endunless %}
+					{% endform %}
+				</div>
 				{% endunless %}
 
 				<div class="product__price">
@@ -125,9 +82,9 @@
 				{% comment %}End automatically added Judge.me widget{% endcomment %}
 
 				{% if product.selected_or_first_available_variant.inventory_quantity > 0 %}
-					{% assign bkorder = false %}
+				{% assign bkorder = false %}
 				{% else %}
-					{% assign bkorder = true %}
+				{% assign bkorder = true %}
 				{% endif %}
 
 				<div class="product__meta-wrap">
@@ -135,95 +92,71 @@
 
 					<div class="webkit_center {% if product.id == 3824189505584 %}custom-product--info{% endif %}">
 						{% if bkorder %}
-							{% if product.id != 3824189505584 %}
-								{% if section.settings.shipping_text_os != blank %}
-									<p class="bo-text">{{ section.settings.shipping_text_os }}</p>
-								{% endif %}
-							{% endif %}
+						{% if product.id != 3824189505584 %}
+						{% if section.settings.shipping_text_os != blank %}
+						<p class="bo-text">{{ section.settings.shipping_text_os }}</p>
+						{% endif %}
+						{% endif %}
 						{% else %}
-							{% if product.id != 3824189505584 %}
-								{% if section.settings.shipping_text != blank %}
-									<p>
-										<span id="prod-info-tooltip"
-											>*Before 2pm EST. If placed after, the order will ship the following
-											business day.
-											<a href="https://hypeflags.com/pages/shipping-handling"
-												><em>Our shipping policies</em></a
-											>.
-										</span>
-										{{ section.settings.shipping_text }}
-									</p>
-								{% endif %}
-							{% endif %}
+						{% if product.id != 3824189505584 %}
+						{% if section.settings.shipping_text != blank %}
+						<p>
+							<span id="prod-info-tooltip">*Before 2pm EST. If placed after, the order will ship the following
+								business day.
+								<a href="https://hypeflags.com/pages/shipping-handling"><em>Our shipping policies</em></a>.
+							</span>
+							{{ section.settings.shipping_text }}
+						</p>
+						{% endif %}
+						{% endif %}
 						{% endif %}
 					</div>
 
 					{%- if shop.taxes_included or shop.shipping_policy.body != blank -%}
-						<div class="product__policies rte">
-							{%- if shop.taxes_included -%}
-								{{ 'products.product.include_taxes' | t }}
-							{%- endif -%}
-							{%- if shop.shipping_policy.body != blank -%}
-								{{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
-							{%- endif -%}
-						</div>
+					<div class="product__policies rte">
+						{%- if shop.taxes_included -%}
+						{{ 'products.product.include_taxes' | t }}
+						{%- endif -%}
+						{%- if shop.shipping_policy.body != blank -%}
+						{{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
+						{%- endif -%}
+					</div>
 					{%- endif -%}
 
 					{% capture "form_classes" -%}
-						product-form product-form-{{ section.id -}}
-						{%- unless section.settings.show_variant_labels %}
-							product-form--hide-variant-labels
-						{%- endunless -%}
-						{%- if section.settings.enable_payment_button and product.has_only_default_variant %}
-							product-form--payment-button-no-variants
-						{%- endif %}
+					product-form product-form-{{ section.id -}}
+					{%- unless section.settings.show_variant_labels %}
+					product-form--hide-variant-labels
+					{%- endunless -%}
+					{%- if section.settings.enable_payment_button and product.has_only_default_variant %}
+					product-form--payment-button-no-variants
+					{%- endif %}
 					{%- endcapture %}
 
 					{% form 'product', product, class:form_classes, novalidate: 'novalidate', data-product-form: '', data-product-form-redirect-url: '/cart' %}
-						{% if section.settings.show_quantity_selector and product.available and product.id != 3824189505584 %}
-							<div class="product-form__item product-form__item--quantity">
-								<label for="Quantity-{{ section.id }}">{{ 'products.product.quantity' | t }}</label>
-								<input
-									type="number"
-									id="Quantity-{{ section.id }}"
-									name="quantity"
-									value="1"
-									min="1"
-									class="product-form__input"
-									pattern="[0-9]*"
-									data-quantity-input
-								>
-							</div>
-						{% endif %}
+					{% if section.settings.show_quantity_selector and product.available and product.id != 3824189505584 %}
+					<div class="product-form__item product-form__item--quantity">
+						<label for="Quantity-{{ section.id }}">{{ 'products.product.quantity' | t }}</label>
+						<input type="number" id="Quantity-{{ section.id }}" name="quantity" value="1" min="1" class="product-form__input" pattern="[0-9]*" data-quantity-input>
+					</div>
+					{% endif %}
 
-						<div
-							class="product-form__error-message-wrapper product-form__error-message-wrapper--hidden"
-							data-error-message-wrapper
-							role="alert"
-						>
-							{% include 'icon-error' %}
-							<span class="product-form__error-message" data-error-message>
-								{{- 'products.product.quantity_minimum_message' | t -}}
-							</span>
-						</div>
+					<div class="product-form__error-message-wrapper product-form__error-message-wrapper--hidden" data-error-message-wrapper role="alert">
+						{% include 'icon-error' %}
+						<span class="product-form__error-message" data-error-message>
+							{{- 'products.product.quantity_minimum_message' | t -}}
+						</span>
+					</div>
 
-						<button
-							type="submit"
-							name="add"
+					<button type="submit" name="add" {% unless current_variant.available %} disabled="disabled" {% endunless %} class="bg-brand-red rounded-md w-auto flex-1 text-white py-3 cursor-pointer hover:ring-brand-red hover:bg-transparent hover:ring-2 hover:ring-inset hover:text-brand-red duration-300" data-add-to-cart>
+						<span data-add-to-cart-text>
 							{% unless current_variant.available %}
-								disabled="disabled"
+							{{ 'products.product.sold_out' | t }}
+							{% else %}
+							{{ 'products.product.add_to_cart' | t }}
 							{% endunless %}
-							class="bg-brand-red rounded-md w-auto flex-1 text-white py-3 cursor-pointer hover:ring-brand-red hover:bg-transparent hover:ring-2 hover:ring-inset hover:text-brand-red duration-300"
-							data-add-to-cart
-						>
-							<span data-add-to-cart-text>
-								{% unless current_variant.available %}
-									{{ 'products.product.sold_out' | t }}
-								{% else %}
-									{{ 'products.product.add_to_cart' | t }}
-								{% endunless %}
-							</span>
-						</button>
+						</span>
+					</button>
 					{% endform %}
 				</div>
 			</div>
@@ -238,376 +171,381 @@
 </div>
 
 <script>
-											    $(document).ready(function(){
-											     $('.b-drop-info').mouseover(
-											       function() {
-											       $('#prod-info-tooltip').show();
-											     })
+	$( document ).ready( function () {
+		$( '.b-drop-info' ).mouseover(
+			function () {
+				$( '#prod-info-tooltip' ).show()
+			} )
 
-											     $('.b-drop-info').mouseout(function(e) {
+		$( '.b-drop-info' ).mouseout( function ( e ) {
 
-											       if ( e.relatedTarget &&
-											           ( $(e.relatedTarget).hasClass('webkit_center') ||
-											            $(e.relatedTarget).hasClass('product-single__meta') ||
-											           $(e.toElement) == 'p' )
-											          ) {
-											     		$('#prod-info-tooltip').hide();
-											       }
-											     })
+			if ( e.relatedTarget &&
+				( $( e.relatedTarget ).hasClass( 'webkit_center' ) ||
+					$( e.relatedTarget ).hasClass( 'product-single__meta' ) ||
+					$( e.toElement ) == 'p' )
+			) {
+				$( '#prod-info-tooltip' ).hide()
+			}
+		} )
 
-											//       $('#prod-info-tooltip')
-											//       .mouseover(function() {
-											//       	$('.b-drop-info').trigger('mouseenter')
-											//       })
-											//       .mouseout(function() {
-											//         $('.b-drop-info').trigger('mouseout')
-											//         $('.b-drop-info').removeClass('show')
-											//       })
+		//       $('#prod-info-tooltip')
+		//       .mouseover(function() {
+		//       	$('.b-drop-info').trigger('mouseenter')
+		//       })
+		//       .mouseout(function() {
+		//         $('.b-drop-info').trigger('mouseout')
+		//         $('.b-drop-info').removeClass('show')
+		//       })
 
-											      $('body').click(function (event) {
-											         if(!$(event.target).closest('.b-drop-info').length && !$(event.target).is('#prod-info-tooltip')) {
-											           $("#prod-info-tooltip").hide();
-											         } else if ( $(event.target).closest('.b-drop-info').length > 0 ) {
-											           $("#prod-info-tooltip").show();
-											         }
-											      });
-											    });
+		$( 'body' ).click( function ( event ) {
+			if ( !$( event.target ).closest( '.b-drop-info' ).length && !$( event.target ).is( '#prod-info-tooltip' ) ) {
+				$( "#prod-info-tooltip" ).hide()
+			} else if ( $( event.target ).closest( '.b-drop-info' ).length > 0 ) {
+				$( "#prod-info-tooltip" ).show()
+			}
+		} )
+	} );
 </script>
 
 {% unless product == empty %}
-	<script type="application/json" id="ProductJson-{{ section.id }}">
-																						{{ product | json }}
-	</script>
+<script type="application/json" id="ProductJson-{{ section.id }}">
+{{ product | json }}
+</script>
 {% endunless %}
 
 {% assign tag_custom = 'false' %}
 {% if product.tags contains 'custom' %}
-	{% assign tag_custom = 'true' %}
+{% assign tag_custom = 'true' %}
 
-	<input type="hidden" class="custom_tag" value="{{ tag_custom }}">
-	<script>
-																						$(document).ready(function(){
-																						$(".product-form__cart-submit").next("div").remove();
-																						var custom_tag = $(".custom_tag").val();
+<input type="hidden" class="custom_tag" value="{{ tag_custom }}">
+<script>
+	$( document ).ready( function () {
+		$( ".product-form__cart-submit" ).next( "div" ).remove()
+		var custom_tag = $( ".custom_tag" ).val()
 
-																						  if(custom_tag == 'true'){
-																						  $("[name='add']").attr("disabled","disabled");
-																						  }
-																						});
-	</script>
+		if ( custom_tag == 'true' ) {
+			$( "[name='add']" ).attr( "disabled", "disabled" )
+		}
+	} );
+</script>
 {% endif %}
 
 {% schema %}
 {
-    "name": {
-        "de": "Produktseiten",
-        "en": "Product pages",
-        "es": "Páginas de productos",
-        "fr": "Pages de produits",
-        "it": "Pagine di prodotto",
-        "ja": "商品ページ",
-        "nl": "Productpagina's",
-        "pt-BR": "Páginas de produtos",
-        "zh-CN": "产品页面",
-        "zh-TW": "產品頁面"
-    },
-    "settings": [
-        {
-            "type": "select",
-            "id": "image_size",
-            "label": {
-                "de": "Foto-Größe",
-                "en": "Image size",
-                "es": "Tamaño de la imagen",
-                "fr": "Taille des images",
-                "it": "Dimensione immagine",
-                "ja": "画像のサイズ",
-                "nl": "Afbeeldingsformaat",
-                "pt-BR": "Tamanho da imagem",
-                "zh-CN": "图片尺寸",
-                "zh-TW": "圖片尺寸"
-            },
-            "options": [
-                {
-                    "value": "small",
-                    "label": {
-                        "de": "Klein",
-                        "en": "Small",
-                        "es": "Pequeña",
-                        "fr": "Petite",
-                        "it": "Piccolo",
-                        "ja": "小",
-                        "nl": "Klein",
-                        "pt-BR": "Pequeno",
-                        "zh-CN": "小",
-                        "zh-TW": "小型"
-                    }
-                },
-                {
-                    "value": "medium",
-                    "label": {
-                        "de": "Mittel",
-                        "en": "Medium",
-                        "es": "Mediana",
-                        "fr": "Moyenne",
-                        "it": "Medio",
-                        "ja": "中",
-                        "nl": "Gemiddeld",
-                        "pt-BR": "Médio",
-                        "zh-CN": "中等",
-                        "zh-TW": "中等"
-                    }
-                },
-                {
-                    "value": "large",
-                    "label": {
-                        "de": "Groß",
-                        "en": "Large",
-                        "es": "Grande",
-                        "fr": "Grande",
-                        "it": "Grande",
-                        "ja": "大",
-                        "nl": "Groot",
-                        "pt-BR": "Grande",
-                        "zh-CN": "大",
-                        "zh-TW": "大型"
-                    }
-                },
-                {
-                    "value": "full",
-                    "label": {
-                        "de": "Volle Breite",
-                        "en": "Full-width",
-                        "es": "Ancho completo",
-                        "fr": "Pleine largeur",
-                        "it": "Intera larghezza",
-                        "ja": "全幅",
-                        "nl": "Volledige breedte",
-                        "pt-BR": "Largura completa",
-                        "zh-CN": "全宽",
-                        "zh-TW": "完整寬度"
-                    }
-                }
-            ],
-            "default": "medium"
-        },
-        {
-            "type": "checkbox",
-            "id": "show_quantity_selector",
-            "label": {
-                "de": "Quantitäts-Auswahl anzeigen",
-                "en": "Show quantity selector",
-                "es": "Mostrar selector de cantidad",
-                "fr": "Afficher le sélecteur de quantité",
-                "it": "Mostra selettore quantità",
-                "ja": "数量セレクターを表示する",
-                "nl": "Hoeveelheidskiezer weergeven",
-                "pt-BR": "Exibir seletor de quantidade",
-                "zh-CN": "显示数量选择器",
-                "zh-TW": "顯示數量選擇器"
-            },
-            "default": false
-        },
-        {
-            "type": "text",
-            "id": "shipping_text",
-            "label": {
-                "de": "Shipping Titel",
-                "en": "Shipping Title"
-            }
-        },
-        {
-            "type": "text",
-            "id": "shipping_text_os",
-            "label": {
-                "en": "Shipping Title for Backorders"
-            },
-            "default": "Pre-order | This flag will ship in 7-10 days"
-        },
-        {
-            "type": "checkbox",
-            "id": "show_variant_labels",
-            "label": {
-                "de": "Varianten-Etiketten anzeigen",
-                "en": "Show variant labels",
-                "es": "Mostrar etiquetas de variantes",
-                "fr": "Afficher le nom des variantes",
-                "it": "Mostra etichette varianti",
-                "ja": "バリエーションのラベルを表示する",
-                "nl": "Variantlabels weergeven",
-                "pt-BR": "Exibir etiquetas de variantes",
-                "zh-CN": "显示多属性标签",
-                "zh-TW": "顯示子類選項標籤"
-            },
-            "default": true
-        },
-        {
-            "type": "checkbox",
-            "id": "show_vendor",
-            "label": {
-                "de": "Lieferanten anzeigen",
-                "en": "Show vendor",
-                "es": "Mostrar proveedor",
-                "fr": "Afficher les vendeurs",
-                "it": "Mostra fornitore",
-                "ja": "販売元を表示する",
-                "nl": "Leverancier weergeven",
-                "pt-BR": "Exibir fornecedor",
-                "zh-CN": "显示厂商",
-                "zh-TW": "顯示廠商"
-            },
-            "default": false
-        },
-        {
-            "type": "checkbox",
-            "id": "enable_zoom",
-            "label": {
-                "de": "Foto-Zoom zulassen",
-                "en": "Enable image zoom",
-                "es": "Habilitar zoom de imagen",
-                "fr": "Activer le zoom d'image",
-                "it": "Abilita lo zoom dell'immagine",
-                "ja": "画像ズームを有効にする",
-                "nl": "Inzoomen op afbeelding inschakelen",
-                "pt-BR": "Ativar o zoom da imagem",
-                "zh-CN": "启用图片缩放",
-                "zh-TW": "啟用圖片縮放"
-            },
-            "default": true
-        },
-        {
-            "type": "checkbox",
-            "id": "enable_payment_button",
-            "label": {
-                "de": "Dynamischen Checkout Button anzeigen",
-                "en": "Show dynamic checkout button",
-                "es": "Mostrar botón de pago dinámico",
-                "fr": "Afficher le bouton de passage à la caisse dynamique",
-                "it": "Mostra pulsante di check-out dinamico",
-                "ja": "ダイナミックチェックアウトボタンを表示する",
-                "nl": "Dynamische checkout knop weergeven",
-                "pt-BR": "Exibir botão dinâmico de finalização da compra",
-                "zh-CN": "显示动态结账按钮",
-                "zh-TW": "顯示動態結帳按鈕"
-            },
-            "info": {
-                "de": "Jeder Kunde sieht seine bevorzugte Zahlungsmethode aus den in Ihrem Shop verfügbaren Zahlungsmethoden wie PayPal oder Apple Pay. [Mehr Infos](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
-                "en": "Each customer will see their preferred payment method from those available on your store, such as PayPal or Apple Pay. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
-                "es": "Cada cliente verá su forma de pago preferida entre las disponibles en tu tienda, como PayPal o Apple Pay. [Más información](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
-                "fr": "Chaque client verra son moyen de paiement préféré parmi ceux qui sont proposés sur votre boutique, tels que PayPal ou Apple Pay. [En savoir plus](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
-                "it": "Ogni cliente vedrà il suo metodo di pagamento preferito tra quelli disponibili nel tuo negozio, come PayPal o Apple Pay. [Maggiori informazioni](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
-                "ja": "PayPalやApple Payなど、ストアで利用可能な希望の決済方法がお客様に表示されます。[もっと詳しく](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
-                "nl": "Elke klant ziet zijn of haar beschikbare voorkeursmethode om af te rekenen, zoals PayPal of Apple Pay. [Meer informatie](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
-                "pt-BR": "Cada cliente verá seu método de pagamento preferido dentre os disponíveis na loja, como PayPal ou Apple Pay. [Saiba mais](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
-                "zh-CN": "每位客户都可在您商店提供的付款方式中看到他们的首选付款方式，例如 PayPal 或 Apple Pay。[了解详细信息](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
-                "zh-TW": "每位客戶都可以在您商店內開放使用的付款方式中看見他們偏好使用的方式，如 PayPal、Apple Pay 等。[深入瞭解相關資訊](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)"
-            },
-            "default": true
-        },
-        {
-            "type": "checkbox",
-            "id": "show_share_buttons",
-            "label": {
-                "de": "Buttons für Social Media anzeigen",
-                "en": "Show social sharing buttons",
-                "es": "Mostrar botones para compartir en redes sociales",
-                "fr": "Affichez les boutons de partage sur les médias sociaux",
-                "it": "Mostra i pulsanti per la condivisione sui social",
-                "ja": "ソーシャル共有ボタンを表示する",
-                "nl": "Knoppen voor sociaal delen weergeven",
-                "pt-BR": "Exibir botões de compartilhamento em redes sociais",
-                "zh-CN": "显示社交分享按钮",
-                "zh-TW": "顯示社群分享按鈕"
-            },
-            "default": true
-        }
-    ]
+"name": {
+"de": "Produktseiten",
+"en": "Product pages",
+"es": "Páginas de productos",
+"fr": "Pages de produits",
+"it": "Pagine di prodotto",
+"ja": "商品ページ",
+"nl": "Productpagina's",
+"pt-BR": "Páginas de produtos",
+"zh-CN": "产品页面",
+"zh-TW": "產品頁面"
+},
+"settings": [
+{
+"type": "select",
+"id": "image_size",
+"label": {
+"de": "Foto-Größe",
+"en": "Image size",
+"es": "Tamaño de la imagen",
+"fr": "Taille des images",
+"it": "Dimensione immagine",
+"ja": "画像のサイズ",
+"nl": "Afbeeldingsformaat",
+"pt-BR": "Tamanho da imagem",
+"zh-CN": "图片尺寸",
+"zh-TW": "圖片尺寸"
+},
+"options": [
+{
+"value": "small",
+"label": {
+"de": "Klein",
+"en": "Small",
+"es": "Pequeña",
+"fr": "Petite",
+"it": "Piccolo",
+"ja": "小",
+"nl": "Klein",
+"pt-BR": "Pequeno",
+"zh-CN": "小",
+"zh-TW": "小型"
+}
+},
+{
+"value": "medium",
+"label": {
+"de": "Mittel",
+"en": "Medium",
+"es": "Mediana",
+"fr": "Moyenne",
+"it": "Medio",
+"ja": "中",
+"nl": "Gemiddeld",
+"pt-BR": "Médio",
+"zh-CN": "中等",
+"zh-TW": "中等"
+}
+},
+{
+"value": "large",
+"label": {
+"de": "Groß",
+"en": "Large",
+"es": "Grande",
+"fr": "Grande",
+"it": "Grande",
+"ja": "大",
+"nl": "Groot",
+"pt-BR": "Grande",
+"zh-CN": "大",
+"zh-TW": "大型"
+}
+},
+{
+"value": "full",
+"label": {
+"de": "Volle Breite",
+"en": "Full-width",
+"es": "Ancho completo",
+"fr": "Pleine largeur",
+"it": "Intera larghezza",
+"ja": "全幅",
+"nl": "Volledige breedte",
+"pt-BR": "Largura completa",
+"zh-CN": "全宽",
+"zh-TW": "完整寬度"
+}
+}
+],
+"default": "medium"
+},
+{
+"type": "checkbox",
+"id": "show_quantity_selector",
+"label": {
+"de": "Quantitäts-Auswahl anzeigen",
+"en": "Show quantity selector",
+"es": "Mostrar selector de cantidad",
+"fr": "Afficher le sélecteur de quantité",
+"it": "Mostra selettore quantità",
+"ja": "数量セレクターを表示する",
+"nl": "Hoeveelheidskiezer weergeven",
+"pt-BR": "Exibir seletor de quantidade",
+"zh-CN": "显示数量选择器",
+"zh-TW": "顯示數量選擇器"
+},
+"default": false
+},
+{
+"type": "text",
+"id": "shipping_text",
+"label": {
+"de": "Shipping Titel",
+"en": "Shipping Title"
+}
+},
+{
+"type": "text",
+"id": "shipping_text_os",
+"label": {
+"en": "Shipping Title for Backorders"
+},
+"default": "Pre-order | This flag will ship in 7-10 days"
+},
+{
+"type": "checkbox",
+"id": "show_variant_labels",
+"label": {
+"de": "Varianten-Etiketten anzeigen",
+"en": "Show variant labels",
+"es": "Mostrar etiquetas de variantes",
+"fr": "Afficher le nom des variantes",
+"it": "Mostra etichette varianti",
+"ja": "バリエーションのラベルを表示する",
+"nl": "Variantlabels weergeven",
+"pt-BR": "Exibir etiquetas de variantes",
+"zh-CN": "显示多属性标签",
+"zh-TW": "顯示子類選項標籤"
+},
+"default": true
+},
+{
+"type": "checkbox",
+"id": "show_vendor",
+"label": {
+"de": "Lieferanten anzeigen",
+"en": "Show vendor",
+"es": "Mostrar proveedor",
+"fr": "Afficher les vendeurs",
+"it": "Mostra fornitore",
+"ja": "販売元を表示する",
+"nl": "Leverancier weergeven",
+"pt-BR": "Exibir fornecedor",
+"zh-CN": "显示厂商",
+"zh-TW": "顯示廠商"
+},
+"default": false
+},
+{
+"type": "checkbox",
+"id": "enable_zoom",
+"label": {
+"de": "Foto-Zoom zulassen",
+"en": "Enable image zoom",
+"es": "Habilitar zoom de imagen",
+"fr": "Activer le zoom d'image",
+"it": "Abilita lo zoom dell'immagine",
+"ja": "画像ズームを有効にする",
+"nl": "Inzoomen op afbeelding inschakelen",
+"pt-BR": "Ativar o zoom da imagem",
+"zh-CN": "启用图片缩放",
+"zh-TW": "啟用圖片縮放"
+},
+"default": true
+},
+{
+"type": "checkbox",
+"id": "enable_payment_button",
+"label": {
+"de": "Dynamischen Checkout Button anzeigen",
+"en": "Show dynamic checkout button",
+"es": "Mostrar botón de pago dinámico",
+"fr": "Afficher le bouton de passage à la caisse dynamique",
+"it": "Mostra pulsante di check-out dinamico",
+"ja": "ダイナミックチェックアウトボタンを表示する",
+"nl": "Dynamische checkout knop weergeven",
+"pt-BR": "Exibir botão dinâmico de finalização da compra",
+"zh-CN": "显示动态结账按钮",
+"zh-TW": "顯示動態結帳按鈕"
+},
+"info": {
+"de": "Jeder Kunde sieht seine bevorzugte Zahlungsmethode aus den in Ihrem Shop verfügbaren Zahlungsmethoden wie PayPal oder Apple Pay. [Mehr Infos](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+"en": "Each customer will see their preferred payment method from those available on your store, such as PayPal or Apple Pay. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+"es": "Cada cliente verá su forma de pago preferida entre las disponibles en tu tienda, como PayPal o Apple Pay. [Más información](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+"fr": "Chaque client verra son moyen de paiement préféré parmi ceux qui sont proposés sur votre boutique, tels que PayPal ou Apple Pay. [En savoir plus](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+"it": "Ogni cliente vedrà il suo metodo di pagamento preferito tra quelli disponibili nel tuo negozio, come PayPal o Apple Pay. [Maggiori informazioni](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+"ja": "PayPalやApple Payなど、ストアで利用可能な希望の決済方法がお客様に表示されます。[もっと詳しく](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+"nl": "Elke klant ziet zijn of haar beschikbare voorkeursmethode om af te rekenen, zoals PayPal of Apple Pay. [Meer informatie](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+"pt-BR": "Cada cliente verá seu método de pagamento preferido dentre os disponíveis na loja, como PayPal ou Apple Pay. [Saiba mais](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+"zh-CN": "每位客户都可在您商店提供的付款方式中看到他们的首选付款方式，例如 PayPal 或 Apple Pay。[了解详细信息](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+"zh-TW": "每位客戶都可以在您商店內開放使用的付款方式中看見他們偏好使用的方式，如 PayPal、Apple Pay 等。[深入瞭解相關資訊](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)"
+},
+"default": true
+},
+{
+"type": "checkbox",
+"id": "show_share_buttons",
+"label": {
+"de": "Buttons für Social Media anzeigen",
+"en": "Show social sharing buttons",
+"es": "Mostrar botones para compartir en redes sociales",
+"fr": "Affichez les boutons de partage sur les médias sociaux",
+"it": "Mostra i pulsanti per la condivisione sui social",
+"ja": "ソーシャル共有ボタンを表示する",
+"nl": "Knoppen voor sociaal delen weergeven",
+"pt-BR": "Exibir botões de compartilhamento em redes sociais",
+"zh-CN": "显示社交分享按钮",
+"zh-TW": "顯示社群分享按鈕"
+},
+"default": true
+}
+]
 }
 {% endschema %}
 
 {% if product.id == 3824189505584 %}
-	<div class="cust-flag-privacy-modal">
-		<div class="inner-body">
-			<div class="m-head">
-				<h4>HypeFlags Custom Flag Policy</h4>
-				<span data-cust-flag-privacy-modal-close title="Close">&times;</span>
-			</div>
+<div class="cust-flag-privacy-modal">
+	<div class="inner-body">
+		<div class="m-head">
+			<h4>HypeFlags Custom Flag Policy</h4>
+			<span data-cust-flag-privacy-modal-close title="Close">&times;</span>
+		</div>
 
-			<div class="m-body">
-				<p>
-					Custom flags require an additional 5-7 business day processing time. All orders will ship from the
-					USA.
-				</p>
-				<p>
-					Please allow a 5% bleed area on all edges of the flag to ensure no important parts of your image are
-					cut out during production.
-				</p>
-				<p>
-					Note: We print the file to the exact resolution when uploaded. The image may appear pixelated or
-					blurry when scaled to the full flag size. Our recommended minimum image size is 2000px on the
-					shortest side. We are unable to provide any return or refund due to a low resolution file.
-				</p>
-				<p>
-					By uploading, you certify that you own copyrights for this image or are authorized by the owner to
-					use it. Please do not submit any flags that contain nudity or hateful imagery. We reserve the right
-					to reject and refund any custom flag orders.
-				</p>
-				<p>
-					Returns: Custom flags are not returnable unless there is a printing defect. If you are unhappy with
-					your custom flag please contact us and our team will help find a resolution.
-				</p>
-			</div>
+		<div class="m-body">
+			<p>
+				Custom flags require an additional 5-7 business day processing time. All orders will ship from the
+				USA.
+			</p>
+			<p>
+				Please allow a 5% bleed area on all edges of the flag to ensure no important parts of your image are
+				cut out during production.
+			</p>
+			<p>
+				Note: We print the file to the exact resolution when uploaded. The image may appear pixelated or
+				blurry when scaled to the full flag size. Our recommended minimum image size is 2000px on the
+				shortest side. We are unable to provide any return or refund due to a low resolution file.
+			</p>
+			<p>
+				By uploading, you certify that you own copyrights for this image or are authorized by the owner to
+				use it. Please do not submit any flags that contain nudity or hateful imagery. We reserve the right
+				to reject and refund any custom flag orders.
+			</p>
+			<p>
+				Returns: Custom flags are not returnable unless there is a printing defect. If you are unhappy with
+				your custom flag please contact us and our team will help find a resolution.
+			</p>
 		</div>
 	</div>
+</div>
 
-	<style>
-																						.review-user-info {
-																							display: none !important
-																						}
-																						  .ig-img,
-																						  .review-carousel-item {
-																						  	width: 250px !important;
-																						    height: 250px;
-																						  }
-																						  .hf-legit .review-carousel-wrap .review-carousel-item, .index-section .review-carousel-wrap .review-carousel-item,
-																						  .template-product .review-carousel-wrap .review-carousel-item {
-																						    width: 250px !important;
-																						    height: 250px !important;
-																						  }
+<style>
+	.review-user-info {
+		display: none !important
+	}
 
-																						  .template-product .review-carousel-wrap.ig-feed .review-carousel-item figure.ig-img:after {
-																						  	content: unset;
-																						  }
+	.ig-img,
+	.review-carousel-item {
+		width: 250px !important;
+		height: 250px;
+	}
 
-																						  button.btn.product-form__cart-submit {
-																						    width: 100%;
-																						  }
-																						/*   button.btn.product-form__cart-submit */
+	.hf-legit .review-carousel-wrap .review-carousel-item,
+	.index-section .review-carousel-wrap .review-carousel-item,
+	.template-product .review-carousel-wrap .review-carousel-item {
+		width: 250px !important;
+		height: 250px !important;
+	}
 
-																						  .product-form__item.custom-product--qty:after {
-																						    content: '• Made to order | will ship in 5-7 days';
-																						    position: absolute;
-																						    left: 0;
-																						    font-size: 15.5px;
-																						    font-weight: normal;
-																						    cursor: text;
-																						    color: #FFA800;
-																						    text-transform: capitalize;
-																						    letter-spacing: 0;
-																						    width: 100%;
-																						    bottom: -50px;
-																						    height: 40px;
-																						    text-align: center;
-																						  }
+	.template-product .review-carousel-wrap.ig-feed .review-carousel-item figure.ig-img:after {
+		content: unset;
+	}
 
-																						  @media(max-width:767px) {
-																						    button.btn.product-form__cart-submit {
-																						      padding: 8px 16px;
-																						    }
+	button.btn.product-form__cart-submit {
+		width: 100%;
+	}
 
-																						    button.btn.product-form__cart-submit:after {
-																						      font-size: 11px;
-																						    }
-																						  }
-	</style>
+	/*   button.btn.product-form__cart-submit */
+
+	.product-form__item.custom-product--qty:after {
+		content: '• Made to order | will ship in 5-7 days';
+		position: absolute;
+		left: 0;
+		font-size: 15.5px;
+		font-weight: normal;
+		cursor: text;
+		color: #FFA800;
+		text-transform: capitalize;
+		letter-spacing: 0;
+		width: 100%;
+		bottom: -50px;
+		height: 40px;
+		text-align: center;
+	}
+
+	@media(max-width:767px) {
+		button.btn.product-form__cart-submit {
+			padding: 8px 16px;
+		}
+
+		button.btn.product-form__cart-submit:after {
+			font-size: 11px;
+		}
+	}
+
+</style>
 {% endif %}
