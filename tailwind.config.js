@@ -10,6 +10,7 @@ module.exports = {
 		extend: {
 			backgroundImage: {
 				tick: 'url(/assets/tick.svg)',
+				grommet: 'url(/assets/grommet.svg)',
 			},
 			colors: {
 				'brand-red': '#D5003A',

@@ -86,7 +86,8 @@ var Color = '#000000'
 
 var options = {
 	preview: '.img-preview',
-	aspectRatio: 1.666,
+	background: false,
+	aspectRatio: 5 / 3,
 	dragMode: 'none',
 	viewmode: 1,
 	zoomOnWheel: false,
@@ -127,6 +128,7 @@ var options = {
 	},
 }
 var cropper = new Cropper(image, options)
+console.log('whye here', cropper)
 var originalImageURL = image.src
 
 var uploadedImageType = 'image/jpeg'
@@ -253,8 +255,12 @@ $('body').on('click', '[data-method]', function (event) {
 					// Hide cropper modal.
 					$('.hype-cropper-wrapper').fadeOut()
 
-					var can = document.getElementById('Canvas_data')
-					var ctx = can.getContext('2d')
+					const can = document.createElement('canvas')
+					//can.width = 585
+					//can.height = 300
+					const ctx = can.getContext('2d')
+
+					//var can = document.getElementById('Canvas_data')
 					var window_width = $(window).width()
 					var img = new Image()
 					img.crossOrigin = 'anonymous'
@@ -263,9 +269,9 @@ $('body').on('click', '[data-method]', function (event) {
 
 					ctx.clearRect(0, 0, can.width, can.height)
 
-					$('.main_product_slider [data-slick-index=0]')
-						.find('div.ex1')
-						.append('<div id="custom-loader-buffer"></div>')
+					//$('.main_product_slider [data-slick-index=0]')
+					//	.find('div.ex1')
+					//	.append('<div id="custom-loader-buffer"></div>')
 
 					img.onload = function () {
 						//                             can.width = width_C;
@@ -287,40 +293,35 @@ $('body').on('click', '[data-method]', function (event) {
 								"'/>"
 						)
 
-						var width = width_C
-						var height = height_C
-
-						//                             var image = new Image;
-						//                             image.crossOrigin = "anonymous";
-						//                             image.onload = function() {
-						//                                 if (window_width <= 750) {
-						//   alert(window_width);
-						//                                     ctx.drawImage(image, 15, 15, 30, 30);
-						//                                     ctx.drawImage(image, width - 40, 15, 30, 30);
-						//                                     ctx.drawImage(image, 15, height_C - 40, 30, 30);
-						//                                     ctx.drawImage(image, width - 40, height_C - 40, 30, 30);
-
-						//                                 } else {
-						//                                     ctx.drawImage(image, 0, 0, 20, 20, 20, 20, 20*_r, 20*_r);
-						//                                   ctx.drawImage(image, 10, 10);
-						//                                       ctx.drawImage(image, 10, 10, 20, 20);
-						//                                     ctx.drawImage(image, width - 50, 20, 20, 20);
-						//                                     ctx.drawImage(image, 20, height_C - 50, 20, 20);
-						//                                     ctx.drawImage(image, width - 50, height_C - 50, 20, 20)
-						//                                 }
-
+						console.log('what widh', can.width, can.height)
 						var base_64 = can.toDataURL()
-						$(".main_product_slider img[data-index='1']").attr(
-							'src',
-							base_64
+
+						// Append the canvas to the slider.
+						const canvasContainer = document.querySelector(
+							'.product-single-gallery img[data-index="1"]'
 						)
-						//                                 $(".btns-wrap .new-btn span").html("Replace File");
+
+						canvasContainer?.parentElement?.classList.add(
+							'flex',
+							'justify-center',
+							'items-center',
+							'bg-stone-100'
+						)
+						canvasContainer.parentElement.style.height = 'auto'
+						document
+							.querySelector(
+								'.product-single-gallery img[data-index="1"]'
+							)
+							?.setAttribute('src', base_64)
+						document.querySelector(
+							'.product-single-gallery img[data-index="1"]'
+						).style.maxWidth = '560px'
 
 						$("[name='add']").removeAttr('disabled')
 
-						$('.main_product_slider [data-slick-index=0]')
-							.find('div.ex1')
-							.css('opacity', '0.3')
+						//$('.main_product_slider [data-slick-index=0]')
+						//	.find('div.ex1')
+						//	.css('opacity', '0.3')
 						setTimeout(function () {
 							$(
 								".main_product_slider .slider-for__item img[data-index='1']"
@@ -328,17 +329,17 @@ $('body').on('click', '[data-method]', function (event) {
 								.parent()
 								.fadeIn()
 
-							$('.main_product_slider [data-slick-index=0]')
-								.find('div.ex1')
-								.css('opacity', '1')
+							//$('.main_product_slider [data-slick-index=0]')
+							//	.find('div.ex1')
+							//	.css('opacity', '1')
 
-							$('.main_product_slider [data-slick-index=0]')
-								.find('div.ex1')
-								.find('img')
-								.attr({
-									class: 'has-new-zoom',
-									'data-magnify-src': '',
-								})
+							//$('.main_product_slider [data-slick-index=0]')
+							//	.find('div.ex1')
+							//	.find('img')
+							//	.attr({
+							//		class: 'has-new-zoom',
+							//		'data-magnify-src': '',
+							//	})
 
 							let g = $(
 								'.main_product_slider [data-slick-index=0]'
@@ -373,16 +374,6 @@ $('body').on('click', '[data-method]', function (event) {
 								.addClass('custom')
 						}, 1000)
 
-						//                                 setTimeout(function() {
-
-						//                                     $(".main_product_slider .slider-for__item img[data-index='1']")
-						//                                         .parent().css({
-						//                                             "display": "flex",
-						//                                             "align-items": "center",
-						//                                             "justify-content": "center"
-						//                                         });
-						//                                 }, 500);
-
 						$(
 							".main_product_slider .slider-for__item img[data-index='1']"
 						).css({
@@ -401,15 +392,19 @@ $('body').on('click', '[data-method]', function (event) {
 						)
 							.parent()
 							.height()
-						console.log(
-							$(
-								".main_product_slider .slider-for__item img[data-index='1']"
-							)
-								.parent()
-								.css({
-									'min-height': height + 'px',
-								})
+
+						document.querySelector(
+							'.product-single-gallery img[data-index="1"]'
 						)
+						//console.log(
+						//	$(
+						//		".main_product_slider .slider-for__item img[data-index='1']"
+						//	)
+						//		.parent()
+						//		.css({
+						//			'min-height': height + 'px',
+						//		})
+						//)
 
 						//console.log($(".slider-for__item img[data-index='1']").css({"box-shadow":"0px 4px 4px 0px rgba(0,0,0,0.27)"}));
 						console.log(
@@ -544,7 +539,7 @@ document.body.onkeydown = function (event) {
 }
 
 // Import image
-var inputImage = document.getElementById('inputImage')
+var inputImage = document.getElementById('custom-flag-image')
 
 if (inputImage && URL) {
 	inputImage.onchange = function () {
@@ -623,7 +618,7 @@ if (inputImage && URL) {
 					behavior: 'smooth',
 				})
 
-				document.documentElement.style.overflow = 'hidden'
+				//document.documentElement.style.overflow = 'hidden'
 			}
 
 			reader.readAsDataURL(file)
@@ -642,7 +637,8 @@ if (inputImage && URL) {
 				$('.hype-cropper-wrapper').fadeIn({
 					duration: 'slow',
 					start: function () {
-						$(this).css('display', 'grid')
+						$(this).appendTo('body').css('display', 'grid')
+						//$(this).css('display', 'grid')
 						//                              $('.hype-cropper__body--image').css('visibility', 'hidden')
 						$(
 							'<div id="custom-loader-buffer" style="z-index: 9999; position: absolute"></div>'
@@ -656,6 +652,7 @@ if (inputImage && URL) {
 
 				$('.cross-cropper').show()
 
+				console.log('asdas', image)
 				cropper = new Cropper(image, options)
 				inputImage.value = null
 			} else {
