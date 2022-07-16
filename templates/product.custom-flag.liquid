@@ -1,5 +1,5 @@
 {% comment %}
-	The contents of the product.liquid template can be found in /sections/product-template.liquid
+The contents of the product.liquid template can be found in /sections/product-template.liquid
 {% endcomment %}
 
 {% section 'product-custom-flag' %}
@@ -19,24 +19,13 @@
 {% section 'product-recommendations' %}
 
 {% if collection %}
-	<div class="text-center return-link-wrapper page-width">
-		<a href="{{ collection.url }}" class="btn btn--secondary btn--has-icon-before return-link">
-			<i style="font-size:18px;" class="fa fa-arrow-left"></i>
-			{{ 'products.product.back_to_collection' | t: title: collection.title }}
-		</a>
-	</div>
+<div class="text-center return-link-wrapper page-width">
+	<a href="{{ collection.url }}" class="btn btn--secondary btn--has-icon-before return-link">
+		<i style="font-size:18px;" class="fa fa-arrow-left"></i>
+		{{ 'products.product.back_to_collection' | t: title: collection.title }}
+	</a>
+</div>
 {% endif %}
-
-<script>
-	// Override default values of shop.strings for each template.
-	// Alternate product templates can change values of
-	// add to cart button, sold out, and unavailable states here.
-	theme.productStrings = {
-	  addToCart: {{ 'products.product.add_to_cart' | t | json }},
-	  soldOut: {{ 'products.product.sold_out' | t | json }},
-	  unavailable: {{ 'products.product.unavailable' | t | json }}
-	}
-</script>
 
 {% assign current_variant = product.selected_or_first_available_variant %}
 
@@ -83,37 +72,37 @@
 <!-- ACERILL CUSTOM FORMS CODE -->
 <div id="acerill-custom-forms-shopify-product-page"></div>
 <script type="text/javascript">
-	window.acerillCustomFormsConfig = window.acerillCustomFormsConfig || {};
-	window.acerillCustomFormsConfig.shopifyProductPageConfig = JSON.parse('{"forms":[{"conditions":[{"urlContains":"/products/custom-flag-upload-your-design"}],"formId":"f5497802-4be8-4bae-93cb-8988c7fddfad"}]}');
+	window.acerillCustomFormsConfig = window.acerillCustomFormsConfig || {}
+	window.acerillCustomFormsConfig.shopifyProductPageConfig = JSON.parse( '{"forms":[{"conditions":[{"urlContains":"/products/custom-flag-upload-your-design"}],"formId":"f5497802-4be8-4bae-93cb-8988c7fddfad"}]}' );
 </script>
 <script src="https://custom-forms-client.acerill.com/js/custom-forms-v2.js"></script>
 <!-- END OF ACERILL CUSTOM FORMS CODE -->
 
 <script text="text/javascript">
-	var _learnq = _learnq || [];
+	var _learnq = _learnq || []
 
 	var item = {
-	  Name: {{ product.title|json }},
-	  ProductID: {{ product.id|json }},
-	  Categories: {{ product.collections|map:'title'|json }},
-	  ImageURL: "https:{{ product.featured_image.src|img_url:'grande' }}",
-	  URL: "{{ shop.secure_url }}{{ product.url }}",
-	  Brand: {{ product.vendor|json }},
-	  Price: {{ product.price|money|json }},
-	  CompareAtPrice: {{ product.compare_at_price_max|money|json }}
+		Name: {{ product.title| json }},
+	ProductID: { { product.id | json } },
+	Categories: { { product.collections | map: 'title' | json } },
+	ImageURL: "https:{{ product.featured_image.src|img_url:'grande' }}",
+		URL: "{{ shop.secure_url }}{{ product.url }}",
+			Brand: { { product.vendor | json } },
+	Price: { { product.price | money | json } },
+	CompareAtPrice: { { product.compare_at_price_max | money | json } }
 	};
 
-	_learnq.push(['track', 'Viewed Product', item]);
-	_learnq.push(['trackViewedItem', {
-	  Title: item.Name,
-	  ItemId: item.ProductID,
-	  Categories: item.Categories,
-	  ImageUrl: item.ImageURL,
-	  Url: item.URL,
-	  Metadata: {
-	    Brand: item.Brand,
-	    Price: item.Price,
-	    CompareAtPrice: item.CompareAtPrice
-	  }
-	}]);
+	_learnq.push( [ 'track', 'Viewed Product', item ] )
+	_learnq.push( [ 'trackViewedItem', {
+		Title: item.Name,
+		ItemId: item.ProductID,
+		Categories: item.Categories,
+		ImageUrl: item.ImageURL,
+		Url: item.URL,
+		Metadata: {
+			Brand: item.Brand,
+			Price: item.Price,
+			CompareAtPrice: item.CompareAtPrice
+		}
+	} ] );
 </script>
