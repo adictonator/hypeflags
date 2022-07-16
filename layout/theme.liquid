@@ -1,5 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="{{ shop.locale }}">
+
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -8,133 +9,70 @@
 		<link rel="canonical" href="{{ canonical_url }}">
 
 		{%- if settings.favicon != blank -%}
-			<link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+		<link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
 		{%- endif -%}
 
-		<!-- Font-awesome -->
-		{% comment %}
-																					<link
-																								rel='stylesheet'
-																								href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'
-																								media='screen'
-																							>
-		{% endcomment %}
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap"
-			rel="stylesheet"
-		>
+		<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
 
-		{% comment %}<link rel="stylesheet" href="/assets/app.css">{% endcomment %}
 		{{ 'app.css' | asset_url | stylesheet_tag }}
 
-		<script
-			src="https://code.jquery.com/jquery-3.6.0.min.js"
-			integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-			crossorigin="anonymous"
-		>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
 		</script>
 
 		{%- capture seo_title -%}
-			{%- if template == 'search' and search.performed == true -%}
-				{{ 'general.search.heading' | t: count: search.results_count }}:
-				{{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
-			{%- else -%}
-				{{ page_title }}
-			{%- endif -%}
-			{%- if current_tags -%}
-				{%- assign meta_tags = current_tags | join: ', ' -%}
-				&ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
-			{%- endif -%}
-			{%- if current_page != 1 -%}
-				&ndash; {{ 'general.meta.page' | t: page: current_page }}
-			{%- endif -%}
-			{%- assign escaped_page_title = page_title | escape -%}
-			{%- unless escaped_page_title contains shop.name -%}
-				&ndash; {{ shop.name }}
-			{%- endunless -%}
+		{%- if template == 'search' and search.performed == true -%}
+		{{ 'general.search.heading' | t: count: search.results_count }}:
+		{{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+		{%- else -%}
+		{{ page_title }}
+		{%- endif -%}
+		{%- if current_tags -%}
+		{%- assign meta_tags = current_tags | join: ', ' -%}
+		&ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
+		{%- endif -%}
+		{%- if current_page != 1 -%}
+		&ndash; {{ 'general.meta.page' | t: page: current_page }}
+		{%- endif -%}
+		{%- assign escaped_page_title = page_title | escape -%}
+		{%- unless escaped_page_title contains shop.name -%}
+		&ndash; {{ shop.name }}
+		{%- endunless -%}
 		{%- endcapture -%}
 		<title>{{ seo_title | strip }}</title>
 
 		{%- if page_description -%}
-			<meta name="description" content="{{ page_description | escape }}">
+		<meta name="description" content="{{ page_description | escape }}">
 		{%- endif -%}
 
 		{% include 'social-meta-tags' %}
 
 		<!-- Prevent Sorting by Best Seller -->
 		<script>
-																														if( document.location.href.indexOf('?sort_by=best-selling') > -1) {
-																														  document.location.href = '/collections/all'
-																														}
+			if ( document.location.href.indexOf( '?sort_by=best-selling' ) > -1 ) {
+				document.location.href = '/collections/all'
+			}
 		</script>
 		<!-- /Prevent Sorting by Best Seller -->
-
-		<script>
-																														var theme = {
-																														  strings: {
-																														    addToCart: {{ 'products.product.add_to_cart' | t | json }},
-																														    soldOut: {{ 'products.product.sold_out' | t | json }},
-																														    unavailable: {{ 'products.product.unavailable' | t | json }},
-																														    regularPrice: {{ 'products.product.regular_price' | t | json }},
-																														    sale: {{ 'products.product.on_sale' | t | json }},
-																														    showMore: {{ 'general.filters.show_more' | t | json }},
-																														    showLess: {{ 'general.filters.show_less' | t | json }},
-																														    addressError: {{ 'sections.map.address_error' | t | json }},
-																														    addressNoResults: {{ 'sections.map.address_no_results' | t | json }},
-																														    addressQueryLimit: {{ 'sections.map.address_query_limit_html' | t | json }},
-																														    authError: {{ 'sections.map.auth_error_html' | t | json }},
-																														    newWindow: {{ 'general.accessibility.link_messages.new_window' | t | json }},
-																														    external: {{ 'general.accessibility.link_messages.external' | t | json }},
-																														    newWindowExternal: {{ 'general.accessibility.link_messages.new_window_and_external' | t | json }},
-																														    quantityMinimumMessage: {{ 'products.product.quantity_minimum_message' | t | json }}
-																														  },
-																														  moneyFormat: {{ shop.money_format | json }}
-																														}
-
-																														document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
-		</script>
 
 		{{ 'vendor.css' | asset_url | stylesheet_tag }}
 		{{ 'theme.css' | asset_url | stylesheet_tag }}
 		{{ 'animate.css' | asset_url | stylesheet_tag }}
 
 		{{ content_for_header }}
-		{% include 'judgeme_core' %}
-
-		{% comment %}
-																															Conditional stylesheets
-		{% endcomment %}
-
-		{% if product.id == 4597274214473 %}
-			{{ '_tweet-flag.css' | asset_url | stylesheet_tag }}
-		{% endif %}
+		{% render 'judgeme_core' %}
 
 		{{ 'ActiveCampaign_Tracking.js' | asset_url | script_tag }}
 
 		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="screen">
 
-		<link
-			rel="stylesheet"
-			href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
-			media="screen"
-		>
+		<link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" media="screen">
 	</head>
 
-	<body
-		class="template-{{ template | split: '.' | first }}{% if settings.header_sticky %} has-sticky-header{% endif %}"
-		style="position:relative"
-	>
+	<body class="template-{{ template | split: '.' | first }}{% if settings.header_sticky %} has-sticky-header{% endif %}" style="position:relative">
 		<!-- Google Tag Manager (noscript) -->
-		<noscript
-			><iframe
-				src="https://www.googletagmanager.com/ns.html?id=GTM-P32WJQN"
-				height="0"
-				width="0"
-				style="display:none;visibility:hidden"
-			></iframe
-		></noscript>
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P32WJQN" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<!-- End Google Tag Manager (noscript) -->
 
 		<a class="in-page-link visually-hidden skip-link" href="#MainContent">
@@ -160,54 +98,65 @@
 			<li id="a11y-selection-message">{{ 'general.accessibility.selection_help' | t }}</li>
 		</ul>
 		<style>
-																														.jdgm-rev-widg__title{
-																														  display:none;
-																														}
+			.jdgm-rev-widg__title {
+				display: none;
+			}
+
 		</style>
 
 		{%- if template.directory == 'customers' -%}
-			<script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
+		<script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
 		{%- endif -%}
 
 		<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js" defer></script>
 		<script src="{{ 'lazysizes.js' | asset_url }}" async="async"></script>
 		<script src="{{ 'theme-v2.js' | asset_url }}" defer="defer"></script>
 		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-		<script
-			type="text/javascript"
-			src="https://s3.amazonaws.com/lastsecondcoupon/js/freeshippingbar.js?shop=hypeflags.myshopify.com"
-		>
+		<script type="text/javascript" src="https://s3.amazonaws.com/lastsecondcoupon/js/freeshippingbar.js?shop=hypeflags.myshopify.com">
 		</script>
 		<script>
-																														    document.addEventListener('contextmenu', event => {
-																														      if (typeof event.target.dataset.index !== typeof undefined) {
-																														    	event.preventDefault()
-																														      }
-																														    });
+			document.addEventListener( 'contextmenu', event => {
+				if ( typeof event.target.dataset.index !== typeof undefined ) {
+					event.preventDefault()
+				}
+			} )
 
-																														    AOS.init({
-																														        once: true
-																														      });
+			AOS.init( {
+				once: true
+			} )
 
-																														    $(function() {
-																														      setTimeout(() => {
-																														          $('body').find('.skeleton-loader-cust').remove()
-																														          $('.slider-nav-wrapper').removeClass('_oof')
-																														          $('.main_product_slider').removeClass('_mhh')
-																														//             $(this).find('.skeleton-loader-cust').remove()
-																														//           })
-																														      }, 300)
-																														    })
+			$( function () {
+				setTimeout( () => {
+					$( 'body' ).find( '.skeleton-loader-cust' ).remove()
+					//$( '.slider-nav-wrapper' ).removeClass( '_oof' )
+					//$( '.main_product_slider' ).removeClass( '_mhh' )
+					//             $(this).find('.skeleton-loader-cust').remove()
+					//           })
+				}, 300 )
+			} )
 		</script>
 
 		{% if product.id == 3824189505584 %}
-			{{ 'js-custom-flag.js' | asset_url | script_tag }}
+		{{ 'js-custom-flag.js' | asset_url | script_tag }}
 		{% endif %}
 
 		{% if content_for_header contains 'upsell-now.herokuapp.com' -%}
-			{%- render 'upsell-now', customer: customer, product: product, template: template, cart: cart -%}
+		{%- render 'upsell-now', customer: customer, product: product, template: template, cart: cart -%}
 		{%- endif %}
 
 		{{ 'app.js' | asset_url | script_tag }}
+
+		<div data-tweet-editor-modal class="hidden fixed inset-0 justify-center items-center bg-black/70 z-30">
+			<div class="bg-white rounded-md shadow-lg overflow-hidden w-full max-w-4xl">
+				<div class="flex bg-gray-100 justify-between items-center py-4 px-10">
+					<button type="button" data-cancel-edit class="rounded font-bold border-2 border-black uppercase tracking-wide text-base py-3 px-10 hover:bg-black hover:text-white duration-300">Cancel</button>
+					<span class="font-bold text-2xl">Edit Tweet</span>
+					<button type="button" data-confirm-edit class="bg-brand-red text-white font-bold border-2 uppercase rounded tracking-wide text-base py-3 px-10 hover:bg-white border-brand-red hover:text-brand-red duration-300">Confirm</button>
+				</div>
+				<div data-tweet-editor class="m-10 py-8 px-20 bg-stone-100 rounded">
+				</div>
+			</div>
+		</div>
 	</body>
+
 </html>
