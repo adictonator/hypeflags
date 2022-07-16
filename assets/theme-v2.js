@@ -304,7 +304,7 @@ jQuery(function ($) {
 	const singleProduct = new Swiper('.product-single-gallery', {
 		slidesPerView: 1,
 		spaceBetween: 0,
-		autoHeight: true,
+		autoHeight: false,
 		pagination: {
 			el: '.swiper-pagination',
 		},
