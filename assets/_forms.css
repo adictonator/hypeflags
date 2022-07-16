@@ -1,129 +1,129 @@
 /*================ #Links and Buttons ================*/
 a {
-  color: black;
-  text-decoration: none;
+	color: black;
+	text-decoration: none;
 }
 a:not([disabled]):hover,
 a:focus {
-  color: #404040;
-  text-decoration: none;
+	color: #404040;
+	text-decoration: none;
 }
 a.classic-link {
-  text-decoration: underline;
+	text-decoration: underline;
 }
 
 a[href^="tel"] {
-  color: inherit;
+	color: inherit;
 }
 
 /*================ Forms ================*/
 form {
-  margin: 0;
+	margin: 0;
 }
 
 fieldset {
-  border: 1px solid #909090;
-  margin: 0 0 55px;
-  padding: 27.5px;
+	border: 1px solid #909090;
+	margin: 0 0 55px;
+	padding: 27.5px;
 }
 
 legend {
-  border: 0;
-  padding: 0;
+	border: 0;
+	padding: 0;
 }
 
 button {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 input[type="submit"] {
-  cursor: pointer;
+	cursor: pointer;
 }
 
-label {
-  display: block;
-  margin-bottom: 5px;
-}
+/*label {
+	display: block;
+	margin-bottom: 5px;
+}*/
 @media only screen and (max-width: 749px) {
-  label {
-    font-size: 0.88889em;
-  }
+	label {
+		font-size: 0.88889em;
+	}
 }
-[type="radio"] + label,
+/*[type="radio"] + label,
 [type="checkbox"] + label {
   display: inline-block;
   margin-bottom: 0;
-}
+}*/
 label[for] {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 input,
 textarea,
 select {
-  border: 1px solid #909090;
-  background-color: white;
-  /*   color: $color-text-field-text; */
-  color: #000;
-  max-width: 100%;
-  line-height: 1.2;
-  border-radius: 5px;
+	border: 1px solid #909090;
+	background-color: white;
+	/*   color: $color-text-field-text; */
+	color: #000;
+	max-width: 100%;
+	line-height: 1.2;
+	border-radius: 5px;
 }
 input:focus,
 textarea:focus,
 select:focus {
-  border-color: #767676;
+	border-color: #767676;
 }
 input[disabled],
 textarea[disabled],
 select[disabled] {
-  cursor: default;
-  background-color: #f4f4f4;
-  border-color: #f4f4f4;
+	cursor: default;
+	background-color: #f4f4f4;
+	border-color: #f4f4f4;
 }
 input.input--error::-webkit-input-placeholder,
 textarea.input--error::-webkit-input-placeholder,
 select.input--error::-webkit-input-placeholder {
-  color: #d20000;
-  opacity: 0.5;
+	color: #d20000;
+	opacity: 0.5;
 }
 input.input--error::-moz-placeholder,
 textarea.input--error::-moz-placeholder,
 select.input--error::-moz-placeholder {
-  color: #d20000;
-  opacity: 0.5;
+	color: #d20000;
+	opacity: 0.5;
 }
 input.input--error:-ms-input-placeholder,
 textarea.input--error:-ms-input-placeholder,
 select.input--error:-ms-input-placeholder {
-  color: #d20000;
-  opacity: 0.5;
+	color: #d20000;
+	opacity: 0.5;
 }
 input.input--error::-ms-input-placeholder,
 textarea.input--error::-ms-input-placeholder,
 select.input--error::-ms-input-placeholder {
-  color: #d20000;
-  opacity: 1;
+	color: #d20000;
+	opacity: 1;
 }
 input.hidden-placeholder::-webkit-input-placeholder,
 textarea.hidden-placeholder::-webkit-input-placeholder,
 select.hidden-placeholder::-webkit-input-placeholder {
-  color: transparent;
+	color: transparent;
 }
 input.hidden-placeholder::-moz-placeholder,
 textarea.hidden-placeholder::-moz-placeholder,
 select.hidden-placeholder::-moz-placeholder {
-  color: transparent;
+	color: transparent;
 }
 input.hidden-placeholder:-ms-input-placeholder,
 textarea.hidden-placeholder:-ms-input-placeholder,
 select.hidden-placeholder:-ms-input-placeholder {
-  color: transparent;
+	color: transparent;
 }
 input.hidden-placeholder::-ms-input-placeholder,
 textarea.hidden-placeholder::-ms-input-placeholder,
 select.hidden-placeholder::-ms-input-placeholder {
-  opacity: 1;
+	opacity: 1;
 }
 /* .product-form input,
 .product-form textarea,
@@ -132,463 +132,456 @@ select.hidden-placeholder::-ms-input-placeholder {
 } */
 
 textarea {
-  min-height: 100px;
+	min-height: 100px;
 }
 
 /*================ Error styles ================*/
 input.input--error,
 select.input--error,
 textarea.input--error {
-  border-color: #d20000;
-  background-color: #fff8f8;
-  color: #d20000;
-  margin-bottom: 11.66667px;
+	border-color: #d20000;
+	background-color: #fff8f8;
+	color: #d20000;
+	margin-bottom: 11.66667px;
 }
 
 .input-error-message {
-  display: block;
-  width: 100%;
-  color: #d20000;
-  font-size: 0.88889em;
-  margin-bottom: 11.66667px;
+	display: block;
+	width: 100%;
+	color: #d20000;
+	font-size: 0.88889em;
+	margin-bottom: 11.66667px;
 }
 @media only screen and (max-width: 749px) {
-  .input-error-message {
-    margin-bottom: 19.44444px;
-  }
+	.input-error-message {
+		margin-bottom: 19.44444px;
+	}
 }
 .input-error-message .icon {
-  width: 1em;
-  height: 1em;
-  margin-top: -0.3em;
+	width: 1em;
+	height: 1em;
+	margin-top: -0.3em;
 }
 
 select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background-position: right center;
-  background-image: url(//cdn.shopify.com/s/files/1/0254/3868/3184/t/60/assets/ico-select.svg?v=17441701293343194995);
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  line-height: 1.2;
-  padding-right: 28px;
-  text-indent: 0.01px;
-  text-overflow: "";
-  cursor: pointer;
-  padding-top: 8px;
-  padding-left: 15px;
-  padding-bottom: 8px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background-position: right center;
+	background-image: url(//cdn.shopify.com/s/files/1/0254/3868/3184/t/60/assets/ico-select.svg?v=17441701293343194995);
+	background-repeat: no-repeat;
+	background-position: right 10px center;
+	line-height: 1.2;
+	padding-right: 28px;
+	text-indent: 0.01px;
+	text-overflow: "";
+	cursor: pointer;
+	padding-top: 8px;
+	padding-left: 15px;
+	padding-bottom: 8px;
 }
 @media only screen and (min-width: 750px) {
-  select {
-    padding-top: 10px;
-    padding-left: 18px;
-    padding-bottom: 10px;
-  }
+	select {
+		padding-top: 10px;
+		padding-left: 18px;
+		padding-bottom: 10px;
+	}
 }
 
 .select-group {
-  position: relative;
-  z-index: 2;
+	position: relative;
+	z-index: 2;
 }
 .select-group select {
-  background-image: none;
-  background-color: transparent;
+	background-image: none;
+	background-color: transparent;
 }
 .select-group .icon {
-  height: calc(8em / 16);
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: calc(8em / 16);
-  z-index: -1;
+	height: calc(8em / 16);
+	position: absolute;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	width: calc(8em / 16);
+	z-index: -1;
 }
 
 .select-label {
-  font-size: 0.66667em;
-  text-transform: uppercase;
+	font-size: 0.66667em;
+	text-transform: uppercase;
 }
 
 optgroup {
-  font-weight: 700;
+	font-weight: 700;
 }
 
 option {
-  color: black;
-  background-color: white;
+	color: black;
+	background-color: white;
 }
 
 select::-ms-expand {
-  display: none;
+	display: none;
 }
 
 /*================ Form labels ================*/
 .label--hidden {
-  position: absolute;
-  height: 0;
-  width: 0;
-  margin-bottom: 0;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
+	position: absolute;
+	height: 0;
+	width: 0;
+	margin-bottom: 0;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
 }
 
 ::-webkit-input-placeholder {
-  color: #162950;
-  opacity: 0.6;
+	color: #162950;
+	opacity: 0.6;
 }
 
 ::-moz-placeholder {
-  color: #162950;
-  opacity: 0.6;
+	color: #162950;
+	opacity: 0.6;
 }
 
 :-ms-input-placeholder {
-  color: #162950;
-  opacity: 0.6;
+	color: #162950;
+	opacity: 0.6;
 }
 
 ::-ms-input-placeholder {
-  color: #162950;
-  opacity: 1;
+	color: #162950;
+	opacity: 1;
 }
 
 /*================ Labels ================*/
 .label--error {
-  color: #d20000;
+	color: #d20000;
 }
 
 input,
 textarea {
-  padding: 8px 15px;
+	padding: 8px 15px;
 }
 @media only screen and (min-width: 750px) {
-  input,
-  textarea {
-    padding: 10px 18px;
-  }
+	input,
+	textarea {
+		padding: 10px 18px;
+	}
 }
 
 /*================ Vertical forms ================*/
 .form-vertical input,
 .form-vertical select,
 .form-vertical textarea {
-  display: block;
-  width: 100%;
-  margin-bottom: 19.44444px;
+	display: block;
+	width: 100%;
+	margin-bottom: 19.44444px;
 }
 .form-vertical input.input--error,
 .form-vertical select.input--error,
 .form-vertical textarea.input--error {
-  margin-bottom: 11.66667px;
+	margin-bottom: 11.66667px;
 }
 .form-vertical [type="radio"],
 .form-vertical [type="checkbox"] {
-  display: inline-block;
-  width: auto;
-  margin-right: 5px;
+	display: inline-block;
+	width: auto;
+	margin-right: 5px;
 }
 .form-vertical [type="submit"],
 .form-vertical .btn,
 .form-vertical
-  .shopify-payment-button
-  .shopify-payment-button__button--unbranded,
+	.shopify-payment-button
+	.shopify-payment-button__button--unbranded,
 .shopify-payment-button
-  .form-vertical
-  .shopify-payment-button__button--unbranded {
-  display: inline-block;
-  width: auto;
+	.form-vertical
+	.shopify-payment-button__button--unbranded {
+	display: inline-block;
+	width: auto;
 }
 
 /*================ Single field forms ================*/
 .form-single-field {
-  margin: 0 auto 55px;
-  max-width: 35rem;
+	margin: 0 auto 55px;
+	max-width: 35rem;
 }
 .form-single-field .input--error {
-  margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 /*================ Form feedback messages ================*/
 .note,
 .form-message {
-  padding: 8px;
-  margin: 0 0 27.5px;
+	padding: 8px;
+	margin: 0 0 27.5px;
 }
 @media only screen and (min-width: 750px) {
-  .note,
-  .form-message {
-    padding: 10px;
-  }
+	.note,
+	.form-message {
+		padding: 10px;
+	}
 }
 
 .note {
-  border: 1px solid #909090;
+	border: 1px solid #909090;
 }
 
 .form-message--success {
-  border: 1px solid #1f873d;
-  background-color: #f8fff9;
-  color: #1f873d;
-  display: block;
-  width: 100%;
+	border: 1px solid #1f873d;
+	background-color: #f8fff9;
+	color: #1f873d;
+	display: block;
+	width: 100%;
 }
 
 .form-message--error {
-  border: 1px solid #d20000;
-  background-color: #fff8f8;
-  padding: 1rem 1.3rem;
-  text-align: left;
-  width: 100%;
+	border: 1px solid #d20000;
+	background-color: #fff8f8;
+	padding: 1rem 1.3rem;
+	text-align: left;
+	width: 100%;
 }
 .form-message--error li {
-  list-style-type: disc;
-  list-style-position: inside;
+	list-style-type: disc;
+	list-style-position: inside;
 }
 .form-message--error .form-message__title {
-  font-size: 1.2em;
+	font-size: 1.2em;
 }
 .form-message--error .form-message__link {
-  display: inline-block;
-  text-decoration: underline;
-  text-decoration-skip-ink: auto;
-  color: black;
+	display: inline-block;
+	text-decoration: underline;
+	text-decoration-skip-ink: auto;
+	color: black;
 }
 .form-message--error .form-message__link:hover {
-  text-decoration: none;
-  color: black;
+	text-decoration: none;
+	color: black;
 }
 
 /*================ Input Groups ================*/
 .input-group {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  -webkit-flex-wrap: wrap;
-  -moz-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-justify-content: center;
-  -ms-justify-content: center;
-  justify-content: center;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	width: 100%;
+	-webkit-flex-wrap: wrap;
+	-moz-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-webkit-justify-content: center;
+	-ms-justify-content: center;
+	justify-content: center;
 }
 .form-vertical .input-group {
-  margin-bottom: 55px;
+	margin-bottom: 55px;
 }
 
 .input-error-message {
-  display: block;
-  width: 100%;
+	display: block;
+	width: 100%;
 }
 
 .input-group--error {
-  margin-bottom: 11.66667px;
+	margin-bottom: 11.66667px;
 }
 
 .input-group__field,
 .input-group__field input,
 .input-group__btn .btn,
 .input-group__btn
-  .shopify-payment-button
-  .shopify-payment-button__button--unbranded,
+	.shopify-payment-button
+	.shopify-payment-button__button--unbranded,
 .shopify-payment-button
-  .input-group__btn
-  .shopify-payment-button__button--unbranded {
-  min-height: 42px;
+	.input-group__btn
+	.shopify-payment-button__button--unbranded {
+	min-height: 42px;
 }
 @media only screen and (min-width: 750px) {
-  .input-group__field,
-  .input-group__field input,
-  .input-group__btn .btn,
-  .input-group__btn
-    .shopify-payment-button
-    .shopify-payment-button__button--unbranded,
-  .shopify-payment-button
-    .input-group__btn
-    .shopify-payment-button__button--unbranded {
-    min-height: 46px;
-  }
+	.input-group__field,
+	.input-group__field input,
+	.input-group__btn .btn,
+	.input-group__btn
+		.shopify-payment-button
+		.shopify-payment-button__button--unbranded,
+	.shopify-payment-button
+		.input-group__btn
+		.shopify-payment-button__button--unbranded {
+		min-height: 46px;
+	}
 }
 
 .input-group__field {
-  -ms-flex-preferred-size: 15rem;
-  -webkit-flex-basis: 15rem;
-  -moz-flex-basis: 15rem;
-  flex-basis: 15rem;
-  flex-grow: 9999;
-  margin-bottom: 1rem;
-  border-radius: 5px 0 0 5px;
-  text-align: left;
+	-ms-flex-preferred-size: 15rem;
+	-webkit-flex-basis: 15rem;
+	-moz-flex-basis: 15rem;
+	flex-basis: 15rem;
+	flex-grow: 9999;
+	margin-bottom: 1rem;
+	border-radius: 5px 0 0 5px;
+	text-align: left;
 }
 .input-group__field input {
-  width: 100%;
+	width: 100%;
 }
 .form-vertical .input-group__field {
-  margin: 0;
+	margin: 0;
 }
 
 .input-group__btn {
-  flex-grow: 1;
+	flex-grow: 1;
 }
 .input-group__btn .btn,
 .input-group__btn
-  .shopify-payment-button
-  .shopify-payment-button__button--unbranded,
+	.shopify-payment-button
+	.shopify-payment-button__button--unbranded,
 .shopify-payment-button
-  .input-group__btn
-  .shopify-payment-button__button--unbranded {
-  width: 100%;
-  border-radius: 0 5px 5px 0;
+	.input-group__btn
+	.shopify-payment-button__button--unbranded {
+	width: 100%;
+	border-radius: 0 5px 5px 0;
 }
-
 
 /*================ Buttons ================*/
 .btn,
 .shopify-payment-button .shopify-payment-button__button--unbranded,
 .btn--secondary {
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  display: inline-block;
-/*   width: auto; */
-  text-decoration: none;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  border: 2px solid transparent;
-  border-radius: 5px;
-/*   padding: 8px 15px; */
-  background-color: #d5003a;
-  color: white;
-  font-family: Futura, sans-serif;
-  font-style: normal;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  white-space: normal;
-  font-size: 16px;
-  transition: 0.4s;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	display: inline-block;
+	/*   width: auto; */
+	text-decoration: none;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	border: 2px solid transparent;
+	border-radius: 5px;
+	/*   padding: 8px 15px; */
+	background-color: #d5003a;
+	color: white;
+	font-family: Futura, sans-serif;
+	font-style: normal;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	white-space: normal;
+	font-size: 16px;
+	transition: 0.4s;
 }
 @media only screen and (min-width: 750px) {
-  .btn,
-  .shopify-payment-button .shopify-payment-button__button--unbranded,
-  .btn--secondary {
-    padding: 10px 18px;
-  }
+	.btn,
+	.shopify-payment-button .shopify-payment-button__button--unbranded,
+	.btn--secondary {
+		padding: 10px 18px;
+	}
 }
 .btn:not([disabled]):hover,
 .shopify-payment-button
-  .shopify-payment-button__button--unbranded:not([disabled]):hover,
+	.shopify-payment-button__button--unbranded:not([disabled]):hover,
 .btn:focus,
 .shopify-payment-button .shopify-payment-button__button--unbranded:focus,
 .btn--secondary:not([disabled]):hover,
 .btn--secondary:focus {
-  color: #d5003a;
-  background-color: transparent;
-  border-color: #d5003a;
+	color: #d5003a;
+	background-color: transparent;
+	border-color: #d5003a;
 }
 .btn .icon-arrow-right,
 .shopify-payment-button
-  .shopify-payment-button__button--unbranded
-  .icon-arrow-right,
+	.shopify-payment-button__button--unbranded
+	.icon-arrow-right,
 .btn .icon-arrow-left,
 .shopify-payment-button
-  .shopify-payment-button__button--unbranded
-  .icon-arrow-left,
+	.shopify-payment-button__button--unbranded
+	.icon-arrow-left,
 .btn--secondary .icon-arrow-right,
 .btn--secondary .icon-arrow-left {
-  height: 9px;
+	height: 9px;
 }
 .btn[disabled]:not([name="add"]),
 .shopify-payment-button
-  [disabled].shopify-payment-button__button--unbranded:not([name="add"]),
+	[disabled].shopify-payment-button__button--unbranded:not([name="add"]),
 .btn--secondary[disabled]:not([name="add"]) {
-  cursor: default;
-  opacity: 0.5;
+	cursor: default;
+	opacity: 0.5;
 }
 
 .btn--secondary {
-  background-color: transparent;
-  color: #d5003a;
-  border-color: #d5003a;
+	background-color: transparent;
+	color: #d5003a;
+	border-color: #d5003a;
 }
 .btn--secondary:not([disabled]):hover,
 .btn--secondary:focus {
-  background-color: #d5003a;
-  color: white;
-  border-color: #d5003a;
+	background-color: #d5003a;
+	color: white;
+	border-color: #d5003a;
 }
 
 .btn--secondary-accent {
-  background-color: white;
-  color: #d5003a;
-  border-color: #d5003a;
+	background-color: white;
+	color: #d5003a;
+	border-color: #d5003a;
 }
 .btn--secondary-accent:not([disabled]):hover,
 .btn--secondary-accent:focus {
-  background-color: white;
-  color: #de003d;
-  border-color: #de003d;
+	background-color: white;
+	color: #de003d;
+	border-color: #de003d;
 }
 
 .btn--small {
-  padding: 8px 10px;
-  font-size: 0.66667em;
-  line-height: 1;
+	padding: 8px 10px;
+	font-size: 0.66667em;
+	line-height: 1;
 }
 
 .btn--tertiary {
-  background-color: transparent;
-  color: #d5003a;
-  border-color: #d5003a;
+	background-color: transparent;
+	color: #d5003a;
+	border-color: #d5003a;
 }
 .btn--tertiary:not([disabled]):hover,
 .btn--tertiary:focus {
-  background-color: #d5003a;
-  color: #fff;
-  border-color: #d5003a;
+	background-color: #d5003a;
+	color: #fff;
+	border-color: #d5003a;
 }
 
 /*================ Button variations ================*/
 @media only screen and (max-width: 749px) {
-  .btn--small-wide {
-    padding-left: 50px;
-    padding-right: 50px;
-  }
+	.btn--small-wide {
+		padding-left: 50px;
+		padding-right: 50px;
+	}
 }
 .btn--link {
-  background-color: transparent;
-  border: 0;
-  margin: 0;
-  color: black;
-  text-align: left;
+	background-color: transparent;
+	border: 0;
+	margin: 0;
+	color: black;
+	text-align: left;
 }
 .btn--link:not([disabled]):hover,
 .btn--link:focus {
-  color: #404040;
-  background-color: transparent;
+	color: #404040;
+	background-color: transparent;
 }
 .btn--narrow {
-  padding-left: 15px;
-  padding-right: 15px;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
 .btn--has-icon-after .icon {
-  margin-left: 10px;
+	margin-left: 10px;
 }
 
 .btn--has-icon-before .icon {
-  margin-right: 10px;
-}
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+	margin-right: 10px;
 }
