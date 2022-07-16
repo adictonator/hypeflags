@@ -1,4 +1,5 @@
-.DS_STORE
+.DS_Store
 node_modules
+assets/.DS_Store
 #assets/*.png
 #assets/*.jpg
