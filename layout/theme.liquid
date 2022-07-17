@@ -1,80 +1,126 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="{{ shop.locale }}">
-
 	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<meta name="theme-color" content="{{ settings.color_button }}">
-		<link rel="canonical" href="{{ canonical_url }}">
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, maximum-scale=1"
+		/>
+		<meta name="theme-color" content="{{ settings.color_button }}" />
+		<link rel="canonical" href="{{ canonical_url }}" />
 
 		{%- if settings.favicon != blank -%}
-		<link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+		<link
+			rel="shortcut icon"
+			href="{{ settings.favicon | img_url: '32x32' }}"
+			type="image/png"
+		/>
 		{%- endif -%}
 
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap"
+			rel="stylesheet"
+		/>
 
-		{{ 'app.css' | asset_url | stylesheet_tag }}
+		{{
+			"app.css" | asset_url | stylesheet_tag
+		}}
 
 		<script src="{{ 'vendor.js' | asset_url }}"></script>
 
-		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
-		</script>
+		<script
+			src="https://code.jquery.com/jquery-3.6.0.min.js"
+			integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			crossorigin="anonymous"
+		></script>
 
-		{%- capture seo_title -%}
-		{%- if template == 'search' and search.performed == true -%}
-		{{ 'general.search.heading' | t: count: search.results_count }}:
+		{%- capture seo_title -%} {%- if template == 'search' and
+		search.performed == true -%}
+		{{
+			"general.search.heading" | t: count:search.results_count
+		}}:
 		{{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
 		{%- else -%}
-		{{ page_title }}
-		{%- endif -%}
-		{%- if current_tags -%}
-		{%- assign meta_tags = current_tags | join: ', ' -%}
-		&ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
-		{%- endif -%}
-		{%- if current_page != 1 -%}
-		&ndash; {{ 'general.meta.page' | t: page: current_page }}
-		{%- endif -%}
-		{%- assign escaped_page_title = page_title | escape -%}
-		{%- unless escaped_page_title contains shop.name -%}
-		&ndash; {{ shop.name }}
-		{%- endunless -%}
-		{%- endcapture -%}
+		{{
+			page_title
+		}}
+		{%- endif -%} {%- if current_tags -%} {%- assign meta_tags =
+		current_tags | join: ', ' -%} &ndash;
+		{{ 'general.meta.tags' | t: tags: meta_tags -}}
+		{%- endif -%} {%- if current_page != 1 -%} &ndash;
+		{{
+			"general.meta.page" | t: page:current_page
+		}}
+		{%- endif -%} {%- assign escaped_page_title = page_title | escape -%}
+		{%- unless escaped_page_title contains shop.name -%} &ndash;
+		{{
+			shop.name
+		}}
+		{%- endunless -%} {%- endcapture -%}
 		<title>{{ seo_title | strip }}</title>
 
 		{%- if page_description -%}
-		<meta name="description" content="{{ page_description | escape }}">
-		{%- endif -%}
-
-		{% include 'social-meta-tags' %}
+		<meta name="description" content="{{ page_description | escape }}" />
+		{%- endif -%} {% include 'social-meta-tags' %}
 
 		<!-- Prevent Sorting by Best Seller -->
 		<script>
-			if ( document.location.href.indexOf( '?sort_by=best-selling' ) > -1 ) {
-				document.location.href = '/collections/all'
+			if (document.location.href.indexOf("?sort_by=best-selling") > -1) {
+				document.location.href = "/collections/all"
 			}
 		</script>
 		<!-- /Prevent Sorting by Best Seller -->
 
-		{{ 'vendor.css' | asset_url | stylesheet_tag }}
-		{{ 'theme.css' | asset_url | stylesheet_tag }}
-		{{ 'animate.css' | asset_url | stylesheet_tag }}
+		{{
+			"vendor.css" | asset_url | stylesheet_tag
+		}}
+		{{
+			"theme.css" | asset_url | stylesheet_tag
+		}}
+		{{
+			"animate.css" | asset_url | stylesheet_tag
+		}}
 
-		{{ content_for_header }}
+		{{
+			content_for_header
+		}}
 		{% render 'judgeme_core' %}
 
-		{{ 'ActiveCampaign_Tracking.js' | asset_url | script_tag }}
+		{{
+			"ActiveCampaign_Tracking.js" | asset_url | script_tag
+		}}
 
-		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="screen">
+		<link
+			href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+			rel="stylesheet"
+			media="screen"
+		/>
 
-		<link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" media="screen">
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+			media="screen"
+		/>
 	</head>
 
-	<body class="template-{{ template | split: '.' | first }}{% if settings.header_sticky %} has-sticky-header{% endif %}" style="position:relative">
+	<body
+		class="template-{{
+			template | split: '.' | first
+		}}{% if settings.header_sticky %} has-sticky-header{% endif %}"
+		style="position: relative"
+	>
 		<!-- Google Tag Manager (noscript) -->
-		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P32WJQN" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<noscript
+			><iframe
+				src="https://www.googletagmanager.com/ns.html?id=GTM-P32WJQN"
+				height="0"
+				width="0"
+				style="display: none; visibility: hidden"
+			></iframe
+		></noscript>
 		<!-- End Google Tag Manager (noscript) -->
 
 		<a class="in-page-link visually-hidden skip-link" href="#MainContent">
@@ -84,7 +130,12 @@
 		{% section 'header' %}
 
 		<div class="page-container" id="PageContainer">
-			<main class="main-content js-focus-hidden" id="MainContent" role="main" tabindex="-1">
+			<main
+				class="main-content js-focus-hidden"
+				id="MainContent"
+				role="main"
+				tabindex="-1"
+			>
 				{{ content_for_layout }}
 			</main>
 
@@ -96,69 +147,98 @@
 		</div>
 
 		<ul hidden>
-			<li id="a11y-refresh-page-message">{{ 'general.accessibility.refresh_page' | t }}</li>
-			<li id="a11y-selection-message">{{ 'general.accessibility.selection_help' | t }}</li>
+			<li id="a11y-refresh-page-message">
+				{{ "general.accessibility.refresh_page" | t }}
+			</li>
+			<li id="a11y-selection-message">
+				{{ "general.accessibility.selection_help" | t }}
+			</li>
 		</ul>
 		<style>
 			.jdgm-rev-widg__title {
 				display: none;
 			}
-
 		</style>
 
 		{%- if template.directory == 'customers' -%}
-		<script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
+		<script
+			src="{{ 'shopify_common.js' | shopify_asset_url }}"
+			defer="defer"
+		></script>
 		{%- endif -%}
 
-		<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js" defer></script>
+		<script
+			src="https://unpkg.com/swiper@8/swiper-bundle.min.js"
+			defer
+		></script>
 		<script src="{{ 'lazysizes.js' | asset_url }}" async="async"></script>
 		<script src="{{ 'theme-v2.js' | asset_url }}" defer="defer"></script>
 		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-		<script type="text/javascript" src="https://s3.amazonaws.com/lastsecondcoupon/js/freeshippingbar.js?shop=hypeflags.myshopify.com">
-		</script>
+		<script
+			type="text/javascript"
+			src="https://s3.amazonaws.com/lastsecondcoupon/js/freeshippingbar.js?shop=hypeflags.myshopify.com"
+		></script>
 		<script>
-			document.addEventListener( 'contextmenu', event => {
-				if ( typeof event.target.dataset.index !== typeof undefined ) {
+			document.addEventListener("contextmenu", (event) => {
+				if (typeof event.target.dataset.index !== typeof undefined) {
 					event.preventDefault()
 				}
-			} )
+			})
 
-			AOS.init( {
-				once: true
-			} )
+			AOS.init({
+				once: true,
+			})
 
-			$( function () {
-				setTimeout( () => {
-					$( 'body' ).find( '.skeleton-loader-cust' ).remove()
+			$(function () {
+				setTimeout(() => {
+					$("body").find(".skeleton-loader-cust").remove()
 					//$( '.slider-nav-wrapper' ).removeClass( '_oof' )
 					//$( '.main_product_slider' ).removeClass( '_mhh' )
 					//             $(this).find('.skeleton-loader-cust').remove()
 					//           })
-				}, 300 )
-			} )
+				}, 300)
+			})
 		</script>
 
 		{% if product.id == 3824189505584 %}
-		{{ 'js-custom-flag.js' | asset_url | script_tag }}
-		{% endif %}
+		{{ "js-custom-flag.js" | asset_url | script_tag }}
+		{% endif %} {% if content_for_header contains 'upsell-now.herokuapp.com'
+		-%} {%- render 'upsell-now', customer: customer, product: product,
+		template: template, cart: cart -%} {%- endif %}
 
-		{% if content_for_header contains 'upsell-now.herokuapp.com' -%}
-		{%- render 'upsell-now', customer: customer, product: product, template: template, cart: cart -%}
-		{%- endif %}
+		{{ "app.js" | asset_url | script_tag }}
 
-		{{ 'app.js' | asset_url | script_tag }}
-
-		<div data-tweet-editor-modal class="hidden fixed inset-0 justify-center items-center bg-black/70 z-30">
-			<div class="bg-white rounded-md shadow-lg overflow-hidden w-full max-w-4xl">
-				<div class="flex bg-gray-100 justify-between items-center py-4 px-10">
-					<button type="button" data-cancel-edit class="rounded font-bold border-2 border-black uppercase tracking-wide text-base py-3 px-10 hover:bg-black hover:text-white duration-300">Cancel</button>
-					<span class="font-bold text-2xl">Edit Tweet</span>
-					<button type="button" data-confirm-edit class="bg-brand-red text-white font-bold border-2 uppercase rounded tracking-wide text-base py-3 px-10 hover:bg-white border-brand-red hover:text-brand-red duration-300">Confirm</button>
+		<div
+			data-tweet-editor-modal
+			class="fixed inset-0 z-30 hidden items-center justify-center bg-black/70"
+		>
+			<div
+				class="w-full max-w-4xl overflow-hidden rounded-md bg-white shadow-lg"
+			>
+				<div
+					class="flex items-center justify-between bg-gray-100 py-4 px-10"
+				>
+					<button
+						type="button"
+						data-cancel-edit
+						class="rounded border-2 border-black py-3 px-10 text-base font-bold uppercase tracking-wide duration-300 hover:bg-black hover:text-white"
+					>
+						Cancel
+					</button>
+					<span class="text-2xl font-bold">Edit Tweet</span>
+					<button
+						type="button"
+						data-confirm-edit
+						class="rounded border-2 border-brand-red bg-brand-red py-3 px-10 text-base font-bold uppercase tracking-wide text-white duration-300 hover:bg-white hover:text-brand-red"
+					>
+						Confirm
+					</button>
 				</div>
-				<div data-tweet-editor class="m-10 py-8 px-20 bg-stone-100 rounded">
-				</div>
+				<div
+					data-tweet-editor
+					class="m-10 rounded bg-stone-100 py-8 px-20"
+				></div>
 			</div>
 		</div>
 	</body>
-
 </html>

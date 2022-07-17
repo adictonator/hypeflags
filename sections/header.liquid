@@ -1,139 +1,6 @@
-{% if section.settings.announcement_text_color != blank %}
-<style>
-	.announcement-content * {
-		color: {
-				{
-				section.settings.announcement_text_color
-			}
-		}
+{% render 'top-shipping-info-bar' %}
 
-		;
-	}
-
-</style>
-{% endif %}
-{% if section.settings.message %}
-<style>
-	{
-		% if section.settings.logo !=blank %
-	}
-
-	.site-header__logo-image {
-		max-width: {
-				{
-				section.settings.logo_max_width | escape
-			}
-		}
-
-		px;
-	}
-
-		{
-		% endif %
-	}
-
-		{
-		% if section.settings.align_logo=='left' %
-	}
-
-	.site-header__logo-image {
-		margin: 0;
-	}
-
-		{
-		% endif %
-	}
-
-</style>
-{% endif %}
-
-{% include 'top-shipping-info-bar' %}
-
-<div data-section-id="{{ section.id }}" data-section-type="header-section" class="{% if settings.header_sticky %}sticky-header{% endif %}">
-	{% if section.settings.message %}
-	{% if section.settings.home_page_only == false or template.name == 'index' %}
-	<style>
-		.announcement-bar {
-			background-color: {
-					{
-					section.settings.color_bg
-				}
-			}
-
-			;
-		}
-
-		.announcement-bar--link:hover {
-				{
-				% assign brightness=section.settings.color_bg | color_brightness %
-			}
-
-				{
-				% if brightness <=192 %
-			}
-
-				{
-				% assign lightenAmount=255 | minus: brightness | divided_by: 255 | times: 16 %
-			}
-
-			background-color: {
-					{
-					section.settings.color_bg | color_lighten: lightenAmount
-				}
-			}
-
-			;
-
-				{
-				% else %
-			}
-
-				{
-				% assign darkenAmount=255 | divided_by: brightness | times: 8 %
-			}
-
-			background-color: {
-					{
-					section.settings.color_bg | color_darken: darkenAmount
-				}
-			}
-
-			;
-
-				{
-				% endif %
-			}
-		}
-
-		.announcement-bar * {
-			color: {
-					{
-					section.settings.color_text
-				}
-			}
-
-			;
-		}
-
-	</style>
-
-	{% if section.settings.message_link == blank %}
-	<div class="announcement-bar">
-		{% else %}
-		<a href="{{ section.settings.message_link }}" class="announcement-bar announcement-bar--link">
-			{% endif %}
-
-			{{ section.settings.message_text }}
-
-			{% if section.settings.message_link == blank %}
-	</div>
-	{% else %}
-	</a>
-	{% endif %}
-
-	{% endif %}
-	{% endif %}
-
+<div data-section-id="{{ section.id }}" data-section-type="header-section" class="relative">
 	<header class="site-header{% if section.settings.align_logo == 'left' %} border-bottom logo--left{% else %} logo--center{% endif %}" role="banner">
 		<div class="site-header__mobile-nav">
 			{% unless linklists[section.settings.main_linklist] == blank %}
@@ -386,6 +253,7 @@
 
 {% schema %}
 {
+	"class": "sticky top-0 z-30 shadow-lg",
 "name": {
 "de": "Titel",
 "en": "Header",

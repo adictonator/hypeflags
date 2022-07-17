@@ -1,13 +1,6 @@
 @import url("//cdn.shopify.com/s/files/1/0254/3868/3184/t/67/assets/_site-nav.css?v=129654646832795090211654624370");
 @import url("//cdn.shopify.com/s/files/1/0254/3868/3184/t/67/assets/_mobile-nav.css?v=143153172024219005821654624370");
 
-div[data-section-type="header-section"] {
-	width: 100%;
-	z-index: 999;
-	position: relative;
-	box-shadow: 0 6px 20px 0 rgba(0, 23, 37, 0.15);
-}
-
 .site-header__menu {
 	display: none;
 }

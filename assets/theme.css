@@ -5,7 +5,7 @@
 @import url("_utilities.css");
 
 /* Header */
-@import url("//cdn.shopify.com/s/files/1/0254/3868/3184/t/67/assets/_header.css?v=45975551308200583971655376376");
+@import url("/assets/_header.css");
 
 /* Hero Section */
 @import url("//cdn.shopify.com/s/files/1/0254/3868/3184/t/67/assets/_hero-section.css?v=112978130501271298591654624370");
@@ -31,7 +31,7 @@
 body,
 html {
 	background-color: white;
-	overflow-x: hidden;
+	/*overflow-x: hidden;*/
 }
 
 .page-width {
@@ -2018,7 +2018,6 @@ Slick slider overrides
 	background-color: white;
 	position: relative;
 	padding: 0 55px;
-	margin-top: 34px;
 }
 @media only screen and (max-width: 749px) {
 	.site-header {
@@ -13099,12 +13098,6 @@ span.jdgm-rev__author-wrapper {
 
 .jdgm-rev__header .jdgm-rev__buyer-badge {
 	margin-bottom: 10px;
-}
-
-#shopify-section-header {
-	position: sticky;
-	top: 0;
-	z-index: 100;
 }
 
 #shopify-section-page-contact-us,
