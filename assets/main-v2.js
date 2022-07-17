@@ -282,7 +282,6 @@ $('body').on('click', '[data-method]', function (event) {
 						ctx.fillStyle = Color
 
 						ctx.fillRect(0, 0, can.width, can.height)
-						//                             ctx.drawImage(img, 0, 0, width_C, height_C);
 						ctx.drawImage(img, 0, 0, can.width, can.height)
 
 						var get_bas = can.toDataURL('image/png')
@@ -293,109 +292,107 @@ $('body').on('click', '[data-method]', function (event) {
 								"'/>"
 						)
 
-						console.log('what widh', can.width, can.height)
 						var base_64 = can.toDataURL()
 
-						// Append the canvas to the slider.
-						const canvasContainer = document.querySelector(
-							'.product-single-gallery img[data-index="1"]'
+						const sliderContainer = document.querySelector(
+							'.product-single-gallery'
 						)
+						const sliderImage = sliderContainer.querySelector(
+							'img[data-index="1"]'
+						)
+						sliderImage.setAttribute('src', base_64)
+						sliderImage.style.maxWidth = '560px'
 
-						canvasContainer?.parentElement?.classList.add(
+						const canvasContainer = sliderImage.parentElement
+						canvasContainer?.classList.add(
 							'flex',
 							'justify-center',
 							'items-center',
 							'bg-stone-100'
 						)
-						canvasContainer.parentElement.style.height = 'auto'
-						document
-							.querySelector(
-								'.product-single-gallery img[data-index="1"]'
-							)
-							?.setAttribute('src', base_64)
-						document.querySelector(
-							'.product-single-gallery img[data-index="1"]'
-						).style.maxWidth = '560px'
+						canvasContainer.style.height = 'auto'
+
+						const dummyWrap = document.createElement('div')
+						dummyWrap.classList.add('relative', 'custom-gromm')
+						dummyWrap.appendChild(sliderImage)
+						canvasContainer?.appendChild(dummyWrap)
 
 						$("[name='add']").removeAttr('disabled')
 
 						//$('.main_product_slider [data-slick-index=0]')
 						//	.find('div.ex1')
 						//	.css('opacity', '0.3')
-						setTimeout(function () {
-							$(
-								".main_product_slider .slider-for__item img[data-index='1']"
+						//setTimeout(function () {
+						//$(
+						//	".main_product_slider .slider-for__item img[data-index='1']"
+						//)
+						//	.parent()
+						//	.fadeIn()
+
+						//$('.main_product_slider [data-slick-index=0]')
+						//	.find('div.ex1')
+						//	.css('opacity', '1')
+
+						//$('.main_product_slider [data-slick-index=0]')
+						//	.find('div.ex1')
+						//	.find('img')
+						//	.attr({
+						//		class: 'has-new-zoom',
+						//		'data-magnify-src': '',
+						//	})
+
+						//let g = $(
+						//	'.main_product_slider [data-slick-index=0]'
+						//)
+						//	.find('div.ex1')
+						//	.find('img')
+						//	.position()
+
+						const g = document
+							.querySelector(
+								'.product-single-gallery img[data-index="1"]'
 							)
-								.parent()
-								.fadeIn()
+							.getBoundingClientRect()
 
-							//$('.main_product_slider [data-slick-index=0]')
-							//	.find('div.ex1')
-							//	.css('opacity', '1')
+						console.log('bouding', g)
 
-							//$('.main_product_slider [data-slick-index=0]')
-							//	.find('div.ex1')
-							//	.find('img')
-							//	.attr({
-							//		class: 'has-new-zoom',
-							//		'data-magnify-src': '',
-							//	})
+						let posBot = g.top + 5
+						let posTop = g.top + 5
 
-							let g = $(
-								'.main_product_slider [data-slick-index=0]'
-							)
-								.find('div.ex1')
-								.find('img')
-								.position()
+						if (window_width <= 750) {
+							posBot = g.top + 3
+							posTop = g.top + 3
+						}
 
-							let posBot = g.top + 5
-							let posTop = g.top + 5
-
-							if (window_width <= 750) {
-								posBot = g.top + 3
-								posTop = g.top + 3
-							}
-
-							$('.main_product_slider [data-slick-index=0]')
-								.find('div.ex1')
-								.get(0)
-								.style.setProperty(
-									'--pos-bottom',
-									posBot + 'px'
-								)
-
-							$('.main_product_slider [data-slick-index=0]')
-								.find('div.ex1')
-								.get(0)
-								.style.setProperty('--pos-top', posTop + 'px')
-
-							$('.main_product_slider [data-slick-index=0]')
-								.find('div.ex1')
-								.addClass('custom')
-						}, 1000)
-
-						$(
-							".main_product_slider .slider-for__item img[data-index='1']"
-						).css({
-							width: '94%',
-						})
-						$(
-							".main_product_slider .slider-for__item img[data-index='1']"
+						canvasContainer.parentElement.style.setProperty(
+							'--pos-bottom',
+							posBot + 'px'
 						)
-							.parent()
-							.css({
-								'background-color': '#ebebeb',
-							})
-
-						var height = $(
-							".main_product_slider .slider-for__item img[data-index='2']"
+						canvasContainer.parentElement.style.setProperty(
+							'--pos-top',
+							posTop + 'px'
 						)
-							.parent()
-							.height()
 
-						document.querySelector(
-							'.product-single-gallery img[data-index="1"]'
-						)
+						//}, 1000)
+
+						//$(
+						//	".main_product_slider .slider-for__item img[data-index='1']"
+						//).css({
+						//	width: '94%',
+						//})
+						//$(
+						//	".main_product_slider .slider-for__item img[data-index='1']"
+						//)
+						//	.parent()
+						//	.css({
+						//		'background-color': '#ebebeb',
+						//	})
+
+						//var height = $(
+						//	".main_product_slider .slider-for__item img[data-index='2']"
+						//)
+						//	.parent()
+						//	.height()
 						//console.log(
 						//	$(
 						//		".main_product_slider .slider-for__item img[data-index='1']"
@@ -407,14 +404,14 @@ $('body').on('click', '[data-method]', function (event) {
 						//)
 
 						//console.log($(".slider-for__item img[data-index='1']").css({"box-shadow":"0px 4px 4px 0px rgba(0,0,0,0.27)"}));
-						console.log(
-							$(
-								".main_product_slider .slider-for__item img[data-index='1']"
-							).css({
-								'box-shadow':
-									'0px 5px 12px -4px rgba(0,0,0,0.46)',
-							})
-						)
+						//console.log(
+						//	$(
+						//		".main_product_slider .slider-for__item img[data-index='1']"
+						//	).css({
+						//		'box-shadow':
+						//			'0px 5px 12px -4px rgba(0,0,0,0.46)',
+						//	})
+						//)
 						if ($(window).width() <= 768) {
 							$(".slider-nav__item img[data-index='1']").css(
 								'width',
@@ -446,11 +443,6 @@ $('body').on('click', '[data-method]', function (event) {
 									$(this).remove()
 								})
 						}, 500)
-
-						//                             }
-
-						//                             image.src = 'https://cdn.shopify.com/s/files/1/0254/3868/3184/files/gromm.png';
-						//                           	image.src = 'https://cdn.shopify.com/s/files/1/0254/3868/3184/t/41/assets/gromm-small.png';
 					}
 					img.src = data_url
 

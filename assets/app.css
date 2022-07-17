@@ -1049,6 +1049,16 @@ input[type="number"] {
   position: absolute;
 }
 
+.before\:-right-1::before {
+  content: var(--tw-content);
+  right: -0.25rem;
+}
+
+.before\:-top-2::before {
+  content: var(--tw-content);
+  top: -0.5rem;
+}
+
 .before\:top-2::before {
   content: var(--tw-content);
   top: 0.5rem;
@@ -1062,26 +1072,6 @@ input[type="number"] {
 .before\:bottom-2::before {
   content: var(--tw-content);
   bottom: 0.5rem;
-}
-
-.before\:right-1::before {
-  content: var(--tw-content);
-  right: 0.25rem;
-}
-
-.before\:top-0::before {
-  content: var(--tw-content);
-  top: 0px;
-}
-
-.before\:-right-1::before {
-  content: var(--tw-content);
-  right: -0.25rem;
-}
-
-.before\:-top-2::before {
-  content: var(--tw-content);
-  top: -0.5rem;
 }
 
 .before\:block::before {
@@ -1099,6 +1089,16 @@ input[type="number"] {
   display: none;
 }
 
+.before\:h-3\.5::before {
+  content: var(--tw-content);
+  height: 0.875rem;
+}
+
+.before\:h-3::before {
+  content: var(--tw-content);
+  height: 0.75rem;
+}
+
 .before\:h-2\.5::before {
   content: var(--tw-content);
   height: 0.625rem;
@@ -1114,14 +1114,14 @@ input[type="number"] {
   height: 1rem;
 }
 
-.before\:h-3\.5::before {
+.before\:w-3\.5::before {
   content: var(--tw-content);
-  height: 0.875rem;
+  width: 0.875rem;
 }
 
-.before\:h-3::before {
+.before\:w-3::before {
   content: var(--tw-content);
-  height: 0.75rem;
+  width: 0.75rem;
 }
 
 .before\:w-2\.5::before {
@@ -1137,16 +1137,6 @@ input[type="number"] {
 .before\:w-4::before {
   content: var(--tw-content);
   width: 1rem;
-}
-
-.before\:w-3\.5::before {
-  content: var(--tw-content);
-  width: 0.875rem;
-}
-
-.before\:w-3::before {
-  content: var(--tw-content);
-  width: 0.75rem;
 }
 
 .before\:items-center::before {
@@ -1185,18 +1175,6 @@ input[type="number"] {
   padding: 0.25rem;
 }
 
-.before\:text-xs::before {
-  content: var(--tw-content);
-  font-size: 0.75rem;
-  line-height: 1rem;
-}
-
-.before\:text-sm::before {
-  content: var(--tw-content);
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-}
-
 .before\:text-\[10px\]::before {
   content: var(--tw-content);
   font-size: 10px;
@@ -1206,11 +1184,6 @@ input[type="number"] {
   content: var(--tw-content);
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.before\:content-\[\'2\'\]::before {
-  --tw-content: '2';
-  content: var(--tw-content);
 }
 
 .before\:content-\[attr\(data-cart-count\)\]::before {

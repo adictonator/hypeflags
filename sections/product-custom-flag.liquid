@@ -79,16 +79,6 @@
 
 <script>
 	$( document ).ready( function () {
-		$( '.product-accordion-item h3' ).on( 'click touch', function ( e ) {
-			e.preventDefault()
-
-			const _this = $( this )
-
-			$( this ).parent().find( 'p, ul' ).slideToggle( 'fast', function () {
-				_this.parent().toggleClass( 'is-collapsed' )
-			} )
-		} )
-
 		$( '.b-drop-info' ).hover(
 			function () {
 				$( this ).addClass( 'show' )
@@ -114,23 +104,6 @@
 {{ product | json }}
 </script>
 {% endunless %}
-
-{% assign tag_custom = 'false' %}
-{% if product.tags contains 'custom' %}
-{% assign tag_custom = 'true' %}
-
-<input type="hidden" class="custom_tag" value="{{ tag_custom }}">
-<script>
-	$( document ).ready( function () {
-		$( ".product-form__cart-submit" ).next( "div" ).remove()
-		var custom_tag = $( ".custom_tag" ).val()
-
-		if ( custom_tag == 'true' ) {
-			$( "[name='add']" ).attr( "disabled", "disabled" )
-		}
-	} );
-</script>
-{% endif %}
 
 {% schema %}
 {
@@ -360,7 +333,6 @@
 }
 {% endschema %}
 
-{% if product.id == 3824189505584 %}
 <div class="cust-flag-privacy-modal">
 	<div class="inner-body">
 		<div class="m-head">
@@ -417,31 +389,4 @@
 		content: unset;
 	}
 
-	.product-form__item.custom-product--qty:after {
-		content: '• Made to order | will ship in 5-7 days';
-		position: absolute;
-		left: 0;
-		font-size: 15.5px;
-		font-weight: normal;
-		cursor: text;
-		color: #FFA800;
-		text-transform: capitalize;
-		letter-spacing: 0;
-		width: 100%;
-		bottom: -50px;
-		height: 40px;
-		text-align: center;
-	}
-
-	@media(max-width:767px) {
-		button.btn.product-form__cart-submit {
-			padding: 8px 16px;
-		}
-
-		button.btn.product-form__cart-submit:after {
-			font-size: 11px;
-		}
-	}
-
 </style>
-{% endif %}
