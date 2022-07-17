@@ -582,6 +582,9 @@ video {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 }
+.mt-5 {
+  margin-top: 1.25rem;
+}
 .mt-6 {
   margin-top: 1.5rem;
 }
@@ -599,9 +602,6 @@ video {
 }
 .mb-4 {
   margin-bottom: 1rem;
-}
-.mt-5 {
-  margin-top: 1.25rem;
 }
 .block {
   display: block;
@@ -763,14 +763,14 @@ video {
 .rounded-md {
   border-radius: 0.375rem;
 }
+.rounded-lg {
+  border-radius: 0.5rem;
+}
 .rounded-full {
   border-radius: 9999px;
 }
 .rounded {
   border-radius: 0.25rem;
-}
-.rounded-lg {
-  border-radius: 0.5rem;
 }
 .border {
   border-width: 1px;
@@ -954,11 +954,11 @@ video {
   font-size: 0.75rem;
   line-height: 1rem;
 }
-.font-normal {
-  font-weight: 400;
-}
 .font-bold {
   font-weight: 700;
+}
+.font-normal {
+  font-weight: 400;
 }
 .font-medium {
   font-weight: 500;
@@ -1064,9 +1064,34 @@ input[type="number"] {
   bottom: 0.5rem;
 }
 
+.before\:right-1::before {
+  content: var(--tw-content);
+  right: 0.25rem;
+}
+
+.before\:top-0::before {
+  content: var(--tw-content);
+  top: 0px;
+}
+
+.before\:-right-1::before {
+  content: var(--tw-content);
+  right: -0.25rem;
+}
+
+.before\:-top-2::before {
+  content: var(--tw-content);
+  top: -0.5rem;
+}
+
 .before\:block::before {
   content: var(--tw-content);
   display: block;
+}
+
+.before\:flex::before {
+  content: var(--tw-content);
+  display: flex;
 }
 
 .before\:hidden::before {
@@ -1089,6 +1114,16 @@ input[type="number"] {
   height: 1rem;
 }
 
+.before\:h-3\.5::before {
+  content: var(--tw-content);
+  height: 0.875rem;
+}
+
+.before\:h-3::before {
+  content: var(--tw-content);
+  height: 0.75rem;
+}
+
 .before\:w-2\.5::before {
   content: var(--tw-content);
   width: 0.625rem;
@@ -1104,6 +1139,37 @@ input[type="number"] {
   width: 1rem;
 }
 
+.before\:w-3\.5::before {
+  content: var(--tw-content);
+  width: 0.875rem;
+}
+
+.before\:w-3::before {
+  content: var(--tw-content);
+  width: 0.75rem;
+}
+
+.before\:items-center::before {
+  content: var(--tw-content);
+  align-items: center;
+}
+
+.before\:justify-center::before {
+  content: var(--tw-content);
+  justify-content: center;
+}
+
+.before\:rounded-full::before {
+  content: var(--tw-content);
+  border-radius: 9999px;
+}
+
+.before\:bg-brand-red::before {
+  content: var(--tw-content);
+  --tw-bg-opacity: 1;
+  background-color: rgb(213 0 58 / var(--tw-bg-opacity));
+}
+
 .before\:bg-grommet::before {
   content: var(--tw-content);
   background-image: url(/assets/grommet.svg);
@@ -1112,6 +1178,44 @@ input[type="number"] {
 .before\:bg-tick::before {
   content: var(--tw-content);
   background-image: url(/assets/tick.svg);
+}
+
+.before\:p-1::before {
+  content: var(--tw-content);
+  padding: 0.25rem;
+}
+
+.before\:text-xs::before {
+  content: var(--tw-content);
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.before\:text-sm::before {
+  content: var(--tw-content);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.before\:text-\[10px\]::before {
+  content: var(--tw-content);
+  font-size: 10px;
+}
+
+.before\:text-white::before {
+  content: var(--tw-content);
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.before\:content-\[\'2\'\]::before {
+  --tw-content: '2';
+  content: var(--tw-content);
+}
+
+.before\:content-\[attr\(data-cart-count\)\]::before {
+  --tw-content: attr(data-cart-count);
+  content: var(--tw-content);
 }
 
 .after\:absolute::after {

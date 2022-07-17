@@ -213,15 +213,8 @@
 				{% endif %}
 				{% endif %}
 
-				<a href="/cart" class="site-header__icon site-header__cart">
+				<a href="/cart" data-cart-count="{{ cart.item_count }}" class="relative {% if cart.item_count > 0 %} before:content-[attr(data-cart-count)] before:absolute before:p-1 before:w-3.5 before:h-3.5 before:text-[10px] before:rounded-full before:text-white before:bg-brand-red before:-right-1 before:-top-2 before:flex before:items-center before:justify-center{% endif %}">
 					<img src="{{ 'cart.svg' | asset_url }}" alt="Cart Icon" class="w-6" />
-					<span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
-					{% if cart.item_count > 0 %}
-					<div id="CartCount" class="site-header__cart-count">
-						<span>{{ cart.item_count }}</span>
-						<span class="icon__fallback-text medium-up--hide">{{ 'layout.cart.items_count' | t: count: cart.item_count }}</span>
-					</div>
-					{% endif %}
 				</a>
 
 				{% if shop.enabled_currencies.size > 1 %}
