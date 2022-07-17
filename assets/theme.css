@@ -13150,11 +13150,11 @@ span.jdgm-rev__author-wrapper {
 	content: "";
 	position: absolute;
 	width: 100%;
-	height: 13px;
+	height: 10px;
 	bottom: 10px;
-	background: url(https://cdn.shopify.com/s/files/1/0254/3868/3184/files/gromm.png)
+	background: url(/assets/grommet.svg)
 			no-repeat bottom 0 right 10px,
-		url(https://cdn.shopify.com/s/files/1/0254/3868/3184/files/gromm.png)
+		url(/assets/grommet.svg)
 			no-repeat bottom 0 left 10px;
 	background-size: contain;
 	z-index: 1;

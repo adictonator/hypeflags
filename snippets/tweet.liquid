@@ -1,137 +1,40 @@
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-
 <script>
-	function callTiny() {
-		tinymce.remove( '#editable_text' )
-
-		tinymce.init( {
-			selector: '#editable_text',
-			mode: 'div',
-			inline: true,
-			forced_root_block: 'div',
-		} )
-	}
-
 	//| Create image using canvus.
-	function html2canvass() {
-		var fix_screen = 530
-		var fix_scale = 5.7
-		var new_width = $( '#flagBox' ).width()
-		var cal_width = new_width / fix_screen
-		var dd = fix_scale / cal_width
-
-		const _parent = $( '.tweet-url-input' )
-		var theme = $( 'input[type=radio][name=theme_color]:checked' ).val()
-		var color = '#ffffff'
-		if ( theme == 'theme_dark' ) {
-			color = '#17202a'
-		}
-		var element = document.querySelector( '.tweet-flag-wrap #flagBox' )
-
-		//       $(element).fadeOut();
-
-		if ( $( element ).hasClass( 'theme_light' ) ) {
-			$( element ).addClass( 'importing-prev' )
-		}
-
-		html2canvas( element, {
-			scale: dd,
-			useCORS: true,
-			backgroundColor: color,
-		} ).then( canvas => {
-			const f = canvas.toDataURL( 'image/png' )
-			$( 'body' ).append( '<input type="hidden" class="new_url" value="' + f + '"/>' )
-			$( "[name='add']" ).removeAttr( 'disabled' )
-		} )
-
-
-
-		// 			domtoimage
-		// 				.toPng(element, {
-		// 					width: 3000,
-		// 					height: 1800,
-		// // 					style: {
-		// // 						transform: 'scale(' + dd + ',' + dd +')',
-		// // 						'transform-origin': 'center center',
-		// // 					},
-		// 					bgcolor: color,
-		// 				})
-		// 				.then(function (dataUrl) {
-		// 					$(element).removeClass('importing-prev')
-		// 					//         $(element).fadeIn();
-
-		// 					_parent.addClass('success')
-		// 					var canvas_img = new Image()
-		// 					canvas_img.id = 'canvasImage'
-		// 					canvas_img.src = dataUrl
-		// 					$('#tweet_result').html(canvas_img)
-		// 					$('.new_url').remove()
-		// 					$('body').append(
-		// 						"<input type='hidden' class='new_url' value='" +
-		// 							dataUrl +
-		// 							"'/>"
-		// 					)
-		// 					$('.new_url').val(dataUrl)
-		// 					$("[name='add']").removeAttr('disabled')
-
-		// 					//         $('body').find('#custom-loader-buffer').fadeOut('slow', function() {
-		// 					//               $(this).remove()
-		// 					//           })
-
-		// 					setTimeout(function () {
-		// 						$('body')
-		// 							.find('#custom-loader-buffer')
-		// 							.fadeOut('slow', function () {
-		// 								$(this).remove()
-		// 							})
-		// 					}, 500)
-		// 				})
-	}
 
 	//| Create template html
 
-
-
-
-
 	// | Data save from pop to imag
-	$( '.t_p_save' ).click( function () {
-		var str = $( '.editable_text' ).html()
-		var str1 = findHashTags( str )
-		var str2 = findAtTags( str )
-		$( str1 ).each( function ( index, val ) {
-			str = str.replace(
-				val,
-				'<span class="hashtag">' + val + '</span>'
-			)
-		} )
-		$( str2 ).each( function ( index, val ) {
-			str = str.replace(
-				val,
-				'<span class="atrate">' + val + '</span>'
-			)
-		} )
+	$(".t_p_save").click(function () {
+		var str = $(".editable_text").html()
+		var str1 = findHashTags(str)
+		var str2 = findAtTags(str)
+		$(str1).each(function (index, val) {
+			str = str.replace(val, '<span class="hashtag">' + val + "</span>")
+		})
+		$(str2).each(function (index, val) {
+			str = str.replace(val, '<span class="atrate">' + val + "</span>")
+		})
 
-		$( '.tweet_1 .twitter_wrapper #twitterText' ).html( $.parseHTML( str ) )
-		$( '.editable_text' ).html( $.parseHTML( str ) )
-		$( '.edit-tweet-popup' ).removeClass( 'opened' )
+		$(".tweet_1 .twitter_wrapper #twitterText").html($.parseHTML(str))
+		$(".editable_text").html($.parseHTML(str))
+		$(".edit-tweet-popup").removeClass("opened")
 		resizing()
 		html2canvass()
-	} )
+	})
 
-	$( window ).resize( function () {
+	$(window).resize(function () {
 		resizing()
 		popupSizing()
-	} )
+	})
 
 	function resizing() {
 		var outerDiv = $(
-			'.tweet-flag-wrap .tweet_flag_box .tweet_flag_box_inner'
+			".tweet-flag-wrap .tweet_flag_box .tweet_flag_box_inner"
 		)
 		var outerDivWidth = outerDiv.outerWidth()
 		var outerDivHeight = outerDiv.outerHeight()
 		var scaleDiv = $(
-			'.tweet-flag-wrap .tweet_flag_box .tweet_flag_box_inner .twitter_wrapper'
+			".tweet-flag-wrap .tweet_flag_box .tweet_flag_box_inner .twitter_wrapper"
 		)
 		var scaleDivWidth = scaleDiv.outerWidth()
 		var scaleDivHeight = scaleDiv.outerHeight()
@@ -140,23 +43,23 @@
 			outerDivWidth / scaleDivWidth,
 			outerDivHeight / scaleDivHeight
 		)
-		if ( scale > 1 ) {
+		if (scale > 1) {
 			scale = 1
 		}
-		scaleDiv.css( {
+		scaleDiv.css({
 			// 			        transformOrigin: 'top left',
-			transform: 'scale(' + scale + ',' + scale + ')'
-		} )
+			transform: "scale(" + scale + "," + scale + ")",
+		})
 	}
 
 	function popupSizing() {
 		var outerDiv = $(
-			'#very-specific-design .tweet-flag-wrap .tweet_flag_box .tweet_flag_box_inner'
+			"#very-specific-design .tweet-flag-wrap .tweet_flag_box .tweet_flag_box_inner"
 		)
 		var outerDivWidth = outerDiv.outerWidth()
 		var outerDivHeight = outerDiv.outerHeight()
 		var scaleDiv = $(
-			'#very-specific-design .tweet-flag-wrap .tweet_flag_box .tweet_flag_box_inner .twitter_wrapper'
+			"#very-specific-design .tweet-flag-wrap .tweet_flag_box .tweet_flag_box_inner .twitter_wrapper"
 		)
 		var scaleDivWidth = scaleDiv.outerWidth()
 		var scaleDivHeight = scaleDiv.outerHeight()
@@ -165,11 +68,11 @@
 			outerDivWidth / scaleDivWidth,
 			outerDivHeight / scaleDivHeight
 		)
-		if ( scale > 1 ) {
+		if (scale > 1) {
 			scale = 1
 		}
-		scaleDiv.css( {
-			transform: 'scale(' + scale + ')',
-		} )
+		scaleDiv.css({
+			transform: "scale(" + scale + ")",
+		})
 	}
 </script>
