@@ -4,6 +4,7 @@ module.exports = {
 		'./templates/*.liquid',
 		'./snippets/*.liquid',
 		'./layout/*.liquid',
+		'./raw/**/*.{css,js}',
 	],
 	darkMode: 'class',
 	theme: {
