@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .primary-btn {
-	@apply w-full rounded-md border-2 border-brand-red bg-brand-red py-3 px-5 text-base font-bold uppercase tracking-widest text-white duration-300 hover:bg-transparent hover:text-brand-red;
+	@apply w-full rounded-md bg-brand-red py-3 px-5 text-base font-bold uppercase tracking-widest text-white duration-300 hover:bg-transparent hover:text-brand-red hover:ring-2 hover:ring-inset hover:ring-brand-red;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
