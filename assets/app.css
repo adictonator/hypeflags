@@ -704,6 +704,9 @@ video {
 .w-8 {
   width: 2rem;
 }
+.w-\[190px\] {
+  width: 190px;
+}
 .max-w-4xl {
   max-width: 56rem;
 }
@@ -908,6 +911,10 @@ video {
 .bg-stone-800 {
   --tw-bg-opacity: 1;
   background-color: rgb(41 37 36 / var(--tw-bg-opacity));
+}
+.bg-stone-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(68 64 60 / var(--tw-bg-opacity));
 }
 .fill-current {
   fill: currentColor;

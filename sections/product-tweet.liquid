@@ -8,7 +8,7 @@
 <div class="product-template__container" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true">
 	<div class="product-single">
 		<div class="relative product-single__photos aspect-square flex justify-center items-center p-7 bg-stone-100 rounded-md">
-			<div data-twitter-flag class="relative dark:bg-[#17202a] bg-white p-8 font-tweet font-normal text-sm shadow-lg w-full aspect-[5/3]">
+			<div data-twitter-flag class="relative dark:bg-[#17202a] bg-white p-8 font-tweet font-normal text-sm shadow-lg w-full aspect-[5/3] select-none">
 				<span class="before:bg-grommet before:absolute before:block before:w-2.5 before:h-2.5 before:top-2 before:left-2 after:bg-grommet after:absolute after:block after:w-2.5 after:h-2.5 after:top-2 after:right-2" data-html2canvas-ignore></span>
 				<span class="before:bg-grommet before:absolute before:block before:w-2.5 before:h-2.5 before:bottom-2 before:left-2 after:bg-grommet after:absolute after:block after:w-2.5 after:h-2.5 after:bottom-2 after:right-2" data-html2canvas-ignore></span>
 				<div class="flex gap-x-1.5">
@@ -16,7 +16,9 @@
 						<img data-t-user-avatar src="#" alt="" class="rounded-full object-cover w-12 h-12">
 					</div>
 					<div class="flex flex-col ">
-						<span class="font-bold dark:text-white" data-t-user-name>HypeFlags</span>
+						<span class="font-bold dark:text-white" data-t-user-name>HypeFlags
+							<svg viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .494.083.964.237 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z"></path></g></svg>
+						</span>
 						<span class="text-twitter-gray dark:text-twitter-lightgray" data-t-user-handle>@HypeFlags</span>
 					</div>
 				</div>
@@ -110,8 +112,8 @@
 {% endunless %}
 
 {% include 'tweet' %}
-{% include 'upload_file' %}
 
+<!-- prettier-ignore -->
 {% schema %}
 {
 "name": {
@@ -340,7 +342,6 @@
 }
 {% endschema %}
 
-{% if product.id == 4597274214473 %}
 <div class="cust-flag-privacy-modal">
 	<div class="inner-body">
 		<div class="m-head">
@@ -373,35 +374,3 @@
 		</div>
 	</div>
 </div>
-
-<style>
-	.review-user-info {
-		display: none !important
-	}
-
-	.ig-img,
-	.review-carousel-item {
-		width: 250px !important;
-		height: 250px;
-	}
-
-	.hf-legit .review-carousel-wrap .review-carousel-item,
-	.index-section .review-carousel-wrap .review-carousel-item,
-	.template-product .review-carousel-wrap .review-carousel-item {
-		width: 250px !important;
-		height: 250px !important;
-	}
-
-	.template-product .review-carousel-wrap.ig-feed .review-carousel-item figure.ig-img:after {
-		content: unset;
-	}
-
-	.cust-flag-up-img-block span.cross-cropper,
-	span#remove {
-		right: -39px;
-		top: 0;
-		height: 50px
-	}
-
-</style>
-{% endif %}
