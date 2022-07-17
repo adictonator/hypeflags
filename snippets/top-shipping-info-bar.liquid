@@ -1,23 +1,9 @@
-{% assign barText = 'Free Shipping On Orders Over $25' %}
+{% assign barText = 'Free Shipping On Orders Over $25' %} {% if cart.total_price
+> 0 and cart.total_price <= 2500 %} {% assign remainingAmt = 2500 | minus:
+cart.total_price | divided_by: 100.0 %} {% assign barText = 'Only $' | append:
+remainingAmt | append: ' Away From Free Shipping' %} {% elsif cart.total_price >
+2500 %} {% assign barText = 'You Qualify For Free Shipping' %} {% endif %}
 
-<!-- If there is item in the cart. -->
-{% if cart.total_price > 0 and cart.total_price <= 2500 %}
-	{% assign remainingAmt = 2500 | minus: cart.total_price | divided_by: 100.0 %}
-	{% assign barText = 'Only $' | append: remainingAmt | append: ' Away From Free Shipping' %}
-
-	{% elsif cart.total_price > 2500 %}
-      {% assign barText = 'You Qualify For Free Shipping' %}
-{% endif %}
-
-
-<div class="" style="
-    position: relative;    color: #fff;
-    background: rgb(48, 48, 48);
-    TEXT-ALIGN: center;
-    font-size: 15px;
-    line-height: 18.75px;
-    font-family: 'Futura';
-    padding: 5px 10px;
-	z-index: 99998;">
-  {{ barText }}
+<div class="bg-stone-800 py-1 px-2.5 text-center text-sm text-white">
+	{{ barText }}
 </div>
