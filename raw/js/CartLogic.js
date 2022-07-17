@@ -2,16 +2,18 @@ export default function CartLogic() {
 	const elements = {
 		defaultPreviewText: 'Preview Custom Flag',
 		loadingPreviewText: 'Loading...',
-		previewLink: document.querySelector('[data-preview-custom]'),
+		previewLink: document.querySelectorAll('[data-preview-custom]'),
 		modalWrapper: '[data-modal-custom]',
 	}
 
 	document.addEventListener('DOMContentLoaded', () => {
-		// Assign click event to the element.
-		elements.previewLink?.addEventListener('click', (e) => {
-			e.preventDefault()
-			previewCustomFlag(e.target)
-		})
+		// Assign click event to the all the preview links.
+		elements.previewLink.forEach((elm) =>
+			elm.addEventListener('click', (e) => {
+				e.preventDefault()
+				previewCustomFlag(e.target)
+			})
+		)
 	})
 
 	const previewCustomFlag = (elm) => {
@@ -72,6 +74,8 @@ export default function CartLogic() {
 
 	const closePreview = () => {
 		document.querySelector(elements.modalWrapper).remove()
-		elements.previewLink.innerHTML = elements.defaultPreviewText
+		elements.previewLink.forEach(
+			(elm) => (elm.innerHTML = elements.defaultPreviewText)
+		)
 	}
 }
