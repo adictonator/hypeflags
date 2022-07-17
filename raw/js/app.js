@@ -8,8 +8,10 @@ import {
 } from './TwitterInspiration'
 import CustomFlag from './CustomFlag'
 import CartLogic from './CartLogic'
+import QuantityLogic from './QuantityLogic'
 
 CartLogic()
+QuantityLogic()
 //CustomFlag()
 
 document

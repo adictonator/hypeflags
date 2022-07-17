@@ -128,7 +128,6 @@ var options = {
 	},
 }
 var cropper = new Cropper(image, options)
-console.log('whye here', cropper)
 var originalImageURL = image.src
 
 var uploadedImageType = 'image/jpeg'
@@ -535,7 +534,6 @@ var inputImage = document.getElementById('custom-flag-image')
 
 if (inputImage && URL) {
 	inputImage.onchange = function () {
-		console.log('sad', this)
 		var files = this.files
 
 		var file
@@ -625,6 +623,25 @@ if (inputImage && URL) {
 
 				image.src = uploadedImageURL = URL.createObjectURL(file)
 				cropper.destroy()
+
+				document
+					.querySelector('[data-temp-wrapper]')
+					.classList.remove('hidden')
+				document
+					.querySelector('[data-custom-flag-upload-wrapper]')
+					.classList.add('hidden')
+				document
+					.querySelector('[data-temp-wrapper]')
+					.classList.add('flex')
+
+				document.querySelector('[data-tmp-file-name]').innerHTML =
+					file.name
+				document.querySelector('[data-tmp-file-size]').innerHTML = (
+					file.size /
+					1024 ** 2
+				).toFixed(1)
+				document.querySelector('[data-temp-preview]').src =
+					uploadedImageURL
 
 				$('.hype-cropper-wrapper').fadeIn({
 					duration: 'slow',
