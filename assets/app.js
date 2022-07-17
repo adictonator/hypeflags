@@ -1,6 +1,76 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./raw/js/CartLogic.js":
+/*!*****************************!*\
+  !*** ./raw/js/CartLogic.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ CartLogic)
+/* harmony export */ });
+function CartLogic() {
+  var elements = {
+    defaultPreviewText: 'Preview Custom Flag',
+    loadingPreviewText: 'Loading...',
+    previewLink: document.querySelector('[data-preview-custom]'),
+    modalWrapper: '[data-modal-custom]'
+  };
+  document.addEventListener('DOMContentLoaded', function () {
+    var _elements$previewLink;
+
+    // Assign click event to the element.
+    (_elements$previewLink = elements.previewLink) === null || _elements$previewLink === void 0 ? void 0 : _elements$previewLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      previewCustomFlag(e.target);
+    });
+  });
+
+  var previewCustomFlag = function previewCustomFlag(elm) {
+    var previewSrc = elm.getAttribute('href');
+    elm.innerHTML = elements.loadingPreviewText;
+    var tmpImg = new Image();
+
+    tmpImg.onload = function () {
+      showModal(tmpImg);
+    };
+
+    tmpImg.src = previewSrc;
+  };
+
+  var showModal = function showModal(image) {
+    var modal = document.createElement('div');
+    modal.setAttribute('data-modal-custom', '');
+    modal.classList.add('fixed', 'inset-0', 'bg-black/60', 'z-50', 'flex', 'items-center', 'justify-center', 'h-screen');
+    var modalBody = document.createElement('div');
+    modalBody.classList.add('p-5', 'max-w-[600px]', 'w-full', 'bg-white', 'flex', 'items-center', 'flex-col', 'justify-center', 'rounded-lg', 'shadow-lg');
+    var closePreviewBtn = document.createElement('button');
+    closePreviewBtn.innerHTML = 'Close Preview';
+    closePreviewBtn.type = 'button';
+    closePreviewBtn.classList.add('primary-btn', 'mt-5');
+    closePreviewBtn.setAttribute('data-close', 'close');
+
+    closePreviewBtn.onclick = function () {
+      closePreview();
+    };
+
+    modalBody.appendChild(image);
+    modalBody.appendChild(closePreviewBtn);
+    modal.appendChild(modalBody);
+    document.body.appendChild(modal);
+  };
+
+  var closePreview = function closePreview() {
+    document.querySelector(elements.modalWrapper).remove();
+    elements.previewLink.innerHTML = elements.defaultPreviewText;
+  };
+}
+
+/***/ }),
+
 /***/ "./raw/js/CustomFlag.js":
 /*!******************************!*\
   !*** ./raw/js/CustomFlag.js ***!
@@ -483,6 +553,7 @@ function nFormatter(num) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _TwitterInspiration__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TwitterInspiration */ "./raw/js/TwitterInspiration.js");
 /* harmony import */ var _CustomFlag__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CustomFlag */ "./raw/js/CustomFlag.js");
+/* harmony import */ var _CartLogic__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CartLogic */ "./raw/js/CartLogic.js");
 /* provided dependency */ var Buffer = __webpack_require__(/*! buffer */ "./node_modules/buffer/index.js")["Buffer"];
 var _document$getElementB, _document$getElementB2, _document$getElementB3, _document$querySelect;
 
@@ -493,7 +564,9 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 
- //CustomFlag()
+
+
+(0,_CartLogic__WEBPACK_IMPORTED_MODULE_2__["default"])(); //CustomFlag()
 
 (_document$getElementB = document.getElementById('tweet-inspiration')) === null || _document$getElementB === void 0 ? void 0 : _document$getElementB.addEventListener('click', function (event) {
   return (0,_TwitterInspiration__WEBPACK_IMPORTED_MODULE_0__.TwitterInspiration)(event);
@@ -556,7 +629,7 @@ $(document).on('click', 'button[name="add"]', function (e) {
     var file = new Blob([blobBin], {
       type: 'image/png'
     });
-    formdata.append('properties[Custom Image]', file, 'final_image.png');
+    formdata.append('properties[custom-flag]', file, 'final_image.png');
   }
 
   var _btn = jQuery('button[name="add"]').prop('disabled', true); //_btn.css('opacity', 0.5)
