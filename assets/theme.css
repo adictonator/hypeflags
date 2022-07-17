@@ -22,7 +22,7 @@
 @import url("//cdn.shopify.com/s/files/1/0254/3868/3184/t/67/assets/_catalogue-page.css?v=83447274845495012851657273742");
 
 /* Cart Page */
-@import url("//cdn.shopify.com/s/files/1/0254/3868/3184/t/67/assets/_cart.css?v=7884609747483194911655900704");
+@import url("/assets/_cart.css");
 
 /* Misc stuff */
 @import url("//cdn.shopify.com/s/files/1/0254/3868/3184/t/67/assets/_misc.css?v=179218230975312079161657620723");

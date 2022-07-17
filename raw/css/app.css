@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.primary-btn {
+	@apply w-full rounded-md border-2 border-brand-red bg-brand-red py-3 px-5 text-sm font-bold uppercase tracking-widest text-white duration-300 hover:bg-transparent hover:text-brand-red;
+}
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
 	-webkit-appearance: none;
