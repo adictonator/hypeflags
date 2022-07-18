@@ -1,6 +1,7 @@
 import {
 	confirmTweetEditing,
 	hideTweetEditor,
+	resizing,
 	showTweetEditor,
 	SwitchTweetTheme,
 	TwitterInspiration,
@@ -58,9 +59,7 @@ $(document).on('click', 'button[name="add"]', function (e) {
 	var formdata = new FormData()
 	formdata.append('id', prodID)
 	formdata.append('quantity', qty)
-	const image = new Image()
 
-	let gg = formdata
 	if (dataURL) {
 		var blobBin = Buffer.from(dataURL.split(',')[1], 'base64')
 		var file = new Blob([blobBin], { type: 'image/png' })
@@ -78,16 +77,13 @@ $(document).on('click', 'button[name="add"]', function (e) {
 		contentType: false,
 		processData: false,
 		cache: false,
-		dataType: 'json', // Change this according to your response from the server.
+		dataType: 'json',
 		success: function (res) {
-			console.log(res)
 			window.location.href = '/cart'
 		},
-		error: function (kk) {
+		error: function (msg) {
 			_btn.removeProp('disabled')
 			_btn.css('opacity', 1)
-			_btn.find('i.fa').remove()
-			console.log(kk)
 		},
 	})
 })

@@ -64,15 +64,10 @@ Ship In 5-7 Days' %}
 		type="submit"
 		name="add"
 		disabled="disabled"
-		class="w-auto flex-1 cursor-pointer rounded-md bg-brand-red py-3.5 text-white duration-300 hover:bg-transparent hover:text-brand-red hover:ring-2 hover:ring-inset hover:ring-brand-red disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-gray-400 disabled:hover:ring-0"
+		class="primary-btn"
 		data-add-to-cart
 	>
-		<span
-			class="text-sm font-bold uppercase tracking-widest"
-			data-add-to-cart-text
-		>
-			{{ "products.product.add_to_cart" | t }}
-		</span>
+		{{ "products.product.add_to_cart" | t }}
 	</button>
 </div>
 {% endform %}
