@@ -1,33 +1,37 @@
-#shopify-section-product-custom-flag {
+/*#shopify-section-product-custom-flag {
     padding: 0 clamp(70px,5.5vw,150px);
     margin-top: 55px;
-}
+}*/
 
 .upload-image-wrapper {
-  background: linear-gradient(to right, #d71047 50%, rgba(255, 255, 255, 0) 0%),
-    linear-gradient(#d71047 50%, rgba(255, 255, 255, 0) 0%),
-    linear-gradient(to right, #d71047 50%, rgba(255, 255, 255, 0) 0%),
-    linear-gradient(#d71047 50%, rgba(255, 255, 255, 0) 0%);
-  background-position: top, right, bottom, left;
-  background-repeat: repeat-x, repeat-y;
-  background-size: 17px 1px, 1px 14px;
+	background: linear-gradient(
+			to right,
+			#d71047 50%,
+			rgba(255, 255, 255, 0) 0%
+		),
+		linear-gradient(#d71047 50%, rgba(255, 255, 255, 0) 0%),
+		linear-gradient(to right, #d71047 50%, rgba(255, 255, 255, 0) 0%),
+		linear-gradient(#d71047 50%, rgba(255, 255, 255, 0) 0%);
+	background-position: top, right, bottom, left;
+	background-repeat: repeat-x, repeat-y;
+	background-size: 17px 1px, 1px 14px;
 }
 .upload-image-wrapper:hover {
-  background-color: #FDF4F7;
+	background-color: #fdf4f7;
 }
 .upload-image-wrapper:hover .upload-text {
-  color: #D5003A;
+	color: #d5003a;
 }
 
 .upload-image-wrapper .upload-text {
-  position: relative;
+	position: relative;
 }
 .upload-image-wrapper .upload-text:before {
-  content: '';
-  background-image: url(//cdn.shopify.com/s/files/1/0254/3868/3184/t/67/assets/cust-flag-up-icon.svg?v=29695941902765403891654624260);
-  position: relative;
-  width: 24px;
-  height: 24px;
-  display: block;
-  background-size: contain;
+	content: "";
+	background-image: url(//cdn.shopify.com/s/files/1/0254/3868/3184/t/67/assets/cust-flag-up-icon.svg?v=29695941902765403891654624260);
+	position: relative;
+	width: 24px;
+	height: 24px;
+	display: block;
+	background-size: contain;
 }
