@@ -14,59 +14,35 @@ export function TwitterInspiration(event) {
 		'https://twitter.com/Drake/status/203006654097268736',
 		'https://twitter.com/1future/status/1260668431210287109',
 	]
-	var num = Math.floor(Math.random() * 9)
+	const num = Math.floor(Math.random() * 9)
 
-	//$('#tweet-url').val(URLs[num]).trigger('change')
 	document.getElementById('tweet-url').value = URLs[num]
 	document.getElementById('tweet-url')?.dispatchEvent(new Event('change'))
 }
 
 export function UpdateTweetScreen(event) {
+	removeTweetError()
+	document
+		.querySelector('[data-tweet-url')
+		.classList.remove('after:bg-success-tick', 'after:bg-exclamation-icon')
 	$('.product-single__photos').append('<div id="custom-loader-buffer"></div>')
 
-	//const _parent = $(this).parent()
-	//_parent.removeClass('error success')
 	document.querySelector("[name='add']")?.setAttribute('disabled', 'disabled')
 
 	const urls = event.target.value
 	let parts = urls.split('/')
 	let last_part = parts[parts.length - 1]
 	last_part = last_part.match(/\d+/)
-	//let unique_id = Math.floor(Math.random() * 26) + Date.now()
-	//unique_id = unique_id.toString()
 
 	fetch('https://backend.hypeflag.com/tweet/index.php?id=' + last_part)
 		.then((resp) => resp.json())
 		.then((data) => {
-			// | Tweet not fount OR private tweet.
-			if (data.doc1.errors) {
-				//_parent.addClass('error')
-
-				if (data.doc1.errors[0].title == 'Authorization Error') {
-					TweetError('Sorry, private tweets are not supported.')
-				} else {
-					TweetError('Tweet not found, please try again')
-				}
-				return false
+			if (handelTweetErrors(data)) {
+				updateTweetContent(data)
+				//generateTweetCanvas()
 			}
-
-			// | Tweet contain more than one image.
-			if (data.doc2.photos) {
-				if (data.doc2.photos.length > 1) {
-					//_parent.addClass('error')
-
-					$('.tooltip').text(
-						'Sorry, tweets containing more than one image are not supported.'
-					)
-					return false
-				}
-			}
-
-			updateTweetContent(data)
-			generateTweetCanvas()
 		})
 		.catch((jqXHR, exception) => {
-			//_parent.addClass('error')
 			var msg = ''
 			if (jqXHR.status === 0) {
 				msg = 'Not connect.\n Verify Network.'
@@ -81,10 +57,99 @@ export function UpdateTweetScreen(event) {
 			} else if (exception === 'abort') {
 				msg = 'Ajax request aborted.'
 			} else {
-				msg = 'Uncaught Error.\n' + jqXHR.responseText
+				msg =
+					'Uncaught Error.\n' + jqXHR.responseText + '\n' + exception
 			}
-			TweetError(msg)
+			displayError(msg)
 		})
+}
+
+function handelTweetErrors(data) {
+	let errorMsg
+	// Tweet not fount or private tweet.
+	if (data.doc1.errors) {
+		if (data.doc1.errors[0].title == 'Authorization Error') {
+			errorMsg = 'Sorry, private tweets are not supported.'
+		} else {
+			errorMsg = 'Tweet not found, please try again'
+		}
+	}
+
+	// Tweet contains multiple images.
+	if (data.doc2.photos) {
+		if (data.doc2.photos.length > 1) {
+			errorMsg =
+				'Sorry, tweets containing multiple images are not supported at the moment.'
+		}
+	}
+
+	// Tweet contains videos.
+	if (data.doc2.video) {
+		errorMsg =
+			'Sorry, tweets containing videos are not supported at the moment.'
+	}
+
+	if (errorMsg) {
+		displayError(errorMsg)
+
+		return false
+	}
+
+	return true
+}
+
+function removeTweetError() {
+	// Hide flag UI.
+	document.querySelector('[data-twitter-flag]').classList.remove('hidden')
+	// Hide edit button.
+	document.querySelector('[data-edit-tweet]').classList.remove('hidden')
+
+	if (document.querySelector('[data-tweet-error]')) {
+		document.querySelector('[data-tweet-error]').remove()
+	}
+}
+
+function displayError(errorText) {
+	const element = document.createElement('div')
+	element.setAttribute('data-tweet-error', '')
+	element.classList.add(
+		'mt-6',
+		'flex',
+		'rounded',
+		'border',
+		'border-brand-red',
+		'bg-brand-red/5',
+		'py-4',
+		'px-5',
+		'text-brand-red'
+	)
+	element.innerHTML = errorText
+	document
+		.querySelector('.jdgm-widget')
+		.parentNode.insertBefore(
+			element,
+			document.querySelector('.jdgm-widget').nextSibling
+		)
+
+	// Remove the loader.
+	$('#custom-loader-buffer').fadeOut('slow', function () {
+		$(this).remove()
+	})
+	// Hide flag UI.
+	document.querySelector('[data-twitter-flag]').classList.add('hidden')
+	// Hide edit button.
+	document.querySelector('[data-edit-tweet]').classList.add('hidden')
+	// Disble add to cart button.
+	document
+		.querySelector('button[name="add"]')
+		.setAttribute('disabled', 'disabled')
+
+	document
+		.querySelector('[data-tweet-url')
+		.classList.remove('after:bg-success-tick')
+	document
+		.querySelector('[data-tweet-url')
+		.classList.add('after:bg-exclamation-icon')
 }
 
 function updateElements(element, content) {
@@ -97,11 +162,9 @@ function updateTweetContent(tweetData) {
 	const time = formatAMPM(data.created_at)
 	const date = formateDate(data.created_at)
 
-	//document.querySelector('button[name="add"]').removeAttribute('disabled')
-
-	$('#custom-loader-buffer').fadeOut('slow', function () {
-		$(this).remove()
-	})
+	document
+		.querySelector('[data-tweet-url')
+		.classList.add('after:bg-success-tick')
 
 	// Update user avatar.
 	document
@@ -115,7 +178,37 @@ function updateTweetContent(tweetData) {
 			.classList.remove('after:hidden')
 	}
 	updateElements('[data-t-user-handle]', '@' + data.user.screen_name)
-	updateElements('[data-t-text]', data.text)
+
+	let tweetBody = formatText(data.text)
+	if (data.photos) {
+		const photoURL = data.photos[0].url
+		const photo = new Image()
+		photo.classList.add(
+			'mt-3.5',
+			'rounded-xl',
+			'h-[300px]',
+			'object-cover',
+			'mx-auto',
+			'w-full'
+		)
+		photo.onload = () => {
+			document.querySelector('[data-t-text]').appendChild(photo)
+		}
+		photo.src = photoURL
+	}
+
+	if (data.entities?.urls?.length > 0) {
+		$.each(data.entities.urls, function (inx, val) {
+			tweetBody = tweetBody.replace(val.url, '')
+		})
+	}
+	if (data.entities?.media?.length > 0) {
+		$.each(data.entities.media, function (inx, val) {
+			tweetBody = tweetBody.replace(val.url, '')
+		})
+	}
+
+	updateElements('[data-t-text]', tweetBody)
 	updateElements('[data-t-time]', time)
 	updateElements('[data-t-date]', date)
 	updateElements('[data-t-device]', meta.source)
@@ -124,129 +217,66 @@ function updateTweetContent(tweetData) {
 		'[data-t-retweets]',
 		nFormatter(meta.public_metrics.retweet_count)
 	)
+
+	setTimeout(function () {
+		resizing()
+		$('#custom-loader-buffer').fadeOut('slow', function () {
+			$(this).remove()
+		})
+
+		generateTweetCanvas()
+	}, 900)
 }
 
-function tweetTemplate(themeClass, design) {
-	if (tweet.user.verified) {
-		html += ''
-	}
-	if (tweet.text) {
-		let text = tweet.text
-		if (tweet.entities.hashtags.length > 0) {
-			$.each(tweet.entities.hashtags, function (inx, val) {
-				text = text.replace(
-					'#' + val.text,
-					"<span class='hashtag'>#" + val.text + '</span>'
-				)
-			})
-		}
-		if (tweet.entities.user_mentions.length > 0) {
-			$.each(tweet.entities.user_mentions, function (inx, val) {
-				text = text.replace(
-					'@' + val.screen_name,
-					"<span class='atrate'>@" + val.screen_name + '</span>'
-				)
-			})
-		}
-		if (tweet.entities.media) {
-			if (tweet.entities.media.length > 0) {
-				$.each(tweet.entities.media, function (inx, val) {
-					text = text.replace(val.url, '')
-				})
-			}
-		}
-		if (tweet.entities.urls.length > 0) {
-			$.each(tweet.entities.urls, function (inx, val) {
-				text = text.replace(val.url, '')
-			})
-		}
-		if (design == 'temp') {
-			html +=
-				'<pre id="twitterText" contenteditable="true">' +
-				text +
-				'</pre>'
-		}
-		if (design == 'popup') {
-			html +=
-				'<pre class="editable_text" id="editable_text">' +
-				text +
-				'</pre>'
-		}
-	}
-	if (tweet.photos) {
-		if (tweet.photos.length > 0) {
-			$.each(tweet.photos, function (inx, val) {
-				html +=
-					'<div class="twitt_img"><img src="' +
-					val.url +
-					'" alt="tweet"></div>'
-			})
-		}
-	}
-	if (tweet.video) {
-		html += '<div class="twitt_video"><div class="tweet_video_img">'
-		html += '<img src="' + tweet.video.poster + '" alt="tweet">'
-		html +=
-			'<span class="current_views">' +
-			tweet.video.viewCount +
-			' VIEWS</span>'
-		html +=
-			'<button class="play_tweet_video"><i class="fa fa-play-circle-o" aria-hidden="true"></i></button>'
-		html += '</div></div>'
-	}
-	let time = formatAMPM(tweet.created_at)
-	let date = formateDate(tweet.created_at)
-	html +=
-		'<div class="tweet_time"><span>' +
-		time +
-		'</span><span class="dot"></span>' +
-		date +
-		'<span class="dot"></span><span style="color:#1da1f2">' +
-		FromDoc.data.source +
-		'</span></div>'
+export function resizing() {
+	//jQuery('[data-twitter-flag]').fitText()
 
-	//       if(tweet.conversation_count >= 1000){
-	//         var comments = (tweet.conversation_count / 1000).toFixed(1) + 'K';
-	//       }else{ var comments = tweet.conversation_count; }
+	var outerDiv = $('[data-twitter-flag]')
+	var outerDivWidth = outerDiv.outerWidth()
+	var outerDivHeight = outerDiv.outerHeight()
+	var scaleDiv = $('[data-twitter-flag] .inner')
+	var scaleDivWidth = scaleDiv.outerWidth()
+	var scaleDivHeight = scaleDiv.outerHeight()
+	var scale
+	scale = Math.min(479 / scaleDivWidth, 246 / scaleDivHeight)
 
-	// Retweets
-	if (retweets >= 1000) {
-		retweets = (retweets / 1000).toFixed(1) + 'K'
+	if (scale >= 0.9) {
+		scale = 1
 	}
 
-	if (tweet.favorite_count >= 1000) {
-		var likes = (tweet.favorite_count / 1000).toFixed(1) + 'K'
-	} else {
-		var likes = tweet.favorite_count
-	}
-
-	html +=
-		'<div class="tweet_reactions"><div><strong>' +
-		retweets +
-		'</strong><span>Retweets</span></div><div><strong>' +
-		likes +
-		'</strong><span>Likes</span></div></div>'
-	html += '<div class="tweet_action_count">'
-	html += '<ul>'
-	html +=
-		'<li class="t_comments"><svg viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M14.046 2.242l-4.148-.01h-.002c-4.374 0-7.8 3.427-7.8 7.802 0 4.098 3.186 7.206 7.465 7.37v3.828c0 .108.044.286.12.403.142.225.384.347.632.347.138 0 .277-.038.402-.118.264-.168 6.473-4.14 8.088-5.506 1.902-1.61 3.04-3.97 3.043-6.312v-.017c-.006-4.367-3.43-7.787-7.8-7.788zm3.787 12.972c-1.134.96-4.862 3.405-6.772 4.643V16.67c0-.414-.335-.75-.75-.75h-.396c-3.66 0-6.318-2.476-6.318-5.886 0-3.534 2.768-6.302 6.3-6.302l4.147.01h.002c3.532 0 6.3 2.766 6.302 6.296-.003 1.91-.942 3.844-2.514 5.176z"></path></g></svg></li>'
-	html +=
-		'<li class="t_likes"><svg viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M23.77 15.67c-.292-.293-.767-.293-1.06 0l-2.22 2.22V7.65c0-2.068-1.683-3.75-3.75-3.75h-5.85c-.414 0-.75.336-.75.75s.336.75.75.75h5.85c1.24 0 2.25 1.01 2.25 2.25v10.24l-2.22-2.22c-.293-.293-.768-.293-1.06 0s-.294.768 0 1.06l3.5 3.5c.145.147.337.22.53.22s.383-.072.53-.22l3.5-3.5c.294-.292.294-.767 0-1.06zm-10.66 3.28H7.26c-1.24 0-2.25-1.01-2.25-2.25V6.46l2.22 2.22c.148.147.34.22.532.22s.384-.073.53-.22c.293-.293.293-.768 0-1.06l-3.5-3.5c-.293-.294-.768-.294-1.06 0l-3.5 3.5c-.294.292-.294.767 0 1.06s.767.293 1.06 0l2.22-2.22V16.7c0 2.068 1.683 3.75 3.75 3.75h5.85c.414 0 .75-.336.75-.75s-.337-.75-.75-.75z"></path></g></svg></li>'
-	html +=
-		'<li class="t_likes"><svg viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M12 21.638h-.014C9.403 21.59 1.95 14.856 1.95 8.478c0-3.064 2.525-5.754 5.403-5.754 2.29 0 3.83 1.58 4.646 2.73.814-1.148 2.354-2.73 4.645-2.73 2.88 0 5.404 2.69 5.404 5.755 0 6.376-7.454 13.11-10.037 13.157H12zM7.354 4.225c-2.08 0-3.903 1.988-3.903 4.255 0 5.74 7.034 11.596 8.55 11.658 1.518-.062 8.55-5.917 8.55-11.658 0-2.267-1.823-4.255-3.903-4.255-2.528 0-3.94 2.936-3.952 2.965-.23.562-1.156.562-1.387 0-.014-.03-1.425-2.965-3.954-2.965z"></path></g></svg></li>'
-	html +=
-		'<li class="t_likes"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"><g><path d="M17.53 7.47l-5-5c-.293-.293-.768-.293-1.06 0l-5 5c-.294.293-.294.768 0 1.06s.767.294 1.06 0l3.72-3.72V15c0 .414.336.75.75.75s.75-.336.75-.75V4.81l3.72 3.72c.146.147.338.22.53.22s.384-.072.53-.22c.293-.293.293-.767 0-1.06z"></path><path d="M19.708 21.944H4.292C3.028 21.944 2 20.916 2 19.652V14c0-.414.336-.75.75-.75s.75.336.75.75v5.652c0 .437.355.792.792.792h15.416c.437 0 .792-.355.792-.792V14c0-.414.336-.75.75-.75s.75.336.75.75v5.652c0 1.264-1.028 2.292-2.292 2.292z"></path></g></svg></li>'
-	html +=
-		'</ul></div><a href="javascript:void(0);" class="t_popup_toggle"></a></div></div></div></div></div>'
-	return html
+	scaleDiv.css({
+		transform: 'scale(' + scale + ')',
+	})
 }
 
-function TweetError(error) {
-	// create an element to display the error message.
-	const element = document.createElement('div')
-	element.classList.add('tweet-error')
-	element.innerHTML = error
-	document.body.appendChild(element)
+/**
+ * Color code #hashtags and [at] tags in the tweet.
+ *
+ * @param {string} tweetText
+ * @returns string tweetText
+ */
+function formatText(tweetText) {
+	const hasAt = findAtTags(tweetText)
+	const hasHash = findHashTags(tweetText)
+
+	if (hasAt) {
+		hasAt.map((at) => {
+			tweetText = tweetText.replace(
+				at,
+				'<span class="text-twitter-blue">' + at + '</span>'
+			)
+		})
+	}
+	if (hasHash) {
+		hasHash.map((hash) => {
+			tweetText = tweetText.replace(
+				hash,
+				'<span class="text-twitter-blue">' + hash + '</span>'
+			)
+		})
+	}
+
+	return tweetText
 }
 
 export function SwitchTweetTheme(event) {
@@ -275,6 +305,16 @@ export function showTweetEditor(event) {
 		.querySelector('[data-twitter-flag]')
 		?.cloneNode(true)
 
+	if (
+		document
+			.querySelector('[data-twitter-flag]')
+			.parentElement.classList.contains('dark')
+	) {
+		body.classList.add('dark')
+	} else {
+		body.classList.remove('dark')
+	}
+
 	twitterElm?.removeAttribute('data-twitter-flag')
 	twitterElm.setAttribute('data-cloned-tweet', true)
 
@@ -302,9 +342,12 @@ export function confirmTweetEditing(e) {
 		'[data-cloned-tweet] [data-t-text]'
 	)
 
-	document.querySelector('[data-t-text]').innerHTML = tweetTextElm.innerHTML
+	document.querySelector('[data-t-text]').innerHTML = formatText(
+		tweetTextElm.innerHTML
+	)
 
 	hideTweetEditor()
+	generateTweetCanvas()
 }
 
 export function hideTweetEditor() {
@@ -349,7 +392,7 @@ function formateDate(dd) {
 }
 
 function findHashTags(searchText) {
-	var regexp = /\B\#\w\w+\b/g
+	var regexp = /\B\#\w\w+\b/gm
 	const result = searchText.match(regexp)
 
 	if (result) {
@@ -360,7 +403,7 @@ function findHashTags(searchText) {
 }
 
 function findAtTags(searchText) {
-	var regexp = /\B\@\w\w+\b/g
+	var regexp = /\B\@\w\w+\b/gm
 	const result = searchText.match(regexp)
 	if (result) {
 		return result
