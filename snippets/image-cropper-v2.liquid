@@ -388,20 +388,20 @@
 	// Window resize logic.
 	let widthd = $(window).width()
 
-	$(window).on("resize", function () {
-		if ($(window).width() != widthd) {
-			widthd = $(window).width()
+	//$(window).on("resize", function () {
+	//	if ($(window).width() != widthd) {
+	//		widthd = $(window).width()
 
-			$(".hype-cropper-wrapper, .cross-cropper").fadeOut()
-			const text = "Do not resize browser window. Please try again."
-			displayCropperErrorPopup(
-				"Something went wrong!",
-				text,
-				"warning",
-				"reload"
-			)
-		}
-	})
+	//		$(".hype-cropper-wrapper, .cross-cropper").fadeOut()
+	//		const text = "Do not resize browser window. Please try again."
+	//		displayCropperErrorPopup(
+	//			"Something went wrong!",
+	//			text,
+	//			"warning",
+	//			"reload"
+	//		)
+	//	}
+	//})
 
 	$("span[data-open-cp-popup]").on("click", function () {
 		$(".hype-cropper-cp--mob").css("display", "flex")
