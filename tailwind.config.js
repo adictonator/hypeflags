@@ -11,6 +11,8 @@ module.exports = {
 		extend: {
 			backgroundImage: {
 				tick: 'url(/assets/tick.svg)',
+				'success-tick': 'url(/assets/success-tick.svg)',
+				'exclamation-icon': 'url(/assets/exclamation.svg)',
 				grommet: 'url(/assets/grommet.svg)',
 				'twitter-verified': 'url(/assets/twitter-verified.svg)',
 			},
@@ -22,6 +24,9 @@ module.exports = {
 			},
 			fontFamily: {
 				tweet: 'Helvetica Neue,sans-serif',
+			},
+			boxShadow: {
+				cust: '0 0 10px rgba(0,0,0,0.1)',
 			},
 		},
 	},

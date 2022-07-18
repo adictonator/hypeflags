@@ -98,10 +98,11 @@
 					</div>
 					<div class="cart__action-wrapper">
 						<a
+							text="Remove Item"
 							href="/cart/change?line={{
 								forloop.index
 							}}&amp;quantity=0"
-							class="flex h-10 w-10 items-center justify-center rounded-full duration-300 before:absolute before:hidden before:content-['koko'] hover:bg-stone-100 hover:before:flex"
+							class="group relative flex h-10 w-10 items-center justify-center rounded-full duration-300 hover:bg-stone-100"
 							aria-label="{{ 'cart.general.remove' | t }} {{
 								item.product.title
 							}}"
@@ -118,6 +119,10 @@
 									stroke-linejoin="round"
 								/>
 							</svg>
+							<span
+								class="visi invisible absolute top-12 z-50 block w-28 rounded-md py-2 px-3 text-center text-xs shadow-cust transition-all duration-200 before:absolute before:inset-x-0 before:-top-2.5 before:mx-auto before:h-2.5 before:w-2.5 before:border before:border-b-8 before:border-l-4 before:border-r-4 before:border-t-0 before:border-white before:border-r-transparent before:border-l-transparent before:border-t-transparent group-hover:visible"
+								>Remove Item</span
+							>
 						</a>
 
 						<div class="cart__item-price" data-id="{{ item.key }}">
