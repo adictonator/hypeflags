@@ -700,6 +700,9 @@ video {
 .w-auto {
   width: auto;
 }
+.max-w-\[448px\] {
+  max-width: 448px;
+}
 .max-w-4xl {
   max-width: 56rem;
 }
