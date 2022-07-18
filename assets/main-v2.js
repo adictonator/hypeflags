@@ -300,7 +300,7 @@ $('body').on('click', '[data-method]', function (event) {
 							'img[data-index="1"]'
 						)
 						sliderImage.setAttribute('src', base_64)
-						sliderImage.style.maxWidth = '560px'
+						sliderImage.style.maxWidth = '543px'
 
 						const canvasContainer = sliderImage.parentElement
 						canvasContainer?.classList.add(
@@ -314,6 +314,7 @@ $('body').on('click', '[data-method]', function (event) {
 						const dummyWrap = document.createElement('div')
 						dummyWrap.classList.add('relative', 'custom-gromm')
 						dummyWrap.appendChild(sliderImage)
+						dummyWrap.classList.add('shadow-lg')
 						canvasContainer?.appendChild(dummyWrap)
 
 						$("[name='add']").removeAttr('disabled')
