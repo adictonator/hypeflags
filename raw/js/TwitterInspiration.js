@@ -24,8 +24,6 @@ export function TwitterInspiration(event) {
 export function UpdateTweetScreen(event) {
 	$('.product-single__photos').append('<div id="custom-loader-buffer"></div>')
 
-	console.log('reodd')
-
 	//const _parent = $(this).parent()
 	//_parent.removeClass('error success')
 	document.querySelector("[name='add']")?.setAttribute('disabled', 'disabled')
@@ -111,6 +109,11 @@ function updateTweetContent(tweetData) {
 		?.setAttribute('src', data.user.profile_image_url_https)
 	// Update user name.
 	updateElements('[data-t-user-name]', data.user.name)
+	if (data.user.verified) {
+		document
+			.querySelector('[data-t-user-name]')
+			.classList.remove('after:hidden')
+	}
 	updateElements('[data-t-user-handle]', '@' + data.user.screen_name)
 	updateElements('[data-t-text]', data.text)
 	updateElements('[data-t-time]', time)
@@ -124,9 +127,6 @@ function updateTweetContent(tweetData) {
 }
 
 function tweetTemplate(themeClass, design) {
-	let tweet = htmlTweet
-	let html = ''
-
 	if (tweet.user.verified) {
 		html += ''
 	}
