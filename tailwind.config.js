@@ -9,6 +9,10 @@ module.exports = {
 	darkMode: 'class',
 	theme: {
 		extend: {
+			screens: {
+				xs: '400px',
+				'1xl': '1440px',
+			},
 			backgroundImage: {
 				tick: 'url(/assets/tick.svg)',
 				'success-tick': 'url(/assets/success-tick.svg)',

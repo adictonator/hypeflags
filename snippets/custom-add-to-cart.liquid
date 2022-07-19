@@ -1,10 +1,7 @@
 {% capture "form_classes" -%} flex flex-col relative gap-y-4 md:my-4 my-5
-after:sm:text-sm lg:my-5 xl:my-6 after:content-[attr(ship-line)] after:relative
-after:block after:text-[#FFA800] after:text-center after:xl:text-lg
-after:lg:text-base {%- endcapture %} {% form 'product', product,
+lg:my-5 xl:my-6 {%- endcapture %} {% form 'product', product,
 class:form_classes, novalidate: 'novalidate', data-product-form: '',
-data-product-form-redirect-url: '/cart', ship-line: '&bull; Made To Order | Will
-Ship In 5-7 Days' %}
+data-product-form-redirect-url: '/cart' %}
 
 <div class="flex items-stretch justify-between gap-x-4">
 	<div class="flex items-stretch justify-between">
@@ -71,4 +68,8 @@ Ship In 5-7 Days' %}
 		{{ "products.product.add_to_cart" | t }}
 	</button>
 </div>
+
+<span class="block text-center text-sm text-[#FFA800] xl:text-base 1xl:text-lg"
+	>&bull; Made To Order | Will Ship In 5-7 Days</span
+>
 {% endform %}

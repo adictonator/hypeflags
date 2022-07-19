@@ -805,7 +805,7 @@
 
 @media (max-width: 400px) {
 	.main_product_slider {
-		margin-bottom: 24px;
+		margin-bottom: 0;
 	}
 	.custom-flag-promo:before {
 		bottom: -130px;

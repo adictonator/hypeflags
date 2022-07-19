@@ -217,11 +217,12 @@ current_variant.price -%}
 <script type="application/json" id="ProductJson-{{ section.id }}">
 	{{ product | json }}
 </script>
-{% endunless %} {% include 'tweet' %}
+{% endunless %}
 
 <!-- prettier-ignore -->
 {% schema %}
 {
+	"class": "mt-14",
 "name": {
 "de": "Produktseiten",
 "en": "Product pages",
