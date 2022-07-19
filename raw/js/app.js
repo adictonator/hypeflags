@@ -49,6 +49,48 @@ document.addEventListener('DOMContentLoaded', () => {
 		?.addEventListener('click', () => hideTweetEditor())
 })
 
+document
+	.querySelector('[data-cust-flag-modal]')
+	?.addEventListener('click', () => {
+		const modal = document.querySelector('[data-privacy-modal]')
+		document.body.append(modal)
+		setTimeout(() => {
+			modal.classList.toggle('invisible')
+			modal.classList.toggle('opacity-0')
+		}, 0)
+	})
+
+document.querySelector('[data-hide-modal]').addEventListener('click', () => {
+	const modal = document.querySelector('[data-privacy-modal]')
+	modal.classList.toggle('invisible')
+	modal.classList.toggle('opacity-0')
+})
+
+onresize = (event) => {
+	const width = event.target.outerWidth
+
+	updateUploadImageText(width)
+}
+
+window.addEventListener('DOMContentLoaded', (event) => {
+	const width = event.target.body.clientWidth
+
+	updateUploadImageText(width)
+})
+
+function updateUploadImageText(width) {
+	const elm = document.querySelector('[data-upload-image-text]')
+
+	if (!elm) return
+
+	let uploadText = 'Drag your image here or <strong>browse</strong>'
+	if (width <= 767) {
+		uploadText = 'Upload your image'
+	}
+
+	elm.innerHTML = uploadText
+}
+
 $(document).on('click', 'button[name="add"]', function (e) {
 	e.preventDefault()
 	const dataURL = $('.new_url').val()

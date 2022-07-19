@@ -659,7 +659,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CartLogic__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CartLogic */ "./raw/js/CartLogic.js");
 /* harmony import */ var _QuantityLogic__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./QuantityLogic */ "./raw/js/QuantityLogic.js");
 /* provided dependency */ var Buffer = __webpack_require__(/*! buffer */ "./node_modules/buffer/index.js")["Buffer"];
-var _document$getElementB, _document$getElementB2, _document$getElementB3, _document$querySelect;
+var _document$getElementB, _document$getElementB2, _document$getElementB3, _document$querySelect, _document$querySelect4;
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
@@ -718,6 +718,42 @@ document.addEventListener('DOMContentLoaded', function () {
     return (0,_TwitterInspiration__WEBPACK_IMPORTED_MODULE_0__.hideTweetEditor)();
   });
 });
+(_document$querySelect4 = document.querySelector('[data-cust-flag-modal]')) === null || _document$querySelect4 === void 0 ? void 0 : _document$querySelect4.addEventListener('click', function () {
+  var modal = document.querySelector('[data-privacy-modal]');
+  document.body.append(modal);
+  setTimeout(function () {
+    modal.classList.toggle('invisible');
+    modal.classList.toggle('opacity-0');
+  }, 0);
+});
+document.querySelector('[data-hide-modal]').addEventListener('click', function () {
+  var modal = document.querySelector('[data-privacy-modal]');
+  modal.classList.toggle('invisible');
+  modal.classList.toggle('opacity-0');
+});
+
+onresize = function onresize(event) {
+  var width = event.target.outerWidth;
+  updateUploadImageText(width);
+};
+
+window.addEventListener('DOMContentLoaded', function (event) {
+  var width = event.target.body.clientWidth;
+  updateUploadImageText(width);
+});
+
+function updateUploadImageText(width) {
+  var elm = document.querySelector('[data-upload-image-text]');
+  if (!elm) return;
+  var uploadText = 'Drag your image here or <strong>browse</strong>';
+
+  if (width <= 767) {
+    uploadText = 'Upload your image';
+  }
+
+  elm.innerHTML = uploadText;
+}
+
 $(document).on('click', 'button[name="add"]', function (e) {
   e.preventDefault();
   var dataURL = $('.new_url').val(); // @ts-ignore

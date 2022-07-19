@@ -121,6 +121,7 @@
 					class="upload-image-wrapper hover:cursor-pointe mt-5 flex flex-col items-center justify-center gap-y-2.5 rounded p-6 duration-300 ease-in-out md:mt-4 md:p-9 lg:mt-5 lg:p-10 xl:mt-6 xl:p-11"
 				>
 					<span
+						data-upload-image-text
 						class="upload-text flex items-center justify-between gap-x-2 duration-300 ease-in-out sm:text-base md:text-base xl:text-lg"
 						>Drag your image here or <strong>browse</strong></span
 					>
@@ -192,7 +193,7 @@
 <script type="application/json" id="ProductJson-{{ section.id }}">
 	{{ product | json }}
 </script>
-{% endunless %}
+{% endunless %} {% render 'shipping-policy-modal' %}
 
 <!-- prettier-ignore -->
 {% schema %}
@@ -422,69 +423,3 @@
 ]
 }
 {% endschema %}
-
-<div class="cust-flag-privacy-modal">
-	<div class="inner-body">
-		<div class="m-head">
-			<h4>HypeFlags Custom Flag Policy</h4>
-			<span data-cust-flag-privacy-modal-close title="Close"
-				>&times;</span
-			>
-		</div>
-
-		<div class="m-body">
-			<p>
-				Custom flags require an additional 5-7 business day processing
-				time. All orders will ship from the USA.
-			</p>
-			<p>
-				Please allow a 5% bleed area on all edges of the flag to ensure
-				no important parts of your image are cut out during production.
-			</p>
-			<p>
-				Note: We print the file to the exact resolution when uploaded.
-				The image may appear pixelated or blurry when scaled to the full
-				flag size. Our recommended minimum image size is 2000px on the
-				shortest side. We are unable to provide any return or refund due
-				to a low resolution file.
-			</p>
-			<p>
-				By uploading, you certify that you own copyrights for this image
-				or are authorized by the owner to use it. Please do not submit
-				any flags that contain nudity or hateful imagery. We reserve the
-				right to reject and refund any custom flag orders.
-			</p>
-			<p>
-				Returns: Custom flags are not returnable unless there is a
-				printing defect. If you are unhappy with your custom flag please
-				contact us and our team will help find a resolution.
-			</p>
-		</div>
-	</div>
-</div>
-
-<style>
-	.review-user-info {
-		display: none !important;
-	}
-
-	.ig-img,
-	.review-carousel-item {
-		width: 250px !important;
-		height: 250px;
-	}
-
-	.hf-legit .review-carousel-wrap .review-carousel-item,
-	.index-section .review-carousel-wrap .review-carousel-item,
-	.template-product .review-carousel-wrap .review-carousel-item {
-		width: 250px !important;
-		height: 250px !important;
-	}
-
-	.template-product
-		.review-carousel-wrap.ig-feed
-		.review-carousel-item
-		figure.ig-img:after {
-		content: unset;
-	}
-</style>
