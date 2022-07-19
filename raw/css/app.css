@@ -6,6 +6,10 @@
 	@apply w-full rounded-md bg-brand-red py-3 px-5 text-base font-bold uppercase tracking-widest text-white duration-300 hover:bg-transparent hover:text-brand-red hover:ring-2 hover:ring-inset hover:ring-brand-red disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-gray-400 disabled:hover:ring-0;
 }
 
+.product-page-classes {
+	@apply md:mt-14;
+}
+
 .custom-gromm:before,
 .custom-gromm:after {
 	content: "";

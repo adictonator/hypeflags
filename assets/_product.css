@@ -663,7 +663,7 @@
 		grid-column-gap: 0;
 	}
 	.main_product_slider {
-		margin-bottom: 40px;
+		margin-bottom: 0;
 	}
 	.ex1 {
 		border-radius: 0 !important;
@@ -803,9 +803,6 @@
 }
 
 @media (max-width: 400px) {
-	.main_product_slider {
-		margin-bottom: 0;
-	}
 	.custom-flag-promo:before {
 		bottom: -130px;
 		width: 120px;

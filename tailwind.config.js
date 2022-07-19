@@ -10,7 +10,7 @@ module.exports = {
 	theme: {
 		extend: {
 			screens: {
-				xs: '400px',
+				xs: '401px',
 				'1xl': '1440px',
 			},
 			animation: {
