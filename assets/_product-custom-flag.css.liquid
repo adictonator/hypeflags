@@ -1,31 +1,28 @@
 .upload-image-wrapper {
-	background: linear-gradient(
-			to right,
-			#d71047 50%,
-			rgba(255, 255, 255, 0) 0%
-		),
-		linear-gradient(#d71047 50%, rgba(255, 255, 255, 0) 0%),
-		linear-gradient(to right, #d71047 50%, rgba(255, 255, 255, 0) 0%),
-		linear-gradient(#d71047 50%, rgba(255, 255, 255, 0) 0%);
-	background-position: top, right, bottom, left;
-	background-repeat: repeat-x, repeat-y;
-	background-size: 17px 1px, 1px 14px;
+  background: linear-gradient(to right, #d71047 50%, rgba(255, 255, 255, 0) 0%),
+    linear-gradient(#d71047 50%, rgba(255, 255, 255, 0) 0%),
+    linear-gradient(to right, #d71047 50%, rgba(255, 255, 255, 0) 0%),
+    linear-gradient(#d71047 50%, rgba(255, 255, 255, 0) 0%);
+  background-position: top, right, bottom, left;
+  background-repeat: repeat-x, repeat-y;
+  background-size: 17px 1px, 1px 14px;
 }
 .upload-image-wrapper:hover {
-	background-color: #fdf4f7;
+  background-color: #FDF4F7;
 }
 .upload-image-wrapper:hover .upload-text {
-	color: #d5003a;
+  color: #D5003A;
 }
+
 .upload-image-wrapper .upload-text {
-	position: relative;
+  position: relative;
 }
 .upload-image-wrapper .upload-text:before {
-	content: "";
-	background-image: url({{"cust-flag-up-icon.svg"|asset_url}});
-	position: relative;
-	width: 24px;
-	height: 24px;
-	display: block;
-	background-size: contain;
+  content: '';
+  background-image: url({{ 'cust-flag-up-icon.svg' | asset_url }});
+  position: relative;
+  width: 24px;
+  height: 24px;
+  display: block;
+  background-size: contain;
 }
