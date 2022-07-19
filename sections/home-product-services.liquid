@@ -1,31 +1,37 @@
 {% if section.blocks.size > 0 %}
 <section class="product-services-wrapper!">
-  <div class="product-template__container">
-    <div class="home-service-icon-container">
-      {% for block in section.blocks %}
-      
-          <div class="service-icon-wrapper">
-            <img src="{{ block.settings.icon | asset_url }}"/>
+	<div class="product-template__container">
+		<div class="home-service-icon-container">
+			{% for block in section.blocks %}
 
-            <div class="custom-service-content-wrapper">
-              {% if block.settings.url %}
-                <h4><a href="{{ block.settings.url }}">{{ block.settings.heading }}</a></h4>
-              {% else %}
-                <h4>{{ block.settings.heading }}</h4>
-              {% endif %}
-              {{ block.settings.text }}
-            </div>
-          </div>
-      
-      {% endfor %}
-      
-    </div>
-  </div>
+			<div class="service-icon-wrapper">
+				<img
+					src="{{ block.settings.icon | asset_url }}"
+					class="mx-auto"
+				/>
+
+				<div class="custom-service-content-wrapper">
+					{% if block.settings.url %}
+					<h4>
+						<a href="{{ block.settings.url }}">{{
+							block.settings.heading
+						}}</a>
+					</h4>
+					{% else %}
+					<h4>{{ block.settings.heading }}</h4>
+					{% endif %}
+					{{ block.settings.text }}
+				</div>
+			</div>
+
+			{% endfor %}
+		</div>
+	</div>
 </section>
-
 
 {% endif %}
 
+<!-- prettier-ignore -->
 {% schema %}
   {
     "name": "HomePage Product Services",
