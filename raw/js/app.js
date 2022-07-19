@@ -91,6 +91,22 @@ function updateUploadImageText(width) {
 	elm.innerHTML = uploadText
 }
 
+// Header
+document
+	.querySelector('[data-mobile-menu-toggle]')
+	?.addEventListener('click', (e) => {
+		document.querySelector('.icon-hamburger').classList.toggle('hidden')
+		document.querySelector('.icon-close').classList.toggle('hidden')
+
+		document
+			.querySelector('[data-mobile-nav]')
+			.classList.toggle('-translate-y-full')
+		document
+			.querySelector('[data-mobile-nav]')
+			.classList.toggle('translate-y-[75px]')
+		//document.querySelector('[data-mobile-nav]').classList.remove('')
+	})
+
 $(document).on('click', 'button[name="add"]', function (e) {
 	e.preventDefault()
 	const dataURL = $('.new_url').val()

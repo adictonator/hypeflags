@@ -1,30 +1,28 @@
 /*================ Mobile nav wrapper ================*/
 .mobile-nav-wrapper {
-  transform: translateY(-100%);
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: #fff;
-  transition: all .45s cubic-bezier(.29,.63,.44,1);
-  display: none;
-  overflow: hidden;
-  width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #fff;
+	transition: all 0.45s cubic-bezier(0.29, 0.63, 0.44, 1);
+	overflow: hidden;
+	width: 100%;
 }
 .mobile-nav-wrapper:after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  border-bottom: 1px solid #e4e4e4;
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	border-bottom: 1px solid #e4e4e4;
 }
 
 .mobile-nav-wrapper.js-menu--is-open {
-  display: block;
+	display: block;
 }
 
 @media (min-width: 767px) {
-  .mobile-nav-wrapper.js-menu--is-open {
-    display: none;
-  }
-} 
+	.mobile-nav-wrapper.js-menu--is-open {
+		display: none;
+	}
+}

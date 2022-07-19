@@ -22,6 +22,10 @@
 	top: 8px;
 }
 
+.sticky-header {
+	@apply sticky top-0 z-30 shadow-lg;
+}
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
 	-webkit-appearance: none;
