@@ -113,25 +113,6 @@
 	</div>
 </div>
 
-<script>
-	$(document).ready(function () {
-		$(".b-drop-info").hover(function () {
-			$(this).addClass("show")
-		})
-
-		$(".b-drop-info").mouseout(function (e) {
-			if (
-				e.relatedTarget &&
-				($(e.relatedTarget).hasClass("webkit_center") ||
-					$(e.relatedTarget).hasClass("product-single__meta") ||
-					$(e.toElement) == "p")
-			) {
-				$(this).removeClass("show")
-			}
-		})
-	})
-</script>
-
 {% unless product == empty %}
 <script type="application/json" id="ProductJson-{{ section.id }}">
 	{{ product | json }}

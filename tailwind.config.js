@@ -13,6 +13,9 @@ module.exports = {
 				xs: '400px',
 				'1xl': '1440px',
 			},
+			animation: {
+				'ping-slow': 'ping 1.5s infinite',
+			},
 			backgroundImage: {
 				tick: 'url(/assets/tick.svg)',
 				'success-tick': 'url(/assets/success-tick.svg)',
