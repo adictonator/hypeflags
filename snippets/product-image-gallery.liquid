@@ -1,0 +1,44 @@
+<div
+	class="product-single__photos product-slider-wrapper{% if section.settings.image_size == 'full' %} product-single__photos--full{% endif %}"
+>
+	<div class="slider-wrapper">
+		<div
+			class="main_product_slider _mhh swiper product-single-gallery"
+			style="position: relative; height: auto"
+		>
+			<div class="skeleton-loader-cust"></div>
+
+			{% render 'product-badge', product: product %}
+
+			<div class="slider-for!! swiper-wrapper">
+				{% for image in product.images %}
+				<div
+					class="slider-for__item ex1 swiper-slide"
+					data-src="{{ image.src | product_img_url: 'master' }}"
+				>
+					<img
+						data-index="{{ forloop.index }}"
+						src="{{ image.src | product_img_url: '900x' }}"
+						alt="{{ image.alt }}"
+					/>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+
+		<div class="swiper product-single-gallery-thumb w-[350px]">
+			<div class="swiper-wrapper">
+				<div class="skeleton-loader-cust"></div>
+				{% for image in product.images %}
+
+				<img
+					class="swiper-slide max-w-[102px] cursor-pointer rounded border-2 border-solid border-transparent"
+					src="{{ image.src | product_img_url: 'medium' }}"
+				/>
+
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	<div class="swiper-pagination"></div>
+</div>
