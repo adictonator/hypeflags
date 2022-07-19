@@ -1,69 +1,81 @@
 <div class="intro-wrapper-out">
-  <h2>Design Your Own Flag</h2>
-  
-  <div class="intro-wrapper">
-    <div class="img-w">
-      <div>
-        {{ 'Custom-1.png' | asset_url | img_tag: 'Step 1' }}
-      </div>
-      <div class="_ar">
-        <img src="{{ 'Arrrow-Icon.svg' | asset_url }}" style="width: 70px">
-      </div>
-      <div>
-        {{ 'Custom-2.png' | asset_url | img_tag: 'Step 2' }}
-      </div>
-      <div class="_ar">
-        <img src="{{ 'Arrrow-Icon.svg' | asset_url }}" style="width: 70px;transform: scaleY(-1);">
-      </div>
-      <div>
-        {{ 'Custom-3.png' | asset_url | img_tag: 'Step 3' }}
-      </div>
-    </div>
-    
-    <div class="text-w">
-      <div class="intro-step">
-        <h3>Upload File</h3>
-        <p>Simply upload your desired image file to get started with your flag</p>
-      </div>
-      <div class="intro-step">
-      <h3>Customize Flag</h3>
-      <p>Crop and edit your image using our custom website tool</p>
-      </div>
-      <div class="intro-step">
-      <h3>Confirm Design</h3>
-      <p>Preview your custom flag and add to your cart</p>
-      </div>
-    </div>
-  </div>
-  
-  
-  <div class="intro-wrapper mob-show">
-    <div class="intro-step">
-      <div class="_jk">
-      <img src="https://cdn.shopify.com/s/files/1/0254/3868/3184/t/66/assets/1_600-456.png" alt="Step 1">
-      </div>
+	<h2>Design Your Own Flag</h2>
 
-      <h3>Upload File</h3>
-      <p>Simply upload your desired image file to get started with your flag</p>
-    </div>
-    <div class="intro-step">
-      <div class="_jk">
-      	<img src="https://cdn.shopify.com/s/files/1/0254/3868/3184/t/66/assets/2_600-456.png" alt="Step 2">
-      </div>
+	<div class="intro-wrapper">
+		<div class="img-w">
+			<div>
+				{{ "Custom-1.png" | asset_url | img_tag: "Step 1" }}
+			</div>
+			<div class="_ar">
+				<img
+					src="{{ 'Arrrow-Icon.svg' | asset_url }}"
+					style="width: 70px"
+				/>
+			</div>
+			<div>
+				{{ "Custom-2.png" | asset_url | img_tag: "Step 2" }}
+			</div>
+			<div class="_ar">
+				<img
+					src="{{ 'Arrrow-Icon.svg' | asset_url }}"
+					style="width: 70px; transform: scaleY(-1)"
+				/>
+			</div>
+			<div>
+				{{ "Custom-3.png" | asset_url | img_tag: "Step 3" }}
+			</div>
+		</div>
 
-      <h3>Customize Flag</h3>
-      <p>Crop and edit your image using our custom website tool</p>
-    </div>
-    <div class="intro-step">
-      <div class="_jk">
-      <img src="https://cdn.shopify.com/s/files/1/0254/3868/3184/t/66/assets/3_600-456.png" alt="Step 3">
-      </div>
-      <h3>Confirm Design</h3>
-      <p>Preview your custom flag and add to your cart</p>
-    </div>
-  </div>
+		<div class="text-w">
+			<div class="intro-step">
+				<h3>Upload File</h3>
+				<p>
+					Simply upload your desired image file to get started with
+					your flag
+				</p>
+			</div>
+			<div class="intro-step">
+				<h3>Customize Flag</h3>
+				<p>Crop and edit your image using our custom website tool</p>
+			</div>
+			<div class="intro-step">
+				<h3>Confirm Design</h3>
+				<p>Preview your custom flag and add to your cart</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="intro-wrapper mob-show">
+		<div class="intro-step">
+			<div class="_jk">
+				{{ "Custom-1.png" | asset_url | img_tag: "Step 2" }}
+			</div>
+
+			<h3>Upload File</h3>
+			<p>
+				Simply upload your desired image file to get started with your
+				flag
+			</p>
+		</div>
+		<div class="intro-step">
+			<div class="_jk">
+				{{ "Custom-2.png" | asset_url | img_tag: "Step 2" }}
+			</div>
+
+			<h3>Customize Flag</h3>
+			<p>Crop and edit your image using our custom website tool</p>
+		</div>
+		<div class="intro-step">
+			<div class="_jk">
+				{{ "Custom-3.png" | asset_url | img_tag: "Step 2" }}
+			</div>
+			<h3>Confirm Design</h3>
+			<p>Preview your custom flag and add to your cart</p>
+		</div>
+	</div>
 </div>
 
+<!-- prettier-ignore -->
 {% schema %}
 {
   "name": "Custom Flag Intro",
