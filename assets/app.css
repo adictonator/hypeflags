@@ -517,12 +517,6 @@ video {
     max-width: 401px;
   }
 }
-@media (min-width: 640px) {
-
-  .container {
-    max-width: 640px;
-  }
-}
 @media (min-width: 768px) {
 
   .container {
@@ -1834,7 +1828,15 @@ input[type="number"] {
   color: rgb(136 153 166 / var(--tw-text-opacity));
 }
 
-@media (min-width: 640px) {
+@media (min-width: 401px) {
+
+  .sm\:mt-14 {
+    margin-top: 3.5rem;
+  }
+
+  .sm\:mt-10 {
+    margin-top: 2.5rem;
+  }
 
   .sm\:text-base {
     font-size: 1rem;
@@ -1849,12 +1851,16 @@ input[type="number"] {
     margin-bottom: 1rem;
   }
 
-  .md\:mt-0 {
-    margin-top: 0px;
-  }
-
   .md\:mt-4 {
     margin-top: 1rem;
+  }
+
+  .md\:mt-14 {
+    margin-top: 3.5rem;
+  }
+
+  .md\:mt-0 {
+    margin-top: 0px;
   }
 
   .md\:p-0 {
@@ -1878,6 +1884,10 @@ input[type="number"] {
     margin-bottom: 1.25rem;
   }
 
+  .lg\:mt-0 {
+    margin-top: 0px;
+  }
+
   .lg\:mt-5 {
     margin-top: 1.25rem;
   }
@@ -1899,6 +1909,10 @@ input[type="number"] {
     margin-bottom: 1.5rem;
   }
 
+  .xl\:mt-14 {
+    margin-top: 3.5rem;
+  }
+
   .xl\:mt-6 {
     margin-top: 1.5rem;
   }
@@ -1908,26 +1922,6 @@ input[type="number"] {
   }
 
   .xl\:text-lg {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-  }
-
-  .xl\:text-base {
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-}
-
-@media (min-width: 401px) {
-
-  .xs\:mt-10 {
-    margin-top: 2.5rem;
-  }
-}
-
-@media (min-width: 1440px) {
-
-  .\31xl\:text-lg {
     font-size: 1.125rem;
     line-height: 1.75rem;
   }
