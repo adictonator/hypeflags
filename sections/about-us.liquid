@@ -5,7 +5,7 @@
       <svg viewBox="0 0 1279 547" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
 	      <path d="M0.000976562 0H1279V383C999.756 389.837 961.501 574 617.501 511C273.501 448 136.917 464.344 0.000976562 547V0Z" fill="#D5003A"/>
       </svg>
-      	  
+
       <div class="hero-wrap page-width">
         <div class="about-us-hero-text-wrap" data-aos="fade-in" data-aos-duration="2000">
           <h1 class="about-page-title about-box-title">{{ section.settings.hero_heading }}</h1>
@@ -48,12 +48,12 @@
           {% if block.settings.title != blank %}
           	<h2 class="about-text text-center" data-aos="fade-in" data-aos-duration="2000">{{ block.settings.title }}</h2>
           {% endif %}
-          
+
           {% if block.settings.text != blank%}
           	<div data-aos="fade-in" data-aos-duration="1900">{{ block.settings.text }}</div>
             <p></p>
           {% endif %}
-          
+
           {% if forloop.index == 1 %}
             <div class="about-us-review-count" data-aos="fade-in" data-aos-duration="1800">
               <div class="rating-stars">
@@ -86,15 +86,15 @@
     </div>
   {% endfor %}
 
-  
+
   <div class="about-us-gif-section">
   	<h2 class="about-text text-center" data-aos="fade-in" data-aos-duration="2000">Behind The Flags</h2>
-    
+
     <div class="gif-section-wrap">
       {% if section.settings.bottom_img_1 != blank %}
         <div class="gif-section">
           <figure>
-            <img src="{{ section.settings.bottom_img_1 | img_url: 'x1000' }}">
+            <img src="{{ section.settings.bottom_img_1 | img_url: 'x1000' }}" class="mx-auto">
           </figure>
           <h3>{{ section.settings.bottom_title_1 }}</h3>
         </div>
@@ -104,14 +104,14 @@
       {% if section.settings.bottom_img_2 %}
         <div class="gif-section">
           <figure>
-            <img src="{{ section.settings.bottom_img_2 | img_url: 'x1000' }}">
+            <img src="{{ section.settings.bottom_img_2 | img_url: 'x1000' }}"  class="mx-auto">
           </figure>
           <h3>{{ section.settings.bottom_title_2 }}</h3>
         </div>
       {% endif %}
     </div>
   </div>
- 
+
 </div>
 
 {% schema %}

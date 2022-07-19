@@ -60,7 +60,7 @@ document
 		}, 0)
 	})
 
-document.querySelector('[data-hide-modal]').addEventListener('click', () => {
+document.querySelector('[data-hide-modal]')?.addEventListener('click', () => {
 	const modal = document.querySelector('[data-privacy-modal]')
 	modal.classList.toggle('invisible')
 	modal.classList.toggle('opacity-0')
