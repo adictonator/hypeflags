@@ -287,21 +287,18 @@ jQuery(function ($) {
 
 	const singleProductThumb = new Swiper(".product-single-gallery-thumb", {
 		spaceBetween: 15,
-		slidesPerView: 4,
-		//observer: true,
+		slidesPerView: "auto",
+		observer: true,
 		freeMode: true,
 		watchSlidesProgress: true,
-		//observeParents: true,
-		//slidesPerView: 'auto',
-		//       freeMode: false,
-		//centeredSlides: true,
+		observeParents: true,
+		centeredSlides: true,
 		loop: true,
-		//breakpoints: {
-		//	950: {
-		//		slidesPerView: 'auto',
-		//	},
-		//},
+		centerInsufficientSlides: true,
+		slideToClickedSlide: true,
 	})
+
+	console.log("aad", Math.random())
 
 	const singleProduct = new Swiper(".product-single-gallery", {
 		slidesPerView: 1,
@@ -309,10 +306,6 @@ jQuery(function ($) {
 		autoHeight: false,
 		pagination: {
 			el: ".swiper-pagination",
-		},
-		freeMode: {
-			enabled: false,
-			sticky: false,
 		},
 		thumbs: {
 			swiper: singleProductThumb,

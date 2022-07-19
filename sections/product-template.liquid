@@ -46,17 +46,16 @@ current_variant.price -%}
 					</div>
 				</div>
 
-				<div class="swiper product-single-gallery-thumb max-w-[448px]">
+				<div class="swiper product-single-gallery-thumb w-[350px]">
 					<div class="swiper-wrapper">
+						<div class="skeleton-loader-cust"></div>
 						{% for image in product.images %}
-						<div class="slider-nav__item swiper-slide">
-							<div class="skeleton-loader-cust"></div>
-							<img
-								src="{{
-									image.src | product_img_url: 'medium'
-								}}"
-							/>
-						</div>
+
+						<img
+							class="swiper-slide max-w-[102px] cursor-pointer rounded border-2 border-solid border-transparent"
+							src="{{ image.src | product_img_url: 'medium' }}"
+						/>
+
 						{% endfor %}
 					</div>
 				</div>
