@@ -35,7 +35,7 @@ export default function CartLogic() {
 		modal.classList.add(
 			'fixed',
 			'inset-0',
-			'bg-black/60',
+			'bg-black/70',
 			'z-50',
 			'flex',
 			'items-center',

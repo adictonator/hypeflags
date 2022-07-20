@@ -22,6 +22,8 @@ module.exports = {
 				'exclamation-icon': 'url(/assets/exclamation.svg)',
 				grommet: 'url(/assets/grommet.svg)',
 				'twitter-verified': 'url(/assets/twitter-verified.svg)',
+				'warn-icon': 'url(/assets/warn.svg)',
+				'red-warn-icon': 'url(/assets/warn-red.svg)',
 			},
 			colors: {
 				'brand-red': '#D5003A',

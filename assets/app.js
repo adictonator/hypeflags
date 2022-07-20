@@ -44,7 +44,7 @@ function CartLogic() {
   var showModal = function showModal(image) {
     var modal = document.createElement('div');
     modal.setAttribute('data-modal-custom', '');
-    modal.classList.add('fixed', 'inset-0', 'bg-black/60', 'z-50', 'flex', 'items-center', 'justify-center', 'h-screen');
+    modal.classList.add('fixed', 'inset-0', 'bg-black/70', 'z-50', 'flex', 'items-center', 'justify-center', 'h-screen');
     var modalBody = document.createElement('div');
     modalBody.classList.add('p-5', 'max-w-[600px]', 'w-full', 'bg-white', 'flex', 'items-center', 'flex-col', 'justify-center', 'rounded-lg', 'shadow-lg');
     var closePreviewBtn = document.createElement('button');
@@ -106,17 +106,14 @@ function CustomFlag() {
   (_document$getElementB = document.getElementById('custom-flag-image')) === null || _document$getElementB === void 0 ? void 0 : _document$getElementB.addEventListener('change', function (e) {
     return showCustomFlagEditor(e);
   });
-}
 
-var showUploadPreview = function showUploadPreview(event) {
-  var _event$target$files = _slicedToArray(event.target.files, 1),
-      file = _event$target$files[0];
+  var showUploadPreview = function showUploadPreview(event) {
+    var _event$target$files = _slicedToArray(event.target.files, 1),
+        file = _event$target$files[0];
 
-  var objectUrl = URL.createObjectURL(file);
-  console.log('file:', file);
+    var objectUrl = URL.createObjectURL(file);
 
-  if (file) {
-    if (fileSizeOK(file.size) && fileTypeOK(file.type) && fileDimensionOK(file)) {
+    if (file && fileSizeOK(file.size) && fileTypeOK(file.type) && fileDimensionOK(file)) {
       document.querySelector('[data-tmp-file-name]').innerHTML = file.name;
       document.querySelector('[data-tmp-file-size]').innerHTML = bytesToMegaBytes(file.size).toFixed(1);
       document.querySelector('[data-temp-preview]').src = objectUrl;
@@ -133,67 +130,105 @@ var showUploadPreview = function showUploadPreview(event) {
       });
       $('.cross-cropper').show();
     }
-  }
-};
+  };
 
-var fileSizeOK = function fileSizeOK(fileSize) {
-  console.log('ok here in first');
+  var fileSizeOK = function fileSizeOK(fileSize) {
+    console.log('ok here in first');
 
-  if (fileSize > MAX_SIZE) {
-    var text = 'File size too large. Please upload a file less than 9MB.';
-    displayCropperErrorPopup('Upload Failed', text, 'warning warning--red');
-    return false;
-  }
-
-  return true;
-};
-
-var fileTypeOK = function fileTypeOK(fileType) {
-  console.log('check of type');
-  var validImageTypes = ['image/jpeg', 'image/png'];
-
-  if ($.inArray(fileType, validImageTypes) < 0) {
-    var text = 'File type not allowed. Please upload PNG or JPEG.';
-    displayCropperErrorPopup('Upload Failed', text, 'warning warning--red');
-    $('body').find('#preloader').remove();
-    return false;
-  }
-
-  return true;
-};
-
-var fileDimensionOK = function fileDimensionOK(objectUrl) {
-  var img = new Image();
-  img.crossOrigin = 'anonymous';
-
-  img.onload = function () {
-    var width = img.width;
-    var height = img.height;
-
-    if (width <= 499 || height <= 499) {
-      var text = 'File resolution too low. Please upload an image with minimum 500px resolution.';
+    if (fileSize > MAX_SIZE) {
+      var text = 'File size too large. Please upload a file less than 9MB.';
       displayCropperErrorPopup('Upload Failed', text, 'warning warning--red');
-      $('.hype-cropper-wrapper, .cross-cropper').hide();
       return false;
-    } else if (width <= 999 || height <= 999) {
-      $('.low-res-warning-indicator').addClass('visible');
-    } else {
-      $('.low-res-warning-indicator').removeClass('visible');
     }
 
     return true;
   };
 
-  img.src = objectUrl;
-};
+  var fileTypeOK = function fileTypeOK(fileType) {
+    var validImageTypes = ['image/jpeg', 'image/png'];
 
-var bytesToMegaBytes = function bytesToMegaBytes(bytes) {
-  return bytes / Math.pow(1024, 2);
-};
+    if ($.inArray(fileType, validImageTypes) < 0) {
+      var text = 'File type not allowed. Please upload PNG or JPEG.';
+      displayCropperErrorPopup('Upload Failed', text);
+      $('body').find('#preloader').remove();
+      return false;
+    }
 
-var showCustomFlagEditor = function showCustomFlagEditor(e) {
-  showUploadPreview(e); // Show the modal.
-};
+    return true;
+  };
+
+  var fileDimensionOK = function fileDimensionOK(objectUrl) {
+    var img = new Image();
+    img.crossOrigin = 'anonymous';
+
+    img.onload = function () {
+      var width = img.width;
+      var height = img.height;
+
+      if (width <= 499 || height <= 499) {
+        var text = 'File resolution too low. Please upload an image with minimum 500px resolution.';
+        displayCropperErrorPopup('Upload Failed', text, 'warning warning--red');
+        $('.hype-cropper-wrapper, .cross-cropper').hide();
+        return false;
+      } else if (width <= 999 || height <= 999) {
+        $('.low-res-warning-indicator').addClass('visible');
+      } else {
+        $('.low-res-warning-indicator').removeClass('visible');
+      }
+
+      return true;
+    };
+
+    img.src = objectUrl;
+  };
+
+  var bytesToMegaBytes = function bytesToMegaBytes(bytes) {
+    return bytes / Math.pow(1024, 2);
+  };
+
+  var showCustomFlagEditor = function showCustomFlagEditor(e) {
+    showUploadPreview(e);
+  };
+
+  var displayCropperErrorPopup = function displayCropperErrorPopup(heading, text) {
+    var type = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'error';
+    var modal = document.createElement('div');
+    modal.setAttribute('data-modal-custom', '');
+    modal.classList.add('fixed', 'inset-0', 'bg-black/70', 'z-50', 'flex', 'opacity-0', 'items-center', 'justify-center', 'h-screen', 'duration-300');
+    var modalBody = document.createElement('div');
+    modalBody.classList.add('py-8', 'px-9', 'max-w-md', 'w-full', 'bg-white', 'flex', 'items-center', 'flex-col', 'justify-center', 'rounded-lg', 'shadow-lg');
+    var closePreviewBtn = document.createElement('button');
+    closePreviewBtn.innerHTML = 'Close';
+    closePreviewBtn.type = 'button';
+    closePreviewBtn.classList.add('secondary-btn', 'mt-12');
+    closePreviewBtn.setAttribute('data-close', 'close');
+
+    closePreviewBtn.onclick = function () {
+      closePreview();
+    };
+
+    var errorClass = type === 'error' ? 'before:bg-red-warn-icon' : type === 'warn' ? 'before:bg-warn-icon' : 'before:bg-danger';
+    modalBody.innerHTML = "<span class=\"text-2xl font-bold ".concat(errorClass, " before:w-16 before:h-16 before:bg-cover before:block before:mx-auto before:mb-8\">").concat(heading, "</span>");
+    modalBody.innerHTML += '<span class="text-base mt-4">' + text + '</span>';
+    modalBody.appendChild(closePreviewBtn);
+    modal.appendChild(modalBody);
+    document.body.appendChild(modal);
+    setTimeout(function () {
+      modal.classList.remove('opacity-0');
+    }, 0);
+
+    var closePreview = function closePreview() {
+      modal.classList.add('opacity-0');
+      setTimeout(function () {
+        document.querySelector('[data-modal-custom]').remove();
+      }, 100);
+    }; // Reset the image uploader.
+
+
+    document.getElementById('custom-flag-image').value = null;
+    return false;
+  };
+}
 
 /***/ }),
 
@@ -672,8 +707,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
 (0,_CartLogic__WEBPACK_IMPORTED_MODULE_2__["default"])();
-(0,_QuantityLogic__WEBPACK_IMPORTED_MODULE_3__["default"])(); //CustomFlag()
-
+(0,_QuantityLogic__WEBPACK_IMPORTED_MODULE_3__["default"])();
+(0,_CustomFlag__WEBPACK_IMPORTED_MODULE_1__["default"])();
 (_document$getElementB = document.getElementById('tweet-inspiration')) === null || _document$getElementB === void 0 ? void 0 : _document$getElementB.addEventListener('click', function (event) {
   return (0,_TwitterInspiration__WEBPACK_IMPORTED_MODULE_0__.TwitterInspiration)(event);
 });

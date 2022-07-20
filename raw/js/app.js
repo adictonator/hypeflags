@@ -13,7 +13,7 @@ import QuantityLogic from './QuantityLogic'
 
 CartLogic()
 QuantityLogic()
-//CustomFlag()
+CustomFlag()
 
 document
 	.getElementById('tweet-inspiration')
