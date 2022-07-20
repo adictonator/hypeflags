@@ -1,35 +1,98 @@
 <ul class="list--inline pagination">
-  {% unless paginate.previous.is_link %}
-    <li aria-hidden="true">
-      <button class="btn btn--tertiary btn--narrow" disabled>
-        <i class="fa fa-arrow-left"></i>
-        <span class="icon__fallback-text">{{ 'general.pagination.previous' | t }}</span>
-      </button>
-    </li>
-    {% else %}
-    <li>
-      <a href="{{ paginate.previous.url }}" class="btn btn--tertiary btn--narrow">
-        <i class="fa fa-arrow-left"></i> 
-        <span class="icon__fallback-text">{{ 'general.pagination.previous' | t }}</span>
-      </a>
-    </li>
-  {% endunless %}
-  <li class="pagination__text">
-    {{ 'general.pagination.current_page' | t: current: paginate.current_page, total: paginate.pages }}
-  </li>
-  {% unless paginate.next.is_link %}
-    <li aria-hidden="true">
-      <button class="btn btn--tertiary btn--narrow" disabled>
-        <i class="fa fa-arrow-right"></i> 
-        <span class="icon__fallback-text">{{ 'general.pagination.next' | t }}</span>
-      </button>
-    </li>
-  {% else %}
-    <li>
-      <a href="{{ paginate.next.url }}" class="btn btn--tertiary btn--narrow">
-        <i class="fa fa-arrow-right"></i> 
-        <span class="icon__fallback-text">{{ 'general.pagination.next' | t }}</span>
-      </a>
-    </li>
-  {% endunless %}
+	{% unless paginate.previous.is_link %}
+	<li aria-hidden="true">
+		<button class="btn btn--tertiary btn--narrow" disabled>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				class="h-6 w-6"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke="currentColor"
+				stroke-width="3"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M11 17l-5-5m0 0l5-5m-5 5h12"
+				/>
+			</svg>
+			<span class="icon__fallback-text">{{
+				"general.pagination.previous" | t
+			}}</span>
+		</button>
+	</li>
+	{% else %}
+	<li>
+		<a
+			href="{{ paginate.previous.url }}"
+			class="btn btn--tertiary btn--narrow"
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				class="h-6 w-6"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke="currentColor"
+				stroke-width="3"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M11 17l-5-5m0 0l5-5m-5 5h12"
+				/>
+			</svg>
+			<span class="icon__fallback-text">{{
+				"general.pagination.previous" | t
+			}}</span>
+		</a>
+	</li>
+	{% endunless %}
+	<li class="pagination__text">
+		{{ 'general.pagination.current_page' | t: current: paginate.current_page, total: paginate.pages }}
+	</li>
+	{% unless paginate.next.is_link %}
+	<li aria-hidden="true">
+		<button class="btn btn--tertiary btn--narrow" disabled>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				class="h-6 w-6"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke="currentColor"
+				stroke-width="3"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M13 7l5 5m0 0l-5 5m5-5H6"
+				/>
+			</svg>
+			<span class="icon__fallback-text">{{
+				"general.pagination.next" | t
+			}}</span>
+		</button>
+	</li>
+	{% else %}
+	<li>
+		<a href="{{ paginate.next.url }}" class="btn btn--tertiary btn--narrow">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				class="h-6 w-6"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke="currentColor"
+				stroke-width="3"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M13 7l5 5m0 0l-5 5m5-5H6"
+				/>
+			</svg>
+			<span class="icon__fallback-text">{{
+				"general.pagination.next" | t
+			}}</span>
+		</a>
+	</li>
+	{% endunless %}
 </ul>
