@@ -344,6 +344,7 @@ function Swipers() {
     }
   });
   var swiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiper-best-seller', {
+    modules: [swiper__WEBPACK_IMPORTED_MODULE_0__.Navigation],
     slidesPerView: 'auto',
     spaceBetween: 20,
     freeMode: {
@@ -396,6 +397,7 @@ function Swipers() {
     }
   });
   var swiper12 = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiper-new-arrivals', {
+    modules: [swiper__WEBPACK_IMPORTED_MODULE_0__.Navigation],
     slidesPerView: 'auto',
     spaceBetween: 20,
     centeredSlides: false,
@@ -446,6 +448,7 @@ function Swipers() {
     }
   });
   var SwiperIG = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiper-instagram', {
+    modules: [swiper__WEBPACK_IMPORTED_MODULE_0__.Navigation],
     slidesPerView: 'auto',
     spaceBetween: 20,
     centeredSlides: false,
@@ -495,6 +498,7 @@ function Swipers() {
     }
   });
   var productSwiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiper-product-ig', (_Swiper = {
+    modules: [swiper__WEBPACK_IMPORTED_MODULE_0__.Navigation],
     slidesPerView: 'auto',
     spaceBetween: 25,
     centeredSlides: false,

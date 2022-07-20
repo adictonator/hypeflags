@@ -50,6 +50,7 @@ export default function Swipers() {
 	})
 
 	const swiper = new Swiper('.swiper-best-seller', {
+		modules: [Navigation],
 		slidesPerView: 'auto',
 		spaceBetween: 20,
 		freeMode: {
@@ -106,6 +107,7 @@ export default function Swipers() {
 	})
 
 	const swiper12 = new Swiper('.swiper-new-arrivals', {
+		modules: [Navigation],
 		slidesPerView: 'auto',
 		spaceBetween: 20,
 		centeredSlides: false,
@@ -157,6 +159,7 @@ export default function Swipers() {
 	})
 
 	const SwiperIG = new Swiper('.swiper-instagram', {
+		modules: [Navigation],
 		slidesPerView: 'auto',
 		spaceBetween: 20,
 		centeredSlides: false,
@@ -211,6 +214,7 @@ export default function Swipers() {
 	})
 
 	const productSwiper = new Swiper('.swiper-product-ig', {
+		modules: [Navigation],
 		slidesPerView: 'auto',
 		spaceBetween: 25,
 		centeredSlides: false,
