@@ -20,7 +20,8 @@ module.exports = {
 				tick: 'url(/assets/tick.svg)',
 				'success-tick': 'url(/assets/success-tick.svg)',
 				'exclamation-icon': 'url(/assets/exclamation.svg)',
-				grommet: 'url(/assets/grommet.svg)',
+				grommet:
+					'url(https://cdn.shopify.com/s/files/1/0254/3868/3184/t/68/assets/grommet.svg)',
 				'twitter-verified': 'url(/assets/twitter-verified.svg)',
 				'warn-icon': 'url(/assets/warn.svg)',
 				'red-warn-icon': 'url(/assets/warn-red.svg)',

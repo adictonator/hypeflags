@@ -1621,7 +1621,7 @@ input[type="number"] {
 
 .before\:bg-grommet::before {
   content: var(--tw-content);
-  background-image: url(/assets/grommet.svg);
+  background-image: url(https://cdn.shopify.com/s/files/1/0254/3868/3184/t/68/assets/grommet.svg);
 }
 
 .before\:bg-tick::before {
@@ -1670,10 +1670,9 @@ input[type="number"] {
   position: absolute;
 }
 
-.after\:inset-x-0::after {
+.after\:right-2::after {
   content: var(--tw-content);
-  left: 0px;
-  right: 0px;
+  right: 0.5rem;
 }
 
 .after\:-bottom-2\.5::after {
@@ -1689,11 +1688,6 @@ input[type="number"] {
 .after\:top-2::after {
   content: var(--tw-content);
   top: 0.5rem;
-}
-
-.after\:right-2::after {
-  content: var(--tw-content);
-  right: 0.5rem;
 }
 
 .after\:bottom-2::after {
@@ -1795,7 +1789,7 @@ input[type="number"] {
 
 .after\:bg-grommet::after {
   content: var(--tw-content);
-  background-image: url(/assets/grommet.svg);
+  background-image: url(https://cdn.shopify.com/s/files/1/0254/3868/3184/t/68/assets/grommet.svg);
 }
 
 .after\:bg-twitter-verified::after {
