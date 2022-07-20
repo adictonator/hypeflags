@@ -944,6 +944,9 @@ video {
 .items-stretch {
   align-items: stretch;
 }
+.justify-end {
+  justify-content: flex-end;
+}
 .justify-center {
   justify-content: center;
 }
@@ -2008,6 +2011,10 @@ input[type="number"] {
     margin-top: 1rem;
   }
 
+  .md\:justify-center {
+    justify-content: center;
+  }
+
   .md\:p-0 {
     padding: 0px;
   }
@@ -2019,6 +2026,12 @@ input[type="number"] {
   .md\:text-base {
     font-size: 1rem;
     line-height: 1.5rem;
+  }
+
+  .after\:md\:inset-x-0::after {
+    content: var(--tw-content);
+    left: 0px;
+    right: 0px;
   }
 }
 

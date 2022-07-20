@@ -18,7 +18,7 @@ current_variant.price -%}
 	>
 		{% render 'product-image-gallery' %}
 
-		<div class="product-desc">
+		<div class="product-desc mt-3.5 px-10 sm:mt-10 md:mt-0 md:p-0">
 			<div class="product-single__meta">
 				{% render 'product-meta', product: product %} {% if
 				product.selected_or_first_available_variant.inventory_quantity >
@@ -44,10 +44,10 @@ current_variant.price -%}
 								</span>
 								In Stock | Same-day shipping from the USA
 								<span
-									class="group relative flex items-center justify-center"
+									class="group relative flex items-center justify-end md:justify-center"
 								>
 									<span
-										class="invisible absolute -top-24 block w-56 rounded-md bg-white py-4 px-3 text-sm text-black opacity-0 shadow-lg duration-300 after:absolute after:inset-x-0 after:-bottom-2.5 after:mx-auto after:h-2.5 after:w-2.5 after:border after:border-b-0 after:border-l-4 after:border-r-4 after:border-t-8 after:border-white after:border-r-transparent after:border-l-transparent after:border-b-transparent group-hover:visible group-hover:opacity-100"
+										class="invisible absolute -top-24 block w-56 rounded-md bg-white py-4 px-3 text-sm text-black opacity-0 shadow-lg duration-300 after:absolute after:right-2 after:-bottom-2.5 after:mx-auto after:h-2.5 after:w-2.5 after:border after:border-b-0 after:border-l-4 after:border-r-4 after:border-t-8 after:border-white after:border-r-transparent after:border-l-transparent after:border-b-transparent group-hover:visible group-hover:opacity-100 after:md:inset-x-0"
 										>*Before 2pm EST. If placed after, the
 										order will ship the following business
 										day.

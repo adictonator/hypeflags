@@ -10,10 +10,12 @@ import {
 import CustomFlag from './CustomFlag'
 import CartLogic from './CartLogic'
 import QuantityLogic from './QuantityLogic'
+import Swipers from './SwiperSliders'
 
-CartLogic()
-QuantityLogic()
-CustomFlag()
+Swipers()
+//CartLogic()
+//QuantityLogic()
+//CustomFlag()
 
 document
 	.getElementById('tweet-inspiration')

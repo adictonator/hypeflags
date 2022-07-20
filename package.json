@@ -17,6 +17,7 @@
 		"tailwindcss": "^3.1.6"
 	},
 	"dependencies": {
-		"html2canvas": "^1.4.1"
+		"html2canvas": "^1.4.1",
+		"swiper": "^8.3.1"
 	}
 }

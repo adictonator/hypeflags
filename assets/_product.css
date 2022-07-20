@@ -170,7 +170,8 @@
 .product-single-gallery-thumb .swiper-slide {
 	max-width: 102px !important;
 }
-.product-single-gallery-thumb .swiper-slide-thumb-active {
+
+.product-single-gallery-thumb .swiper-slide-active {
 	border-color: #6d6d6d !important;
 }
 
