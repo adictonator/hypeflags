@@ -27,7 +27,6 @@ export default function CustomFlag() {
 				duration: 'slow',
 				start: function () {
 					$(this).css('display', 'grid')
-					//                              $('.hype-cropper__body--image').css('visibility', 'hidden')
 					$(
 						'<div id="custom-loader-buffer" style="z-index: 9999; position: absolute"></div>'
 					).insertBefore('.hype-cropper__body--image')

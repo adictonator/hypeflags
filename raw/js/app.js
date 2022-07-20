@@ -13,8 +13,8 @@ import QuantityLogic from './QuantityLogic'
 import Swipers from './SwiperSliders'
 
 Swipers()
-//CartLogic()
-//QuantityLogic()
+CartLogic()
+QuantityLogic()
 //CustomFlag()
 
 document

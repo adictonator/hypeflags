@@ -531,7 +531,7 @@ document.body.onkeydown = function (event) {
 }
 
 // Import image
-var inputImage = document.getElementById('custom-flag-image123')
+var inputImage = document.getElementById('custom-flag-image')
 
 if (inputImage && URL) {
 	inputImage.onchange = function () {
@@ -579,12 +579,11 @@ if (inputImage && URL) {
 			reader.onload = function (e) {
 				var image = new Image()
 				image.crossOrigin = 'anonymous'
-				let width
-				image.onload = function (lol) {
-					width = image.width
+				image.onload = function () {
+					var width = image.width
 					const height = image.height
 
-					if (width <= 520 || height <= 520) {
+					if (width <= 499 || height <= 499) {
 						const text =
 							'File resolution too low. Please upload an image with minimum 500px resolution.'
 						displayCropperErrorPopup(
@@ -593,9 +592,6 @@ if (inputImage && URL) {
 							'warning warning--red'
 						)
 						$('.hype-cropper-wrapper, .cross-cropper').hide()
-						console.log('asdas', lol)
-						lol.stopPropagation()
-						lol.stopImmediatePropagation()
 						return false
 					} else if (width <= 999 || height <= 999) {
 						$('.low-res-warning-indicator').addClass('visible')
@@ -603,7 +599,6 @@ if (inputImage && URL) {
 						$('.low-res-warning-indicator').removeClass('visible')
 					}
 				}
-				console.log('okk', width)
 				image.src = e.target.result
 
 				window.scroll({
@@ -611,14 +606,13 @@ if (inputImage && URL) {
 					behavior: 'smooth',
 				})
 
-				//document.documentElement.style.overflow = 'hidden'
+				document.documentElement.style.overflow = 'hidden'
 			}
 
 			reader.readAsDataURL(file)
 
 			if (/^image\/\w+/.test(file.type)) {
 				uploadedImageType = file.type
-				uploadedImageName = file.name
 
 				if (uploadedImageURL) {
 					URL.revokeObjectURL(uploadedImageURL)
@@ -664,7 +658,6 @@ if (inputImage && URL) {
 
 				$('.cross-cropper').show()
 
-				console.log('asdas', image)
 				cropper = new Cropper(image, options)
 				inputImage.value = null
 			} else {
@@ -862,6 +855,47 @@ function moveMagnifier(e, img, glass, w, h, x, y, zoom) {
 //   y = y - window.pageYOffset;
 //   return {x : x, y : y};
 // }
+
+function displayCropperErrorPopup(
+	heading,
+	text,
+	type = 'error',
+	trigger = null
+) {
+	$('.hype-cropper-popup__body')
+		.find('h3')
+		.text(heading)
+		.parent()
+		.find('p')
+		.text(text)
+		.parent()
+		.attr('class', 'hype-cropper-popup__body ' + type)
+
+	if (type == 'error') {
+		$('.hype-cropper-popup__foot').html(
+			'<button class="btn btn--tertiary btn--black" data-close-cropper-popup>Cancel</button><button class="btn" data-reset-cropper>Delete</button>'
+		)
+	} else {
+		let attr = 'data-close-cropper-popup'
+
+		if (trigger) attr = attr + '="' + trigger + '"'
+
+		$('.hype-cropper-popup__foot').html(
+			'<button class="btn btn btn--tertiary" ' +
+				attr +
+				' data-reset-cropper>Close</button>'
+		)
+	}
+
+	$('.hype-cropper-popup-wrapper').fadeIn({
+		duration: 'slow',
+		start: function () {
+			$(this).css('display', 'grid')
+		},
+	})
+
+	return
+}
 
 // canvas function
 function useCanvas(el, image, callback) {

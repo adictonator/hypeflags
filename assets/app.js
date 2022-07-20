@@ -120,8 +120,7 @@ function CustomFlag() {
       $('.hype-cropper-wrapper').fadeIn({
         duration: 'slow',
         start: function start() {
-          $(this).css('display', 'grid'); //                              $('.hype-cropper__body--image').css('visibility', 'hidden')
-
+          $(this).css('display', 'grid');
           $('<div id="custom-loader-buffer" style="z-index: 9999; position: absolute"></div>').insertBefore('.hype-cropper__body--image');
         },
         complete: function complete() {
@@ -957,9 +956,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
 
-(0,_SwiperSliders__WEBPACK_IMPORTED_MODULE_4__["default"])(); //CartLogic()
-//QuantityLogic()
-//CustomFlag()
+(0,_SwiperSliders__WEBPACK_IMPORTED_MODULE_4__["default"])();
+(0,_CartLogic__WEBPACK_IMPORTED_MODULE_2__["default"])();
+(0,_QuantityLogic__WEBPACK_IMPORTED_MODULE_3__["default"])(); //CustomFlag()
 
 (_document$getElementB = document.getElementById('tweet-inspiration')) === null || _document$getElementB === void 0 ? void 0 : _document$getElementB.addEventListener('click', function (event) {
   return (0,_TwitterInspiration__WEBPACK_IMPORTED_MODULE_0__.TwitterInspiration)(event);
