@@ -1,4 +1,5 @@
 module.exports = {
+	cdnURL: 'https://cdn.shopify.com/s/files/1/0254/3868/3184/t/68/',
 	content: [
 		'./sections/*.liquid',
 		'./templates/*.liquid',
@@ -17,14 +18,13 @@ module.exports = {
 				'ping-slow': 'ping 1.5s infinite',
 			},
 			backgroundImage: {
-				tick: 'url(/assets/tick.svg)',
-				'success-tick': 'url(/assets/success-tick.svg)',
-				'exclamation-icon': 'url(/assets/exclamation.svg)',
-				grommet:
-					'url(https://cdn.shopify.com/s/files/1/0254/3868/3184/t/68/assets/grommet.svg)',
-				'twitter-verified': 'url(/assets/twitter-verified.svg)',
-				'warn-icon': 'url(/assets/warn.svg)',
-				'red-warn-icon': 'url(/assets/warn-red.svg)',
+				tick: `url(${this.cdnURL}assets/tick.svg)`,
+				'success-tick': `url(${this.cdnURL}assets/success-tick.svg)`,
+				'exclamation-icon': `url(${this.cdnURL}assets/exclamation.svg)`,
+				grommet: `url(${this.cdnURL}assets/grommet.svg)`,
+				'twitter-verified': `url(${this.cdnURL}assets/twitter-verified.svg)`,
+				'warn-icon': `url(${this.cdnURL}assets/warn.svg)`,
+				'red-warn-icon': `url(${this.cdnURL}assets/warn-red.svg)`,
 			},
 			colors: {
 				'brand-red': '#D5003A',
