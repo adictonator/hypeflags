@@ -104,6 +104,9 @@ document
 
 		document
 			.querySelector('[data-mobile-nav]')
+			.classList.toggle('invisible')
+		document
+			.querySelector('[data-mobile-nav]')
 			.classList.toggle('-translate-y-full')
 		document
 			.querySelector('[data-mobile-nav]')

@@ -1064,6 +1064,7 @@ function updateUploadImageText(width) {
 (_document$querySelect6 = document.querySelector('[data-mobile-menu-toggle]')) === null || _document$querySelect6 === void 0 ? void 0 : _document$querySelect6.addEventListener('click', function (e) {
   document.querySelector('.icon-hamburger').classList.toggle('hidden');
   document.querySelector('.icon-close').classList.toggle('hidden');
+  document.querySelector('[data-mobile-nav]').classList.toggle('invisible');
   document.querySelector('[data-mobile-nav]').classList.toggle('-translate-y-full');
   document.querySelector('[data-mobile-nav]').classList.toggle('translate-y-[75px]'); //document.querySelector('[data-mobile-nav]').classList.remove('')
 });
