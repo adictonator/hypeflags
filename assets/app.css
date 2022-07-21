@@ -2125,6 +2125,10 @@ input[type="number"] {
     margin-top: 1.25rem;
   }
 
+  .lg\:min-h-\[500px\] {
+    min-height: 500px;
+  }
+
   .lg\:max-w-3xl {
     max-width: 48rem;
   }
