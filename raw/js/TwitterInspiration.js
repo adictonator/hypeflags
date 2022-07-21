@@ -25,7 +25,9 @@ export function UpdateTweetScreen(event) {
 	document
 		.querySelector('[data-tweet-url')
 		.classList.remove('after:bg-success-tick', 'after:bg-exclamation-icon')
-	$('.product-single__photos').append('<div id="custom-loader-buffer"></div>')
+	$('.product-single__photos').append(
+		'<div id="custom-loader-buffer" class="bg-stone-100"></div>'
+	)
 
 	document.querySelector("[name='add']")?.setAttribute('disabled', 'disabled')
 
@@ -229,18 +231,47 @@ function updateTweetContent(tweetData) {
 }
 
 export function resizing() {
-	//jQuery('[data-twitter-flag]').fitText()
+	var outerDiv = $('[data-twitter-flag] .inner')
+	var outerDivJS = document.querySelector('[data-twitter-flag] .inner')
+	var innerDiv = document.querySelector('[data-twitter-flag] .more-inner')
+	const computedStyle = getComputedStyle(outerDivJS)
+	let elementHeight = outerDivJS.clientHeight
+	let elementWidth = outerDivJS.clientWidth
 
-	var outerDiv = $('[data-twitter-flag]')
+	elementHeight -=
+		parseFloat(computedStyle.paddingTop) +
+		parseFloat(computedStyle.paddingBottom)
+	elementWidth -=
+		parseFloat(computedStyle.paddingLeft) +
+		parseFloat(computedStyle.paddingRight)
+
+	const computedStyleInner = getComputedStyle(innerDiv)
+	let elementHeightIn = innerDiv.clientHeight
+	let elementWidthIn = innerDiv.clientWidth
+
+	elementHeightIn -=
+		parseFloat(computedStyleInner.paddingTop) +
+		parseFloat(computedStyleInner.paddingBottom)
+	elementWidthIn -=
+		parseFloat(computedStyleInner.paddingLeft) +
+		parseFloat(computedStyleInner.paddingRight)
+
 	var outerDivWidth = outerDiv.outerWidth()
 	var outerDivHeight = outerDiv.outerHeight()
-	var scaleDiv = $('[data-twitter-flag] .inner')
+	var scaleDiv = $('[data-twitter-flag] .more-inner')
 	var scaleDivWidth = scaleDiv.outerWidth()
 	var scaleDivHeight = scaleDiv.outerHeight()
 	var scale
-	scale = Math.min(479 / scaleDivWidth, 246 / scaleDivHeight)
+	//scale = Math.min(
+	//	outerDivWidth / scaleDivWidth,
+	//	outerDivHeight / scaleDivHeight
+	//)
+	scale = Math.min(
+		elementWidth / elementWidthIn,
+		elementHeight / elementHeightIn
+	)
 
-	if (scale >= 0.9) {
+	if (scale > 1) {
 		scale = 1
 	}
 

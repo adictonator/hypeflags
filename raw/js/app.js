@@ -72,6 +72,8 @@ onresize = (event) => {
 	const width = event.target.outerWidth
 
 	updateUploadImageText(width)
+
+	resizing()
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {

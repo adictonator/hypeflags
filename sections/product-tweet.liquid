@@ -13,11 +13,11 @@ current_variant.price -%}
 >
 	<div class="product-single">
 		<div
-			class="product-single__photos relative flex aspect-square items-center justify-center rounded-md bg-stone-100 p-7"
+			class="product-single__photos relative flex aspect-square flex-col items-center justify-end rounded-md bg-stone-100 px-5"
 		>
 			<div
 				data-twitter-flag
-				class="absolute flex aspect-[5/3] max-h-[310px] w-full max-w-[543px] select-none items-center justify-center overflow-hidden bg-white p-8 font-tweet text-sm font-normal shadow-lg dark:bg-[#17202a]"
+				class="relative flex aspect-[5/3] w-full select-none items-center justify-center overflow-hidden bg-white font-tweet text-sm font-normal shadow-lg dark:bg-[#17202a] md:p-5 lg:p-8"
 			>
 				<span
 					class="before:absolute before:top-2 before:left-2 before:block before:h-2.5 before:w-2.5 before:bg-grommet after:absolute after:top-2 after:right-2 after:block after:h-2.5 after:w-2.5 after:bg-grommet"
@@ -27,101 +27,119 @@ current_variant.price -%}
 					class="before:absolute before:bottom-2 before:left-2 before:block before:h-2.5 before:w-2.5 before:bg-grommet after:absolute after:bottom-2 after:right-2 after:block after:h-2.5 after:w-2.5 after:bg-grommet"
 					data-html2canvas-ignore
 				></span>
-				<div class="inner">
-					<div class="flex items-center gap-x-1.5">
-						<div>
-							<img
-								data-t-user-avatar
-								src="#"
-								alt="pfp"
-								class="h-12 w-12 rounded-full object-cover"
-							/>
+				<div
+					class="inner absolute flex h-full w-full items-center justify-center p-5"
+				>
+					<div class="more-inner w-[461px] min-w-[461px]">
+						<div class="flex items-center gap-x-1.5">
+							<div>
+								<img
+									data-t-user-avatar
+									src="#"
+									alt="pfp"
+									class="h-12 w-12 rounded-full object-cover"
+								/>
+							</div>
+							<div class="flex flex-col">
+								<span
+									class="flex items-center gap-x-1.5 font-bold after:hidden after:h-5 after:w-5 after:bg-twitter-verified dark:text-white"
+									data-t-user-name
+									>HypeFlags</span
+								>
+								<span
+									class="text-twitter-gray dark:text-twitter-lightgray"
+									data-t-user-handle
+									>@HypeFlags</span
+								>
+							</div>
 						</div>
-						<div class="flex flex-col">
-							<span
-								class="flex items-center justify-between gap-x-1.5 font-bold after:hidden after:h-5 after:w-5 after:bg-twitter-verified dark:text-white"
-								data-t-user-name
-								>HypeFlags</span
-							>
-							<span
-								class="text-twitter-gray dark:text-twitter-lightgray"
-								data-t-user-handle
-								>@HypeFlags</span
+						<p
+							data-t-text
+							class="my-4 text-2xl font-normal text-black dark:text-white"
+						>
+							Lorem ipsum dolor sit amet consectetur, adipisicing
+							elit. Provident, commodi.
+						</p>
+						<div
+							class="flex items-center gap-x-1 text-twitter-gray dark:text-twitter-lightgray"
+						>
+							<time data-t-time>6:24 AM</time> &sdot;
+							<time data-t-date>January 3, 2021</time> &sdot;
+							<span data-t-device class="text-twitter-blue"
+								>Twitter for iPhone</span
 							>
 						</div>
-					</div>
-					<p
-						data-t-text
-						class="my-4 text-2xl font-normal text-black dark:text-white"
-					>
-						Lorem ipsum dolor sit amet consectetur, adipisicing
-						elit. Provident, commodi.
-					</p>
-					<div
-						class="flex items-center gap-x-1 text-twitter-gray dark:text-twitter-lightgray"
-					>
-						<time data-t-time>6:24 AM</time> &sdot;
-						<time data-t-date>January 3, 2021</time> &sdot;
-						<span data-t-device class="text-twitter-blue"
-							>Twitter for iPhone</span
+						<div
+							class="mt-4 flex items-center gap-x-5 border-t border-b border-[#ebeef0] py-4 px-1.5 text-sm text-twitter-gray dark:border-[#2f3336]"
 						>
-					</div>
-					<div
-						class="mt-4 flex items-center gap-x-5 border-t border-b border-[#ebeef0] py-4 px-1.5 text-sm text-twitter-gray dark:border-[#2f3336]"
-					>
-						<span class="font-normal dark:text-twitter-lightgray">
-							<strong
-								data-t-retweets
-								class="mr-1 text-black dark:text-white"
-								>0</strong
+							<span
+								class="font-normal dark:text-twitter-lightgray"
 							>
-							Retweets
-						</span>
-						<span
-							class="mr-1.5 font-normal dark:text-twitter-lightgray"
+								<strong
+									data-t-retweets
+									class="mr-1 text-black dark:text-white"
+									>0</strong
+								>
+								Retweets
+							</span>
+							<span
+								class="mr-1.5 font-normal dark:text-twitter-lightgray"
+							>
+								<strong
+									data-t-likes
+									class="mr-1 text-black dark:text-white"
+									>9</strong
+								>
+								Likes
+							</span>
+						</div>
+						<div
+							class="mt-3 flex items-center justify-around text-twitter-gray dark:text-twitter-lightgray"
 						>
-							<strong
-								data-t-likes
-								class="mr-1 text-black dark:text-white"
-								>9</strong
+							<svg
+								viewBox="0 0 24 24"
+								class="h-5 w-5 fill-current"
 							>
-							Likes
-						</span>
-					</div>
-					<div
-						class="mt-3 flex items-center justify-around text-twitter-gray dark:text-twitter-lightgray"
-					>
-						<svg viewBox="0 0 24 24" class="h-5 w-5 fill-current">
-							<g>
-								<path
-									d="M14.046 2.242l-4.148-.01h-.002c-4.374 0-7.8 3.427-7.8 7.802 0 4.098 3.186 7.206 7.465 7.37v3.828c0 .108.044.286.12.403.142.225.384.347.632.347.138 0 .277-.038.402-.118.264-.168 6.473-4.14 8.088-5.506 1.902-1.61 3.04-3.97 3.043-6.312v-.017c-.006-4.367-3.43-7.787-7.8-7.788zm3.787 12.972c-1.134.96-4.862 3.405-6.772 4.643V16.67c0-.414-.335-.75-.75-.75h-.396c-3.66 0-6.318-2.476-6.318-5.886 0-3.534 2.768-6.302 6.3-6.302l4.147.01h.002c3.532 0 6.3 2.766 6.302 6.296-.003 1.91-.942 3.844-2.514 5.176z"
-								></path>
-							</g>
-						</svg>
-						<svg viewBox="0 0 24 24" class="h-5 w-5 fill-current">
-							<g>
-								<path
-									d="M23.77 15.67c-.292-.293-.767-.293-1.06 0l-2.22 2.22V7.65c0-2.068-1.683-3.75-3.75-3.75h-5.85c-.414 0-.75.336-.75.75s.336.75.75.75h5.85c1.24 0 2.25 1.01 2.25 2.25v10.24l-2.22-2.22c-.293-.293-.768-.293-1.06 0s-.294.768 0 1.06l3.5 3.5c.145.147.337.22.53.22s.383-.072.53-.22l3.5-3.5c.294-.292.294-.767 0-1.06zm-10.66 3.28H7.26c-1.24 0-2.25-1.01-2.25-2.25V6.46l2.22 2.22c.148.147.34.22.532.22s.384-.073.53-.22c.293-.293.293-.768 0-1.06l-3.5-3.5c-.293-.294-.768-.294-1.06 0l-3.5 3.5c-.294.292-.294.767 0 1.06s.767.293 1.06 0l2.22-2.22V16.7c0 2.068 1.683 3.75 3.75 3.75h5.85c.414 0 .75-.336.75-.75s-.337-.75-.75-.75z"
-								></path>
-							</g>
-						</svg>
-						<svg viewBox="0 0 24 24" class="h-5 w-5 fill-current">
-							<g>
-								<path
-									d="M12 21.638h-.014C9.403 21.59 1.95 14.856 1.95 8.478c0-3.064 2.525-5.754 5.403-5.754 2.29 0 3.83 1.58 4.646 2.73.814-1.148 2.354-2.73 4.645-2.73 2.88 0 5.404 2.69 5.404 5.755 0 6.376-7.454 13.11-10.037 13.157H12zM7.354 4.225c-2.08 0-3.903 1.988-3.903 4.255 0 5.74 7.034 11.596 8.55 11.658 1.518-.062 8.55-5.917 8.55-11.658 0-2.267-1.823-4.255-3.903-4.255-2.528 0-3.94 2.936-3.952 2.965-.23.562-1.156.562-1.387 0-.014-.03-1.425-2.965-3.954-2.965z"
-								></path>
-							</g>
-						</svg>
-						<svg class="h-5 w-5 fill-current" viewBox="0 0 24 24">
-							<g>
-								<path
-									d="M17.53 7.47l-5-5c-.293-.293-.768-.293-1.06 0l-5 5c-.294.293-.294.768 0 1.06s.767.294 1.06 0l3.72-3.72V15c0 .414.336.75.75.75s.75-.336.75-.75V4.81l3.72 3.72c.146.147.338.22.53.22s.384-.072.53-.22c.293-.293.293-.767 0-1.06z"
-								></path>
-								<path
-									d="M19.708 21.944H4.292C3.028 21.944 2 20.916 2 19.652V14c0-.414.336-.75.75-.75s.75.336.75.75v5.652c0 .437.355.792.792.792h15.416c.437 0 .792-.355.792-.792V14c0-.414.336-.75.75-.75s.75.336.75.75v5.652c0 1.264-1.028 2.292-2.292 2.292z"
-								></path>
-							</g>
-						</svg>
+								<g>
+									<path
+										d="M14.046 2.242l-4.148-.01h-.002c-4.374 0-7.8 3.427-7.8 7.802 0 4.098 3.186 7.206 7.465 7.37v3.828c0 .108.044.286.12.403.142.225.384.347.632.347.138 0 .277-.038.402-.118.264-.168 6.473-4.14 8.088-5.506 1.902-1.61 3.04-3.97 3.043-6.312v-.017c-.006-4.367-3.43-7.787-7.8-7.788zm3.787 12.972c-1.134.96-4.862 3.405-6.772 4.643V16.67c0-.414-.335-.75-.75-.75h-.396c-3.66 0-6.318-2.476-6.318-5.886 0-3.534 2.768-6.302 6.3-6.302l4.147.01h.002c3.532 0 6.3 2.766 6.302 6.296-.003 1.91-.942 3.844-2.514 5.176z"
+									></path>
+								</g>
+							</svg>
+							<svg
+								viewBox="0 0 24 24"
+								class="h-5 w-5 fill-current"
+							>
+								<g>
+									<path
+										d="M23.77 15.67c-.292-.293-.767-.293-1.06 0l-2.22 2.22V7.65c0-2.068-1.683-3.75-3.75-3.75h-5.85c-.414 0-.75.336-.75.75s.336.75.75.75h5.85c1.24 0 2.25 1.01 2.25 2.25v10.24l-2.22-2.22c-.293-.293-.768-.293-1.06 0s-.294.768 0 1.06l3.5 3.5c.145.147.337.22.53.22s.383-.072.53-.22l3.5-3.5c.294-.292.294-.767 0-1.06zm-10.66 3.28H7.26c-1.24 0-2.25-1.01-2.25-2.25V6.46l2.22 2.22c.148.147.34.22.532.22s.384-.073.53-.22c.293-.293.293-.768 0-1.06l-3.5-3.5c-.293-.294-.768-.294-1.06 0l-3.5 3.5c-.294.292-.294.767 0 1.06s.767.293 1.06 0l2.22-2.22V16.7c0 2.068 1.683 3.75 3.75 3.75h5.85c.414 0 .75-.336.75-.75s-.337-.75-.75-.75z"
+									></path>
+								</g>
+							</svg>
+							<svg
+								viewBox="0 0 24 24"
+								class="h-5 w-5 fill-current"
+							>
+								<g>
+									<path
+										d="M12 21.638h-.014C9.403 21.59 1.95 14.856 1.95 8.478c0-3.064 2.525-5.754 5.403-5.754 2.29 0 3.83 1.58 4.646 2.73.814-1.148 2.354-2.73 4.645-2.73 2.88 0 5.404 2.69 5.404 5.755 0 6.376-7.454 13.11-10.037 13.157H12zM7.354 4.225c-2.08 0-3.903 1.988-3.903 4.255 0 5.74 7.034 11.596 8.55 11.658 1.518-.062 8.55-5.917 8.55-11.658 0-2.267-1.823-4.255-3.903-4.255-2.528 0-3.94 2.936-3.952 2.965-.23.562-1.156.562-1.387 0-.014-.03-1.425-2.965-3.954-2.965z"
+									></path>
+								</g>
+							</svg>
+							<svg
+								class="h-5 w-5 fill-current"
+								viewBox="0 0 24 24"
+							>
+								<g>
+									<path
+										d="M17.53 7.47l-5-5c-.293-.293-.768-.293-1.06 0l-5 5c-.294.293-.294.768 0 1.06s.767.294 1.06 0l3.72-3.72V15c0 .414.336.75.75.75s.75-.336.75-.75V4.81l3.72 3.72c.146.147.338.22.53.22s.384-.072.53-.22c.293-.293.293-.767 0-1.06z"
+									></path>
+									<path
+										d="M19.708 21.944H4.292C3.028 21.944 2 20.916 2 19.652V14c0-.414.336-.75.75-.75s.75.336.75.75v5.652c0 .437.355.792.792.792h15.416c.437 0 .792-.355.792-.792V14c0-.414.336-.75.75-.75s.75.336.75.75v5.652c0 1.264-1.028 2.292-2.292 2.292z"
+									></path>
+								</g>
+							</svg>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -129,13 +147,13 @@ current_variant.price -%}
 			<button
 				data-edit-tweet
 				type="button"
-				class="absolute bottom-8 rounded bg-white py-3.5 px-8 text-base font-bold uppercase tracking-wide text-brand-red outline outline-brand-red duration-300 hover:bg-brand-red hover:text-white"
+				class="bottom-8 my-8 rounded bg-white py-3.5 px-8 text-sm font-bold uppercase tracking-wide text-brand-red outline outline-brand-red duration-300 hover:bg-brand-red hover:text-white md:my-6 md:py-2 md:px-5 lg:my-8 lg:py-3.5 lg:px-8 lg:text-base"
 			>
 				Edit Tweet
 			</button>
 		</div>
 
-		<div class="product-desc w-[496px]">
+		<div class="product-desc mt-3.5 px-10 sm:mt-10 md:mt-0 md:p-0">
 			{% render 'product-meta', product: product %}
 
 			<div class="mt-6">
@@ -150,12 +168,12 @@ current_variant.price -%}
 				</div>
 				<div
 					data-tweet-url
-					class="flex items-center justify-between rounded-md border border-[#e6e6e6] px-5 py-3.5 after:h-5 after:w-5 after:bg-no-repeat"
+					class="flex items-center justify-between rounded-md border border-[#e6e6e6] px-5 py-3.5 after:ml-2 after:h-5 after:w-5 after:bg-no-repeat"
 				>
 					<input
 						type="text"
 						id="tweet-url"
-						class="m-0 w-full border-none p-0 text-sm outline-none"
+						class="m-0 w-full text-ellipsis border-none p-0 text-sm outline-none"
 						placeholder="https://"
 						value="https://twitter.com/HypeFlags/status/1352056877992042497"
 						autocomplete="off"
@@ -165,7 +183,9 @@ current_variant.price -%}
 
 			<div class="mt-6">
 				<span class="font-bold">Background</span>
-				<div class="mt-4 flex items-center justify-between gap-6">
+				<div
+					class="mt-4 flex items-center justify-between gap-x-5 md:gap-x-6"
+				>
 					<div class="grow">
 						<input
 							type="radio"
@@ -222,7 +242,7 @@ current_variant.price -%}
 <!-- prettier-ignore -->
 {% schema %}
 {
-	"class": "mt-14",
+	"class": "product-page-classes",
 "name": {
 "de": "Produktseiten",
 "en": "Product pages",

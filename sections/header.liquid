@@ -113,7 +113,7 @@
 
 			<div
 				id="width-pr"
-				class="site-header__icons{% if shop.customer_accounts_enabled %} site-header__icons--plus{% endif %} w-[190px]"
+				class="site-header__icons{% if shop.customer_accounts_enabled %} site-header__icons--plus{% endif %} md:w-[190px]"
 			>
 				<div class="site-header__icons-wrapper">
 					{% if shop.customer_accounts_enabled %} {% if customer %}
@@ -136,12 +136,17 @@
 							"layout.customer.log_in" | t
 						}}</span>
 					</a>
-					{% endif %} {% endif %}
-
+					{% endif %} {% endif %} {% capture cartIconClasses %} {% if
+					cart.item_count > 0 %} before:absolute before:text-white
+					before:-right-1 before:-top-2 before:flex before:h-3.5
+					before:w-3.5 before:items-center before:justify-center
+					before:rounded-full before:bg-brand-red before:p-1
+					before:text-[10px] before:content-[attr(data-cart-count)] {%
+					endif %} {% endcapture %}
 					<a
 						href="/cart"
 						data-cart-count="{{ cart.item_count }}"
-						class="{% if cart.item_count > 0 %} before:justify-center{% endif %} relative before:absolute before:-right-1 before:-top-2 before:flex before:h-3.5 before:w-3.5 before:items-center before:rounded-full before:bg-brand-red before:p-1 before:text-[10px] before:text-white before:content-[attr(data-cart-count)]"
+						class="relative {{ cartIconClasses }}"
 					>
 						<img
 							src="{{ 'cart.svg' | asset_url }}"

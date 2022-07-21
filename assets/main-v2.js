@@ -647,7 +647,7 @@ if (inputImage && URL) {
 						//$(this).css('display', 'grid')
 						//                              $('.hype-cropper__body--image').css('visibility', 'hidden')
 						$(
-							'<div id="custom-loader-buffer" style="z-index: 9999; position: absolute"></div>'
+							'<div id="custom-loader-buffer" class="bg-stone-100" style="z-index: 9999; position: absolute"></div>'
 						).insertBefore('.hype-cropper__body--image')
 					},
 					complete: function () {

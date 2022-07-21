@@ -121,7 +121,7 @@ function CustomFlag() {
         duration: 'slow',
         start: function start() {
           $(this).css('display', 'grid');
-          $('<div id="custom-loader-buffer" style="z-index: 9999; position: absolute"></div>').insertBefore('.hype-cropper__body--image');
+          $('<div id="custom-loader-buffer" class="bg-stone-100" style="z-index: 9999; position: absolute"></div>').insertBefore('.hype-cropper__body--image');
         },
         complete: function complete() {
           $('#custom-loader-buffer').remove(); //                           $('.cropper-container.cropper-bg').css('visibility', 'visible')
@@ -571,7 +571,7 @@ function UpdateTweetScreen(event) {
 
   removeTweetError();
   document.querySelector('[data-tweet-url').classList.remove('after:bg-success-tick', 'after:bg-exclamation-icon');
-  $('.product-single__photos').append('<div id="custom-loader-buffer"></div>');
+  $('.product-single__photos').append('<div id="custom-loader-buffer" class="bg-stone-100"></div>');
   (_document$querySelect = document.querySelector("[name='add']")) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.setAttribute('disabled', 'disabled');
   var urls = event.target.value;
   var parts = urls.split('/');
@@ -732,17 +732,32 @@ function updateTweetContent(tweetData) {
 }
 
 function resizing() {
-  //jQuery('[data-twitter-flag]').fitText()
-  var outerDiv = $('[data-twitter-flag]');
+  var outerDiv = $('[data-twitter-flag] .inner');
+  var outerDivJS = document.querySelector('[data-twitter-flag] .inner');
+  var innerDiv = document.querySelector('[data-twitter-flag] .more-inner');
+  var computedStyle = getComputedStyle(outerDivJS);
+  var elementHeight = outerDivJS.clientHeight;
+  var elementWidth = outerDivJS.clientWidth;
+  elementHeight -= parseFloat(computedStyle.paddingTop) + parseFloat(computedStyle.paddingBottom);
+  elementWidth -= parseFloat(computedStyle.paddingLeft) + parseFloat(computedStyle.paddingRight);
+  var computedStyleInner = getComputedStyle(innerDiv);
+  var elementHeightIn = innerDiv.clientHeight;
+  var elementWidthIn = innerDiv.clientWidth;
+  elementHeightIn -= parseFloat(computedStyleInner.paddingTop) + parseFloat(computedStyleInner.paddingBottom);
+  elementWidthIn -= parseFloat(computedStyleInner.paddingLeft) + parseFloat(computedStyleInner.paddingRight);
   var outerDivWidth = outerDiv.outerWidth();
   var outerDivHeight = outerDiv.outerHeight();
-  var scaleDiv = $('[data-twitter-flag] .inner');
+  var scaleDiv = $('[data-twitter-flag] .more-inner');
   var scaleDivWidth = scaleDiv.outerWidth();
   var scaleDivHeight = scaleDiv.outerHeight();
-  var scale;
-  scale = Math.min(479 / scaleDivWidth, 246 / scaleDivHeight);
+  var scale; //scale = Math.min(
+  //	outerDivWidth / scaleDivWidth,
+  //	outerDivHeight / scaleDivHeight
+  //)
 
-  if (scale >= 0.9) {
+  scale = Math.min(elementWidth / elementWidthIn, elementHeight / elementHeightIn);
+
+  if (scale > 1) {
     scale = 1;
   }
 
@@ -1025,6 +1040,7 @@ document.addEventListener('DOMContentLoaded', function () {
 onresize = function onresize(event) {
   var width = event.target.outerWidth;
   updateUploadImageText(width);
+  (0,_TwitterInspiration__WEBPACK_IMPORTED_MODULE_0__.resizing)();
 };
 
 window.addEventListener('DOMContentLoaded', function (event) {

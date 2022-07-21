@@ -28,7 +28,7 @@ export default function CustomFlag() {
 				start: function () {
 					$(this).css('display', 'grid')
 					$(
-						'<div id="custom-loader-buffer" style="z-index: 9999; position: absolute"></div>'
+						'<div id="custom-loader-buffer" class="bg-stone-100" style="z-index: 9999; position: absolute"></div>'
 					).insertBefore('.hype-cropper__body--image')
 				},
 				complete: function () {

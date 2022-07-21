@@ -1,98 +1,143 @@
 {% if section.blocks.size > 0 %}
 <style>
-  td {
-   	padding: 0px;
-    padding-left: 14px;
-  }
-  th {
-    padding-bottom : 0px;
-  }
+	td {
+		padding: 0px;
+		padding-left: 14px;
+	}
+	th {
+		padding-bottom: 0px;
+	}
 </style>
-<section class="product-services-wrapper{% if product.id == 3824189505584 or product.id == 4597274214473 %} cust-falg-w{% endif %}">
-  <div class="product-template__container page-width {% if product.id == 3824189505584 or product.id == 4597274214473 %}custom-product-page__cont{% endif %}">
-    <div class="service-icon-container">
-      {% for block in section.blocks %}
-      
-      	{% if block.settings.cust_prod and product.id == 3824189505584 %}
-          <div class="service-icon-wrapper method-img-grid-feature custom-product-page">
-            <img src="{{ block.settings.icon | asset_url }}"/>
+<section
+	class="product-services-wrapper{% if product.id == 3824189505584 or product.id == 4597274214473 %} cust-falg-w{% endif %}"
+>
+	<div
+		class="product-template__container page-width {% if product.id == 3824189505584 or product.id == 4597274214473 %}custom-product-page__cont{% endif %}"
+	>
+		<div class="service-icon-container">
+			{% for block in section.blocks %} {% if block.settings.cust_prod and
+			product.id == 3824189505584 %}
+			<div
+				class="service-icon-wrapper method-img-grid-feature custom-product-page"
+			>
+				<img src="{{ block.settings.icon | asset_url }}" />
 
-            <div class="custom-service-content-wrapper">
-              {% if block.settings.url %}
-                <h4><a href="{{ block.settings.url }}">{{ block.settings.heading }}</a></h4>
-              {% else %}
-                <h4>{{ block.settings.heading }}</h4>
-              {% endif %}
-              <div style="font-size: 14px; color: #606163; text-align:center">{{ block.settings.text }}</div>
-            </div>
-          </div>
-      
-        {% elsif block.settings.cust_prod_tweet and product.id == 4597274214473 %}
-      	  <div class="service-icon-wrapper method-img-grid-feature custom-product-page custom-tweet-page">
-            <img src="{{ block.settings.icon | asset_url }}"/>
+				<div class="custom-service-content-wrapper">
+					{% if block.settings.url %}
+					<h4>
+						<a href="{{ block.settings.url }}">{{
+							block.settings.heading
+						}}</a>
+					</h4>
+					{% else %}
+					<h4>{{ block.settings.heading }}</h4>
+					{% endif %}
+					<div
+						style="
+							font-size: 14px;
+							color: #606163;
+							text-align: center;
+						"
+					>
+						{{ block.settings.text }}
+					</div>
+				</div>
+			</div>
 
-            <div class="custom-service-content-wrapper">
-              {% if block.settings.url %}
-                <h4><a href="{{ block.settings.url }}">{{ block.settings.heading }}</a></h4>
-              {% else %}
-                <h4>{{ block.settings.heading }}</h4>
-              {% endif %}
-              <div style="font-size: 14px; color: #606163; text-align:center">{{ block.settings.text }}</div>
-            </div>
-          </div>
-        {% endif %}
-      
-      	{% if product.id != 3824189505584 and product.id != 4597274214473 and block.settings.cust_prod == false and block.settings.cust_prod_tweet == false %}
-          <div class="service-icon-wrapper method-img-grid-feature">
-            <img src="{{ block.settings.icon | asset_url }}"/>
+			{% elsif block.settings.cust_prod_tweet and product.id ==
+			4597274214473 %}
+			<div
+				class="service-icon-wrapper method-img-grid-feature custom-product-page custom-tweet-page"
+			>
+				<img src="{{ block.settings.icon | asset_url }}" />
 
-            <div class="custom-service-content-wrapper">
-              {% if block.settings.url %}
-                <h4><a href="{{ block.settings.url }}">{{ block.settings.heading }}</a></h4>
-              {% else %}
-                <h4>{{ block.settings.heading }}</h4>
-              {% endif %}
-              <div style="font-size: 14px; color: #606163; text-align:center">{{ block.settings.text }}</div>
-            </div>
-          </div>
-      	{% endif %}
-      {% endfor %}
-      
-    </div>
-  </div>
-  
-  
-  <div class="product-template__text-img-wrap">
-    <div class="text-img-cont page-width">
-<!--     	<figure>
+				<div class="custom-service-content-wrapper">
+					{% if block.settings.url %}
+					<h4>
+						<a href="{{ block.settings.url }}">{{
+							block.settings.heading
+						}}</a>
+					</h4>
+					{% else %}
+					<h4>{{ block.settings.heading }}</h4>
+					{% endif %}
+					<div
+						style="
+							font-size: 14px;
+							color: #606163;
+							text-align: center;
+						"
+					>
+						{{ block.settings.text }}
+					</div>
+				</div>
+			</div>
+			{% endif %} {% if product.id != 3824189505584 and product.id !=
+			4597274214473 and block.settings.cust_prod == false and
+			block.settings.cust_prod_tweet == false %}
+			<div class="service-icon-wrapper method-img-grid-feature">
+				<img src="{{ block.settings.icon | asset_url }}" />
+
+				<div class="custom-service-content-wrapper">
+					{% if block.settings.url %}
+					<h4>
+						<a href="{{ block.settings.url }}">{{
+							block.settings.heading
+						}}</a>
+					</h4>
+					{% else %}
+					<h4>{{ block.settings.heading }}</h4>
+					{% endif %}
+					<div
+						style="
+							font-size: 14px;
+							color: #606163;
+							text-align: center;
+						"
+					>
+						{{ block.settings.text }}
+					</div>
+				</div>
+			</div>
+			{% endif %} {% endfor %}
+		</div>
+	</div>
+
+	<div class="product-template__text-img-wrap">
+		<div class="text-img-cont page-width">
+			<!--     	<figure>
           <img src="{{ 'HypeFlag-Flag.png' | asset_url }}" />
-          
+
         </figure> -->
-      	
-      <div class="text">
-        <h3>The Hype Has Arrived</h3>
-      	<p>
-          HypeFlags are made to elevate your college experience and our team is passionate about it. We are here to bring the hype and bring it strong. You won’t be disappointed.
-        </p>
-      </div>
-    </div>
-	<div class="text-img-cont page-width">
-      <div class="text">
-        <h3>Quality Over Everything</h3>
-      	<p>
-We work incredibly hard to produce the highest quality flags possible. Premium craftsmanship is our priority and every flag is made of durable and reinforced materials. 
-        </p>
-      </div>
-<!--       <figure class="cut-img-sec">
+
+			<div class="text">
+				<h3>The Hype Has Arrived</h3>
+				<p>
+					HypeFlags are made to elevate your college experience and
+					our team is passionate about it. We are here to bring the
+					hype and bring it strong. You won’t be disappointed.
+				</p>
+			</div>
+		</div>
+		<div class="text-img-cont page-width">
+			<div class="text">
+				<h3>Quality Over Everything</h3>
+				<p>
+					We work incredibly hard to produce the highest quality flags
+					possible. Premium craftsmanship is our priority and every
+					flag is made of durable and reinforced materials.
+				</p>
+			</div>
+			<!--       <figure class="cut-img-sec">
       	<img src="{{ 'product-2-clip.png' | asset_url }}" />
       </figure> -->
-    </div>
-  </div>
+		</div>
+	</div>
 </section>
-
 
 {% endif %}
 
+<!-- prettier-ignore -->
 {% schema %}
   {
     "name": "Product Services Section",
