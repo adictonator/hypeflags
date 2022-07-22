@@ -17,18 +17,24 @@
 
 			<div
 				data-temp-wrapper
-				class="mt-6 hidden items-center gap-x-4 rounded-md border border-green-800 bg-green-50/60 px-6 py-7"
+				class="mt-5 hidden items-center gap-x-3 rounded border border-green-800 bg-green-50/60 px-6 py-5 duration-300 ease-in-out sm:gap-x-4 md:mt-4 md:py-7 md:px-6 lg:mt-5 lg:gap-x-4 xl:mt-6"
 			>
 				<img
 					src="#"
-					class="h-20 w-20 rounded-lg object-cover"
+					class="h-14 w-14 shrink-0 rounded-lg object-cover sm:h-20 sm:w-20 md:h-14 md:w-14 lg:h-16 lg:w-16 xl:h-20 xl:w-20"
 					alt="tmp"
 					data-temp-preview
 				/>
-				<div class="flex grow items-center justify-between">
-					<div class="flex flex-col">
-						<span data-tmp-file-name>Something Here</span>
-						<span class="text-sm text-[#606163]"
+				<div
+					class="flex grow items-center justify-between gap-x-1 overflow-hidden"
+				>
+					<div class="flex min-w-0 flex-col">
+						<span
+							data-tmp-file-name
+							class="overflow-hidden text-ellipsis whitespace-nowrap text-sm"
+							>Something Here</span
+						>
+						<span class="text-xs text-[#606163]"
 							>File uploaded successfully (<span
 								data-tmp-file-size
 								>5.7</span
@@ -218,7 +224,7 @@
 "id": "show_quantity_selector",
 "label": {
 "de": "Quantitäts-Auswahl anzeigen",
-"en": "Show quantity selector",
+"en": "Show quantity selector"
 },
 "default": false
 },
@@ -243,7 +249,7 @@
 "id": "show_variant_labels",
 "label": {
 "de": "Varianten-Etiketten anzeigen",
-"en": "Show variant labels",
+"en": "Show variant labels"
 },
 "default": true
 },
@@ -252,7 +258,7 @@
 "id": "show_vendor",
 "label": {
 "de": "Lieferanten anzeigen",
-"en": "Show vendor",
+"en": "Show vendor"
 },
 "default": false
 },
@@ -261,7 +267,7 @@
 "id": "enable_zoom",
 "label": {
 "de": "Foto-Zoom zulassen",
-"en": "Enable image zoom",
+"en": "Enable image zoom"
 },
 "default": true
 },
@@ -270,7 +276,7 @@
 "id": "enable_payment_button",
 "label": {
 "de": "Dynamischen Checkout Button anzeigen",
-"en": "Show dynamic checkout button",
+"en": "Show dynamic checkout button"
 },
 "default": true
 },
@@ -279,7 +285,7 @@
 "id": "show_share_buttons",
 "label": {
 "de": "Buttons für Social Media anzeigen",
-"en": "Show social sharing buttons",
+"en": "Show social sharing buttons"
 },
 "default": true
 }
