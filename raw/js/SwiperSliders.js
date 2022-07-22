@@ -1,6 +1,6 @@
-import Swiper, { Navigation, Pagination } from 'swiper'
+import Swiper, { Navigation, Pagination, Thumbs } from 'swiper'
 import 'swiper/css'
-import 'swiper/css/navigation'
+import 'swiper/css/thumbs'
 import 'swiper/css/pagination'
 
 export default function Swipers() {
@@ -16,7 +16,7 @@ export default function Swipers() {
 	})
 
 	const singleProduct = new Swiper('.product-single-gallery', {
-		modules: [Navigation, Pagination],
+		modules: [Thumbs, Pagination],
 		slidesPerView: 1,
 		spaceBetween: 0,
 		autoHeight: false,

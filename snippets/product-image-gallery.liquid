@@ -3,8 +3,7 @@
 >
 	<div class="slider-wrapper">
 		<div
-			class="main_product_slider _mhh swiper product-single-gallery"
-			style="position: relative; height: auto"
+			class="main_product_slider _mhh swiper product-single-gallery relative h-auto overflow-hidden rounded-md"
 		>
 			<div class="skeleton-loader-cust"></div>
 
@@ -12,10 +11,7 @@
 
 			<div class="swiper-wrapper">
 				{% for image in product.images %}
-				<div
-					class="slider-for__item ex1 swiper-slide"
-					data-src="{{ image.src | product_img_url: 'master' }}"
-				>
+				<div class="swiper-slide">
 					<img
 						data-index="{{ forloop.index }}"
 						src="{{ image.src | product_img_url: '900x' }}"

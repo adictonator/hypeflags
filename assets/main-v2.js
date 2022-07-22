@@ -147,7 +147,6 @@ if (typeof document.createElement('cropper').style.transition === 'undefined') {
 
 // Methods
 
-//     document.querySelectorAll('[data-method]').onclick = function(event) {
 $('body').on('click', '[data-method]', function (event) {
 	var e = event || window.event
 	var target = e.target || e.srcElement
@@ -273,9 +272,6 @@ $('body').on('click', '[data-method]', function (event) {
 					//	.append('<div id="custom-loader-buffer"></div>')
 
 					img.onload = function () {
-						//                             can.width = width_C;
-						//                             can.height = height_C;
-
 						var x = $('.img-container').attr('x')
 						var y = $('.img-container').attr('y')
 						ctx.fillStyle = Color
@@ -300,10 +296,10 @@ $('body').on('click', '[data-method]', function (event) {
 							'img[data-index="1"]'
 						)
 						sliderImage.setAttribute('src', base_64)
-						sliderImage.style.maxWidth = '543px'
+						//sliderImage.style.maxWidth = '543px'
 
 						const canvasContainer = sliderImage.parentElement
-						canvasContainer?.classList.add(
+						canvasContainer.classList.add(
 							'flex',
 							'justify-center',
 							'items-center',
@@ -312,7 +308,12 @@ $('body').on('click', '[data-method]', function (event) {
 						canvasContainer.style.height = 'auto'
 
 						const dummyWrap = document.createElement('div')
-						dummyWrap.classList.add('relative', 'custom-gromm')
+						dummyWrap.classList.add(
+							'relative',
+							'custom-gromm',
+							'sm:m-5',
+							'm-4'
+						)
 						dummyWrap.appendChild(sliderImage)
 						dummyWrap.classList.add('shadow-lg')
 						canvasContainer?.appendChild(dummyWrap)
