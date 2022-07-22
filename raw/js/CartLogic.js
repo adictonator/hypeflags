@@ -44,8 +44,10 @@ export default function CartLogic() {
 		)
 		const modalBody = document.createElement('div')
 		modalBody.classList.add(
-			'p-5',
-			'max-w-[600px]',
+			'p-3',
+			'md:p-5',
+			'max-w-xs',
+			'sm:max-w-[600px]',
 			'w-full',
 			'bg-white',
 			'flex',
@@ -59,7 +61,7 @@ export default function CartLogic() {
 		const closePreviewBtn = document.createElement('button')
 		closePreviewBtn.innerHTML = 'Close Preview'
 		closePreviewBtn.type = 'button'
-		closePreviewBtn.classList.add('primary-btn', 'mt-5')
+		closePreviewBtn.classList.add('primary-btn', 'sm:mt-5', 'mt-3')
 		closePreviewBtn.setAttribute('data-close', 'close')
 		closePreviewBtn.onclick = () => {
 			closePreview()

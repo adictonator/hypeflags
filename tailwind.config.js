@@ -25,8 +25,6 @@ module.exports = {
 					'url(https://cdn.shopify.com/s/files/1/0254/3868/3184/t/68/assets/exclamation.svg)',
 				grommet:
 					'url(https://cdn.shopify.com/s/files/1/0254/3868/3184/t/68/assets/grommet.svg)',
-				'twitter-verified':
-					'url(https://cdn.shopify.com/s/files/1/0254/3868/3184/t/68/assets/twitter-verified.svg)',
 				'warn-icon':
 					'url(https://cdn.shopify.com/s/files/1/0254/3868/3184/t/68/assets/warn.svg)',
 				'red-warn-icon':

@@ -46,11 +46,11 @@ function CartLogic() {
     modal.setAttribute('data-modal-custom', '');
     modal.classList.add('fixed', 'inset-0', 'bg-black/70', 'z-50', 'flex', 'items-center', 'justify-center', 'h-screen');
     var modalBody = document.createElement('div');
-    modalBody.classList.add('p-5', 'max-w-[600px]', 'w-full', 'bg-white', 'flex', 'items-center', 'flex-col', 'justify-center', 'rounded-lg', 'shadow-lg');
+    modalBody.classList.add('p-3', 'md:p-5', 'max-w-xs', 'sm:max-w-[600px]', 'w-full', 'bg-white', 'flex', 'items-center', 'flex-col', 'justify-center', 'rounded-lg', 'shadow-lg');
     var closePreviewBtn = document.createElement('button');
     closePreviewBtn.innerHTML = 'Close Preview';
     closePreviewBtn.type = 'button';
-    closePreviewBtn.classList.add('primary-btn', 'mt-5');
+    closePreviewBtn.classList.add('primary-btn', 'sm:mt-5', 'mt-3');
     closePreviewBtn.setAttribute('data-close', 'close');
 
     closePreviewBtn.onclick = function () {
@@ -683,12 +683,13 @@ function updateTweetContent(tweetData) {
 
   (_document$querySelect2 = document.querySelector('[data-t-user-avatar]')) === null || _document$querySelect2 === void 0 ? void 0 : _document$querySelect2.setAttribute('src', data.user.profile_image_url_https); // Update user name.
 
-  updateElements('[data-t-user-name]', data.user.name);
-
   if (data.user.verified) {
-    document.querySelector('[data-t-user-name]').classList.remove('after:hidden');
+    document.querySelector('[data-t-user-name] svg').classList.remove('hidden');
+  } else {
+    document.querySelector('[data-t-user-name] svg').classList.add('hidden');
   }
 
+  document.querySelector('[data-t-user-name]').firstChild.nodeValue = data.user.name;
   updateElements('[data-t-user-handle]', '@' + data.user.screen_name);
   var tweetBody = formatText(data.text);
 
@@ -750,11 +751,7 @@ function resizing() {
   var scaleDiv = $('[data-twitter-flag] .more-inner');
   var scaleDivWidth = scaleDiv.outerWidth();
   var scaleDivHeight = scaleDiv.outerHeight();
-  var scale; //scale = Math.min(
-  //	outerDivWidth / scaleDivWidth,
-  //	outerDivHeight / scaleDivHeight
-  //)
-
+  var scale;
   scale = Math.min(elementWidth / elementWidthIn, elementHeight / elementHeightIn);
 
   if (scale > 1) {
@@ -762,7 +759,8 @@ function resizing() {
   }
 
   scaleDiv.css({
-    transform: 'scale(' + scale + ')'
+    transform: 'scale(' + scale + ')',
+    'transform-origin': 'center left'
   });
 }
 /**
@@ -810,8 +808,7 @@ function showTweetEditor(event) {
   var _document$querySelect7, _twitterElm$querySele;
 
   var elm = document.querySelector('[data-tweet-editor-modal]');
-  elm === null || elm === void 0 ? void 0 : elm.classList.remove('hidden');
-  elm === null || elm === void 0 ? void 0 : elm.classList.add('flex');
+  document.body.appendChild(elm);
   var body = document.querySelector('[data-tweet-editor]');
   var twitterElm = (_document$querySelect7 = document.querySelector('[data-twitter-flag]')) === null || _document$querySelect7 === void 0 ? void 0 : _document$querySelect7.cloneNode(true);
 
@@ -824,9 +821,40 @@ function showTweetEditor(event) {
   twitterElm === null || twitterElm === void 0 ? void 0 : twitterElm.removeAttribute('data-twitter-flag');
   twitterElm.setAttribute('data-cloned-tweet', true);
   (_twitterElm$querySele = twitterElm.querySelector('[data-t-text]')) === null || _twitterElm$querySele === void 0 ? void 0 : _twitterElm$querySele.setAttribute('contentEditable', true);
+  twitterElm.querySelector('[data-t-text]').addEventListener('keydown', function () {
+    //resizing()
+    console.log('working hee');
+  });
   setTimeout(function () {
+    elm === null || elm === void 0 ? void 0 : elm.classList.remove('invisible', 'opacity-0'); //elm?.classList.add('flex')
+
     twitterElm.querySelector('[data-t-text]').focus();
   }, 0);
+  setTimeout(function () {
+    // Resizing modal one.
+    var outerDivJS = twitterElm.querySelector('.inner');
+    var innerDiv = twitterElm.querySelector('.more-inner');
+    var computedStyle = getComputedStyle(outerDivJS);
+    var elementHeight = outerDivJS.clientHeight;
+    var elementWidth = outerDivJS.clientWidth;
+    elementHeight -= parseFloat(computedStyle.paddingTop) + parseFloat(computedStyle.paddingBottom);
+    elementWidth -= parseFloat(computedStyle.paddingLeft) + parseFloat(computedStyle.paddingRight);
+    var computedStyleInner = getComputedStyle(innerDiv);
+    var elementHeightIn = innerDiv.clientHeight;
+    var elementWidthIn = innerDiv.clientWidth;
+    elementHeightIn -= parseFloat(computedStyleInner.paddingTop) + parseFloat(computedStyleInner.paddingBottom);
+    elementWidthIn -= parseFloat(computedStyleInner.paddingLeft) + parseFloat(computedStyleInner.paddingRight);
+    var scaleDiv = twitterElm.querySelector('.more-inner');
+    var scale;
+    scale = Math.min(elementWidth / elementWidthIn, elementHeight / elementHeightIn);
+
+    if (scale > 1) {
+      scale = 1;
+    }
+
+    scaleDiv.style.transform = 'scale(' + scale + ')';
+    scaleDiv.style.transforOrigin = 'center left';
+  }, 100);
   body.innerHTML = '';
   body === null || body === void 0 ? void 0 : body.appendChild(twitterElm); // Create a popup window.
   // Show the tweet in that window.
@@ -844,8 +872,7 @@ function confirmTweetEditing(e) {
 }
 function hideTweetEditor() {
   var elm = document.querySelector('[data-tweet-editor-modal]');
-  elm === null || elm === void 0 ? void 0 : elm.classList.add('hidden');
-  elm === null || elm === void 0 ? void 0 : elm.classList.remove('flex');
+  elm === null || elm === void 0 ? void 0 : elm.classList.add('invisible', 'opacity-0');
 }
 
 function formatAMPM(dd) {

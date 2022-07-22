@@ -173,12 +173,16 @@ function updateTweetContent(tweetData) {
 		.querySelector('[data-t-user-avatar]')
 		?.setAttribute('src', data.user.profile_image_url_https)
 	// Update user name.
-	updateElements('[data-t-user-name]', data.user.name)
 	if (data.user.verified) {
 		document
-			.querySelector('[data-t-user-name]')
-			.classList.remove('after:hidden')
+			.querySelector('[data-t-user-name] svg')
+			.classList.remove('hidden')
+	} else {
+		document.querySelector('[data-t-user-name] svg').classList.add('hidden')
 	}
+
+	document.querySelector('[data-t-user-name]').firstChild.nodeValue =
+		data.user.name
 	updateElements('[data-t-user-handle]', '@' + data.user.screen_name)
 
 	let tweetBody = formatText(data.text)
@@ -262,10 +266,6 @@ export function resizing() {
 	var scaleDivWidth = scaleDiv.outerWidth()
 	var scaleDivHeight = scaleDiv.outerHeight()
 	var scale
-	//scale = Math.min(
-	//	outerDivWidth / scaleDivWidth,
-	//	outerDivHeight / scaleDivHeight
-	//)
 	scale = Math.min(
 		elementWidth / elementWidthIn,
 		elementHeight / elementHeightIn
@@ -277,6 +277,7 @@ export function resizing() {
 
 	scaleDiv.css({
 		transform: 'scale(' + scale + ')',
+		'transform-origin': 'center left',
 	})
 }
 
@@ -328,8 +329,7 @@ export function SwitchTweetTheme(event) {
 
 export function showTweetEditor(event) {
 	const elm = document.querySelector('[data-tweet-editor-modal]')
-	elm?.classList.remove('hidden')
-	elm?.classList.add('flex')
+	document.body.appendChild(elm)
 
 	const body = document.querySelector('[data-tweet-editor]')
 	const twitterElm = document
@@ -352,10 +352,60 @@ export function showTweetEditor(event) {
 	twitterElm
 		.querySelector('[data-t-text]')
 		?.setAttribute('contentEditable', true)
+	twitterElm
+		.querySelector('[data-t-text]')
+		.addEventListener('keydown', () => {
+			//resizing()
+			console.log('working hee')
+		})
 
 	setTimeout(function () {
+		elm?.classList.remove('invisible', 'opacity-0')
+		//elm?.classList.add('flex')
 		twitterElm.querySelector('[data-t-text]').focus()
 	}, 0)
+
+	setTimeout(() => {
+		// Resizing modal one.
+		var outerDivJS = twitterElm.querySelector('.inner')
+		var innerDiv = twitterElm.querySelector('.more-inner')
+		const computedStyle = getComputedStyle(outerDivJS)
+		let elementHeight = outerDivJS.clientHeight
+		let elementWidth = outerDivJS.clientWidth
+
+		elementHeight -=
+			parseFloat(computedStyle.paddingTop) +
+			parseFloat(computedStyle.paddingBottom)
+		elementWidth -=
+			parseFloat(computedStyle.paddingLeft) +
+			parseFloat(computedStyle.paddingRight)
+
+		const computedStyleInner = getComputedStyle(innerDiv)
+		let elementHeightIn = innerDiv.clientHeight
+		let elementWidthIn = innerDiv.clientWidth
+
+		elementHeightIn -=
+			parseFloat(computedStyleInner.paddingTop) +
+			parseFloat(computedStyleInner.paddingBottom)
+		elementWidthIn -=
+			parseFloat(computedStyleInner.paddingLeft) +
+			parseFloat(computedStyleInner.paddingRight)
+
+		var scaleDiv = twitterElm.querySelector('.more-inner')
+
+		var scale
+		scale = Math.min(
+			elementWidth / elementWidthIn,
+			elementHeight / elementHeightIn
+		)
+
+		if (scale > 1) {
+			scale = 1
+		}
+
+		scaleDiv.style.transform = 'scale(' + scale + ')'
+		scaleDiv.style.transforOrigin = 'center left'
+	}, 100)
 
 	body.innerHTML = ''
 	body?.appendChild(twitterElm)
@@ -383,8 +433,7 @@ export function confirmTweetEditing(e) {
 
 export function hideTweetEditor() {
 	const elm = document.querySelector('[data-tweet-editor-modal]')
-	elm?.classList.add('hidden')
-	elm?.classList.remove('flex')
+	elm?.classList.add('invisible', 'opacity-0')
 }
 
 function formatAMPM(dd) {

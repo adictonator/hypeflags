@@ -13,22 +13,22 @@ current_variant.price -%}
 >
 	<div class="product-single">
 		<div
-			class="product-single__photos relative flex aspect-square flex-col items-center justify-end rounded-md bg-stone-100 px-5"
+			class="product-single__photos relative flex aspect-square flex-col items-center justify-center rounded-md bg-stone-100 px-5"
 		>
 			<div
 				data-twitter-flag
-				class="relative flex aspect-[5/3] w-full select-none items-center justify-center bg-white font-tweet text-sm font-normal shadow-lg dark:bg-[#17202a] md:p-5 lg:p-8"
+				class="relative aspect-[5/3] w-full select-none bg-white font-tweet text-sm font-normal shadow-lg dark:bg-[#17202a]"
 			>
 				<span
-					class="before:absolute before:top-2 before:left-2 before:block before:h-2.5 before:w-2.5 before:bg-grommet after:absolute after:top-2 after:right-2 after:block after:h-2.5 after:w-2.5 after:bg-grommet"
+					class="before:absolute before:top-2 before:left-2 before:block before:h-1.5 before:w-1.5 before:bg-grommet after:absolute after:top-2 after:right-2 after:block after:h-1.5 after:w-1.5 after:bg-grommet before:sm:h-2.5 before:sm:w-2.5 after:sm:h-2.5 after:sm:w-2.5"
 					data-html2canvas-ignore
 				></span>
 				<span
-					class="before:absolute before:bottom-2 before:left-2 before:block before:h-2.5 before:w-2.5 before:bg-grommet after:absolute after:bottom-2 after:right-2 after:block after:h-2.5 after:w-2.5 after:bg-grommet"
+					class="before:absolute before:bottom-2 before:left-2 before:block before:h-1.5 before:w-1.5 before:bg-grommet after:absolute after:bottom-2 after:right-2 after:block after:h-1.5 after:w-1.5 after:bg-grommet before:sm:h-2.5 before:sm:w-2.5 after:sm:h-2.5 after:sm:w-2.5"
 					data-html2canvas-ignore
 				></span>
 				<div
-					class="inner absolute flex h-full w-full items-center justify-center p-5"
+					class="inner absolute flex h-full w-full items-center px-5 py-4 lg:px-9 lg:py-5"
 				>
 					<div class="more-inner w-[461px] min-w-[461px]">
 						<div class="flex items-center gap-x-1.5">
@@ -42,10 +42,22 @@ current_variant.price -%}
 							</div>
 							<div class="flex flex-col">
 								<span
-									class="flex items-center gap-x-1.5 font-bold after:hidden after:h-5 after:w-5 after:bg-twitter-verified dark:text-white"
+									class="flex items-center gap-x-1.5 font-bold dark:text-white"
 									data-t-user-name
-									>HypeFlags</span
-								>
+									>HypeFlags
+									<svg
+										class="hidden h-5 w-5 text-twitter-blue dark:text-white"
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<g>
+											<path
+												d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .494.083.964.237 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z"
+											></path>
+										</g>
+									</svg>
+								</span>
 								<span
 									class="text-twitter-gray dark:text-twitter-lightgray"
 									data-t-user-handle
@@ -147,7 +159,7 @@ current_variant.price -%}
 			<button
 				data-edit-tweet
 				type="button"
-				class="bottom-8 my-8 rounded bg-white py-3.5 px-8 text-sm font-bold uppercase tracking-wide text-brand-red outline outline-brand-red duration-300 hover:bg-brand-red hover:text-white md:my-6 md:py-2 md:px-5 lg:my-8 lg:py-3.5 lg:px-8 lg:text-base"
+				class="secondary-btn absolute bottom-4 w-auto sm:bottom-8 md:py-2 md:px-5 lg:py-3.5 lg:px-8"
 			>
 				Edit Tweet
 			</button>

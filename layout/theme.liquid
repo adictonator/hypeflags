@@ -193,38 +193,5 @@
 		template: template, cart: cart -%} {%- endif %}
 
 		{{ "app.js" | asset_url | script_tag }}
-
-		<div
-			data-tweet-editor-modal
-			class="fixed inset-0 z-30 hidden items-center justify-center bg-black/70"
-		>
-			<div
-				class="w-full max-w-4xl overflow-hidden rounded-md bg-white shadow-lg"
-			>
-				<div
-					class="flex items-center justify-between bg-gray-100 py-4 px-10"
-				>
-					<button
-						type="button"
-						data-cancel-edit
-						class="rounded border-2 border-black py-3 px-10 text-base font-bold uppercase tracking-wide duration-300 hover:bg-black hover:text-white"
-					>
-						Cancel
-					</button>
-					<span class="text-2xl font-bold">Edit Tweet</span>
-					<button
-						type="button"
-						data-confirm-edit
-						class="rounded border-2 border-brand-red bg-brand-red py-3 px-10 text-base font-bold uppercase tracking-wide text-white duration-300 hover:bg-white hover:text-brand-red"
-					>
-						Confirm
-					</button>
-				</div>
-				<div
-					data-tweet-editor
-					class="m-10 rounded bg-stone-100 py-8 px-20"
-				></div>
-			</div>
-		</div>
 	</body>
 </html>

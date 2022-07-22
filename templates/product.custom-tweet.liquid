@@ -21,10 +21,8 @@ section 'section-show-off-flag-twitter' %} {% section 'section-custom-flag-faq'
 		{{ "products.product.back_to_collection" | t: title:collection.title }}
 	</a>
 </div>
-{% endif %}
-
-<script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
-{% assign current_variant = product.selected_or_first_available_variant %}
+{% endif %} {% assign current_variant =
+product.selected_or_first_available_variant %}
 
 <script type="application/ld+json">
 	{
@@ -74,6 +72,8 @@ section 'section-show-off-flag-twitter' %} {% section 'section-custom-flag-faq'
 </script>
 <script src="https://custom-forms-client.acerill.com/js/custom-forms-v2.js"></script>
 <!-- END OF ACERILL CUSTOM FORMS CODE -->
+
+{% render 'tweet-flag-editor' %}
 
 <script text="text/javascript">
 	var _learnq = _learnq || []
