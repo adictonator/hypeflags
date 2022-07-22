@@ -1,11 +1,11 @@
 <div data-section-id="{{ section.id }}" data-section-type="featured-content">
   <div id="content" class="hf all-reviews-page">
-    
+
       <!-- start the custom content -->
       <div class="page-sections">
       {% for block in section.blocks %}
           {% if block.type != 'page_title' %}
-                
+
           <div class="page-section" {{ block.shopify_attributes }}>
           {% endif %}
 
@@ -19,7 +19,7 @@
                   <div class="hf-bg-img-wrap show-mb">
                   	<img src="{{ block.settings.hero_section_bg_img_mbl | img_url: '400x444' }}" />
                   </div>
-                  
+
                   <div class="hero-heading">
                     <h1>{{ block.settings.hero_section_heading | escape }}</h1>
 
@@ -27,15 +27,15 @@
                     <h5 class="hero-subheading{% if block.settings.hero_section_subheading_bold %} make-bold{% endif %}">{{ block.settings.hero_section_subheading }}</h5>
                     {% endif %}
                   </div>
-                  
+
                   {% if block.settings.hero_section_bg_tint %}
                   <div class="hero-bg-tint" style="--bg-tint:{{ block.settings.hero_section_bg_tint | color_modify: 'alpha', 0.85 }}"></div>
                   {% endif %}
-                  
+
                 </div>
-            
+
               {% when 'text' %}
-            	
+
                 <div class="hf rating-info-section def-width">
                   <div class="rating-heading">
                     <h3>{{ block.settings.rating_section_heading | escape }}</h3>
@@ -49,7 +49,7 @@
                     <img src="{{ "star.svg" | asset_url }}">
                   </div>
 
-                  <div class="rating-info-wrap">
+                  <div class="rating-info-wrap my-5 md:mt-0">
                     <div class="avg-rating-count">
                       <strong>{{ block.settings.rating_section_avg_rv_count }}</strong>
                       <p>Avg. Review</p>
@@ -62,21 +62,21 @@
                   </div>
 
                 </div>
-            
+
           {% endcase %}
-            
+
           {% if block.type != 'page_title' %}
           </div>
           {% endif %}
        {% endfor %}
-        
+
         	<div class="page-section def-width" {{ block.shopify_attributes }}>
               <div class="row">
               	<div class="hf rating-info-section judge-me">
                   <div class="rating-heading">
                     <h3>ALL HYPEFLAGS REVIEWS</h3>
                   </div>
-                  
+
                   <div class="judge-me-wrapper">
                     {% include 'judgeme_all_reviews' %}
                   </div>
