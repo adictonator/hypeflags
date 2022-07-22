@@ -691,12 +691,14 @@ function displayCropperErrorPopup(
 		)
 	}
 
-	$('.hype-cropper-popup-wrapper').fadeIn({
-		duration: 'slow',
-		start: function () {
-			$(this).css('display', 'grid')
-		},
-	})
+	$('.hype-cropper-popup-wrapper')
+		.appendTo('body')
+		.fadeIn({
+			duration: 'slow',
+			start: function () {
+				$(this).css('display', 'grid')
+			},
+		})
 
 	return
 }

@@ -332,6 +332,12 @@
 		)
 		const sliderImage = sliderContainer.querySelector('img[data-index="1"]')
 
+		document
+			.querySelector('[data-swiper-slide-index="0"]')
+			.appendChild(sliderImage)
+
+		document.querySelector('[data-swiper-slide-index="0"] div').remove()
+
 		sliderImage.src =
 			"https://cdn.shopify.com/s/files/1/0254/3868/3184/products/Custom-Flag.jpg"
 
