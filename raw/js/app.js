@@ -95,6 +95,20 @@ function updateUploadImageText(width) {
 	elm.innerHTML = uploadText
 }
 
+window.galleryLoader = (elm) => {
+	const loader = document.createElement('div')
+	loader.classList.add('bg-stone-100')
+	loader.id = 'custom-loader-buffer'
+
+	elm.appendChild(loader)
+	//console.log('www', value)
+}
+
+window.removeGalleryLoader = () => {
+	// @todo: maybe add a fade-in effect here?
+	document.getElementById('custom-loader-buffer').remove()
+}
+
 // Header
 document
 	.querySelector('[data-mobile-menu-toggle]')

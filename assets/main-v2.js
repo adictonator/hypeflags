@@ -240,6 +240,24 @@ $('body').on('click', '[data-method]', function (event) {
 
 			case 'getCroppedCanvas':
 				if (result) {
+					const sliderContainer = document.querySelector(
+						'.product-single-gallery'
+					)
+					const sliderImage = sliderContainer.querySelector(
+						'img[data-index="1"]'
+					)
+					const canvasContainer = sliderImage.parentElement
+					canvasContainer.classList.add(
+						'flex',
+						'justify-center',
+						'items-center',
+						'bg-stone-100'
+					)
+					canvasContainer.style.height = 'auto'
+
+					// Show the loader.
+					galleryLoader(sliderContainer)
+
 					var data_url = result.toDataURL()
 					var width_C = result.width
 					var height_C = result.height
@@ -252,24 +270,14 @@ $('body').on('click', '[data-method]', function (event) {
 
 					// Hide cropper modal.
 					$('.hype-cropper-wrapper').fadeOut()
-
 					const can = document.createElement('canvas')
-					//can.width = 585
-					//can.height = 300
 					const ctx = can.getContext('2d')
-
-					//var can = document.getElementById('Canvas_data')
-					var window_width = $(window).width()
 					var img = new Image()
 					img.crossOrigin = 'anonymous'
 					can.width = width_C
 					can.height = height_C
 
 					ctx.clearRect(0, 0, can.width, can.height)
-
-					//$('.main_product_slider [data-slick-index=0]')
-					//	.find('div.ex1')
-					//	.append('<div id="custom-loader-buffer"></div>')
 
 					img.onload = function () {
 						var x = $('.img-container').attr('x')
@@ -289,23 +297,7 @@ $('body').on('click', '[data-method]', function (event) {
 
 						var base_64 = can.toDataURL()
 
-						const sliderContainer = document.querySelector(
-							'.product-single-gallery'
-						)
-						const sliderImage = sliderContainer.querySelector(
-							'img[data-index="1"]'
-						)
 						sliderImage.setAttribute('src', base_64)
-						//sliderImage.style.maxWidth = '543px'
-
-						const canvasContainer = sliderImage.parentElement
-						canvasContainer.classList.add(
-							'flex',
-							'justify-center',
-							'items-center',
-							'bg-stone-100'
-						)
-						canvasContainer.style.height = 'auto'
 
 						const dummyWrap = document.createElement('div')
 						dummyWrap.classList.add(
@@ -320,134 +312,11 @@ $('body').on('click', '[data-method]', function (event) {
 
 						$("[name='add']").removeAttr('disabled')
 
-						//$('.main_product_slider [data-slick-index=0]')
-						//	.find('div.ex1')
-						//	.css('opacity', '0.3')
-						//setTimeout(function () {
-						//$(
-						//	".main_product_slider .slider-for__item img[data-index='1']"
-						//)
-						//	.parent()
-						//	.fadeIn()
-
-						//$('.main_product_slider [data-slick-index=0]')
-						//	.find('div.ex1')
-						//	.css('opacity', '1')
-
-						//$('.main_product_slider [data-slick-index=0]')
-						//	.find('div.ex1')
-						//	.find('img')
-						//	.attr({
-						//		class: 'has-new-zoom',
-						//		'data-magnify-src': '',
-						//	})
-
-						//let g = $(
-						//	'.main_product_slider [data-slick-index=0]'
-						//)
-						//	.find('div.ex1')
-						//	.find('img')
-						//	.position()
-
-						const g = document
-							.querySelector(
-								'.product-single-gallery img[data-index="1"]'
-							)
-							.getBoundingClientRect()
-
-						console.log('bouding', g)
-
-						let posBot = g.top + 5
-						let posTop = g.top + 5
-
-						if (window_width <= 750) {
-							posBot = g.top + 3
-							posTop = g.top + 3
-						}
-
-						canvasContainer.parentElement.style.setProperty(
-							'--pos-bottom',
-							posBot + 'px'
-						)
-						canvasContainer.parentElement.style.setProperty(
-							'--pos-top',
-							posTop + 'px'
-						)
-
-						//}, 1000)
-
-						//$(
-						//	".main_product_slider .slider-for__item img[data-index='1']"
-						//).css({
-						//	width: '94%',
-						//})
-						//$(
-						//	".main_product_slider .slider-for__item img[data-index='1']"
-						//)
-						//	.parent()
-						//	.css({
-						//		'background-color': '#ebebeb',
-						//	})
-
-						//var height = $(
-						//	".main_product_slider .slider-for__item img[data-index='2']"
-						//)
-						//	.parent()
-						//	.height()
-						//console.log(
-						//	$(
-						//		".main_product_slider .slider-for__item img[data-index='1']"
-						//	)
-						//		.parent()
-						//		.css({
-						//			'min-height': height + 'px',
-						//		})
-						//)
-
-						//console.log($(".slider-for__item img[data-index='1']").css({"box-shadow":"0px 4px 4px 0px rgba(0,0,0,0.27)"}));
-						//console.log(
-						//	$(
-						//		".main_product_slider .slider-for__item img[data-index='1']"
-						//	).css({
-						//		'box-shadow':
-						//			'0px 5px 12px -4px rgba(0,0,0,0.46)',
-						//	})
-						//)
-						if ($(window).width() <= 768) {
-							$(".slider-nav__item img[data-index='1']").css(
-								'width',
-								'68px'
-							)
-							$(".slider-nav__item img[data-index='1']").css(
-								'min-height',
-								'68px'
-							)
-							//                   $(".slider-nav__item img[data-index='1']").css("max-width","68px");
-							//                   $(".slider-nav__item img[data-index='1']").css("max-height","68px");
-						} else {
-							$(".slider-nav__item img[data-index='1']").css(
-								'width',
-								'100%'
-							)
-							$(".slider-nav__item img[data-index='1']").css(
-								'min-height',
-								'98px'
-							)
-							//                   $(".slider-nav__item img[data-index='1']").css("max-width","98px");
-							//                   $(".slider-nav__item img[data-index='1']").css("max-height","98px");
-						}
-
 						setTimeout(function () {
-							$('body')
-								.find('#custom-loader-buffer')
-								.fadeOut('slow', function () {
-									$(this).remove()
-								})
+							removeGalleryLoader()
 						}, 500)
 					}
 					img.src = data_url
-
-					$('.cust-flag-up-img-block').addClass('success')
 
 					window.scroll({
 						top: 0,
@@ -468,8 +337,6 @@ $('body').on('click', '[data-method]', function (event) {
 					image.src = originalImageURL
 				}
 
-				$('.cust-flag-up-img-block').removeClass('success')
-
 				break
 		}
 
@@ -481,7 +348,6 @@ $('body').on('click', '[data-method]', function (event) {
 			}
 		}
 	}
-	//};
 })
 
 // Zoom slider functionality.
@@ -555,7 +421,6 @@ if (inputImage && URL) {
 				return false
 			} else {
 				var fileType = this.files[0].type
-				//                     var validImageTypes = ["image/gif", "image/jpeg", "image/png"];
 				const validImageTypes = ['image/jpeg', 'image/png']
 
 				if ($.inArray(fileType, validImageTypes) < 0) {
@@ -645,15 +510,12 @@ if (inputImage && URL) {
 					duration: 'slow',
 					start: function () {
 						$(this).appendTo('body').css('display', 'grid')
-						//$(this).css('display', 'grid')
-						//                              $('.hype-cropper__body--image').css('visibility', 'hidden')
 						$(
 							'<div id="custom-loader-buffer" class="bg-stone-100" style="z-index: 9999; position: absolute"></div>'
 						).insertBefore('.hype-cropper__body--image')
 					},
 					complete: function () {
 						$('#custom-loader-buffer').remove()
-						//                           $('.cropper-container.cropper-bg').css('visibility', 'visible')
 					},
 				})
 
@@ -674,18 +536,6 @@ if (inputImage && URL) {
  */
 $('.hype-eye-drop').on('click touch', function (e) {
 	const workIMG = document.querySelector('.cropper-canvas img')
-
-	//     const _parent = $(this).parents('.hype-color-picker')
-	//     const _parentMob = $(this).parents('.hype-cropper-cp--mob')
-	//     const zoom = 3
-
-	//     // Get current state of the crop box.
-	//     var _cropperCache = cropper.getCropBoxData(),
-	//           imgW = document.querySelector('.hype-cropper__body--image'),
-	//           img = document.querySelector('.cropper-canvas img'),
-	//           canvas = document.getElementById('cs')
-
-	//     var glass = document.querySelector('.img-magnifier-glass')
 	var x = 0,
 		y = 0,
 		w,
@@ -714,53 +564,6 @@ $('.hype-eye-drop').on('click touch', function (e) {
 
 	_parent.addClass('eye-drop-active')
 	_parentMob.addClass('eye-drop-active')
-
-	// preview function mousemove
-	//     $('.cropper-canvas img, .img-magnifier-glass').on( 'click touchstart touchmove touchend mousemove', function(e) {
-	//       if ( 'touchstart' == e.type || 'touchmove' == e.type ) {
-	//         const touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
-	//         var elm = $(this).offset();
-	//         x = touch.pageX - elm.left;
-	//         y = touch.pageY - elm.top;
-	//       } else {
-	//         if(e.offsetX) {
-	// 		  x = e.offsetX;
-	//           y = e.offsetY;
-	//         }
-	//         else if(e.layerX) {
-	//           x = e.layerX;
-	//           y = e.layerY;
-	//         }
-	//       }
-
-	//       moveMagnifier(e, img, glass, w, h, x, y, 3)
-
-	//       useCanvas(canvas, img, function() {
-	//         const p = canvas.getContext('2d')
-	//         .getImageData(x, y, 1, 1).data;
-
-	//         const _color = rgbToHex(p[0],p[1],p[2])
-
-	//         // Set image container background color.
-	//         imgW.style.background = _color;
-
-	//         if ( 'click' == e.type || 'touchend' == e.type ) {
-	//           // Set Pickr color to the selected color.
-	//           pickr.setColor( _color )
-	//           pickrMob.setColor( _color )
-
-	//           _parent.removeClass('eye-drop-active')
-	//           _parentMob.removeClass('eye-drop-active')
-
-	//           $('.cropper-canvas').css('cursor', 'default')
-	//           $('.cropper-drag-box').css('z-index', '0')
-
-	//           // Reinitialize cropper to previous state.
-	//           cropper.crop()
-	//           cropper.setCropBoxData( _cropperCache )
-	//         }
-	//       })
-	//     })
 })
 
 $('body').on(

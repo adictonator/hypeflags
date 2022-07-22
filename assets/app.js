@@ -1062,7 +1062,19 @@ function updateUploadImageText(width) {
   }
 
   elm.innerHTML = uploadText;
-} // Header
+}
+
+window.galleryLoader = function (elm) {
+  var loader = document.createElement('div');
+  loader.classList.add('bg-stone-100');
+  loader.id = 'custom-loader-buffer';
+  elm.appendChild(loader); //console.log('www', value)
+};
+
+window.removeGalleryLoader = function () {
+  // @todo: maybe add a fade-in effect here?
+  document.getElementById('custom-loader-buffer').remove();
+}; // Header
 
 
 (_document$querySelect6 = document.querySelector('[data-mobile-menu-toggle]')) === null || _document$querySelect6 === void 0 ? void 0 : _document$querySelect6.addEventListener('click', function (e) {
