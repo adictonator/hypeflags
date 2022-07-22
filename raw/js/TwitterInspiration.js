@@ -1,4 +1,4 @@
-import html2canvas from 'html2canvas'
+import domtoimage from 'dom-to-image'
 
 export function TwitterInspiration(event) {
 	event.preventDefault()
@@ -227,7 +227,7 @@ function updateTweetContent(tweetData) {
 		})
 
 		generateTweetCanvas()
-	}, 900)
+	}, 1500)
 }
 
 export function resizing() {
@@ -466,26 +466,35 @@ function nFormatter(num, digits = 1) {
 }
 
 function generateTweetCanvas() {
-	var fix_screen = 530
+	var fix_screen = 559
 	var fix_scale = 5.7
 	var new_width = $('[data-twitter-flag]').width()
 	var cal_width = new_width / fix_screen
 	var dd = fix_scale / cal_width
 	let element = document.querySelector('[data-twitter-flag]')
 
-	html2canvas(element, {
-		scale: dd,
-		useCORS: true,
-	}).then((canvas) => {
-		const f = canvas.toDataURL('image/png')
-
-		if (document.querySelector('.new_url')) {
-			document.querySelector('.new_url').value = f
-		} else {
-			$('body').append(
-				'<input type="hidden" class="new_url" value="' + f + '"/>'
-			)
-		}
-		$("[name='add']").removeAttr('disabled')
-	})
+	domtoimage
+		.toPng(element, {
+			width: element.clientWidth * dd,
+			height: element.clientHeight * dd,
+			style: {
+				transform: 'scale(' + dd + ')',
+				'transform-origin': 'top left',
+			},
+		})
+		.then(function (dataUrl) {
+			if (document.querySelector('.new_url')) {
+				document.querySelector('.new_url').value = dataUrl
+			} else {
+				$('body').append(
+					'<input type="hidden" class="new_url" value="' +
+						dataUrl +
+						'"/>'
+				)
+			}
+			$("[name='add']").removeAttr('disabled')
+		})
+		.catch(function (error) {
+			console.error('oops, something went wrong!', error)
+		})
 }
