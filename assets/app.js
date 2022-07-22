@@ -1074,7 +1074,8 @@ function updateUploadImageText(width) {
 });
 $(document).on('click', 'button[name="add"]', function (e) {
   e.preventDefault();
-  var dataURL = $('.new_url').val(); // @ts-ignore
+  var dataURL = $('.new_url').val();
+  $(this).find('svg').removeClass('hidden'); // @ts-ignore
 
   var prodID = meta.product.variants[0].id;
   var qty = $('input[name="quantity"]').val();

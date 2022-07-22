@@ -117,6 +117,7 @@ document
 $(document).on('click', 'button[name="add"]', function (e) {
 	e.preventDefault()
 	const dataURL = $('.new_url').val()
+	$(this).find('svg').removeClass('hidden')
 
 	// @ts-ignore
 	const prodID = meta.product.variants[0].id
