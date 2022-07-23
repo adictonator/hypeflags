@@ -15,7 +15,7 @@ import Swipers from './SwiperSliders'
 Swipers()
 CartLogic()
 QuantityLogic()
-//CustomFlag()
+CustomFlag()
 
 document
 	.getElementById('tweet-inspiration')

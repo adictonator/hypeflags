@@ -1,0 +1,121 @@
+<div
+	data-modal
+	data-modal-custom-cropper
+	class="invisible fixed inset-0 -z-[1] flex items-center justify-center bg-black/70 opacity-0 duration-300"
+>
+	<div
+		class="mx-5 w-full overflow-hidden rounded-md bg-white shadow-lg sm:mx-6 md:max-w-7xl lg:mx-auto"
+	>
+		<div
+			class="flex items-center justify-between space-x-5 px-4 pt-4 sm:bg-gray-100 sm:py-4 sm:px-10"
+		>
+			<button
+				type="button"
+				data-modal-hide
+				class="tertiary-btn px-6 sm:w-auto md:px-10"
+			>
+				Cancel
+			</button>
+			<span class="hidden text-2xl font-bold sm:block"
+				>Customize Your Flag</span
+			>
+			<button
+				type="button"
+				data-cropper-method="confirm"
+				class="primary-btn px-6 sm:w-auto md:px-10"
+			>
+				Confirm
+			</button>
+		</div>
+
+		<div class="flex justify-between gap-x-10 py-5 px-10">
+			<div class="flex grow rounded bg-black" data-hex-color>
+				<img data-cropper-image alt="tmp" class="hidden" />
+			</div>
+			<div class="w-full max-w-xs">
+				<div class="low-res-warning-indicator hidden">
+					<p>
+						The file is below our suggested resolution. Your flag
+						may appear blurry or pixelated.
+					</p>
+				</div>
+				<div class="space-y-2 border-b border-b-stone-200 pb-6">
+					<span class="text-sm">Rotate & Flip</span>
+					<div class="flex items-center justify-between">
+						<button
+							data-method="rotate"
+							data-option="-90"
+							class="flex h-12 w-12 items-center justify-center rounded bg-zinc-200 text-black duration-300 hover:bg-brand-red hover:text-white"
+						>
+							{% render 'icon-rotate-image' %}
+						</button>
+						<button
+							data-method="rotate"
+							data-option="90"
+							class="flex h-12 w-12 items-center justify-center rounded bg-zinc-200 text-black duration-300 hover:bg-brand-red hover:text-white"
+						>
+							{% render 'icon-rotate-image', class: '-scale-x-[1]'
+							%}
+						</button>
+						<button
+							data-method="scaleX"
+							data-option="-1"
+							class="flex h-12 w-12 items-center justify-center rounded bg-zinc-200 text-black duration-300 hover:bg-brand-red hover:text-white"
+						>
+							{% render 'icon-flip-x' %}
+						</button>
+						<button
+							data-method="scaleY"
+							data-option="-1"
+							class="flex h-12 w-12 items-center justify-center rounded bg-zinc-200 text-black duration-300 hover:bg-brand-red hover:text-white"
+						>
+							{% render 'icon-flip-y' %}
+						</button>
+					</div>
+				</div>
+
+				<div
+					class="hype-color-picker mt-5 space-y-2 border-b border-b-stone-200 pb-6"
+				>
+					<span class="text-sm">Flag Background Color</span>
+					<div data-pickr></div>
+					<span class="hype-eye-drop"></span>
+					<div class="flex items-center justify-between">
+						<span class="text-sm">HEX</span>
+						<div
+							class="flex w-24 items-center gap-x-2 rounded-sm bg-zinc-200 py-1 px-2"
+						>
+							<span
+								data-hex-color
+								class="block h-5 w-5 shrink-0 rounded-sm bg-black"
+							></span>
+							<input
+								data-hex-code
+								type="text"
+								value="#000000"
+								class="w-full border-none bg-transparent p-0 text-xs text-gray-500 outline-none"
+							/>
+						</div>
+					</div>
+				</div>
+
+				<div class="hype-zoom mt-6 space-y-2">
+					<span class="text-sm">Zoom In & Out</span>
+					<div
+						data-method="zoom"
+						data-option="0.01"
+						class="flex h-5 items-center border-l-2 border-r-2 border-l-brand-red border-r-stone-100"
+					>
+						<input
+							type="range"
+							class="h-0.5 w-full appearance-none rounded-none border-none bg-stone-100 bg-gradient-to-r from-brand-red to-brand-red p-0 focus:shadow-none focus:outline-none focus:ring-0"
+							value="50"
+							min="0"
+							max="100"
+						/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

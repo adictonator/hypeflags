@@ -235,6 +235,8 @@ function updateTweetContent(tweetData) {
 }
 
 export function resizing() {
+	if (!document.querySelector('[data-twitter-flag]')) return
+
 	var outerDiv = $('[data-twitter-flag] .inner')
 	var outerDivJS = document.querySelector('[data-twitter-flag] .inner')
 	var innerDiv = document.querySelector('[data-twitter-flag] .more-inner')

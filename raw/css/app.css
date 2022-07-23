@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "pickr.css";
 
 @layer components {
 	.hf-btn {
