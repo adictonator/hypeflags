@@ -1,3 +1,35 @@
+ondragover = function (e) {
+	e.preventDefault()
+	return false
+}
+
+ondrop = function (e) {
+	e.preventDefault()
+	return false
+}
+
+const validImageTypes = ['image/png', 'image/jpg']
+
+function dropHandler(ev) {
+	ev.preventDefault()
+
+	if (ev.dataTransfer.items && ev.dataTransfer.items.length > 1) {
+		alert('Sorry, you can only upload one file at a time!')
+		return false
+	}
+
+	if (ev.dataTransfer.items) {
+		const [item] = ev.dataTransfer.items
+
+		if (item.kind === 'file' && validImageTypes.includes(item.type)) {
+			const file = item.getAsFile()
+		}
+	}
+}
+
+document
+	.querySelector('[data-custom-flag-upload-wrapper]')
+	.addEventListener('drop', (e) => dropHandler(e))
 /**
  * Color picker functionlity.
  * Pickr library.
@@ -127,7 +159,7 @@ var options = {
 		})
 	},
 }
-var cropper = new Cropper(image, options)
+var cropperwqe = new Cropper(image, options)
 var originalImageURL = image.src
 
 var uploadedImageType = 'image/jpeg'
@@ -421,7 +453,6 @@ if (inputImage && URL) {
 				return false
 			} else {
 				var fileType = this.files[0].type
-				const validImageTypes = ['image/jpeg', 'image/png']
 
 				if ($.inArray(fileType, validImageTypes) < 0) {
 					const text =
