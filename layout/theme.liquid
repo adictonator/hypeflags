@@ -64,7 +64,7 @@
 
 		{%- if page_description -%}
 		<meta name="description" content="{{ page_description | escape }}" />
-		{%- endif -%} {% include 'social-meta-tags' %}
+		{%- endif -%} {% render 'social-meta-tags' %}
 
 		<!-- Prevent Sorting by Best Seller -->
 		<script>
@@ -186,11 +186,13 @@
 			})
 		</script>
 
-		{% if product.id == 3824189505584 %}
-		{{ "js-custom-flag.js" | asset_url | script_tag }}
-		{% endif %} {% if content_for_header contains 'upsell-now.herokuapp.com'
-		-%} {%- render 'upsell-now', customer: customer, product: product,
-		template: template, cart: cart -%} {%- endif %}
+		{% comment %} Custom Flag {% endcomment %} {% if product.id ==
+		3824189505584 %} {% render 'shipping-policy-modal' %} {% render
+		'modal-custom-flag-cropper' %} {% endif %} {% if product.id ==
+		4597274214473 %} {% render 'tweet-flag-editor' %} {% endif %} {% if
+		content_for_header contains 'upsell-now.herokuapp.com' -%} {%- render
+		'upsell-now', customer: customer, product: product, template: template,
+		cart: cart -%} {%- endif %}
 
 		{{ "app.js" | asset_url | script_tag }}
 	</body>
