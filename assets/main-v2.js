@@ -8,7 +8,21 @@ ondrop = function (e) {
 	return false
 }
 
-const validImageTypes = ['image/png', 'image/jpg']
+// @todo: temp functions/ delete these.
+const addGalleryLoader = (elm) => {
+	const loader = document.createElement('div')
+	loader.classList.add('bg-stone-100')
+	loader.id = 'custom-loader-buffer'
+
+	elm.appendChild(loader)
+}
+// @todo: temp functions/ delete these.
+const removeGalleryLoader = () => {
+	// @todo: maybe add a fade-in effect here?
+	document.getElementById('custom-loader-buffer').remove()
+}
+
+const validImageTypes = ['image/png', 'image/jpeg']
 
 function dropHandler(ev) {
 	ev.preventDefault()
@@ -159,7 +173,7 @@ var options = {
 		})
 	},
 }
-var cropperwqe = new Cropper(image, options)
+var cropper = new Cropper(image, options)
 var originalImageURL = image.src
 
 var uploadedImageType = 'image/jpeg'
@@ -288,7 +302,7 @@ $('body').on('click', '[data-method]', function (event) {
 					canvasContainer.style.height = 'auto'
 
 					// Show the loader.
-					galleryLoader(sliderContainer)
+					addGalleryLoader(sliderContainer)
 
 					var data_url = result.toDataURL()
 					var width_C = result.width

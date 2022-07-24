@@ -11,7 +11,7 @@ import {
 Swipers()
 CartLogic()
 QuantityLogic()
-CustomFlag()
+//CustomFlag()
 CustomTweet()
 
 document
