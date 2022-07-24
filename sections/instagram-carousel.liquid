@@ -1,49 +1,79 @@
 <section>
-    <div class="section-header section-title-wrap ig-home-sec" data-aos="fade-in" data-aos-duration="2000">
-      <h2>{{ section.settings.title| escape }}</h2>
-      
-      <div class="slider-nav-wrap">
-        <button class="slide-arrow arrow-prev arrow-ig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7.12 11.41"><path d="M5.71,0,0,5.71l5.71,5.7L7.12,10,2.83,5.71l4.29-4.3Z"/></svg></button>
-        <button class="slide-arrow arrow-next arrow-ig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7.12 11.41"><path d="M5.71,0,0,5.71l5.71,5.7L7.12,10,2.83,5.71l4.29-4.3Z"/></svg></button>
-      </div>
-  	</div>
+	<div
+		class="section-header section-title-wrap ig-home-sec"
+		data-aos="fade-in"
+		data-aos-duration="2000"
+	>
+		<h2>{{ section.settings.title | escape }}</h2>
 
-   <div class="swiper swiper-instagram">
-     <div class="swiper-wrapper">
-       {% if section.blocks.size > 0 %}
-       	{% for block in section.blocks %}
+		<div class="slider-nav-wrap">
+			<button class="slide-arrow arrow-prev arrow-ig">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 7.12 11.41"
+				>
+					<path
+						d="M5.71,0,0,5.71l5.71,5.7L7.12,10,2.83,5.71l4.29-4.3Z"
+					/>
+				</svg>
+			</button>
+			<button class="slide-arrow arrow-next arrow-ig">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 7.12 11.41"
+				>
+					<path
+						d="M5.71,0,0,5.71l5.71,5.7L7.12,10,2.83,5.71l4.29-4.3Z"
+					/>
+				</svg>
+			</button>
+		</div>
+	</div>
 
-         {% assign userImg = "ig_user_image_" | append: n %}
-         {% assign userImg = block.settings[userImg] | default: 'ss' %}
-         {% assign userName = "ig_user_name_" | append: n %}
-         {% assign userName = block.settings[userName] %}
+	<div class="swiper swiper-instagram">
+		<div class="swiper-wrapper">
+			{% if section.blocks.size > 0 %} {% for block in section.blocks %}
+			{% assign userImg = "ig_user_image_" | append: n %} {% assign
+			userImg = block.settings[userImg] | default: 'ss' %} {% assign
+			userName = "ig_user_name_" | append: n %} {% assign userName =
+			block.settings[userName] %} {% assign userAvatar = "ig_user_avatar_"
+			| append: n %} {% assign userAvatar = block.settings[userAvatar] %}
+			{% assign userHandle = "ig_user_handle_" | append: n %} {% assign
+			userHandle = block.settings[userHandle] | default: '@' %}
 
-         {% assign userAvatar = "ig_user_avatar_" | append: n %}
-         {% assign userAvatar = block.settings[userAvatar] %}
+			<div class="ig-card swiper-slide">
+				<div class="skeleton-loader-cust"></div>
+				<img
+					class="ig-img"
+					src="{{ block.settings.ig_img | img_url: '400x400' }}"
+					loading="lazy"
+					alt="ig"
+				/>
+				<div class="ig-user-meta">
+					<img
+						class="avatar"
+						src="{{
+							block.settings.ig_user_avatar_1 | img_url: '200x200'
+						}}"
+						loading="lazy"
+						alt="avatar"
+					/>
+					<div class="user-info">
+						<span class="user-name">{{
+							block.settings.ig_user_name_1
+						}}</span>
+						<address class="user-handle">
+							{{ block.settings.ig_user_handle_1 }}
+						</address>
+					</div>
+				</div>
+			</div>
+			{% endfor %} {% endif %}
+		</div>
+	</div>
+</section>
 
-         {% assign userHandle = "ig_user_handle_" | append: n %}
-         {% assign userHandle = block.settings[userHandle] | default: '@' %}
-
-           <div class="ig-card swiper-slide">
-             <div class="skeleton-loader-cust" style="min-height:330px"></div>
-             <img class="ig-img" src="{{ block.settings.ig_img | img_url: '400x400' }}" loading="lazy" alt="ig">
-             <div class="ig-user-meta">
-               <img class="avatar" src="{{ block.settings.ig_user_avatar_1 | img_url: '200x200'  }}" loading="lazy" alt="avatar">
-               <div class="user-info">
-                 <span class="user-name">{{ block.settings.ig_user_name_1 }}</span>
-                 <address class="user-handle">
-                   {{ block.settings.ig_user_handle_1 }}
-                 </address>
-               </div>
-             </div>
-           </div>
-       {% endfor %}
-     {% endif %}
-     </div>
-   </div>
- </section>
-
- 
+<!-- prettier-ignore  -->
 {% schema %}
 {
   "name": {
