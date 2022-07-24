@@ -1,7 +1,14 @@
 {% capture "form_classes" -%} flex flex-col relative gap-y-4 md:my-4 my-5
-lg:my-5 xl:my-6 {%- endcapture %} {% form 'product', product,
-class:form_classes, novalidate: 'novalidate', data-product-form: '',
-data-product-form-redirect-url: '/cart' %}
+lg:my-5 xl:my-6 {%- endcapture %}
+<!-- prettier-ignore -->
+{% if product.id == 4597274214473 %}
+	{% assign prodType = 'tweet' %}
+{% else %}
+	{% assign prodType = 'custom' %}
+{% endif %}
+
+{% form 'product', product, class:form_classes, novalidate:
+'novalidate', data-product-form: '', data-product-form-redirect-url: '/cart' %}
 
 <div class="flex items-stretch justify-between gap-x-4">
 	<div class="flex items-stretch justify-between">
@@ -62,7 +69,7 @@ data-product-form-redirect-url: '/cart' %}
 		name="add"
 		disabled="disabled"
 		class="primary-btn flex items-center justify-center gap-x-2"
-		data-add-to-cart
+		data-add-to-cart="{{ prodType }}"
 	>
 		{{ "products.product.add_to_cart" | t }}
 		<svg

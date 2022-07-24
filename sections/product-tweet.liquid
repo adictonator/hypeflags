@@ -17,7 +17,7 @@ current_variant.price -%}
 		>
 			<div
 				data-twitter-flag
-				class="relative aspect-[5/3] w-full select-none bg-white font-tweet text-sm font-normal shadow-lg dark:bg-[#17202a]"
+				class="relative aspect-[5/3] w-full select-none overflow-hidden bg-white font-tweet text-sm font-normal shadow-lg dark:bg-[#17202a]"
 			>
 				<span
 					class="before:absolute before:top-2 before:left-2 before:block before:h-1.5 before:w-1.5 before:bg-grommet after:absolute after:top-2 after:right-2 after:block after:h-1.5 after:w-1.5 after:bg-grommet before:sm:h-2.5 before:sm:w-2.5 after:sm:h-2.5 after:sm:w-2.5"
@@ -120,12 +120,13 @@ current_variant.price -%}
 			<div class="mt-6">
 				<div class="mb-4 flex items-center justify-between">
 					<span class="font-bold">Paste Tweet URL</span>
-					<a
-						href="#"
-						class="cursor-pointerl text-base text-brand-red"
-						id="tweet-inspiration"
-						>Get Inspiration</a
+					<button
+						type="button"
+						data-tweet-inspiration
+						class="cursor-pointerl text-base text-brand-red duration-300 hover:text-stone-600"
 					>
+						Get Inspiration
+					</button>
 				</div>
 				<div
 					data-tweet-url
