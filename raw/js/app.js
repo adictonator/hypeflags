@@ -7,6 +7,7 @@ import {
 	generateTweetCanvas,
 	handleFlagResize,
 } from './custom-tweet/TweetFlagUtilities'
+import { toggleClasses } from './helpers/utilities'
 
 Swipers()
 CartLogic()
@@ -18,10 +19,7 @@ document
 	.querySelector('[data-cust-flag-modal]')
 	?.addEventListener('click', () => {
 		const modal = document.querySelector('[data-privacy-modal]')
-		setTimeout(() => {
-			modal.classList.toggle('invisible')
-			modal.classList.toggle('opacity-0')
-		}, 0)
+		toggleClasses(modal, 'invisible', 'opacity-0')
 	})
 
 document.querySelector('[data-hide-modal]')?.addEventListener('click', () => {

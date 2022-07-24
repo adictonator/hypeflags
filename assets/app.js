@@ -574,6 +574,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SwiperSliders__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SwiperSliders */ "./raw/js/SwiperSliders.js");
 /* harmony import */ var _custom_tweet_CustomTweet__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./custom-tweet/CustomTweet */ "./raw/js/custom-tweet/CustomTweet.js");
 /* harmony import */ var _custom_tweet_TweetFlagUtilities__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./custom-tweet/TweetFlagUtilities */ "./raw/js/custom-tweet/TweetFlagUtilities.js");
+/* harmony import */ var _helpers_utilities__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./helpers/utilities */ "./raw/js/helpers/utilities.js");
 /* provided dependency */ var Buffer = __webpack_require__(/*! buffer */ "./node_modules/buffer/index.js")["Buffer"];
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
@@ -591,6 +592,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 (0,_SwiperSliders__WEBPACK_IMPORTED_MODULE_3__["default"])();
 (0,_CartLogic__WEBPACK_IMPORTED_MODULE_1__["default"])();
 (0,_QuantityLogic__WEBPACK_IMPORTED_MODULE_2__["default"])(); //CustomFlag()
@@ -598,10 +600,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 (0,_custom_tweet_CustomTweet__WEBPACK_IMPORTED_MODULE_4__["default"])();
 (_document$querySelect = document.querySelector('[data-cust-flag-modal]')) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.addEventListener('click', function () {
   var modal = document.querySelector('[data-privacy-modal]');
-  setTimeout(function () {
-    modal.classList.toggle('invisible');
-    modal.classList.toggle('opacity-0');
-  }, 0);
+  (0,_helpers_utilities__WEBPACK_IMPORTED_MODULE_6__.toggleClasses)(modal, 'invisible', 'opacity-0');
 });
 (_document$querySelect2 = document.querySelector('[data-hide-modal]')) === null || _document$querySelect2 === void 0 ? void 0 : _document$querySelect2.addEventListener('click', function () {
   var modal = document.querySelector('[data-privacy-modal]');

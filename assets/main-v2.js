@@ -19,7 +19,7 @@ const addGalleryLoader = (elm) => {
 // @todo: temp functions/ delete these.
 const removeGalleryLoader = () => {
 	// @todo: maybe add a fade-in effect here?
-	document.getElementById('custom-loader-buffer').remove()
+	document.getElementById('custom-loader-buffer')?.remove()
 }
 
 const validImageTypes = ['image/png', 'image/jpeg']
@@ -477,7 +477,6 @@ if (inputImage && URL) {
 						text,
 						'warning warning--red'
 					)
-					$('body').find('#preloader').remove()
 
 					return false
 				}
@@ -560,7 +559,7 @@ if (inputImage && URL) {
 						).insertBefore('.hype-cropper__body--image')
 					},
 					complete: function () {
-						$('#custom-loader-buffer').remove()
+						removeGalleryLoader()
 					},
 				})
 
