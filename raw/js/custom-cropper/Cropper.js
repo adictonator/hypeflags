@@ -1,10 +1,14 @@
 import 'cropperjs/dist/cropper.css'
 import Cropper from 'cropperjs'
+import { toggleClasses } from '../helpers/utilities'
+import EyeDropper from './EyeDropper'
+
+EyeDropper()
 
 let cropperObj = null
 const selectors = {
 	cropper: '[data-modal-custom-cropper]',
-	hideCropper: '[data-hide-modal]',
+	hideCropper: '[data-modal-hide]',
 }
 const elms = {
 	cropper: document.querySelector(selectors.cropper),
@@ -64,18 +68,22 @@ export default function CropperEvents() {
 
 export const initCropperModal = (cropperImage) => {
 	setCropper(cropperImage)
-	showCropper()
+	toggleCropper()
 }
 
-const showCropper = () => {
-	document.body.appendChild(elms.cropper)
-	elms.cropper.classList.remove('invisible', 'opacity-0', '-z-[1]')
-	elms.cropper.classList.add('z-30', 'opacity-100')
+const toggleCropper = () => {
+	setTimeout(() => {
+		toggleClasses(elms.cropper, '-z-[1]', 'invisible', 'opacity-0')
+		elms.cropper.classList.add('z-50')
+	}, 0)
 }
 
 const hideCropper = () => {
-	elms.cropper.classList.remove('z-30')
-	elms.cropper.classList.add('invisible', 'opacity-0', '-z-[1]')
+	toggleCropper()
+	elms.cropper.classList.remove('z-50')
+
+	// also reset the input file value to null.
+	document.getElementById('custom-flag-image').value = null
 }
 
 const setCropper = (image) => {

@@ -168,6 +168,4 @@ const switchTheme = (event) => {
 			.querySelector('[data-twitter-flag]')
 			?.parentElement?.classList.remove('dark')
 	}
-
-	//generateTweetCanvas()
 }

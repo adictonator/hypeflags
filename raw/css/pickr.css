@@ -16,6 +16,7 @@
 	.pcr-color-chooser {
 	grid-area: 2 / 1 / 4 / 4;
 	margin: 0;
+	max-width: 90%;
 }
 
 [data-modal-custom-cropper] .pcr-app .pcr-selection .pcr-picker {

@@ -1,5 +1,6 @@
 import ColorPicker from './custom-cropper/ColorPicker'
 import CropperEvents, { initCropperModal } from './custom-cropper/Cropper'
+import { bytesToMegaBytes } from './helpers/utilities'
 
 CropperEvents()
 ColorPicker()
@@ -108,8 +109,6 @@ export default function CustomFlag() {
 
 		return img
 	}
-
-	const bytesToMegaBytes = (bytes) => bytes / 1024 ** 2
 
 	const showCustomFlagEditor = (e) => {
 		showUploadPreview(e)
