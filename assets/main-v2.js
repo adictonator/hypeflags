@@ -35,8 +35,9 @@ function dropHandler(ev) {
 	if (ev.dataTransfer.items) {
 		const [item] = ev.dataTransfer.items
 
-		if (item.kind === 'file' && validImageTypes.includes(item.type)) {
+		if (item.kind === 'file') {
 			const file = item.getAsFile()
+			doSomething(file)
 		}
 	}
 }
@@ -448,89 +449,101 @@ var inputImage = document.getElementById('custom-flag-image')
 
 if (inputImage && URL) {
 	inputImage.onchange = function () {
-		var files = this.files
+		const [file] = this.files
 
-		var file
+		doSomething(file)
+	}
+}
 
-		if (cropper && files && files.length) {
-			file = files[0]
-			var file_size = this.files[0].size
+function doSomething(file) {
+	if (cropper && file) {
+		var file_size = file.size
 
-			if (file_size > 9000000) {
-				const text =
-					'File size too large. Please upload a file less than 9MB.'
+		if (file_size > 9000000) {
+			const text =
+				'File size too large. Please upload a file less than 9MB.'
+			displayCropperErrorPopup(
+				'Upload Failed',
+				text,
+				'warning warning--red'
+			)
+			return false
+		} else {
+			var fileType = file.type
+
+			if ($.inArray(fileType, validImageTypes) < 0) {
+				const text = 'File type not allowed. Please upload PNG or JPEG.'
+
 				displayCropperErrorPopup(
 					'Upload Failed',
 					text,
 					'warning warning--red'
 				)
+
 				return false
-			} else {
-				var fileType = this.files[0].type
+			}
+		}
 
-				if ($.inArray(fileType, validImageTypes) < 0) {
+		$('#Color_data').val('#000')
+
+		var reader = new FileReader()
+
+		let tempHasError = false
+		reader.onload = function (e) {
+			let width
+			var image = new Image()
+			image.crossOrigin = 'anonymous'
+			image.onload = function () {
+				width = image.width
+				const height = image.height
+
+				if (width <= 499 || height <= 499) {
 					const text =
-						'File type not allowed. Please upload PNG or JPEG.'
-
+						'File resolution too low. Please upload an image with minimum 500px resolution.'
 					displayCropperErrorPopup(
 						'Upload Failed',
 						text,
 						'warning warning--red'
 					)
-
+					$('.hype-cropper-wrapper, .cross-cropper').hide()
+					tempHasError = true
+					document
+						.querySelector('[data-custom-flag-upload-wrapper]')
+						.classList.remove('hidden')
+					document
+						.querySelector('[data-temp-wrapper]')
+						.classList.add('hidden')
 					return false
+				} else if (width <= 999 || height <= 999) {
+					$('.low-res-warning-indicator').addClass('visible')
+				} else {
+					$('.low-res-warning-indicator').removeClass('visible')
 				}
 			}
+			image.src = e.target.result
+			console.log('weq', tempHasError)
 
-			$('#Color_data').val('#000')
+			window.scroll({
+				top: 0,
+				behavior: 'smooth',
+			})
 
-			var reader = new FileReader()
+			document.documentElement.style.overflow = 'hidden'
+		}
 
-			reader.onload = function (e) {
-				var image = new Image()
-				image.crossOrigin = 'anonymous'
-				image.onload = function () {
-					var width = image.width
-					const height = image.height
+		reader.readAsDataURL(file)
 
-					if (width <= 499 || height <= 499) {
-						const text =
-							'File resolution too low. Please upload an image with minimum 500px resolution.'
-						displayCropperErrorPopup(
-							'Upload Failed',
-							text,
-							'warning warning--red'
-						)
-						$('.hype-cropper-wrapper, .cross-cropper').hide()
-						return false
-					} else if (width <= 999 || height <= 999) {
-						$('.low-res-warning-indicator').addClass('visible')
-					} else {
-						$('.low-res-warning-indicator').removeClass('visible')
-					}
-				}
-				image.src = e.target.result
+		if (/^image\/\w+/.test(file.type)) {
+			uploadedImageType = file.type
 
-				window.scroll({
-					top: 0,
-					behavior: 'smooth',
-				})
-
-				document.documentElement.style.overflow = 'hidden'
+			if (uploadedImageURL) {
+				URL.revokeObjectURL(uploadedImageURL)
 			}
 
-			reader.readAsDataURL(file)
+			image.src = uploadedImageURL = URL.createObjectURL(file)
+			cropper.destroy()
 
-			if (/^image\/\w+/.test(file.type)) {
-				uploadedImageType = file.type
-
-				if (uploadedImageURL) {
-					URL.revokeObjectURL(uploadedImageURL)
-				}
-
-				image.src = uploadedImageURL = URL.createObjectURL(file)
-				cropper.destroy()
-
+			if (!tempHasError) {
 				document
 					.querySelector('[data-temp-wrapper]')
 					.classList.remove('hidden')
@@ -549,27 +562,27 @@ if (inputImage && URL) {
 				).toFixed(1)
 				document.querySelector('[data-temp-preview]').src =
 					uploadedImageURL
-
-				$('.hype-cropper-wrapper').fadeIn({
-					duration: 'slow',
-					start: function () {
-						$(this).appendTo('body').css('display', 'grid')
-						$(
-							'<div id="custom-loader-buffer" class="bg-stone-100" style="z-index: 9999; position: absolute"></div>'
-						).insertBefore('.hype-cropper__body--image')
-					},
-					complete: function () {
-						removeGalleryLoader()
-					},
-				})
-
-				$('.cross-cropper').show()
-
-				cropper = new Cropper(image, options)
-				inputImage.value = null
-			} else {
-				window.alert('Please choose an image file.')
 			}
+
+			$('.hype-cropper-wrapper').fadeIn({
+				duration: 'slow',
+				start: function () {
+					$(this).appendTo('body').css('display', 'grid')
+					$(
+						'<div id="custom-loader-buffer" class="bg-stone-100" style="z-index: 9999; position: absolute"></div>'
+					).insertBefore('.hype-cropper__body--image')
+				},
+				complete: function () {
+					removeGalleryLoader()
+				},
+			})
+
+			$('.cross-cropper').show()
+
+			cropper = new Cropper(image, options)
+			inputImage.value = null
+		} else {
+			window.alert('Please choose an image file.')
 		}
 	}
 }
@@ -744,7 +757,7 @@ function displayCropperErrorPopup(
 			},
 		})
 
-	return
+	return false
 }
 
 // canvas function
