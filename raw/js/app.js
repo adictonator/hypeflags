@@ -1,61 +1,23 @@
-import {
-	confirmTweetEditing,
-	hideTweetEditor,
-	resizing,
-	showTweetEditor,
-	SwitchTweetTheme,
-	TwitterInspiration,
-	UpdateTweetScreen,
-} from './TwitterInspiration'
 import CustomFlag from './CustomFlag'
 import CartLogic from './CartLogic'
 import QuantityLogic from './QuantityLogic'
 import Swipers from './SwiperSliders'
+import CustomTweet from './custom-tweet/CustomTweet'
+import {
+	generateTweetCanvas,
+	handleFlagResize,
+} from './custom-tweet/TweetFlagUtilities'
 
 Swipers()
 CartLogic()
 QuantityLogic()
 CustomFlag()
-
-document
-	.getElementById('tweet-inspiration')
-	?.addEventListener('click', (event) => TwitterInspiration(event))
-
-document
-	.getElementById('tweet-url')
-	?.addEventListener('change', (event) => UpdateTweetScreen(event))
-
-// Fetch initial tweet on page load.
-document.getElementById('tweet-url')?.dispatchEvent(new Event('change'))
-
-// Switch tweet theme.
-const radios = document.querySelectorAll('[name=theme]')
-for (const radio of radios) {
-	radio.onclick = (e) => SwitchTweetTheme(e)
-}
-
-// Show tweet editor modal.
-document
-	.querySelector('[data-edit-tweet]')
-	?.addEventListener('click', (e) => showTweetEditor(e))
-
-document.addEventListener('DOMContentLoaded', () => {
-	// Confirm tweet editing.
-	document
-		.querySelector('[data-confirm-edit]')
-		?.addEventListener('click', (e) => confirmTweetEditing(e))
-
-	// Cancel tweet editing.
-	document
-		.querySelector('[data-cancel-edit]')
-		?.addEventListener('click', () => hideTweetEditor())
-})
+CustomTweet()
 
 document
 	.querySelector('[data-cust-flag-modal]')
 	?.addEventListener('click', () => {
 		const modal = document.querySelector('[data-privacy-modal]')
-		document.body.append(modal)
 		setTimeout(() => {
 			modal.classList.toggle('invisible')
 			modal.classList.toggle('opacity-0')
@@ -68,12 +30,13 @@ document.querySelector('[data-hide-modal]')?.addEventListener('click', () => {
 	modal.classList.toggle('opacity-0')
 })
 
+// @todo: can we separte this logic in their own file?
 onresize = (event) => {
 	const width = event.target.outerWidth
-
+	const outerDiv = document.querySelector('.inner')
+	const innerDiv = document.querySelector('.more-inner')
+	handleFlagResize(outerDiv, innerDiv)
 	updateUploadImageText(width)
-
-	resizing()
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -95,20 +58,6 @@ function updateUploadImageText(width) {
 	elm.innerHTML = uploadText
 }
 
-window.galleryLoader = (elm) => {
-	const loader = document.createElement('div')
-	loader.classList.add('bg-stone-100')
-	loader.id = 'custom-loader-buffer'
-
-	elm.appendChild(loader)
-	//console.log('www', value)
-}
-
-window.removeGalleryLoader = () => {
-	// @todo: maybe add a fade-in effect here?
-	document.getElementById('custom-loader-buffer').remove()
-}
-
 // Header
 document
 	.querySelector('[data-mobile-menu-toggle]')
@@ -128,10 +77,20 @@ document
 		//document.querySelector('[data-mobile-nav]').classList.remove('')
 	})
 
-$(document).on('click', 'button[name="add"]', function (e) {
+$(document).on('click', 'button[name="add"]', async function (e) {
 	e.preventDefault()
+	const btn = $(this)
+
+	// Show the loader.
+	btn.prop('disabled', true).find('svg').removeClass('hidden')
+
+	const prodType = btn.data('add-to-cart')
+
+	if (prodType === 'tweet') {
+		await generateTweetCanvas()
+	}
+
 	const dataURL = $('.new_url').val()
-	$(this).find('svg').removeClass('hidden')
 
 	// @ts-ignore
 	const prodID = meta.product.variants[0].id
@@ -146,10 +105,6 @@ $(document).on('click', 'button[name="add"]', function (e) {
 		formdata.append('properties[custom-flag]', file, 'final_image.png')
 	}
 
-	const _btn = jQuery('button[name="add"]').prop('disabled', true)
-	//_btn.css('opacity', 0.5)
-	//_btn.append('<i class="fa fa-refresh fa-spin"></i>')
-
 	$.ajax({
 		url: '/cart/add.js',
 		type: 'POST',
@@ -162,8 +117,7 @@ $(document).on('click', 'button[name="add"]', function (e) {
 			window.location.href = '/cart'
 		},
 		error: function (msg) {
-			_btn.removeProp('disabled')
-			_btn.css('opacity', 1)
+			btn.removeProp('disabled')
 		},
 	})
 })
