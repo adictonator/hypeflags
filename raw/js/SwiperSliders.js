@@ -1,5 +1,6 @@
 import Swiper, { Navigation, Pagination, Thumbs } from 'swiper'
 import 'swiper/css'
+//import 'swiper/css/navigation'
 import 'swiper/css/thumbs'
 import 'swiper/css/pagination'
 
@@ -15,7 +16,7 @@ export default function Swipers() {
 		slideToClickedSlide: true,
 	})
 
-	const singleProduct = new Swiper('.product-single-gallery', {
+	new Swiper('.product-single-gallery', {
 		modules: [Thumbs, Pagination],
 		slidesPerView: 1,
 		spaceBetween: 0,
@@ -49,7 +50,7 @@ export default function Swipers() {
 		},
 	})
 
-	const swiper = new Swiper('.swiper-best-seller', {
+	new Swiper('.swiper-best-seller', {
 		modules: [Navigation],
 		slidesPerView: 'auto',
 		spaceBetween: 20,
@@ -106,7 +107,7 @@ export default function Swipers() {
 		},
 	})
 
-	const swiper12 = new Swiper('.swiper-new-arrivals', {
+	new Swiper('.swiper-new-arrivals', {
 		modules: [Navigation],
 		slidesPerView: 'auto',
 		spaceBetween: 20,
@@ -158,7 +159,7 @@ export default function Swipers() {
 		},
 	})
 
-	const SwiperIG = new Swiper('.swiper-instagram', {
+	new Swiper('.swiper-instagram', {
 		modules: [Navigation],
 		slidesPerView: 'auto',
 		spaceBetween: 20,

@@ -325,6 +325,7 @@ __webpack_require__.r(__webpack_exports__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
+ //import 'swiper/css/navigation'
 
 
 
@@ -341,7 +342,7 @@ function Swipers() {
     centerInsufficientSlides: true,
     slideToClickedSlide: true
   });
-  var singleProduct = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.product-single-gallery', {
+  new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.product-single-gallery', {
     modules: [swiper__WEBPACK_IMPORTED_MODULE_0__.Thumbs, swiper__WEBPACK_IMPORTED_MODULE_0__.Pagination],
     slidesPerView: 1,
     spaceBetween: 0,
@@ -366,7 +367,7 @@ function Swipers() {
       }
     }
   });
-  var swiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiper-best-seller', {
+  new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiper-best-seller', {
     modules: [swiper__WEBPACK_IMPORTED_MODULE_0__.Navigation],
     slidesPerView: 'auto',
     spaceBetween: 20,
@@ -419,7 +420,7 @@ function Swipers() {
       }
     }
   });
-  var swiper12 = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiper-new-arrivals', {
+  new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiper-new-arrivals', {
     modules: [swiper__WEBPACK_IMPORTED_MODULE_0__.Navigation],
     slidesPerView: 'auto',
     spaceBetween: 20,
@@ -470,7 +471,7 @@ function Swipers() {
       init: function init() {}
     }
   });
-  var SwiperIG = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiper-instagram', {
+  new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiper-instagram', {
     modules: [swiper__WEBPACK_IMPORTED_MODULE_0__.Navigation],
     slidesPerView: 'auto',
     spaceBetween: 20,
