@@ -17,7 +17,8 @@ CustomTweet()
 
 document
 	.querySelector('[data-cust-flag-modal]')
-	?.addEventListener('click', () => {
+	?.addEventListener('click', (e) => {
+		e.preventDefault()
 		const modal = document.querySelector('[data-privacy-modal]')
 		toggleClasses(modal, 'invisible', 'opacity-0')
 	})

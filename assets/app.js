@@ -609,7 +609,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 (0,_QuantityLogic__WEBPACK_IMPORTED_MODULE_2__["default"])(); //CustomFlag()
 
 (0,_custom_tweet_CustomTweet__WEBPACK_IMPORTED_MODULE_4__["default"])();
-(_document$querySelect = document.querySelector('[data-cust-flag-modal]')) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.addEventListener('click', function () {
+(_document$querySelect = document.querySelector('[data-cust-flag-modal]')) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.addEventListener('click', function (e) {
+  e.preventDefault();
   var modal = document.querySelector('[data-privacy-modal]');
   (0,_helpers_utilities__WEBPACK_IMPORTED_MODULE_6__.toggleClasses)(modal, 'invisible', 'opacity-0');
 });
