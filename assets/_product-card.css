@@ -109,6 +109,7 @@
 	flex-direction: column;
 	justify-content: space-between;
 	flex: 1;
+	overflow: hidden;
 }
 .swiper-slide.product-card:before {
 	content: " ";
