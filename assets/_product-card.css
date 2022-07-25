@@ -130,7 +130,6 @@
 	overflow: hidden;
 	border-top-right-radius: 8px;
 	border-top-left-radius: 8px;
-	border: 2px solid red;
 }
 /* should be for mobile maybe? */
 .swiper-slide.product-card:hover .product-meta-wrapper {
