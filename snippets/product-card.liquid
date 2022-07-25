@@ -16,7 +16,7 @@
 	'image-style' with image: product.featured_image, width: max_height, height:
 	max_height, small_style: true, wrapper_id: wrapper_id, img_id: img_id %} {%
 	endunless %} {% endcomment %}
-	<!--<div class="skeleton-loader-cust"></div>-->
+	<div class="skeleton-loader-cust"></div>
 
 	<a href="{{ product.url | within: collection }}">
 		<div
@@ -36,7 +36,7 @@
 				>
 					<img
 						id="{{ img_id }}"
-						class="grid-view-item__image lazyload"
+						class="grid-view-item__image lazyload rounded-t-md"
 						alt="{{ product.featured_image.alt }}"
 						data-src="{{ img_url }}"
 						data-widths="[180, 360, 540, 720]"
