@@ -320,18 +320,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.esm.js");
 /* harmony import */ var swiper_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! swiper/css */ "./node_modules/swiper/swiper.min.css");
-/* harmony import */ var swiper_css_thumbs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! swiper/css/thumbs */ "./node_modules/swiper/modules/thumbs/thumbs.min.css");
-/* harmony import */ var swiper_css_pagination__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! swiper/css/pagination */ "./node_modules/swiper/modules/pagination/pagination.min.css");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+/* harmony import */ var swiper_css_navigation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! swiper/css/navigation */ "./node_modules/swiper/modules/navigation/navigation.min.css");
+/* harmony import */ var swiper_css_thumbs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! swiper/css/thumbs */ "./node_modules/swiper/modules/thumbs/thumbs.min.css");
+/* harmony import */ var swiper_css_pagination__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! swiper/css/pagination */ "./node_modules/swiper/modules/pagination/pagination.min.css");
 
 
- //import 'swiper/css/navigation'
 
 
 
 function Swipers() {
-  var _Swiper;
-
   var singleProductThumb = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.product-single-gallery-thumb', {
     spaceBetween: 15,
     slidesPerView: 'auto',
@@ -339,8 +336,13 @@ function Swipers() {
     watchSlidesProgress: true,
     centeredSlides: true,
     loop: true,
-    centerInsufficientSlides: true,
-    slideToClickedSlide: true
+    on: {
+      init: function init(el) {
+        if (window.outerWidth <= 767) {
+          el.destroy();
+        }
+      }
+    }
   });
   new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.product-single-gallery', {
     modules: [swiper__WEBPACK_IMPORTED_MODULE_0__.Thumbs, swiper__WEBPACK_IMPORTED_MODULE_0__.Pagination],
@@ -350,12 +352,17 @@ function Swipers() {
     pagination: {
       el: '.swiper-pagination'
     },
-    thumbs: {
-      swiper: singleProductThumb
-    },
     loop: true,
     centeredSlides: true,
     on: {
+      beforeInit: function beforeInit(el) {
+        if (!singleProductThumb.destroyed) {
+          el.thumbs.swiper = singleProductThumb;
+          el.thumbs.init();
+        } else {
+          document.querySelector('.product-single-gallery-thumb').classList.add('hidden');
+        }
+      },
       init: function init() {
         $('img.grid-view-item__image').on('load', function () {
           var _p = $(this).parents('div[data-image-with-placeholder-wrapper]').find('.skeleton-loader-cust').remove();
@@ -521,7 +528,7 @@ function Swipers() {
       }
     }
   });
-  var productSwiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiper-product-ig', (_Swiper = {
+  var productSwiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiper-product-ig', {
     modules: [swiper__WEBPACK_IMPORTED_MODULE_0__.Navigation],
     slidesPerView: 'auto',
     spaceBetween: 25,
@@ -531,32 +538,35 @@ function Swipers() {
       enabled: false,
       sticky: true
     },
-    loop: true
-  }, _defineProperty(_Swiper, "centeredSlides", true), _defineProperty(_Swiper, "navigation", {
-    nextEl: '#swiper-next-btn',
-    prevEl: '#swiper-prev-btn'
-  }), _defineProperty(_Swiper, "breakpoints", {
-    480: {
-      navigation: false
+    loop: true,
+    navigation: {
+      nextEl: '#swiper-next-btn',
+      prevEl: '#swiper-prev-btn'
     },
-    768: {
-      slidesPerView: 'auto',
-      spaceBetween: 30
+    breakpoints: {
+      480: {
+        navigation: false
+      },
+      768: {
+        slidesPerView: 'auto',
+        spaceBetween: 30
+      },
+      2000: {
+        slidesPerView: 'auto'
+      }
     },
-    2000: {
-      slidesPerView: 'auto'
-    }
-  }), _defineProperty(_Swiper, "on", {
-    init: function init() {
-      $('img.grid-view-item__image').on('load', function () {
-        var _p = $(this).parents('div[data-image-with-placeholder-wrapper]').find('.skeleton-loader-cust').remove();
-      }); // IG carasoul images.
+    on: {
+      init: function init() {
+        $('img.grid-view-item__image').on('load', function () {
+          var _p = $(this).parents('div[data-image-with-placeholder-wrapper]').find('.skeleton-loader-cust').remove();
+        }); // IG carasoul images.
 
-      $('.ig-img img').on('load', function () {
-        var _p = $(this).parent().parent().find('.skeleton-loader-cust').remove();
-      });
+        $('.ig-img img').on('load', function () {
+          var _p = $(this).parent().parent().find('.skeleton-loader-cust').remove();
+        });
+      }
     }
-  }), _Swiper));
+  });
 }
 
 /***/ }),
@@ -7230,6 +7240,30 @@ ___CSS_LOADER_EXPORT___.push([module.id, "/*!\n * Cropper.js v1.5.12\n * https:/
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./node_modules/swiper/modules/navigation/navigation.min.css":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./node_modules/swiper/modules/navigation/navigation.min.css ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ":root{--swiper-navigation-size:44px}.swiper-button-next,.swiper-button-prev{position:absolute;top:50%;width:calc(var(--swiper-navigation-size)/ 44 * 27);height:var(--swiper-navigation-size);margin-top:calc(0px - (var(--swiper-navigation-size)/ 2));z-index:10;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--swiper-navigation-color,var(--swiper-theme-color))}.swiper-button-next.swiper-button-disabled,.swiper-button-prev.swiper-button-disabled{opacity:.35;cursor:auto;pointer-events:none}.swiper-button-next.swiper-button-hidden,.swiper-button-prev.swiper-button-hidden{opacity:0;cursor:auto;pointer-events:none}.swiper-navigation-disabled .swiper-button-next,.swiper-navigation-disabled .swiper-button-prev{display:none!important}.swiper-button-next:after,.swiper-button-prev:after{font-family:swiper-icons;font-size:var(--swiper-navigation-size);text-transform:none!important;letter-spacing:0;font-variant:initial;line-height:1}.swiper-button-prev,.swiper-rtl .swiper-button-next{left:10px;right:auto}.swiper-button-prev:after,.swiper-rtl .swiper-button-next:after{content:'prev'}.swiper-button-next,.swiper-rtl .swiper-button-prev{right:10px;left:auto}.swiper-button-next:after,.swiper-rtl .swiper-button-prev:after{content:'next'}.swiper-button-lock{display:none}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./node_modules/swiper/modules/pagination/pagination.min.css":
 /*!*****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./node_modules/swiper/modules/pagination/pagination.min.css ***!
@@ -8337,6 +8371,36 @@ var update = _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMP
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_cropper_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/swiper/modules/navigation/navigation.min.css":
+/*!*******************************************************************!*\
+  !*** ./node_modules/swiper/modules/navigation/navigation.min.css ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_navigation_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./navigation.min.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./node_modules/swiper/modules/navigation/navigation.min.css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_navigation_min_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_navigation_min_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 

@@ -1,6 +1,6 @@
 import Swiper, { Navigation, Pagination, Thumbs } from 'swiper'
 import 'swiper/css'
-//import 'swiper/css/navigation'
+import 'swiper/css/navigation'
 import 'swiper/css/thumbs'
 import 'swiper/css/pagination'
 
@@ -12,8 +12,13 @@ export default function Swipers() {
 		watchSlidesProgress: true,
 		centeredSlides: true,
 		loop: true,
-		centerInsufficientSlides: true,
-		slideToClickedSlide: true,
+		on: {
+			init: (el) => {
+				if (window.outerWidth <= 767) {
+					el.destroy()
+				}
+			},
+		},
 	})
 
 	new Swiper('.product-single-gallery', {
@@ -24,12 +29,19 @@ export default function Swipers() {
 		pagination: {
 			el: '.swiper-pagination',
 		},
-		thumbs: {
-			swiper: singleProductThumb,
-		},
 		loop: true,
 		centeredSlides: true,
 		on: {
+			beforeInit: (el) => {
+				if (!singleProductThumb.destroyed) {
+					el.thumbs.swiper = singleProductThumb
+					el.thumbs.init()
+				} else {
+					document
+						.querySelector('.product-single-gallery-thumb')
+						.classList.add('hidden')
+				}
+			},
 			init: function () {
 				$('img.grid-view-item__image').on('load', function () {
 					const _p = $(this)
@@ -225,7 +237,6 @@ export default function Swipers() {
 			sticky: true,
 		},
 		loop: true,
-		centeredSlides: true,
 		navigation: {
 			nextEl: '#swiper-next-btn',
 			prevEl: '#swiper-prev-btn',

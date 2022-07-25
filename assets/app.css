@@ -889,15 +889,6 @@ video {
 .top-0 {
   top: 0px;
 }
-.bottom-0 {
-  bottom: 0px;
-}
-.bottom-1\.5 {
-  bottom: 0.375rem;
-}
-.bottom-1 {
-  bottom: 0.25rem;
-}
 .z-50 {
   z-index: 50;
 }
@@ -2235,6 +2226,11 @@ input[type="number"] {
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
+.hover\:text-stone-600:hover {
+  --tw-text-opacity: 1;
+  color: rgb(87 83 78 / var(--tw-text-opacity));
+}
+
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -2243,16 +2239,6 @@ input[type="number"] {
 .hover\:text-brand-red:hover {
   --tw-text-opacity: 1;
   color: rgb(213 0 58 / var(--tw-text-opacity));
-}
-
-.hover\:text-stone-300:hover {
-  --tw-text-opacity: 1;
-  color: rgb(214 211 209 / var(--tw-text-opacity));
-}
-
-.hover\:text-stone-600:hover {
-  --tw-text-opacity: 1;
-  color: rgb(87 83 78 / var(--tw-text-opacity));
 }
 
 .hover\:underline:hover {
@@ -2625,6 +2611,10 @@ input[type="number"] {
   .md\:gap-x-6 {
     -moz-column-gap: 1.5rem;
          column-gap: 1.5rem;
+  }
+
+  .md\:rounded-md {
+    border-radius: 0.375rem;
   }
 
   .md\:p-0 {
