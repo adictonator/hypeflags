@@ -130,10 +130,11 @@
 	overflow: hidden;
 	border-top-right-radius: 8px;
 	border-top-left-radius: 8px;
-	/*   flex-grow: 1; */
+	border: 2px solid red;
 }
+/* should be for mobile maybe? */
 .swiper-slide.product-card:hover .product-meta-wrapper {
-	border-color: #fff;
+	/*border-color: #fff;*/
 }
 
 .swiper-slide.product-card .product-card__title {
