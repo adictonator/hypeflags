@@ -20,12 +20,12 @@
 
 	<a href="{{ product.url | within: collection }}">
 		<div
-			class="product-card__image-with-placeholder-wrapper"
+			class="product-card__image-with-placeholder-wrapper z-[3] overflow-hidden"
 			data-image-with-placeholder-wrapper
 		>
 			<div
 				id="{{ wrapper_id }}"
-				class="grid-view-item__image-wrapper product-card__image-wrapper js z-[2]"
+				class="grid-view-item__image-wrapper product-card__image-wrapper js z-[2] bg-white"
 			>
 				<div
 					style="padding-top:{% unless product.featured_image == blank %}{{
@@ -36,7 +36,7 @@
 				>
 					<img
 						id="{{ img_id }}"
-						class="grid-view-item__image lazyload rounded-t-md"
+						class="grid-view-item__image lazyload"
 						alt="{{ product.featured_image.alt }}"
 						data-src="{{ img_url }}"
 						data-widths="[180, 360, 540, 720]"
