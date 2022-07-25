@@ -25,9 +25,10 @@
 		>
 			<div
 				id="{{ wrapper_id }}"
-				class="grid-view-item__image-wrapper product-card__image-wrapper js z-[2] overflow-hidden"
+				class="grid-view-item__image-wrapper product-card__image-wrapper js z-[2]"
 			>
 				<div
+					class="overflow-hidden"
 					style="padding-top:{% unless product.featured_image == blank %}{{
 						1
 							| divided_by: product.featured_image.aspect_ratio
