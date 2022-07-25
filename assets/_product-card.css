@@ -101,7 +101,6 @@
 	max-width: 294px;
 	box-sizing: border-box;
 	align-self: stretch;
-	overflow: hidden;
 }
 
 .swiper-slide.product-card a {
@@ -109,7 +108,6 @@
 	flex-direction: column;
 	justify-content: space-between;
 	flex: 1;
-	overflow: hidden;
 }
 .swiper-slide.product-card:before {
 	content: " ";
