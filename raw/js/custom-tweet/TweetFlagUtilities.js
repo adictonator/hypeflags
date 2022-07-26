@@ -36,7 +36,7 @@ export const handleFlagResize = (outerElm, innerElm) => {
 	}
 
 	innerElm.style.transform = `scale(${scale})`
-	//innerElm.style.transformOrigin = 'center left'
+	innerElm.style.transformOrigin = 'top left'
 }
 
 export const formatAMPM = (dd) => {
@@ -161,7 +161,7 @@ export const generateTweetCanvas = async () => {
 			height: element.clientHeight * dd,
 			style: {
 				transform: 'scale(' + dd + ')',
-				//'transform-origin': 'top left',
+				'transform-origin': 'top left',
 			},
 		})
 		.then(function (dataUrl) {

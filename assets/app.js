@@ -1306,7 +1306,8 @@ var handleFlagResize = function handleFlagResize(outerElm, innerElm) {
     scale = 1;
   }
 
-  innerElm.style.transform = "scale(".concat(scale, ")"); //innerElm.style.transformOrigin = 'center left'
+  innerElm.style.transform = "scale(".concat(scale, ")");
+  innerElm.style.transformOrigin = 'top left';
 };
 var formatAMPM = function formatAMPM(dd) {
   var date = new Date(dd);
@@ -1421,8 +1422,8 @@ var generateTweetCanvas = /*#__PURE__*/function () {
               width: element.clientWidth * dd,
               height: element.clientHeight * dd,
               style: {
-                transform: 'scale(' + dd + ')' //'transform-origin': 'top left',
-
+                transform: 'scale(' + dd + ')',
+                'transform-origin': 'top left'
               }
             }).then(function (dataUrl) {
               var img = new Image();
