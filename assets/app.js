@@ -1417,33 +1417,23 @@ var generateTweetCanvas = /*#__PURE__*/function () {
             cal_width = new_width / fix_screen;
             dd = fix_scale / cal_width;
             element = document.querySelector('[data-twitter-flag]');
-            _context.next = 8;
-            return dom_to_image__WEBPACK_IMPORTED_MODULE_0___default().toPng(element, {
-              width: element.clientWidth,
-              height: element.clientHeight //style: {
-              //	transform: 'scale(' + dd + ')',
-              //	'transform-origin': 'top left',
-              //},
+            setTimeout(function () {
+              dom_to_image__WEBPACK_IMPORTED_MODULE_0___default().toPng(element, {
+                width: element.clientWidth,
+                height: element.clientHeight
+              }).then(function (dataUrl) {
+                var img = new Image();
+                img.src = dataUrl;
+                document.querySelector('#lmao').appendChild(img);
+                return;
+              });
+            }, 1000);
+            return _context.abrupt("return");
 
-            }).then(function (dataUrl) {
-              var img = new Image();
-              img.src = dataUrl;
-              document.querySelector('#lmao').appendChild(img);
-              return; // @todo: fix this sitty code.
-
-              if (document.querySelector('.new_url')) {
-                document.querySelector('.new_url').value = dataUrl;
-              } else {
-                $('body').append('<input type="hidden" class="new_url" value="' + dataUrl + '"/>');
-              }
-            })["catch"](function (error) {
-              console.error('oops, something went wrong!', error);
-            });
-
-          case 8:
+          case 10:
             return _context.abrupt("return", _context.sent);
 
-          case 9:
+          case 11:
           case "end":
             return _context.stop();
         }
