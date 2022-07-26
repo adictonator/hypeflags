@@ -1421,10 +1421,13 @@ var generateTweetCanvas = /*#__PURE__*/function () {
             new_width = $('[data-twitter-flag]').width();
             cal_width = new_width / fix_screen;
             dd = fix_scale / cal_width; //let elm = document.querySelector('[data-twitter-flag]')
+            //let elm = document.getElementById('polo').cloneNode(true)
 
-            elm = document.getElementById('polo');
+            elm = document.getElementById('polo'); //const g = document.createElement('div')
+            //const r = g.appendChild(elm)
+
             _context.next = 8;
-            return dom_to_image__WEBPACK_IMPORTED_MODULE_0___default().toBlob(elm, {
+            return dom_to_image__WEBPACK_IMPORTED_MODULE_0___default().toPng(elm, {
               width: elm.clientWidth * dd,
               height: elm.clientHeight * dd,
               style: {
@@ -1432,7 +1435,7 @@ var generateTweetCanvas = /*#__PURE__*/function () {
                 'transform-origin': 'top left'
               }
             }).then(function (dataUrl) {
-              dom_to_image__WEBPACK_IMPORTED_MODULE_0___default().toBlob(elm, {
+              dom_to_image__WEBPACK_IMPORTED_MODULE_0___default().toPng(elm, {
                 width: elm.clientWidth * dd,
                 height: elm.clientHeight * dd,
                 style: {
@@ -1440,11 +1443,14 @@ var generateTweetCanvas = /*#__PURE__*/function () {
                   'transform-origin': 'top left'
                 }
               }).then(function (dataUrl2) {
-                var hhh = blobToDataURL(dataUrl2, function (dataurl) {
-                  var img = new Image();
-                  img.src = dataurl;
-                  document.querySelector('#lmao').appendChild(img);
-                });
+                console.log('333', dataUrl2);
+                var img = new Image();
+                img.src = dataUrl2;
+                document.querySelector('#lmao').appendChild(img); //blobToDataURL(dataUrl2, function (dataurl) {
+                //	var img = new Image()
+                //	img.src = dataurl
+                //	document.querySelector('#lmao').appendChild(img)
+                //blobToDataURL})
               });
             })["catch"](function (error) {
               console.error('oops, something went wrong!', error);
