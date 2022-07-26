@@ -1425,9 +1425,11 @@ var generateTweetCanvas = /*#__PURE__*/function () {
             elm = document.getElementById('polo');
             _context.next = 8;
             return (0,html_to_image__WEBPACK_IMPORTED_MODULE_2__.toSvg)(elm).then(function (dataUrl) {
-              var img = new Image();
-              img.src = dataUrl;
-              document.querySelector('#lmao').appendChild(img); //document.body.appendChild(img)
+              setTimeout(function () {
+                var img = new Image();
+                img.src = dataUrl;
+                document.querySelector('#lmao').appendChild(img);
+              }, 500); //document.body.appendChild(img)
             })["catch"](function (error) {
               console.error('oops, something went wrong!', error);
             });

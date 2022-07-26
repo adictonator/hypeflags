@@ -160,9 +160,11 @@ export const generateTweetCanvas = async () => {
 
 	return await toSvg(elm)
 		.then(function (dataUrl) {
-			var img = new Image()
-			img.src = dataUrl
-			document.querySelector('#lmao').appendChild(img)
+			setTimeout(() => {
+				var img = new Image()
+				img.src = dataUrl
+				document.querySelector('#lmao').appendChild(img)
+			}, 500)
 			//document.body.appendChild(img)
 		})
 		.catch(function (error) {
