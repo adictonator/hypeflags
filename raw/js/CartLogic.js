@@ -31,6 +31,8 @@ export default function CartLogic() {
 
 	const showModal = (image) => {
 		const modal = document.createElement('div')
+		document.body.appendChild(modal)
+
 		modal.setAttribute('data-modal-custom', '')
 		modal.classList.add(
 			'fixed',
@@ -40,8 +42,14 @@ export default function CartLogic() {
 			'flex',
 			'items-center',
 			'justify-center',
-			'h-screen'
+			'h-screen',
+			'duration-300',
+			'opacity-0'
 		)
+		setTimeout(() => {
+			modal.classList.remove('opacity-0')
+			modal.classList.add('opacity-100')
+		}, 100)
 		const modalBody = document.createElement('div')
 		modalBody.classList.add(
 			'p-3',
@@ -70,12 +78,15 @@ export default function CartLogic() {
 		modalBody.appendChild(image)
 		modalBody.appendChild(closePreviewBtn)
 		modal.appendChild(modalBody)
-
-		document.body.appendChild(modal)
 	}
 
 	const closePreview = () => {
-		document.querySelector(elements.modalWrapper).remove()
+		document.querySelector(elements.modalWrapper).style.opacity = '0'
+		setTimeout(
+			() => document.querySelector(elements.modalWrapper).remove(),
+			300
+		)
+
 		elements.previewLink.forEach(
 			(elm) => (elm.innerHTML = elements.defaultPreviewText)
 		)

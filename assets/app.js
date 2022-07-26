@@ -55,8 +55,13 @@ function CartLogic() {
 
   var showModal = function showModal(image) {
     var modal = document.createElement('div');
+    document.body.appendChild(modal);
     modal.setAttribute('data-modal-custom', '');
-    modal.classList.add('fixed', 'inset-0', 'bg-black/70', 'z-50', 'flex', 'items-center', 'justify-center', 'h-screen');
+    modal.classList.add('fixed', 'inset-0', 'bg-black/70', 'z-50', 'flex', 'items-center', 'justify-center', 'h-screen', 'duration-300', 'opacity-0');
+    setTimeout(function () {
+      modal.classList.remove('opacity-0');
+      modal.classList.add('opacity-100');
+    }, 100);
     var modalBody = document.createElement('div');
     modalBody.classList.add('p-3', 'md:p-5', 'max-w-xs', 'sm:max-w-[600px]', 'w-full', 'bg-white', 'flex', 'items-center', 'flex-col', 'justify-center', 'rounded-lg', 'shadow-lg');
     var closePreviewBtn = document.createElement('button');
@@ -72,11 +77,13 @@ function CartLogic() {
     modalBody.appendChild(image);
     modalBody.appendChild(closePreviewBtn);
     modal.appendChild(modalBody);
-    document.body.appendChild(modal);
   };
 
   var closePreview = function closePreview() {
-    document.querySelector(elements.modalWrapper).remove();
+    document.querySelector(elements.modalWrapper).style.opacity = '0';
+    setTimeout(function () {
+      return document.querySelector(elements.modalWrapper).remove();
+    }, 300);
     elements.previewLink.forEach(function (elm) {
       return elm.innerHTML = elements.defaultPreviewText;
     });
@@ -334,8 +341,9 @@ function Swipers() {
     slidesPerView: 'auto',
     freeMode: true,
     watchSlidesProgress: true,
-    centeredSlides: true,
     loop: true,
+    loopedSlides: 3,
+    slideToClickedSlide: true,
     on: {
       init: function init(el) {
         if (window.outerWidth <= 767) {
@@ -349,15 +357,19 @@ function Swipers() {
     slidesPerView: 1,
     spaceBetween: 0,
     autoHeight: false,
+    thumbs: {
+      autoScrollOffset: 3
+    },
     pagination: {
       el: '.swiper-pagination'
     },
-    loop: true,
+    loop: false,
     centeredSlides: true,
     on: {
       beforeInit: function beforeInit(el) {
         if (!singleProductThumb.destroyed) {
           el.thumbs.swiper = singleProductThumb;
+          el.thumbs.autoScrollOffset = 1;
           el.thumbs.init();
         } else {
           document.querySelector('.product-single-gallery-thumb').classList.add('hidden');

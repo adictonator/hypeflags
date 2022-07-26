@@ -10,8 +10,9 @@ export default function Swipers() {
 		slidesPerView: 'auto',
 		freeMode: true,
 		watchSlidesProgress: true,
-		centeredSlides: true,
 		loop: true,
+		loopedSlides: 3,
+		slideToClickedSlide: true,
 		on: {
 			init: (el) => {
 				if (window.outerWidth <= 767) {
@@ -26,15 +27,19 @@ export default function Swipers() {
 		slidesPerView: 1,
 		spaceBetween: 0,
 		autoHeight: false,
+		thumbs: {
+			autoScrollOffset: 3,
+		},
 		pagination: {
 			el: '.swiper-pagination',
 		},
-		loop: true,
+		loop: false,
 		centeredSlides: true,
 		on: {
 			beforeInit: (el) => {
 				if (!singleProductThumb.destroyed) {
 					el.thumbs.swiper = singleProductThumb
+					el.thumbs.autoScrollOffset = 1
 					el.thumbs.init()
 				} else {
 					document
