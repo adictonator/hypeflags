@@ -159,7 +159,7 @@ export const generateTweetCanvas = async () => {
 	let elm = document.getElementById('polo')
 
 	return await domtoimage
-		.toSvg(elm, {
+		.toBlob(elm, {
 			width: elm.clientWidth * dd,
 			height: elm.clientHeight * dd,
 			style: {
@@ -169,7 +169,7 @@ export const generateTweetCanvas = async () => {
 		})
 		.then(function (dataUrl) {
 			domtoimage
-				.toSvg(elm, {
+				.toBlob(elm, {
 					width: elm.clientWidth * dd,
 					height: elm.clientHeight * dd,
 					style: {
@@ -178,9 +178,11 @@ export const generateTweetCanvas = async () => {
 					},
 				})
 				.then((dataUrl2) => {
-					var img = new Image()
-					img.src = dataUrl2
-					document.querySelector('#lmao').appendChild(img)
+					const hhh = blobToDataURL(dataUrl2, function (dataurl) {
+						var img = new Image()
+						img.src = dataurl
+						document.querySelector('#lmao').appendChild(img)
+					})
 				})
 		})
 		.catch(function (error) {
@@ -281,6 +283,14 @@ function svg2Png(selector) {
 			document.body.appendChild(imgWrp)
 		}, 300)
 	}
+}
+
+function blobToDataURL(blob, callback) {
+	var a = new FileReader()
+	a.onload = function (e) {
+		callback(e.target.result)
+	}
+	a.readAsDataURL(blob)
 }
 
 export const removeTweetError = () => {

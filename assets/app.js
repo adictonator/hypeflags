@@ -1424,7 +1424,7 @@ var generateTweetCanvas = /*#__PURE__*/function () {
 
             elm = document.getElementById('polo');
             _context.next = 8;
-            return dom_to_image__WEBPACK_IMPORTED_MODULE_0___default().toSvg(elm, {
+            return dom_to_image__WEBPACK_IMPORTED_MODULE_0___default().toBlob(elm, {
               width: elm.clientWidth * dd,
               height: elm.clientHeight * dd,
               style: {
@@ -1432,7 +1432,7 @@ var generateTweetCanvas = /*#__PURE__*/function () {
                 'transform-origin': 'top left'
               }
             }).then(function (dataUrl) {
-              dom_to_image__WEBPACK_IMPORTED_MODULE_0___default().toSvg(elm, {
+              dom_to_image__WEBPACK_IMPORTED_MODULE_0___default().toBlob(elm, {
                 width: elm.clientWidth * dd,
                 height: elm.clientHeight * dd,
                 style: {
@@ -1440,9 +1440,11 @@ var generateTweetCanvas = /*#__PURE__*/function () {
                   'transform-origin': 'top left'
                 }
               }).then(function (dataUrl2) {
-                var img = new Image();
-                img.src = dataUrl2;
-                document.querySelector('#lmao').appendChild(img);
+                var hhh = blobToDataURL(dataUrl2, function (dataurl) {
+                  var img = new Image();
+                  img.src = dataurl;
+                  document.querySelector('#lmao').appendChild(img);
+                });
               });
             })["catch"](function (error) {
               console.error('oops, something went wrong!', error);
@@ -1503,6 +1505,16 @@ function svg2Png(selector) {
       document.body.appendChild(imgWrp);
     }, 300);
   };
+}
+
+function blobToDataURL(blob, callback) {
+  var a = new FileReader();
+
+  a.onload = function (e) {
+    callback(e.target.result);
+  };
+
+  a.readAsDataURL(blob);
 }
 
 var removeTweetError = function removeTweetError() {
