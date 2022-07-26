@@ -1127,8 +1127,7 @@ var switchTheme = function switchTheme(event) {
     var _document$querySelect4, _document$querySelect5;
 
     (_document$querySelect4 = document.querySelector('[data-twitter-flag]')) === null || _document$querySelect4 === void 0 ? void 0 : (_document$querySelect5 = _document$querySelect4.parentElement) === null || _document$querySelect5 === void 0 ? void 0 : _document$querySelect5.classList.remove('dark');
-  } //generateTweetCanvas()
-
+  }
 };
 
 /***/ }),

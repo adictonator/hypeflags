@@ -1,197 +1,293 @@
-{%- if section.settings.hero_layout == 'full_width' and section.settings.hero_size == 'adapt' -%}
-{%- if section.settings.image.aspect_ratio == blank -%}
-{%- assign min_aspect_ratio = 2.0 -%}
-{%- else -%}
-{%- assign min_aspect_ratio = section.settings.image.aspect_ratio -%}
-{%- endif -%}
-{%- assign wrapper_height = 100 | divided_by: min_aspect_ratio -%}
-{%- style -%}
-.hero-{{ section.id }} {
-height: {{- wrapper_height -}}vw !important;
-}
-{%- endstyle -%}
-{%- endif -%}
+<!-- prettier-ignore -->
+{%- liquid
+	if section.settings.hero_layout == 'full_width' and section.settings.hero_size == 'adapt'
+		if section.settings.image.aspect_ratio == blank
+			assign min_aspect_ratio = 2.0
+		else
+			assign min_aspect_ratio = section.settings.image.aspect_ratio
+		endif
 
+		assign wrapper_height = 100 | divided_by: min_aspect_ratio
+	endif
+-%}
+
+<!-- prettier-ignore -->
+{% style %} .hero-{{ section.id }} { height: {{- wrapper_height -}}vw
+!important; } {% endstyle %}
 
 <div data-section-id="{{ section.id }}" data-section-type="hero-section">
-  {% if section.settings.link != blank %}
-  <a class="image-bar__link" href="{{ section.settings.link }}">
-    {%- if section.settings.hero_layout == 'fixed_width' -%}
-    <div class="page-width">
-      {%- endif -%}
-      {%- if section.settings.hero_layout == 'fixed_width' and section.settings.hero_size ==  'adapt' -%}
-      {%- assign slide_width = 1090 -%}
-      {%- assign min_aspect_ratio = section.settings.image.aspect_ratio | default: 2.0 -%}
-      <div class="hero-fixed-width hero--adapt"
-           id="Hero-{{ section.id }}"
-           data-layout="{{ section.settings.hero_layout }}">
-        {%- assign img_url = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-        {%- if section.settings.image.width < max_width -%}
-        {%- assign slide_width = section.settings.image.width -%}
-        {%- endif -%}
-        <div class="hero-fixed-width__content">
-          <div class="page-width text-center">
-            {%- if section.settings.title != blank -%}
-            <h2 class="h1 mega-title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}">{{ section.settings.title | escape }}</h2>
-            {%- endif -%}
-            {%- if section.settings.text != blank -%}
-            <div class="rte-setting wow fadeInUp mega-subtitle{% if section.settings.text_size == 'large' %} mega-subtitle--large{% endif %}" data-wow-duration="1.5s" data-wow-delay="1.5s">{{ section.settings.text }}</div>
-            {%- endif -%}
-            {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
-            <a href="{{ section.settings.button_link }}" class="btn hero__btn">
-              {{ section.settings.button_label | escape }}
-            </a>
-            {%- endif -%}
-          </div>
-        </div>
-        {%- if section.settings.image != blank -%}
-        <img class="hero-fixed-width__image lazyload lazypreload"
-             src="{{ section.settings.image | img_url: '300x300' }}"
-             data-src="{{ img_url }}"
-             data-widths="[180, 360, 470, 600, 770, 970, 1060, 1280, 1512, 1728, 2048]"
-             data-aspectratio="{{ section.settings.image.aspect_ratio }}"
-             data-sizes="auto"
-             style="{%- if slide_width <= max_width -%}
+	{% if section.settings.link != blank %}
+	<a class="image-bar__link">
+		{%- if section.settings.hero_layout == 'fixed_width' -%}
+		<div class="page-width">
+			{%- endif -%} {%- if section.settings.hero_layout == 'fixed_width'
+			and section.settings.hero_size == 'adapt' -%} {%- assign slide_width
+			= 1090 -%} {%- assign min_aspect_ratio =
+			section.settings.image.aspect_ratio | default: 2.0 -%}
+			<div
+				class="hero-fixed-width hero--adapt"
+				id="Hero-{{ section.id }}"
+				data-layout="{{ section.settings.hero_layout }}"
+			>
+				{%- assign img_url = section.settings.image | img_url: '1x1' |
+				replace: '_1x1.', '_{width}x.' -%} {%- if
+				section.settings.image.width < max_width -%} {%- assign
+				slide_width = section.settings.image.width -%} {%- endif -%}
+				<div class="hero-fixed-width__content">
+					<div class="page-width text-center">
+						{%- if section.settings.title != blank -%}
+						<h2
+							class="h1 mega-title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}"
+						>
+							{{ section.settings.title | escape }}
+						</h2>
+						{%- endif -%} {%- if section.settings.text != blank -%}
+						<div
+							class="rte-setting wow fadeInUp mega-subtitle{% if section.settings.text_size == 'large' %} mega-subtitle--large{% endif %}"
+							data-wow-duration="1.5s"
+							data-wow-delay="1.5s"
+						>
+							{{ section.settings.text }}
+						</div>
+						{%- endif -%} {%- if section.settings.button_label !=
+						blank and section.settings.button_link != blank -%}
+						<a
+							href="{{ section.settings.button_link }}"
+							class="btn hero__btn"
+						>
+							{{ section.settings.button_label | escape }}
+						</a>
+						{%- endif -%}
+					</div>
+				</div>
+				{%- if section.settings.image != blank -%}
+				<img
+					class="hero-fixed-width__image lazyload lazypreload"
+					src="{{ section.settings.image | img_url: '300x300' }}"
+					data-src="{{ img_url }}"
+					data-widths="[180, 360, 470, 600, 770, 970, 1060, 1280, 1512, 1728, 2048]"
+					data-aspectratio="{{ section.settings.image.aspect_ratio }}"
+					data-sizes="auto"
+					style="{%- if slide_width <= max_width -%}
                     {%- assign min_width = slide_width | times: 100 | divided_by: max_width -%}
                     min-width: {{ min_width }}%;
                     {%- endif -%}
                     object-position: {{ section.settings.alignment }};"
-             alt="{{ section.settings.image.alt | escape }}"
-             loading="lazy">
-        {%- else -%}
-        <span>
-          {% capture current %}{% cycle 1, 2 %}{% endcapture %}
-          {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
-        </span>
-        {%- endif -%}
-        <noscript>
-          <div class="hero-fixed-width__image"{% if section.settings.image %} style="background-image: url('{{ section.settings.image | img_url: '2048x' }}'); background-position: center {{ section.settings.alignment }};"{% endif %}></div>
-        </noscript>
-      </div>
-      {%- else -%}
-      <div class="hero hero--{{ section.settings.hero_size }} hero-{{ section.id }}{% if section.settings.title != blank or section.settings.text != blank or section.settings.button_label != blank %} hero__overlay{% endif %} box ratio-container lazyload!! js t_f"
-           id="Hero-{{ section.id }}"
-           data-layout="{{ section.settings.hero_layout }}">
-        {%- if section.settings.image -%}
-           	<style>              
-              @media(max-width: 767px) {
-                .hero-hero {
-                    height: auto !important;
-                }
-              }         		
-              .hero--adapt
-              {
-                max-height:unset;
-              }
-              .t_f {
-                  height: 100vh !important;
-                }
-              @media(max-width: 767px) {
-                .t_f {
-                  height: calc(50vh / 0.9 ) !important;
-                }
-              }
-        	</style>
-        	<div class="hide-for-mobile custom-hero-image-wrapper">
-        		<img src="{{ section.settings.image | img_url: 'master' }}" alt="HypeFlags Hero Image" />
-        	</div>
-           {%- endif -%}
-        {%- if section.settings.image1 -%}
-           	<style>
-        		.hero--adapt {
-                    background-image: none !important;
-                }
-        	</style>
-        	<div class="custom-show-for-mobile custom-hero-image-wrapper">
-        		<img src="{{ section.settings.image1 | img_url: 'master' }}" alt="HypeFlags Hero Image" />
-        	</div>
-           {%- endif -%}
-        {%- if section.settings.image == blank -%}
-        <div class="placeholder-background">
-          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
-        </div>
-        {%- endif -%}
-        <div class="hero__inner convert_img">
-            {%- if section.settings.title != blank -%}
-            <h2 data-aos="fade-in" data-aos-duration="2000" class="h1 wow slideInLeft mega-title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}">
-              {{ section.settings.title | escape }}
-            </h2>
-            {%- endif -%}
-            {%- if section.settings.text != blank -%}
-            <div class="rte-setting mega-subtitle{% if section.settings.text_size == 'large' %} mega-subtitle--large{% endif %}" data-aos="fade-in" data-aos-duration="2000">{{ section.settings.text }}</div>
-            {%- endif -%}
-            {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
-            <a data-aos="fade-in" data-aos-duration="2000" href="{{ section.settings.button_link }}" class="btn hero__btn">
-              {{ section.settings.button_label | escape }}
-            </a>
-            {%- endif -%}
-        </div>
-      </div>
-      <noscript>
-        <div class="hero hero--{{ section.settings.hero_size }}{% if section.settings.title != blank or section.settings.text != blank or section.settings.button_label != blank %} hero__overlay{% endif %}"{% if section.settings.image %} style="background-image: url('{{ section.settings.image | img_url: '2048x' }}'); background-position: center {{ section.settings.alignment }};"{% endif %}></div>
-      </noscript>
-      {%- endif -%}
-      {%- if section.settings.hero_layout == 'fixed_width' -%}
-    </div>
-    {%- endif -%}
+					alt="{{ section.settings.image.alt | escape }}"
+					loading="lazy"
+				/>
+				{%- else -%}
+				<span>
+					{% capture current %}{% cycle 1, 2 %}{% endcapture %}
+					{{
+						"lifestyle-"
+							| append: current
+							| placeholder_svg_tag: "placeholder-svg"
+					}}
+				</span>
+				{%- endif -%}
+				<noscript>
+					<div
+						class="hero-fixed-width__image"
+						{%
+						if
+						section.settings.image
+						%}
+						style="background-image: url('{{
+							section.settings.image | img_url: '2048x'
+						}}'); background-position: center {{
+							section.settings.alignment
+						}};"
+						{%
+						endif
+						%}
+					></div>
+				</noscript>
+			</div>
+			{%- else -%}
+			<div
+				class="hero hero--{{ section.settings.hero_size }} hero-{{
+					section.id
+				}}{% if section.settings.title != blank or section.settings.text != blank or section.settings.button_label != blank %} hero__overlay{% endif %} box ratio-container lazyload!! js t_f"
+				id="Hero-{{ section.id }}"
+				data-layout="{{ section.settings.hero_layout }}"
+			>
+				{%- if section.settings.image -%}
+				<style>
+					@media (max-width: 767px) {
+						.hero-hero {
+							height: auto !important;
+						}
+					}
+					.hero--adapt {
+						max-height: unset;
+					}
+					.t_f {
+						height: 100vh !important;
+					}
+					@media (max-width: 767px) {
+						.t_f {
+							height: calc(50vh / 0.9) !important;
+						}
+					}
+				</style>
+				<div class="hide-for-mobile custom-hero-image-wrapper">
+					<img
+						src="{{ section.settings.image | img_url: 'master' }}"
+						alt="HypeFlags Hero Image"
+					/>
+				</div>
+				{%- endif -%} {%- if section.settings.image1 -%}
+				<style>
+					.hero--adapt {
+						background-image: none !important;
+					}
+				</style>
+				<div class="custom-show-for-mobile custom-hero-image-wrapper">
+					<img
+						src="{{ section.settings.image1 | img_url: 'master' }}"
+						alt="HypeFlags Hero Image"
+					/>
+				</div>
+				{%- endif -%} {%- if section.settings.image == blank -%}
+				<div class="placeholder-background">
+					{{ "lifestyle-1" | placeholder_svg_tag: "placeholder-svg" }}
+				</div>
+				{%- endif -%}
+				<div class="hero__inner convert_img">
+					{%- if section.settings.title != blank -%}
+					<h2
+						data-aos="fade-in"
+						data-aos-duration="2000"
+						class="h1 wow slideInLeft mega-title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}"
+					>
+						{{ section.settings.title | escape }}
+					</h2>
+					{%- endif -%} {%- if section.settings.text != blank -%}
+					<div
+						class="rte-setting mega-subtitle{% if section.settings.text_size == 'large' %} mega-subtitle--large{% endif %}"
+						data-aos="fade-in"
+						data-aos-duration="2000"
+					>
+						{{ section.settings.text }}
+					</div>
+					{%- endif -%} {%- if section.settings.button_label != blank
+					and section.settings.button_link != blank -%}
+					<a
+						data-aos="fade-in"
+						data-aos-duration="2000"
+						href="{{ section.settings.button_link }}"
+						class="btn hero__btn"
+					>
+						{{ section.settings.button_label | escape }}
+					</a>
+					{%- endif -%}
+				</div>
+			</div>
+			<noscript>
+				<div
+					class="hero hero--{{
+						section.settings.hero_size
+					}}{% if section.settings.title != blank or section.settings.text != blank or section.settings.button_label != blank %} hero__overlay{% endif %}"
+					{%
+					if
+					section.settings.image
+					%}
+					style="background-image: url('{{
+						section.settings.image | img_url: '2048x'
+					}}'); background-position: center {{
+						section.settings.alignment
+					}};"
+					{%
+					endif
+					%}
+				></div>
+			</noscript>
+			{%- endif -%} {%- if section.settings.hero_layout == 'fixed_width'
+			-%}
+		</div>
+		{%- endif -%}
+	</a>
+	{% endif %}
 
-    
-  </a>
-  {% endif %}
-  
-  <div class="hf-jm-wrap">
-    <div class="hf-jm-container">
-      Verified HypeFlags customer say<strong style="margin-left: 16px;font-size: 18px;">Excellent</strong>
-      <img src={{ 'jm-star.svg' | asset_url }} alt="JudgeMe star rating" />
-      <strong data-jm-id="avg">X.XX</strong>
-      &nbsp;out of 5 based on&nbsp;
-      <strong data-jm-id="total">X,XXX</strong>&nbsp;
-      <strong>reviews</strong>
-      <a style="display:flex" href="https://judge.me/reviews/hypeflags?q=logo&country=" target="_blank" title="See all reviews"><img style="max-width: 90px;" src={{ 'Judge-SVG.svg' | asset_url }} alt="JudgeMe logo" /></a>
-    </div>
-    
-    <div class="hf-jm-container mb">
-      <strong data-jm-id="total">4000</strong>&nbsp;<strong>Verified Reviews</strong>
-      <img src={{ 'jm-star.svg' | asset_url }} alt="JudgeMe star rating" />
-      <strong data-jm-id="avg">4.9</strong>&nbsp;of 5
-      <a style="display:flex" href="https://judge.me/reviews/hypeflags?q=logo&country=" target="_blank" title="See all reviews"><img src={{ 'Judge-SVG.svg' | asset_url }} alt="JudgeMe logo" /></a>
-    </div>
-  </div>
+	<div class="hf-jm-wrap">
+		<div class="hf-jm-container">
+			Verified HypeFlags customer say<strong
+				style="margin-left: 16px; font-size: 18px"
+				>Excellent</strong
+			>
+			<img src={{ "jm-star.svg" | asset_url }} alt="JudgeMe star rating"
+			/>
+			<strong data-jm-id="avg">X.XX</strong>
+			&nbsp;out of 5 based on&nbsp;
+			<strong data-jm-id="total">X,XXX</strong>&nbsp;
+			<strong>reviews</strong>
+			<a
+				style="display: flex"
+				href="https://judge.me/reviews/hypeflags?q=logo&country="
+				target="_blank"
+				title="See all reviews"
+				><img style="max-width: 90px;" src={{
+					"Judge-SVG.svg" | asset_url
+				}}
+				alt="JudgeMe logo" /></a
+			>
+		</div>
+
+		<div class="hf-jm-container mb">
+			<strong data-jm-id="total">4000</strong>&nbsp;<strong
+				>Verified Reviews</strong
+			>
+			<img src={{ "jm-star.svg" | asset_url }} alt="JudgeMe star rating"
+			/> <strong data-jm-id="avg">4.9</strong>&nbsp;of 5
+			<a
+				style="display: flex"
+				href="https://judge.me/reviews/hypeflags?q=logo&country="
+				target="_blank"
+				title="See all reviews"
+				><img src={{ "Judge-SVG.svg" | asset_url }} alt="JudgeMe logo"
+				/></a
+			>
+		</div>
+	</div>
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('.hero.hero--adapt').style.backgroundColor = 'white'
-    document.querySelector('.hero.hero--adapt').classList.remove('t_f')
-  })
-  
-  var requestOptions = {
-  method: 'GET',
-  redirect: 'follow'
-};
+	document.addEventListener("DOMContentLoaded", function () {
+		document.querySelector(".hero.hero--adapt").style.backgroundColor =
+			"white"
+		document.querySelector(".hero.hero--adapt").classList.remove("t_f")
+	})
 
-fetch("https://judge.me/api/v1/widgets/all_reviews_rating?api_token=x55KTABqSLEf6EBOwwF5qDvKy28&shop_domain=hypeflags.myshopify.com", requestOptions)
-  .then(response => response.json())
-  .then(result => $('strong[data-jm-id="avg"]').html(result.all_reviews_rating))
-  .catch(error => console.log('error', error));
-  
-fetch("https://judge.me/api/v1/widgets/all_reviews_count?api_token=x55KTABqSLEf6EBOwwF5qDvKy28&shop_domain=hypeflags.myshopify.com", requestOptions)
-  .then(response => response.json())
-  .then(result => $('strong[data-jm-id="total"]').html(result.all_reviews_count.toLocaleString('en-US')))
-  .catch(error => console.log('error', error));
-  
-//     const img = document.querySelector('.hide-for-mobile.custom-hero-image-wrapper img')
-//   var poll = setInterval(function () {
-//     if (img.naturalWidth) {
-//         clearInterval(poll);
-//         console.log(img.naturalWidth, img.naturalHeight);
-// //       document.querySelector('.hero.js').setAttribute('style', 'height: '+ img.naturalHeight +'px !important')
-//     }
-// }, 10);
+	var requestOptions = {
+		method: "GET",
+		redirect: "follow",
+	}
 
-// img.onload = function () { console.log('Fully loaded'); }
+	fetch(
+		"https://judge.me/api/v1/widgets/all_reviews_rating?api_token=x55KTABqSLEf6EBOwwF5qDvKy28&shop_domain=hypeflags.myshopify.com",
+		requestOptions
+	)
+		.then((response) => response.json())
+		.then((result) =>
+			$('strong[data-jm-id="avg"]').html(result.all_reviews_rating)
+		)
+		.catch((error) => console.log("error", error))
+
+	fetch(
+		"https://judge.me/api/v1/widgets/all_reviews_count?api_token=x55KTABqSLEf6EBOwwF5qDvKy28&shop_domain=hypeflags.myshopify.com",
+		requestOptions
+	)
+		.then((response) => response.json())
+		.then((result) =>
+			$('strong[data-jm-id="total"]').html(
+				result.all_reviews_count.toLocaleString("en-US")
+			)
+		)
+		.catch((error) => console.log("error", error))
 </script>
 
+<!-- prettier-ignore -->
 {% schema %}
 {
   "name": {
@@ -224,33 +320,33 @@ fetch("https://judge.me/api/v1/widgets/all_reviews_count?api_token=x55KTABqSLEf6
         "zh-TW": "圖片"
       }
     },
-	{
+    {
       "type": "image_picker",
       "id": "image1",
       "label": "Mobile Image"
     },
-	{
+    {
       "type": "url",
       "id": "link",
       "label": {
-      "en": "Link",
-      "de": "Link",
-      "fr": "Lien",
-      "it": "Link",
-      "ja": "リンク",
-      "es": "Enlace",
-      "pt-BR": "Link"
+        "en": "Link",
+        "de": "Link",
+        "fr": "Lien",
+        "it": "Link",
+        "ja": "リンク",
+        "es": "Enlace",
+        "pt-BR": "Link"
       },
       "info": {
-      "en": "Optional",
-      "de": "Optional",
-      "fr": "Facultatif",
-      "it": "Facoltativo",
-      "ja": "選択させる",
-      "es": "Opcional",
-      "pt-BR": "Opcional"
+        "en": "Optional",
+        "de": "Optional",
+        "fr": "Facultatif",
+        "it": "Facoltativo",
+        "ja": "選択させる",
+        "es": "Opcional",
+        "pt-BR": "Opcional"
       }
-	},
+    },
     {
       "type": "select",
       "id": "hero_layout",
@@ -500,18 +596,6 @@ fetch("https://judge.me/api/v1/widgets/all_reviews_count?api_token=x55KTABqSLEf6
         "pt-BR": "Texto",
         "zh-CN": "文本",
         "zh-TW": "文字"
-      },
-      "default": {
-        "de": "<p>Nutzen Sie überlegten Text, um Kunden über Ihre Marke zu informieren. Wählen Sie Fotos und Text aus, die zu Ihrer Marke passen.</p>",
-        "en": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>",
-        "es": "<p>Usa el texto superpuesto para darles información a tus clientes sobre tu marca. Selecciona imágenes y textos que se relacionen con tu estilo e historia.</p>",
-        "fr": "<p>Utilisez la superposition de texte pour donner un aperçu de votre marque à vos clients. Utilisez une image et du texte qui se rapportent au style et à l'histoire de votre marque.</p>",
-        "it": "<p>Utilizza il testo in sovrapposizione per dare ai clienti informazioni sul tuo brand. Seleziona immagini e testo legati al tuo stile e alla tua storia.</p>",
-        "ja": "<p>オーバーレイテキストを使用して、お客様があなたのブランドについてよく理解できるようにします。あなたのスタイルやストーリーに関連する画像やテキストを選択してください。</p>",
-        "nl": "<p>Gebruik overlay-tekst om uw klanten inzicht te geven in uw merk. Selecteer afbeeldingen en tekst die betrekking hebben op uw stijl en verhaal.</p>",
-        "pt-BR": "<p>Use o texto de sobreposição para apresentar informações sobre sua marca aos clientes. Selecione imagens e textos que reflitam seu estilo e sua história.</p>",
-        "zh-CN": "<p>使用叠加文本让客户深入了解您的品牌。选择与您的风格和故事相关的图片和文本。</p>",
-        "zh-TW": "<p>運用文字疊加讓客戶更加瞭解您的品牌。選擇與您風格和品牌故事相關的圖像和文字。</p>"
       }
     },
     {
@@ -521,7 +605,7 @@ fetch("https://judge.me/api/v1/widgets/all_reviews_count?api_token=x55KTABqSLEf6
         "de": "Button-Etikett",
         "en": "Button label",
         "es": "Etiqueta de botón",
-        "fr": "Texte du bouton",
+        "fr": "Texte\ndu bouton",
         "it": "Etichetta pulsante",
         "ja": "ボタンラベル",
         "nl": "Knoplabel",
@@ -538,7 +622,7 @@ fetch("https://judge.me/api/v1/widgets/all_reviews_count?api_token=x55KTABqSLEf6
         "en": "Button link",
         "es": "Enlace de botón",
         "fr": "Lien du bouton",
-        "it": "Link pulsante",
+        "it": "Link\npulsante",
         "ja": "ボタンリンク",
         "nl": "Knoplink",
         "pt-BR": "Link do botão",
@@ -552,7 +636,7 @@ fetch("https://judge.me/api/v1/widgets/all_reviews_count?api_token=x55KTABqSLEf6
       "name": {
         "de": "Foto mit überlegtem Text",
         "en": "Image with text overlay",
-        "es": "Imagen con texto",
+        "es": "Imagen con\ntexto",
         "fr": "Image avec superposition de texte",
         "it": "Immagine con testo",
         "ja": "テキストオーバーレイ付き画像",
