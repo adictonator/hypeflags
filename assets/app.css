@@ -1481,6 +1481,10 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(213 0 58 / var(--tw-bg-opacity));
 }
+.bg-pink-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 168 212 / var(--tw-bg-opacity));
+}
 .bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
@@ -1594,6 +1598,12 @@ video {
 .pb-6 {
   padding-bottom: 1.5rem;
 }
+.pb-4 {
+  padding-bottom: 1rem;
+}
+.pt-0 {
+  padding-top: 0px;
+}
 .text-center {
   text-align: center;
 }
@@ -1649,6 +1659,12 @@ video {
 }
 .leading-\[0\] {
   line-height: 0;
+}
+.leading-none {
+  line-height: 1;
+}
+.leading-\[0\.5\] {
+  line-height: 0.5;
 }
 .tracking-widest {
   letter-spacing: 0.1em;

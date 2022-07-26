@@ -1,6 +1,5 @@
 import domtoimage from 'dom-to-image'
 import html2canvas from 'html2canvas'
-import { toPng, toSvg } from 'html-to-image'
 
 export const handleFlagResize = (outerElm, innerElm) => {
 	if (!outerElm || !innerElm) return
@@ -152,14 +151,27 @@ export const nFormatter = (num, digits = 1) => {
 export const generateTweetCanvas = async () => {
 	var fix_screen = 559
 	var fix_scale = 5.7
-	var new_width = $('[data-twitter-flag]').width()
+	var new_width = $('#polo').width()
 	var cal_width = new_width / fix_screen
 	var dd = fix_scale / cal_width
-	//let elm = document.querySelector('[data-twitter-flag]')
+	let elm = document.querySelector('[data-twitter-flag]')
 	//let elm = document.getElementById('polo').cloneNode(true)
-	let elm = document.getElementById('polo')
+	//let elm = document.getElementById('polo')
+	//let elm = document.querySelector('.more-inner #cc')
 	//const g = document.createElement('div')
 	//const r = g.appendChild(elm)
+
+	return html2canvas(elm, {
+		useCORS: true,
+		//scale: dd,
+	}).then((canvas) => {
+		html2canvas(elm, {
+			useCORS: true,
+			//scale: dd,
+		}).then((canvas2) => {
+			document.querySelector('#lmao').appendChild(canvas2)
+		})
+	})
 
 	return await domtoimage
 		.toPng(elm, {
