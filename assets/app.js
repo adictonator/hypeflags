@@ -1421,8 +1421,8 @@ var generateTweetCanvas = /*#__PURE__*/function () {
               width: element.clientWidth * dd,
               height: element.clientHeight * dd,
               style: {
-                transform: 'scale(' + dd + ')',
-                'transform-origin': 'top left'
+                transform: 'scale(' + dd + ')' //'transform-origin': 'top left',
+
               }
             }).then(function (dataUrl) {
               var img = new Image();

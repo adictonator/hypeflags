@@ -161,7 +161,7 @@ export const generateTweetCanvas = async () => {
 			height: element.clientHeight * dd,
 			style: {
 				transform: 'scale(' + dd + ')',
-				'transform-origin': 'top left',
+				//'transform-origin': 'top left',
 			},
 		})
 		.then(function (dataUrl) {
