@@ -156,66 +156,51 @@ export const generateTweetCanvas = async () => {
 	var dd = fix_scale / cal_width
 	let element = document.querySelector('[data-twitter-flag]')
 
-	html2canvas(element, {
+	return await html2canvas(element, {
 		scale: dd,
 		useCORS: true,
 	}).then((canvas) => {
-		document.querySelector('#lmao').appendChild(canvas)
-		//const f = canvas.toDataURL('image/png')
-		//$('body').append(
-		//	'<input type="hidden" class="new_url" value="' + f + '"/>'
-		//)
-		//$("[name='add']").removeAttr('disabled')
+		const dataURL = canvas.toDataURL('image/png')
+		// @todo: fix this sitty code.
+		if (document.querySelector('.new_url')) {
+			document.querySelector('.new_url').value = dataURL
+		} else {
+			$('body').append(
+				'<input type="hidden" class="new_url" value="' + dataURL + '"/>'
+			)
+		}
 	})
 
-	return
+	// This code is causing issues with Safari on mobile and desktop.
+	//return await domtoimage
+	//	.toJpeg(element, {
+	//		width: element.clientWidth * dd,
+	//		height: element.clientHeight * dd,
+	//		cacheBust: true,
+	//		style: {
+	//			transform: 'scale(' + dd + ')',
+	//			'transform-origin': 'top left',
+	//		},
+	//	})
+	//	.then(function (dataUrl) {
+	//		var img = new Image()
+	//		img.src = dataUrl
+	//		document.querySelector('#lmao').appendChild(img)
 
-	//setTimeout(() => {
-	//	domtoimage
-	//		.toPng(element, {
-	//			width: element.clientWidth,
-	//			height: element.clientHeight,
-	//			cacheBust: true,
-	//		})
-	//		.then((dataUrl) => {
-	//			var img = new Image()
-	//			img.src = dataUrl
-	//			document.querySelector('#lmao').appendChild(img)
-
-	//			return
-	//		})
-	//}, 1000)
-
-	return await domtoimage
-		.toJpeg(element, {
-			width: element.clientWidth * dd,
-			height: element.clientHeight * dd,
-			cacheBust: true,
-			style: {
-				transform: 'scale(' + dd + ')',
-				'transform-origin': 'top left',
-			},
-		})
-		.then(function (dataUrl) {
-			var img = new Image()
-			img.src = dataUrl
-			document.querySelector('#lmao').appendChild(img)
-
-			return
-			// @todo: fix this sitty code.
-			if (document.querySelector('.new_url')) {
-				document.querySelector('.new_url').value = dataUrl
-			} else {
-				$('body').append(
-					'<input type="hidden" class="new_url" value="' +
-						dataUrl +
-						'"/>'
-				)
-			}
-		})
-		.catch(function (error) {
-			console.error('oops, something went wrong!', error)
-		})
+	//		// @todo: fix this sitty code.
+	//		if (document.querySelector('.new_url')) {
+	//			document.querySelector('.new_url').value = dataUrl
+	//		} else {
+	//			$('body').append(
+	//				'<input type="hidden" class="new_url" value="' +
+	//					dataUrl +
+	//					'"/>'
+	//			)
+	//		}
+	//	})
+	//	.catch(function (error) {
+	//		console.error('oops, something went wrong!', error)
+	//	})
 }
 
 export const removeTweetError = () => {
