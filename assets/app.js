@@ -1434,6 +1434,7 @@ var generateTweetCanvas = /*#__PURE__*/function () {
             return dom_to_image__WEBPACK_IMPORTED_MODULE_0___default().toSvg(element, {
               width: element.clientWidth * dd,
               height: element.clientHeight * dd,
+              cacheBust: true,
               style: {
                 transform: 'scale(' + dd + ')',
                 'transform-origin': 'top left'

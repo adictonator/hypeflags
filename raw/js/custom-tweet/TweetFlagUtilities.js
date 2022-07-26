@@ -175,6 +175,7 @@ export const generateTweetCanvas = async () => {
 		.toSvg(element, {
 			width: element.clientWidth * dd,
 			height: element.clientHeight * dd,
+			cacheBust: true,
 			style: {
 				transform: 'scale(' + dd + ')',
 				'transform-origin': 'top left',
