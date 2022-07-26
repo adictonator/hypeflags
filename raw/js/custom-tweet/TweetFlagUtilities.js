@@ -164,7 +164,7 @@ export const generateTweetCanvas = async () => {
 			domtoimage
 				.toSvg(elm, {
 					// you need height and width for safari
-					height: elm.clientHeight,
+					height: elm.clientHeight + 300,
 					width: elm.clientWidth,
 				})
 				.then((dataUrl2) => {

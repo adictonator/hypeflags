@@ -1427,7 +1427,7 @@ var generateTweetCanvas = /*#__PURE__*/function () {
             return dom_to_image__WEBPACK_IMPORTED_MODULE_0___default().toSvg(elm).then(function (dataUrl) {
               dom_to_image__WEBPACK_IMPORTED_MODULE_0___default().toSvg(elm, {
                 // you need height and width for safari
-                height: elm.clientHeight,
+                height: elm.clientHeight + 300,
                 width: elm.clientWidth
               }).then(function (dataUrl2) {
                 var img = new Image();
