@@ -1414,36 +1414,33 @@ var generateTweetCanvas = /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
+            document.body.style.lineHeight = '0.5';
             fix_screen = 559;
             fix_scale = 5.7;
             new_width = $('#polo').width();
             cal_width = new_width / fix_screen;
             dd = fix_scale / cal_width;
-            elm = document.querySelector('[data-twitter-flag]'); //let elm = document.getElementById('polo').cloneNode(true)
+            elm = document.querySelector('[data-twitter-flag] .inner'); //let elm = document.getElementById('polo').cloneNode(true)
             //let elm = document.getElementById('polo')
             //let elm = document.querySelector('.more-inner #cc')
             //const g = document.createElement('div')
             //const r = g.appendChild(elm)
 
             return _context.abrupt("return", html2canvas__WEBPACK_IMPORTED_MODULE_1___default()(elm, {
-              useCORS: true //scale: dd,
-
+              useCORS: true,
+              scale: dd
             }).then(function (canvas) {
-              html2canvas__WEBPACK_IMPORTED_MODULE_1___default()(elm, {
-                useCORS: true //scale: dd,
-
-              }).then(function (canvas2) {
-                document.querySelector('#lmao').appendChild(canvas2);
-              });
+              document.body.style.lineHeight = '1.5';
+              document.querySelector('#lmao').appendChild(canvas);
             }));
 
-          case 9:
-            return _context.abrupt("return", _context.sent);
-
-          case 12:
+          case 10:
             return _context.abrupt("return", _context.sent);
 
           case 13:
+            return _context.abrupt("return", _context.sent);
+
+          case 14:
           case "end":
             return _context.stop();
         }

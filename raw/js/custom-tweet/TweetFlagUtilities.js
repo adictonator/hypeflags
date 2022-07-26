@@ -149,12 +149,13 @@ export const nFormatter = (num, digits = 1) => {
 }
 
 export const generateTweetCanvas = async () => {
+	document.body.style.lineHeight = '0.5'
 	var fix_screen = 559
 	var fix_scale = 5.7
 	var new_width = $('#polo').width()
 	var cal_width = new_width / fix_screen
 	var dd = fix_scale / cal_width
-	let elm = document.querySelector('[data-twitter-flag]')
+	let elm = document.querySelector('[data-twitter-flag] .inner')
 	//let elm = document.getElementById('polo').cloneNode(true)
 	//let elm = document.getElementById('polo')
 	//let elm = document.querySelector('.more-inner #cc')
@@ -163,14 +164,10 @@ export const generateTweetCanvas = async () => {
 
 	return html2canvas(elm, {
 		useCORS: true,
-		//scale: dd,
+		scale: dd,
 	}).then((canvas) => {
-		html2canvas(elm, {
-			useCORS: true,
-			//scale: dd,
-		}).then((canvas2) => {
-			document.querySelector('#lmao').appendChild(canvas2)
-		})
+		document.body.style.lineHeight = '1.5'
+		document.querySelector('#lmao').appendChild(canvas)
 	})
 
 	return await domtoimage
