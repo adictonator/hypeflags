@@ -159,10 +159,10 @@ export const generateTweetCanvas = async () => {
 		.toPng(element, {
 			width: element.clientWidth * dd,
 			height: element.clientHeight * dd,
-			style: {
-				transform: 'scale(' + dd + ')',
-				'transform-origin': 'top left',
-			},
+			//style: {
+			//	transform: 'scale(' + dd + ')',
+			//	'transform-origin': 'top left',
+			//},
 		})
 		.then(function (dataUrl) {
 			var img = new Image()

@@ -1420,11 +1420,11 @@ var generateTweetCanvas = /*#__PURE__*/function () {
             _context.next = 8;
             return dom_to_image__WEBPACK_IMPORTED_MODULE_0___default().toPng(element, {
               width: element.clientWidth * dd,
-              height: element.clientHeight * dd,
-              style: {
-                transform: 'scale(' + dd + ')',
-                'transform-origin': 'top left'
-              }
+              height: element.clientHeight * dd //style: {
+              //	transform: 'scale(' + dd + ')',
+              //	'transform-origin': 'top left',
+              //},
+
             }).then(function (dataUrl) {
               var img = new Image();
               img.src = dataUrl;
