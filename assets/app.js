@@ -1431,7 +1431,7 @@ var generateTweetCanvas = /*#__PURE__*/function () {
             //}, 1000)
 
             _context.next = 8;
-            return dom_to_image__WEBPACK_IMPORTED_MODULE_0___default().toSvg(element, {
+            return dom_to_image__WEBPACK_IMPORTED_MODULE_0___default().toJpeg(element, {
               width: element.clientWidth * dd,
               height: element.clientHeight * dd,
               cacheBust: true,
