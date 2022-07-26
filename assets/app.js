@@ -1420,7 +1420,8 @@ var generateTweetCanvas = /*#__PURE__*/function () {
             setTimeout(function () {
               dom_to_image__WEBPACK_IMPORTED_MODULE_0___default().toPng(element, {
                 width: element.clientWidth,
-                height: element.clientHeight
+                height: element.clientHeight,
+                cacheBust: true
               }).then(function (dataUrl) {
                 var img = new Image();
                 img.src = dataUrl;

@@ -160,6 +160,7 @@ export const generateTweetCanvas = async () => {
 			.toPng(element, {
 				width: element.clientWidth,
 				height: element.clientHeight,
+				cacheBust: true,
 			})
 			.then((dataUrl) => {
 				var img = new Image()
