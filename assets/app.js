@@ -339,10 +339,9 @@ function Swipers() {
   var singleProductThumb = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.product-single-gallery-thumb', {
     spaceBetween: 15,
     slidesPerView: 'auto',
-    freeMode: true,
     watchSlidesProgress: true,
     loop: false,
-    loopedSlides: 3,
+    loopedSlides: 2,
     slideToClickedSlide: true,
     on: {
       init: function init(el) {
@@ -358,7 +357,7 @@ function Swipers() {
     spaceBetween: 0,
     autoHeight: false,
     thumbs: {
-      autoScrollOffset: 3
+      autoScrollOffset: 2
     },
     pagination: {
       el: '.swiper-pagination'

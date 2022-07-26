@@ -8,10 +8,9 @@ export default function Swipers() {
 	const singleProductThumb = new Swiper('.product-single-gallery-thumb', {
 		spaceBetween: 15,
 		slidesPerView: 'auto',
-		freeMode: true,
 		watchSlidesProgress: true,
 		loop: false,
-		loopedSlides: 3,
+		loopedSlides: 2,
 		slideToClickedSlide: true,
 		on: {
 			init: (el) => {
@@ -28,7 +27,7 @@ export default function Swipers() {
 		spaceBetween: 0,
 		autoHeight: false,
 		thumbs: {
-			autoScrollOffset: 3,
+			autoScrollOffset: 2,
 		},
 		pagination: {
 			el: '.swiper-pagination',
