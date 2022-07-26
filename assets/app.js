@@ -341,7 +341,7 @@ function Swipers() {
     slidesPerView: 'auto',
     freeMode: true,
     watchSlidesProgress: true,
-    loop: true,
+    loop: false,
     loopedSlides: 3,
     slideToClickedSlide: true,
     on: {
