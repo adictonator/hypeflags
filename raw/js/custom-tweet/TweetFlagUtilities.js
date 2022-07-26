@@ -158,13 +158,37 @@ export const generateTweetCanvas = async () => {
 	//let elm = document.querySelector('[data-twitter-flag]')
 	let elm = document.getElementById('polo')
 
+	//return await svg2Png(elm)
+
 	return await toSvg(elm)
 		.then(function (dataUrl) {
-			setTimeout(() => {
-				var img = new Image()
-				img.src = dataUrl
-				document.querySelector('#lmao').appendChild(img)
-			}, 500)
+			var img = new Image()
+			img.src = dataUrl
+			let svgW = img.width
+			let svgH = img.height
+
+			img.onload = () => {
+				let canvas = document.createElement('canvas')
+				canvas.width = svgW
+				canvas.height = svgH
+				let context = canvas.getContext('2d')
+
+				// draw blob img to canvas with some delay
+				setTimeout(function () {
+					context.drawImage(img, 0, 0, svgW, svgH)
+					let pngDataUrl = canvas.toDataURL()
+					let svgImg = document.createElement('img')
+					svgImg.width = svgW
+					svgImg.height = svgH
+					svgImg.src = dataUrl
+					// just additional wrapping for example usage
+					let imgWrp = document.createElement('div')
+					imgWrp.setAttribute('class', 'img-wrp img-wrp-vanilla')
+					imgWrp.appendChild(svgImg)
+					//document.body.appendChild(imgWrp)
+					document.querySelector('#lmao').appendChild(imgWrp)
+				}, 300)
+			}
 			//document.body.appendChild(img)
 		})
 		.catch(function (error) {
@@ -227,6 +251,44 @@ export const generateTweetCanvas = async () => {
 	//	.catch(function (error) {
 	//		console.error('oops, something went wrong!', error)
 	//	})
+}
+
+function svg2Png(selector) {
+	const svgEl = document.querySelector(selector)
+	let svgBB = svgEl.getBBox()
+	let svgW = svgBB.width
+	let svgH = svgBB.height
+
+	let blob = new Blob([svgEl.outerHTML], { type: 'image/svg+xml' })
+	let URL = window.URL
+	let blobURL = URL.createObjectURL(blob)
+	let tmpImg = new Image()
+	tmpImg.src = blobURL
+	tmpImg.width = svgW
+	tmpImg.height = svgH
+
+	tmpImg.onload = () => {
+		let canvas = document.createElement('canvas')
+		canvas.width = svgW
+		canvas.height = svgH
+		let context = canvas.getContext('2d')
+
+		// draw blob img to canvas with some delay
+		setTimeout(function () {
+			context.drawImage(tmpImg, 0, 0, svgW, svgH)
+			let pngDataUrl = canvas.toDataURL()
+			let svgImg = document.createElement('img')
+			svgImg.width = svgW
+			svgImg.height = svgH
+			svgImg.class = 'svgImg'
+			svgImg.src = pngDataUrl
+			// just additional wrapping for example usage
+			let imgWrp = document.createElement('div')
+			imgWrp.setAttribute('class', 'img-wrp img-wrp-vanilla')
+			imgWrp.appendChild(svgImg)
+			document.body.appendChild(imgWrp)
+		}, 300)
+	}
 }
 
 export const removeTweetError = () => {

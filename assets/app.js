@@ -1422,14 +1422,37 @@ var generateTweetCanvas = /*#__PURE__*/function () {
             cal_width = new_width / fix_screen;
             dd = fix_scale / cal_width; //let elm = document.querySelector('[data-twitter-flag]')
 
-            elm = document.getElementById('polo');
+            elm = document.getElementById('polo'); //return await svg2Png(elm)
+
             _context.next = 8;
             return (0,html_to_image__WEBPACK_IMPORTED_MODULE_2__.toSvg)(elm).then(function (dataUrl) {
-              setTimeout(function () {
-                var img = new Image();
-                img.src = dataUrl;
-                document.querySelector('#lmao').appendChild(img);
-              }, 500); //document.body.appendChild(img)
+              var img = new Image();
+              img.src = dataUrl;
+              var svgW = img.width;
+              var svgH = img.height;
+
+              img.onload = function () {
+                var canvas = document.createElement('canvas');
+                canvas.width = svgW;
+                canvas.height = svgH;
+                var context = canvas.getContext('2d'); // draw blob img to canvas with some delay
+
+                setTimeout(function () {
+                  context.drawImage(img, 0, 0, svgW, svgH);
+                  var pngDataUrl = canvas.toDataURL();
+                  var svgImg = document.createElement('img');
+                  svgImg.width = svgW;
+                  svgImg.height = svgH;
+                  svgImg.src = dataUrl; // just additional wrapping for example usage
+
+                  var imgWrp = document.createElement('div');
+                  imgWrp.setAttribute('class', 'img-wrp img-wrp-vanilla');
+                  imgWrp.appendChild(svgImg); //document.body.appendChild(imgWrp)
+
+                  document.querySelector('#lmao').appendChild(imgWrp);
+                }, 300);
+              }; //document.body.appendChild(img)
+
             })["catch"](function (error) {
               console.error('oops, something went wrong!', error);
             });
@@ -1452,6 +1475,45 @@ var generateTweetCanvas = /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }();
+
+function svg2Png(selector) {
+  var svgEl = document.querySelector(selector);
+  var svgBB = svgEl.getBBox();
+  var svgW = svgBB.width;
+  var svgH = svgBB.height;
+  var blob = new Blob([svgEl.outerHTML], {
+    type: 'image/svg+xml'
+  });
+  var URL = window.URL;
+  var blobURL = URL.createObjectURL(blob);
+  var tmpImg = new Image();
+  tmpImg.src = blobURL;
+  tmpImg.width = svgW;
+  tmpImg.height = svgH;
+
+  tmpImg.onload = function () {
+    var canvas = document.createElement('canvas');
+    canvas.width = svgW;
+    canvas.height = svgH;
+    var context = canvas.getContext('2d'); // draw blob img to canvas with some delay
+
+    setTimeout(function () {
+      context.drawImage(tmpImg, 0, 0, svgW, svgH);
+      var pngDataUrl = canvas.toDataURL();
+      var svgImg = document.createElement('img');
+      svgImg.width = svgW;
+      svgImg.height = svgH;
+      svgImg["class"] = 'svgImg';
+      svgImg.src = pngDataUrl; // just additional wrapping for example usage
+
+      var imgWrp = document.createElement('div');
+      imgWrp.setAttribute('class', 'img-wrp img-wrp-vanilla');
+      imgWrp.appendChild(svgImg);
+      document.body.appendChild(imgWrp);
+    }, 300);
+  };
+}
+
 var removeTweetError = function removeTweetError() {
   // Hide flag UI.
   document.querySelector('[data-twitter-flag]').classList.remove('hidden'); // Hide edit button.
