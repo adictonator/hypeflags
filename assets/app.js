@@ -673,22 +673,22 @@ $(document).on('click', 'button[name="add"]', /*#__PURE__*/function () {
           case 0:
             e.preventDefault();
             btn = $(this); // Show the loader.
+            //btn.prop('disabled', true).find('svg').removeClass('hidden')
 
-            btn.prop('disabled', true).find('svg').removeClass('hidden');
             prodType = btn.data('add-to-cart');
 
             if (!(prodType === 'tweet')) {
-              _context.next = 7;
+              _context.next = 6;
               break;
             }
 
-            _context.next = 7;
+            _context.next = 6;
             return (0,_custom_tweet_TweetFlagUtilities__WEBPACK_IMPORTED_MODULE_5__.generateTweetCanvas)();
 
-          case 7:
+          case 6:
             return _context.abrupt("return");
 
-          case 16:
+          case 15:
           case "end":
             return _context.stop();
         }

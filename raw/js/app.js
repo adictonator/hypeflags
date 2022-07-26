@@ -81,7 +81,7 @@ $(document).on('click', 'button[name="add"]', async function (e) {
 	const btn = $(this)
 
 	// Show the loader.
-	btn.prop('disabled', true).find('svg').removeClass('hidden')
+	//btn.prop('disabled', true).find('svg').removeClass('hidden')
 
 	const prodType = btn.data('add-to-cart')
 
