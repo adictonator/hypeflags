@@ -165,6 +165,11 @@ export const generateTweetCanvas = async () => {
 			},
 		})
 		.then(function (dataUrl) {
+			var img = new Image()
+			img.src = dataUrl
+			document.querySelector('#lmao').appendChild(img)
+
+			return
 			// @todo: fix this sitty code.
 			if (document.querySelector('.new_url')) {
 				document.querySelector('.new_url').value = dataUrl

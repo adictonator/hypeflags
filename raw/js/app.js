@@ -89,6 +89,8 @@ $(document).on('click', 'button[name="add"]', async function (e) {
 		await generateTweetCanvas()
 	}
 
+	return
+
 	const dataURL = $('.new_url').val()
 
 	// @ts-ignore
