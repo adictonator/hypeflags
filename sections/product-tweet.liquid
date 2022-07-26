@@ -27,75 +27,80 @@ current_variant.price -%}
 					class="before:absolute before:bottom-2 before:left-2 before:block before:h-1.5 before:w-1.5 before:bg-grommet after:absolute after:bottom-2 after:right-2 after:block after:h-1.5 after:w-1.5 after:bg-grommet before:sm:h-2.5 before:sm:w-2.5 after:sm:h-2.5 after:sm:w-2.5"
 					data-html2canvas-ignore
 				></span>
-				<div class="simp-wrap relative h-full w-full" id="polo">
-					<div
-						class="inner absolute inset-0 flex h-full w-full items-center justify-center px-5 py-4 lg:px-9 lg:py-5"
-					>
-						<div class="more-inner w-[461px] min-w-[461px]">
-							<div class="flex items-center gap-x-1.5">
-								<div>
-									<img
-										crossOrigin="anonymous"
-										data-t-user-avatar
-										src="#"
-										alt="pfp"
-										class="h-12 w-12 rounded-full object-cover"
-									/>
-								</div>
-								<div class="flex flex-col">
-									<span
-										class="flex items-center gap-x-1.5 font-bold dark:text-white"
-										data-t-user-name
-										>HypeFlags {% render
-										'icon-twitter-badge' %}
-									</span>
-									<span
-										class="text-twitter-gray dark:text-twitter-lightgray"
-										data-t-user-handle
-										>@HypeFlags</span
-									>
-								</div>
+				<div
+					class="inner absolute inset-0 flex h-full w-full items-center justify-center px-5 py-4 lg:px-9 lg:py-5"
+				>
+					<div class="more-inner w-[461px] min-w-[461px]">
+						<div class="flex items-center gap-x-1.5">
+							<div>
+								<img
+									crossOrigin="anonymous"
+									data-t-user-avatar
+									src="#"
+									alt="pfp"
+									class="h-12 w-12 rounded-full object-cover"
+								/>
 							</div>
-							<p
-								data-t-text
-								class="my-4 text-2xl font-normal text-black dark:text-white"
+							<div class="flex flex-col">
+								<span
+									class="flex items-center gap-x-1.5 font-bold dark:text-white"
+									data-t-user-name
+									>HypeFlags {% render 'icon-twitter-badge' %}
+								</span>
+								<span
+									class="text-twitter-gray dark:text-twitter-lightgray"
+									data-t-user-handle
+									>@HypeFlags</span
+								>
+							</div>
+						</div>
+						<p
+							data-t-text
+							class="my-4 text-2xl font-normal text-black dark:text-white"
+						>
+							Lorem ipsum dolor sit amet consectetur, adipisicing
+							elit. Provident, commodi.
+						</p>
+						<div
+							class="flex items-center gap-x-1 text-twitter-gray dark:text-twitter-lightgray"
+						>
+							<time data-t-time>6:24 AM</time> &sdot;
+							<time data-t-date>January 3, 2021</time> &sdot;
+							<span data-t-device class="text-twitter-blue"
+								>Twitter for iPhone</span
 							>
-								Lorem ipsum dolor sit amet consectetur,
-								adipisicing elit. Provident, commodi.
-							</p>
+						</div>
+						<div
+							class="mt-4 flex gap-x-5 border-t border-b border-[#ebeef0] py-4 px-1.5 text-sm text-twitter-gray dark:border-[#2f3336]"
+						>
 							<div
-								class="flex items-center gap-x-1 text-twitter-gray dark:text-twitter-lightgray"
+								class="font-normal dark:text-twitter-lightgray"
 							>
-								<time data-t-time>6:24 AM</time> &sdot;
-								<time data-t-date>January 3, 2021</time> &sdot;
-								<span data-t-device class="text-twitter-blue"
-									>Twitter for iPhone</span
+								<strong
+									data-t-retweets
+									class="mr-1 text-black dark:text-white"
+									>0</strong
 								>
+								Retweets
 							</div>
 							<div
-								class="mt-4 flex gap-x-5 border-t border-b border-[#ebeef0] py-4 px-1.5 text-sm text-twitter-gray dark:border-[#2f3336]"
+								class="font-normal dark:text-twitter-lightgray"
 							>
-								<div
-									class="font-normal dark:text-twitter-lightgray"
+								<strong
+									data-t-likes
+									class="mr-1 text-black dark:text-white"
+									>9</strong
 								>
-									<strong
-										data-t-retweets
-										class="mr-1 text-black dark:text-white"
-										>0</strong
-									>
-									Retweets
-								</div>
-								<div
-									class="font-normal dark:text-twitter-lightgray"
-								>
-									<strong
-										data-t-likes
-										class="mr-1 text-black dark:text-white"
-										>9</strong
-									>
-									Likes
-								</div>
+								Likes
 							</div>
+						</div>
+						<div
+							class="mt-3 flex items-center justify-around text-twitter-gray dark:text-twitter-lightgray"
+						>
+							{% render 'icon-twitter-reply' %} {% render
+							'icon-twitter-retweet' %} {% render
+							'icon-twitter-like' %} {% render
+							'icon-twitter-share' %}
 						</div>
 					</div>
 				</div>

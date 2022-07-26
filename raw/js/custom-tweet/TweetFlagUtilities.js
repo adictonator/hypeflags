@@ -152,10 +152,10 @@ export const generateTweetCanvas = async () => {
 	document.body.style.lineHeight = '0.5'
 	var fix_screen = 559
 	var fix_scale = 5.7
-	var new_width = $('#polo').width()
+	let elm = document.querySelector('[data-twitter-flag]')
+	var new_width = elm.clientWidth
 	var cal_width = new_width / fix_screen
 	var dd = fix_scale / cal_width
-	let elm = document.querySelector('[data-twitter-flag] .inner')
 	//let elm = document.getElementById('polo').cloneNode(true)
 	//let elm = document.getElementById('polo')
 	//let elm = document.querySelector('.more-inner #cc')
@@ -167,60 +167,8 @@ export const generateTweetCanvas = async () => {
 		scale: dd,
 	}).then((canvas) => {
 		document.body.style.lineHeight = '1.5'
-		document.querySelector('#lmao').appendChild(canvas)
-	})
+		const dataURL = canvas.toDataURL()
 
-	return await domtoimage
-		.toPng(elm, {
-			width: elm.clientWidth * dd,
-			height: elm.clientHeight * dd,
-			style: {
-				transform: 'scale(' + dd + ')',
-				'transform-origin': 'top left',
-			},
-		})
-		.then(function (dataUrl) {
-			domtoimage
-				.toPng(elm, {
-					width: elm.clientWidth * dd,
-					height: elm.clientHeight * dd,
-					style: {
-						transform: 'scale(' + dd + ')',
-						'transform-origin': 'top left',
-					},
-				})
-				.then((dataUrl2) => {
-					console.log('333', dataUrl2)
-					var img = new Image()
-					img.src = dataUrl2
-					document.querySelector('#lmao').appendChild(img)
-					//blobToDataURL(dataUrl2, function (dataurl) {
-					//	var img = new Image()
-					//	img.src = dataurl
-					//	document.querySelector('#lmao').appendChild(img)
-					//blobToDataURL})
-				})
-		})
-		.catch(function (error) {
-			console.error('oops, something went wrong!', error)
-		})
-
-	return await html2canvas(elm, {
-		useCORS: true,
-		logging: true,
-		scrollX: 0,
-		scrollY: -window.scrollY,
-		scale: 1,
-		windowWidth: elm.scrollWidth,
-		windowHeight: elm.scrollHeight,
-
-		//scale: dd,
-		//width: elm.clientWidth,
-		//height: elm.clientHeight,
-	}).then((canvas) => {
-		//const dataURL = canvas.toDataURL()
-		document.querySelector('#lmao').appendChild(canvas)
-		return
 		// @todo: fix this sitty code.
 		if (document.querySelector('.new_url')) {
 			document.querySelector('.new_url').value = dataURL
@@ -261,54 +209,6 @@ export const generateTweetCanvas = async () => {
 	//	.catch(function (error) {
 	//		console.error('oops, something went wrong!', error)
 	//	})
-}
-
-function svg2Png(selector) {
-	const svgEl = document.querySelector(selector)
-	let svgBB = svgEl.getBBox()
-	let svgW = svgBB.width
-	let svgH = svgBB.height
-
-	let blob = new Blob([svgEl.outerHTML], { type: 'image/svg+xml' })
-	let URL = window.URL
-	let blobURL = URL.createObjectURL(blob)
-	let tmpImg = new Image()
-	tmpImg.src = blobURL
-	tmpImg.width = svgW
-	tmpImg.height = svgH
-
-	tmpImg.onload = () => {
-		let canvas = document.createElement('canvas')
-		canvas.width = svgW
-		canvas.height = svgH
-		let context = canvas.getContext('2d')
-
-		// draw blob img to canvas with some delay
-		setTimeout(function () {
-			context.drawImage(tmpImg, 0, 0, svgW, svgH)
-			let pngDataUrl = canvas.toDataURL()
-			let svgImg = document.createElement('img')
-			svgImg.width = svgW
-			svgImg.height = svgH
-			svgImg.class = 'svgImg'
-			svgImg.src = pngDataUrl
-			// just additional wrapping for example usage
-			let imgWrp = document.createElement('div')
-			imgWrp.setAttribute('class', 'img-wrp img-wrp-vanilla')
-			imgWrp.appendChild(svgImg)
-			document.body.appendChild(imgWrp)
-		}, 300)
-	}
-}
-
-function blobToDataURL(blob, callback) {
-	var a = new FileReader()
-	a.onload = function (e) {
-		setTimeout(() => {
-			callback(e.target.result)
-		}, 1000)
-	}
-	a.readAsDataURL(blob)
 }
 
 export const removeTweetError = () => {
