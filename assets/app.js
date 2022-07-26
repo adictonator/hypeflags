@@ -1306,8 +1306,7 @@ var handleFlagResize = function handleFlagResize(outerElm, innerElm) {
     scale = 1;
   }
 
-  innerElm.style.transform = "scale(".concat(scale, ")");
-  innerElm.style.transformOrigin = 'top left';
+  innerElm.style.transform = "scale(".concat(scale, ")"); //innerElm.style.transformOrigin = 'top left'
 };
 var formatAMPM = function formatAMPM(dd) {
   var date = new Date(dd);

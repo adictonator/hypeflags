@@ -36,7 +36,7 @@ export const handleFlagResize = (outerElm, innerElm) => {
 	}
 
 	innerElm.style.transform = `scale(${scale})`
-	innerElm.style.transformOrigin = 'top left'
+	//innerElm.style.transformOrigin = 'top left'
 }
 
 export const formatAMPM = (dd) => {
