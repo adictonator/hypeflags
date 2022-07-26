@@ -1511,7 +1511,9 @@ function blobToDataURL(blob, callback) {
   var a = new FileReader();
 
   a.onload = function (e) {
-    callback(e.target.result);
+    setTimeout(function () {
+      callback(e.target.result);
+    }, 1000);
   };
 
   a.readAsDataURL(blob);

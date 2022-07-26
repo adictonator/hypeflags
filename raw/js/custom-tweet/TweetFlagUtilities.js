@@ -288,7 +288,9 @@ function svg2Png(selector) {
 function blobToDataURL(blob, callback) {
 	var a = new FileReader()
 	a.onload = function (e) {
-		callback(e.target.result)
+		setTimeout(() => {
+			callback(e.target.result)
+		}, 1000)
 	}
 	a.readAsDataURL(blob)
 }
