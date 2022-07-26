@@ -159,13 +159,23 @@ export const generateTweetCanvas = async () => {
 	let elm = document.getElementById('polo')
 
 	return await domtoimage
-		.toSvg(elm)
+		.toSvg(elm, {
+			width: elm.clientWidth * dd,
+			height: elm.clientHeight * dd,
+			style: {
+				transform: 'scale(' + dd + ')',
+				'transform-origin': 'top left',
+			},
+		})
 		.then(function (dataUrl) {
 			domtoimage
 				.toSvg(elm, {
-					// you need height and width for safari
-					height: elm.clientHeight + 300,
-					width: elm.clientWidth,
+					width: elm.clientWidth * dd,
+					height: elm.clientHeight * dd,
+					style: {
+						transform: 'scale(' + dd + ')',
+						'transform-origin': 'top left',
+					},
 				})
 				.then((dataUrl2) => {
 					var img = new Image()
