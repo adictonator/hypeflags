@@ -64,9 +64,9 @@ const displayError = (errorText) => {
 	// Hide edit button.
 	document.querySelector('[data-edit-tweet]').classList.add('hidden')
 	// Disble add to cart button.
-	document
-		.querySelector('button[name="add"]')
-		.setAttribute('disabled', 'disabled')
+	//document
+	//	.querySelector('button[name="add"]')
+	//	.setAttribute('disabled', 'disabled')
 
 	document
 		.querySelector('[data-tweet-url')

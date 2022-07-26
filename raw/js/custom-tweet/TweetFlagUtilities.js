@@ -1,5 +1,6 @@
 import domtoimage from 'dom-to-image'
 import html2canvas from 'html2canvas'
+import { toPng, toSvg } from 'html-to-image'
 
 export const handleFlagResize = (outerElm, innerElm) => {
 	if (!outerElm || !innerElm) return
@@ -154,13 +155,35 @@ export const generateTweetCanvas = async () => {
 	var new_width = $('[data-twitter-flag]').width()
 	var cal_width = new_width / fix_screen
 	var dd = fix_scale / cal_width
-	let element = document.querySelector('[data-twitter-flag]')
+	let elm = document.querySelector('[data-twitter-flag]')
 
-	return await html2canvas(element, {
-		scale: dd,
+	return await toPng(elm)
+		.then(function (dataUrl) {
+			var img = new Image()
+			img.src = dataUrl
+			document.querySelector('#lmao').appendChild(img)
+			//document.body.appendChild(img)
+		})
+		.catch(function (error) {
+			console.error('oops, something went wrong!', error)
+		})
+
+	return await html2canvas(elm, {
 		useCORS: true,
+		logging: true,
+		scrollX: 0,
+		scrollY: -window.scrollY,
+		scale: 1,
+		windowWidth: elm.scrollWidth,
+		windowHeight: elm.scrollHeight,
+
+		//scale: dd,
+		//width: elm.clientWidth,
+		//height: elm.clientHeight,
 	}).then((canvas) => {
-		const dataURL = canvas.toDataURL('image/png')
+		//const dataURL = canvas.toDataURL()
+		document.querySelector('#lmao').appendChild(canvas)
+		return
 		// @todo: fix this sitty code.
 		if (document.querySelector('.new_url')) {
 			document.querySelector('.new_url').value = dataURL
