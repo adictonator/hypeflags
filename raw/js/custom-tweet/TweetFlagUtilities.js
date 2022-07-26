@@ -155,28 +155,27 @@ export const generateTweetCanvas = async () => {
 	var dd = fix_scale / cal_width
 	let element = document.querySelector('[data-twitter-flag]')
 
-	setTimeout(() => {
-		domtoimage
-			.toPng(element, {
-				width: element.clientWidth,
-				height: element.clientHeight,
-				cacheBust: true,
-			})
-			.then((dataUrl) => {
-				var img = new Image()
-				img.src = dataUrl
-				document.querySelector('#lmao').appendChild(img)
+	//setTimeout(() => {
+	//	domtoimage
+	//		.toPng(element, {
+	//			width: element.clientWidth,
+	//			height: element.clientHeight,
+	//			cacheBust: true,
+	//		})
+	//		.then((dataUrl) => {
+	//			var img = new Image()
+	//			img.src = dataUrl
+	//			document.querySelector('#lmao').appendChild(img)
 
-				return
-			})
-	}, 1000)
-
-	return
+	//			return
+	//		})
+	//}, 1000)
 
 	return await domtoimage
 		.toPng(element, {
 			width: element.clientWidth,
 			height: element.clientHeight,
+			cacheBust: true,
 			//style: {
 			//	transform: 'scale(' + dd + ')',
 			//	'transform-origin': 'top left',

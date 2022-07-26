@@ -1416,25 +1416,49 @@ var generateTweetCanvas = /*#__PURE__*/function () {
             new_width = $('[data-twitter-flag]').width();
             cal_width = new_width / fix_screen;
             dd = fix_scale / cal_width;
-            element = document.querySelector('[data-twitter-flag]');
-            setTimeout(function () {
-              dom_to_image__WEBPACK_IMPORTED_MODULE_0___default().toPng(element, {
-                width: element.clientWidth,
-                height: element.clientHeight,
-                cacheBust: true
-              }).then(function (dataUrl) {
-                var img = new Image();
-                img.src = dataUrl;
-                document.querySelector('#lmao').appendChild(img);
-                return;
-              });
-            }, 1000);
-            return _context.abrupt("return");
+            element = document.querySelector('[data-twitter-flag]'); //setTimeout(() => {
+            //	domtoimage
+            //		.toPng(element, {
+            //			width: element.clientWidth,
+            //			height: element.clientHeight,
+            //			cacheBust: true,
+            //		})
+            //		.then((dataUrl) => {
+            //			var img = new Image()
+            //			img.src = dataUrl
+            //			document.querySelector('#lmao').appendChild(img)
+            //			return
+            //		})
+            //}, 1000)
 
-          case 10:
+            _context.next = 8;
+            return dom_to_image__WEBPACK_IMPORTED_MODULE_0___default().toPng(element, {
+              width: element.clientWidth,
+              height: element.clientHeight,
+              cacheBust: true //style: {
+              //	transform: 'scale(' + dd + ')',
+              //	'transform-origin': 'top left',
+              //},
+
+            }).then(function (dataUrl) {
+              var img = new Image();
+              img.src = dataUrl;
+              document.querySelector('#lmao').appendChild(img);
+              return; // @todo: fix this sitty code.
+
+              if (document.querySelector('.new_url')) {
+                document.querySelector('.new_url').value = dataUrl;
+              } else {
+                $('body').append('<input type="hidden" class="new_url" value="' + dataUrl + '"/>');
+              }
+            })["catch"](function (error) {
+              console.error('oops, something went wrong!', error);
+            });
+
+          case 8:
             return _context.abrupt("return", _context.sent);
 
-          case 11:
+          case 9:
           case "end":
             return _context.stop();
         }
