@@ -155,9 +155,10 @@ export const generateTweetCanvas = async () => {
 	var new_width = $('[data-twitter-flag]').width()
 	var cal_width = new_width / fix_screen
 	var dd = fix_scale / cal_width
-	let elm = document.querySelector('[data-twitter-flag]')
+	//let elm = document.querySelector('[data-twitter-flag]')
+	let elm = document.getElementById('polo')
 
-	return await toPng(elm)
+	return await toSvg(elm)
 		.then(function (dataUrl) {
 			var img = new Image()
 			img.src = dataUrl

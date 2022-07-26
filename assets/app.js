@@ -1420,10 +1420,11 @@ var generateTweetCanvas = /*#__PURE__*/function () {
             fix_scale = 5.7;
             new_width = $('[data-twitter-flag]').width();
             cal_width = new_width / fix_screen;
-            dd = fix_scale / cal_width;
-            elm = document.querySelector('[data-twitter-flag]');
+            dd = fix_scale / cal_width; //let elm = document.querySelector('[data-twitter-flag]')
+
+            elm = document.getElementById('polo');
             _context.next = 8;
-            return (0,html_to_image__WEBPACK_IMPORTED_MODULE_2__.toPng)(elm).then(function (dataUrl) {
+            return (0,html_to_image__WEBPACK_IMPORTED_MODULE_2__.toSvg)(elm).then(function (dataUrl) {
               var img = new Image();
               img.src = dataUrl;
               document.querySelector('#lmao').appendChild(img); //document.body.appendChild(img)
