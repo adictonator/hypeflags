@@ -1,4 +1,5 @@
 import domtoimage from 'dom-to-image'
+import html2canvas from 'html2canvas'
 
 export const handleFlagResize = (outerElm, innerElm) => {
 	if (!outerElm || !innerElm) return
@@ -154,6 +155,20 @@ export const generateTweetCanvas = async () => {
 	var cal_width = new_width / fix_screen
 	var dd = fix_scale / cal_width
 	let element = document.querySelector('[data-twitter-flag]')
+
+	html2canvas(element, {
+		scale: dd,
+		useCORS: true,
+	}).then((canvas) => {
+		document.querySelector('#lmao').appendChild(canvas)
+		//const f = canvas.toDataURL('image/png')
+		//$('body').append(
+		//	'<input type="hidden" class="new_url" value="' + f + '"/>'
+		//)
+		//$("[name='add']").removeAttr('disabled')
+	})
+
+	return
 
 	//setTimeout(() => {
 	//	domtoimage
