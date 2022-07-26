@@ -1419,8 +1419,8 @@ var generateTweetCanvas = /*#__PURE__*/function () {
             element = document.querySelector('[data-twitter-flag]');
             _context.next = 8;
             return dom_to_image__WEBPACK_IMPORTED_MODULE_0___default().toPng(element, {
-              width: element.clientWidth * dd,
-              height: element.clientHeight * dd //style: {
+              width: element.clientWidth,
+              height: element.clientHeight //style: {
               //	transform: 'scale(' + dd + ')',
               //	'transform-origin': 'top left',
               //},

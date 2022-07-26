@@ -157,8 +157,8 @@ export const generateTweetCanvas = async () => {
 
 	return await domtoimage
 		.toPng(element, {
-			width: element.clientWidth * dd,
-			height: element.clientHeight * dd,
+			width: element.clientWidth,
+			height: element.clientHeight,
 			//style: {
 			//	transform: 'scale(' + dd + ')',
 			//	'transform-origin': 'top left',
