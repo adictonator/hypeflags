@@ -172,10 +172,9 @@ export const generateTweetCanvas = async () => {
 	//}, 1000)
 
 	return await domtoimage
-		.toPng(element, {
+		.toSvg(element, {
 			width: element.clientWidth,
 			height: element.clientHeight,
-			cacheBust: true,
 			//style: {
 			//	transform: 'scale(' + dd + ')',
 			//	'transform-origin': 'top left',
