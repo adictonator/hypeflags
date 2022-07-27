@@ -101,7 +101,7 @@ $(document).on('click', 'button[name="add"]', async function (e) {
 	if (dataURL) {
 		var blobBin = Buffer.from(dataURL.split(',')[1], 'base64')
 		var file = new Blob([blobBin], { type: 'image/png' })
-		formdata.append('properties[custom-flag]', file, 'final_image.png')
+		formdata.append('properties[Custom Image]', file, 'final_image.png')
 	}
 
 	$.ajax({
