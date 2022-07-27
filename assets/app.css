@@ -1666,6 +1666,9 @@ video {
 .leading-\[0\.5\] {
   line-height: 0.5;
 }
+.leading-normal {
+  line-height: 1.5;
+}
 .tracking-widest {
   letter-spacing: 0.1em;
 }

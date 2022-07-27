@@ -178,37 +178,6 @@ export const generateTweetCanvas = async () => {
 			)
 		}
 	})
-
-	// This code is causing issues with Safari on mobile and desktop.
-	//return await domtoimage
-	//	.toJpeg(element, {
-	//		width: element.clientWidth * dd,
-	//		height: element.clientHeight * dd,
-	//		cacheBust: true,
-	//		style: {
-	//			transform: 'scale(' + dd + ')',
-	//			'transform-origin': 'top left',
-	//		},
-	//	})
-	//	.then(function (dataUrl) {
-	//		var img = new Image()
-	//		img.src = dataUrl
-	//		document.querySelector('#lmao').appendChild(img)
-
-	//		// @todo: fix this sitty code.
-	//		if (document.querySelector('.new_url')) {
-	//			document.querySelector('.new_url').value = dataUrl
-	//		} else {
-	//			$('body').append(
-	//				'<input type="hidden" class="new_url" value="' +
-	//					dataUrl +
-	//					'"/>'
-	//			)
-	//		}
-	//	})
-	//	.catch(function (error) {
-	//		console.error('oops, something went wrong!', error)
-	//	})
 }
 
 export const removeTweetError = () => {
