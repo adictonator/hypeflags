@@ -189,7 +189,7 @@
 						style="display: none"
 					/>
 
-					<button type="submit" class="primary-btn">
+					<button type="button" name="checkout" class="primary-btn">
 						{{ "cart.general.checkout" | t }}
 					</button>
 				</div>
@@ -209,13 +209,13 @@
 			<p>{{ "cart.general.cookies_required" | t }}</p>
 		</div>
 		<a href="/" class="btn btn--has-icon-after cart__continue-btn"
-			>{{ "general.404.link" | t }}{% include 'icon-arrow-right' %}</a
+			>{{ "general.404.link" | t }}{% render 'icon-arrow-right' %}</a
 		>
 	</div>
 	{% endif %}
 </div>
 
-{% include 'popup-modal', heading: 'Please wait', content: 'Items are being
+{% render 'popup-modal', heading: 'Please wait', content: 'Items are being
 prepared for checkout' %}
 
 <script>
@@ -224,7 +224,7 @@ prepared for checkout' %}
 		 * Show custom modal for checkout page redirect.
 		 *
 		 **/
-		$('form input[name="checkout"]').on("click", function (e) {
+		$('form button[name="checkout"]').on("click", function (e) {
 			e.preventDefault()
 			const modal = $(".hf-modal")
 			const modalBody = modal.find(".hf-modal-body")
