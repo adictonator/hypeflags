@@ -12,10 +12,6 @@
 		section.id
 	}}-{{ product.id }}{% endcapture %} {%- assign img_url =
 	product.featured_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-	{% comment %} {% unless product.featured_image == blank %} {% include
-	'image-style' with image: product.featured_image, width: max_height, height:
-	max_height, small_style: true, wrapper_id: wrapper_id, img_id: img_id %} {%
-	endunless %} {% endcomment %}
 	<div class="skeleton-loader-cust"></div>
 
 	<a href="{{ product.url | within: collection }}">
@@ -58,8 +54,10 @@
 						data-sizes="auto"
 						data-image
 					/>
-					{% endif %} {% capture secondimage %} {% if
-					product.images.size == 3 and forloop.index == 2 %}
+					{% endif %}
+					<!--prettier-ignore  -->
+					{% capture secondimage %}
+						{% if product.images.size == 3 and forloop.index == 2 %}
 					<img
 						class="hover__image grid-view-item__image prduct_secondimg lazyload"
 						alt="{{ image.alt }}"
@@ -102,10 +100,12 @@
 				>
 					{{ product.title }}
 				</div>
-				{% include 'product-price', variant: product %}
+				{% render 'product-price-new', variant: product, fontSize:
+				'text-xl' %}
 			</div>
-			{% comment %}Start automatically added Judge.me widget{% endcomment
-			%} {% include 'judgeme_widgets', widget_type:
+			<!-- prettier-ignore -->
+			{% comment %}Start automatically added Judge.me widget{% endcomment %}
+			{% include 'judgeme_widgets', widget_type:
 			'judgeme_preview_badge', concierge_install: true %} {% comment %}End
 			automatically added Judge.me widget{% endcomment %}
 		</div>
