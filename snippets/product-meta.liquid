@@ -1,7 +1,7 @@
 <h1 class="product-single__title">{{ product.title }}</h1>
 <div class="product__price">
 	{% render 'product-price-new', variant:
-	product.selected_or_first_available_variant, fontSize: 'text-2xl' %}
+	product.selected_or_first_available_variant %}
 </div>
 
 {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge',

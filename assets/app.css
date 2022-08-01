@@ -2606,6 +2606,11 @@ input[type="number"] {
     line-height: 1.75rem;
   }
 
+  .sm\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
   .before\:sm\:h-2\.5::before {
     content: var(--tw-content);
     height: 0.625rem;
@@ -2798,6 +2803,11 @@ input[type="number"] {
     line-height: 2rem;
   }
 
+  .md\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+
   .after\:md\:inset-x-0::after {
     content: var(--tw-content);
     left: 0px;
@@ -2875,6 +2885,11 @@ input[type="number"] {
     font-size: 1rem;
     line-height: 1.5rem;
   }
+
+  .lg\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
 }
 
 @media (min-width: 1280px) {
@@ -2900,8 +2915,17 @@ input[type="number"] {
     padding: 2.75rem;
   }
 
+  .xl\:font-serif {
+    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  }
+
   .xl\:text-lg {
     font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+
+  .xl\:text-xl {
+    font-size: 1.25rem;
     line-height: 1.75rem;
   }
 }
