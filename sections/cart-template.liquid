@@ -157,7 +157,7 @@
 				</div>
 				<div class="cart-summary__item">
 					Shipping & Handling
-					<span class="gray">
+					<span class="gray whitespace-nowrap">
 						{% if cart.total_price > 0 and cart.total_price <= 2500
 						%} {% assign remainingAmt=2500 | minus: cart.total_price
 						| divided_by: 100.0 %} {% assign
