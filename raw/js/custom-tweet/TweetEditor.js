@@ -34,29 +34,29 @@ const showTweetEditor = () => {
 
 	twitterElm?.removeAttribute('data-twitter-flag')
 	twitterElm.setAttribute('data-cloned-tweet', true)
-	twitterElm
-		.querySelector('[data-t-text]')
-		?.setAttribute('contentEditable', true)
 
-	// The flag will resize as the user update tweet text.
-	twitterElm.querySelector('[data-t-text]').addEventListener('input', () => {
-		handleFlagResize(outerDivJS, innerDiv)
-	})
-
+	const textArea = twitterElm.querySelector('[data-t-text]')
+	textArea.setAttribute('contentEditable', true)
 	const outerDivJS = twitterElm.querySelector('.inner')
 	const innerDiv = twitterElm.querySelector('.more-inner')
 
+	elms.modal?.classList.remove('invisible', 'opacity-0')
 	setTimeout(function () {
-		elms.modal?.classList.remove('invisible', 'opacity-0')
-		//elm?.classList.add('flex')
-		twitterElm.querySelector('[data-t-text]').focus()
-
 		// Resizing modal one.
 		handleFlagResize(outerDivJS, innerDiv)
 	}, 0)
 
 	elms.editor.innerHTML = ''
 	elms.editor?.appendChild(twitterElm)
+
+	// The flag will resize as the user update tweet text.
+	textArea.addEventListener('input', () => {
+		handleFlagResize(outerDivJS, innerDiv)
+	})
+
+	setTimeout(() => {
+		textArea.focus()
+	}, 100)
 }
 
 export const confirmTweetEditing = () => {

@@ -9,6 +9,7 @@ export default function Swipers() {
 		spaceBetween: 15,
 		slidesPerView: 'auto',
 		watchSlidesProgress: true,
+		allowTouchMove: false,
 		loop: false,
 		loopedSlides: 2,
 		slideToClickedSlide: true,

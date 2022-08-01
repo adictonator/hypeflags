@@ -340,6 +340,7 @@ function Swipers() {
     spaceBetween: 15,
     slidesPerView: 'auto',
     watchSlidesProgress: true,
+    allowTouchMove: false,
     loop: false,
     loopedSlides: 2,
     slideToClickedSlide: true,
@@ -1169,7 +1170,7 @@ var initEventListeners = function initEventListeners() {
 };
 
 var showTweetEditor = function showTweetEditor() {
-  var _elms$tweetFlag, _twitterElm$querySele, _elms$editor;
+  var _elms$tweetFlag, _elms$modal, _elms$editor;
 
   var twitterElm = (_elms$tweetFlag = elms.tweetFlag) === null || _elms$tweetFlag === void 0 ? void 0 : _elms$tweetFlag.cloneNode(true);
 
@@ -1181,24 +1182,24 @@ var showTweetEditor = function showTweetEditor() {
 
   twitterElm === null || twitterElm === void 0 ? void 0 : twitterElm.removeAttribute('data-twitter-flag');
   twitterElm.setAttribute('data-cloned-tweet', true);
-  (_twitterElm$querySele = twitterElm.querySelector('[data-t-text]')) === null || _twitterElm$querySele === void 0 ? void 0 : _twitterElm$querySele.setAttribute('contentEditable', true); // The flag will resize as the user update tweet text.
-
-  twitterElm.querySelector('[data-t-text]').addEventListener('input', function () {
-    (0,_TweetFlagUtilities__WEBPACK_IMPORTED_MODULE_0__.handleFlagResize)(outerDivJS, innerDiv);
-  });
+  var textArea = twitterElm.querySelector('[data-t-text]');
+  textArea.setAttribute('contentEditable', true);
   var outerDivJS = twitterElm.querySelector('.inner');
   var innerDiv = twitterElm.querySelector('.more-inner');
+  (_elms$modal = elms.modal) === null || _elms$modal === void 0 ? void 0 : _elms$modal.classList.remove('invisible', 'opacity-0');
   setTimeout(function () {
-    var _elms$modal;
-
-    (_elms$modal = elms.modal) === null || _elms$modal === void 0 ? void 0 : _elms$modal.classList.remove('invisible', 'opacity-0'); //elm?.classList.add('flex')
-
-    twitterElm.querySelector('[data-t-text]').focus(); // Resizing modal one.
-
+    // Resizing modal one.
     (0,_TweetFlagUtilities__WEBPACK_IMPORTED_MODULE_0__.handleFlagResize)(outerDivJS, innerDiv);
   }, 0);
   elms.editor.innerHTML = '';
-  (_elms$editor = elms.editor) === null || _elms$editor === void 0 ? void 0 : _elms$editor.appendChild(twitterElm);
+  (_elms$editor = elms.editor) === null || _elms$editor === void 0 ? void 0 : _elms$editor.appendChild(twitterElm); // The flag will resize as the user update tweet text.
+
+  textArea.addEventListener('input', function () {
+    (0,_TweetFlagUtilities__WEBPACK_IMPORTED_MODULE_0__.handleFlagResize)(outerDivJS, innerDiv);
+  });
+  setTimeout(function () {
+    textArea.focus();
+  }, 100);
 };
 
 var confirmTweetEditing = function confirmTweetEditing() {
