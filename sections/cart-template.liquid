@@ -226,21 +226,17 @@ prepared for checkout' %}
 		 **/
 		$('form button[name="checkout"]').on("click", function (e) {
 			e.preventDefault()
+			const _form = $(this).parents("form")
 			const modal = $(".hf-modal")
-			const modalBody = modal.find(".hf-modal-body")
-
 			modal.appendTo("body")
+
 			modal.fadeIn({
-				complete: function () {
+				start: function () {
 					$(this).css("display", "flex")
-					modalBody.fadeIn({
-						start: function () {
-							$(this).css("display", "flex")
-						},
-						done: function () {
-							window.location.href = "/checkout"
-						},
-					})
+					_form.attr("action", "/checkout")
+				},
+				done: function () {
+					_form.submit()
 				},
 			})
 		})
