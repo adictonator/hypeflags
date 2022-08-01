@@ -351,10 +351,10 @@ $('body').on('click', '[data-method]', function (event) {
 							'relative',
 							'custom-gromm',
 							'sm:m-5',
-							'm-4'
+							'm-4',
+							'shadow-lg'
 						)
 						dummyWrap.appendChild(sliderImage)
-						dummyWrap.classList.add('shadow-lg')
 						canvasContainer?.appendChild(dummyWrap)
 
 						$("[name='add']").removeAttr('disabled')
@@ -488,7 +488,6 @@ function doSomething(file) {
 
 		var reader = new FileReader()
 
-		let tempHasError = false
 		reader.onload = function (e) {
 			let width
 			var image = new Image()
@@ -506,7 +505,7 @@ function doSomething(file) {
 						'warning warning--red'
 					)
 					$('.hype-cropper-wrapper, .cross-cropper').hide()
-					tempHasError = true
+
 					document
 						.querySelector('[data-custom-flag-upload-wrapper]')
 						.classList.remove('hidden')
@@ -521,7 +520,6 @@ function doSomething(file) {
 				}
 			}
 			image.src = e.target.result
-			console.log('weq', tempHasError)
 
 			window.scroll({
 				top: 0,
@@ -543,26 +541,20 @@ function doSomething(file) {
 			image.src = uploadedImageURL = URL.createObjectURL(file)
 			cropper.destroy()
 
-			if (!tempHasError) {
-				document
-					.querySelector('[data-temp-wrapper]')
-					.classList.remove('hidden')
-				document
-					.querySelector('[data-custom-flag-upload-wrapper]')
-					.classList.add('hidden')
-				document
-					.querySelector('[data-temp-wrapper]')
-					.classList.add('flex')
+			document
+				.querySelector('[data-temp-wrapper]')
+				.classList.remove('hidden')
+			document
+				.querySelector('[data-custom-flag-upload-wrapper]')
+				.classList.add('hidden')
+			document.querySelector('[data-temp-wrapper]').classList.add('flex')
 
-				document.querySelector('[data-tmp-file-name]').innerHTML =
-					file.name
-				document.querySelector('[data-tmp-file-size]').innerHTML = (
-					file.size /
-					1024 ** 2
-				).toFixed(1)
-				document.querySelector('[data-temp-preview]').src =
-					uploadedImageURL
-			}
+			document.querySelector('[data-tmp-file-name]').innerHTML = file.name
+			document.querySelector('[data-tmp-file-size]').innerHTML = (
+				file.size /
+				1024 ** 2
+			).toFixed(1)
+			document.querySelector('[data-temp-preview]').src = uploadedImageURL
 
 			$('.hype-cropper-wrapper').fadeIn({
 				duration: 'slow',
@@ -757,7 +749,7 @@ function displayCropperErrorPopup(
 			},
 		})
 
-	return false
+	return
 }
 
 // canvas function

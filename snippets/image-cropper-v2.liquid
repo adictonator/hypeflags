@@ -22,7 +22,7 @@
 				<a
 					href="#"
 					class="btn btn--tertiary btn--black"
-					data-reset-cropper
+					data-hide-cropper
 					>Cancel</a
 				>
 				<h3>Customize Your Flag</h3>
@@ -327,27 +327,27 @@
 			".product-single-gallery"
 		)
 		const sliderImage = sliderContainer.querySelector('img[data-index="1"]')
+		const dummyWrap = sliderImage.parentElement
+		const mainParent = dummyWrap.parentElement
 
-		document
-			.querySelector('[data-swiper-slide-index="0"]')
-			.appendChild(sliderImage)
-
-		document.querySelector('[data-swiper-slide-index="0"] div')?.remove()
-
+		mainParent.append(sliderImage)
+		dummyWrap.remove()
 		sliderImage.src =
 			"https://cdn.shopify.com/s/files/1/0254/3868/3184/products/Custom-Flag.jpg"
 
+		// Hide upload preview wrapper.
 		document.querySelector("[data-temp-wrapper]").classList.add("hidden")
-		document
-			.querySelector("[data-custom-flag-upload-wrapper]")
-			.classList.add("flex")
+		document.querySelector("[data-temp-wrapper]").classList.remove("flex")
+
+		// Show the image uploader.
 		document
 			.querySelector("[data-custom-flag-upload-wrapper]")
 			.classList.remove("hidden")
-		document.querySelector("[data-temp-wrapper]").classList.remove("flex")
+		document
+			.querySelector("[data-custom-flag-upload-wrapper]")
+			.classList.add("flex")
 
 		sliderImage.parentElement.classList.remove("custom-gromm")
-		$("img[data-index='1']").removeAttr("style")
 		$(".hype-cropper-wrapper").fadeOut()
 
 		$("[name='add']").attr("disabled", "disabled")
@@ -362,6 +362,23 @@
 		}, 500)
 
 		$(".low-res-warning-indicator").removeClass("visible")
+	})
+
+	$("body").on("click", "[data-hide-cropper]", function () {
+		$(".hype-cropper-wrapper").fadeOut()
+		// Hide upload preview wrapper.
+		document.querySelector("[data-temp-wrapper]").classList.add("hidden")
+		document.querySelector("[data-temp-wrapper]").classList.remove("flex")
+
+		// Show the image uploader.
+		document
+			.querySelector("[data-custom-flag-upload-wrapper]")
+			.classList.remove("hidden")
+		document
+			.querySelector("[data-custom-flag-upload-wrapper]")
+			.classList.add("flex")
+		$(".low-res-warning-indicator").removeClass("visible")
+		document.documentElement.style.overflow = "visible"
 	})
 
 	// Close cropper popup.
