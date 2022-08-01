@@ -2,7 +2,9 @@
 assign price = 1999 -%} {% endif %} {%- assign money_price = price | money -%}
 
 <span
-	class="price text-left block font-bold text-brand-red {{ fontSize }}"
+	class="price text-left justify-start block font-bold text-brand-red {{
+		fontSize
+	}}"
 	data-sale-price
 >
 	{{ money_price }}
