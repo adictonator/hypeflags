@@ -1133,6 +1133,9 @@ video {
 .w-2\.5 {
   width: 0.625rem;
 }
+.w-32 {
+  width: 8rem;
+}
 .min-w-0 {
   min-width: 0px;
 }
@@ -1147,6 +1150,9 @@ video {
 }
 .max-w-\[102px\] {
   max-width: 102px;
+}
+.flex-1 {
+  flex: 1 1 0%;
 }
 .flex-shrink {
   flex-shrink: 1;
@@ -1215,6 +1221,9 @@ video {
 }
 .flex-wrap {
   flex-wrap: wrap;
+}
+.items-start {
+  align-items: flex-start;
 }
 .items-center {
   align-items: center;
@@ -1580,6 +1589,9 @@ video {
 }
 .pb-6 {
   padding-bottom: 1.5rem;
+}
+.text-left {
+  text-align: left;
 }
 .text-center {
   text-align: center;
@@ -2551,6 +2563,11 @@ input[type="number"] {
     line-height: 1.75rem;
   }
 
+  .sm\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
   .before\:sm\:h-2\.5::before {
     content: var(--tw-content);
     height: 0.625rem;
@@ -2625,6 +2642,10 @@ input[type="number"] {
 
   .md\:w-14 {
     width: 3.5rem;
+  }
+
+  .md\:w-40 {
+    width: 10rem;
   }
 
   .md\:max-w-7xl {
@@ -2727,6 +2748,11 @@ input[type="number"] {
   .md\:text-base {
     font-size: 1rem;
     line-height: 1.5rem;
+  }
+
+  .md\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 
   .after\:md\:inset-x-0::after {
