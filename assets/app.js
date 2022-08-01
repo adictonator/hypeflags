@@ -539,11 +539,11 @@ function Swipers() {
       }
     }
   });
-  var productSwiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiper-product-ig', {
+  new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiper-product-ig', {
     modules: [swiper__WEBPACK_IMPORTED_MODULE_0__.Navigation],
     slidesPerView: 'auto',
     spaceBetween: 25,
-    centeredSlides: false,
+    centeredSlides: true,
     resizeObserver: true,
     freeMode: {
       enabled: false,

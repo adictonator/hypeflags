@@ -230,11 +230,11 @@ export default function Swipers() {
 		},
 	})
 
-	const productSwiper = new Swiper('.swiper-product-ig', {
+	new Swiper('.swiper-product-ig', {
 		modules: [Navigation],
 		slidesPerView: 'auto',
 		spaceBetween: 25,
-		centeredSlides: false,
+		centeredSlides: true,
 		resizeObserver: true,
 		freeMode: {
 			enabled: false,
