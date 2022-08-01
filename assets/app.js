@@ -699,7 +699,7 @@ $(document).on('click', 'button[name="add"]', /*#__PURE__*/function () {
               file = new Blob([blobBin], {
                 type: 'image/png'
               });
-              formdata.append('properties[custom-flag]', file, 'final_image.png');
+              formdata.append('properties[Custom Image]', file, 'final_image.png');
             }
 
             $.ajax({

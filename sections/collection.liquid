@@ -1,63 +1,93 @@
-{%- assign collection = collections[section.settings.collection] -%}
-  {% case section.settings.grid %}
-    {% when 2 %}
-      {%- assign max_height = 530 -%}
-      {%- assign grid_item_width = 'medium-up--one-half' -%}
-    {% when 3 %}
-      {%- assign max_height = 345 -%}
-      {%- assign grid_item_width = 'small--one-half medium-up--one-third' -%}
-    {% when 4 %}
-      {%- assign max_height = 250 -%}
-      {%- assign grid_item_width = ' medium-up--one-quarter' -%}
-    {% when 5 %}
-      {%- assign max_height = 195 -%}
-      {%- assign grid_item_width = 'small--one-half medium-up--one-fifth' -%}
-  {% endcase %}
+{%- assign collection = collections[section.settings.collection] -%} {% case
+section.settings.grid %} {% when 2 %} {%- assign max_height = 530 -%} {%- assign
+grid_item_width = 'medium-up--one-half' -%} {% when 3 %} {%- assign max_height =
+345 -%} {%- assign grid_item_width = 'small--one-half medium-up--one-third' -%}
+{% when 4 %} {%- assign max_height = 250 -%} {%- assign grid_item_width = '
+medium-up--one-quarter' -%} {% when 5 %} {%- assign max_height = 195 -%} {%-
+assign grid_item_width = 'small--one-half medium-up--one-fifth' -%} {% endcase
+%} {%- assign product_limit = section.settings.grid | times:
+section.settings.rows -%} {% if section.settings.title != blank %}
+<div class="section-header" data-aos="fade-in" data-aos-duration="2000">
+	<div class="section-title-wrap">
+		<h2>{{ section.settings.title | escape }}</h2>
 
-  {%- assign product_limit = section.settings.grid | times: section.settings.rows -%}
+		<div class="slider-nav-wrap">
+			<button class="slide-arrow arrow-prev arrow-best">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 7.12 11.41"
+				>
+					<path
+						d="M5.71,0,0,5.71l5.71,5.7L7.12,10,2.83,5.71l4.29-4.3Z"
+					/>
+				</svg>
+			</button>
+			<button class="slide-arrow arrow-next arrow-best">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 7.12 11.41"
+				>
+					<path
+						d="M5.71,0,0,5.71l5.71,5.7L7.12,10,2.83,5.71l4.29-4.3Z"
+					/>
+				</svg>
+			</button>
+		</div>
+	</div>
 
-      {% if section.settings.title != blank %}
-        <div class="section-header" data-aos="fade-in" data-aos-duration="2000">
-          <div class="section-title-wrap">
-            <h2>{{ section.settings.title | escape }}</h2>
+	<a
+		class="view-all-wrap"
+		href="{{ collection.url }}"
+		class=""
+		aria-label="{{
+			'collections.general.view_all_label'
+				| t: collection_name:collection.title
+		}}"
+	>
+		{{ "collections.general.view_all" | t }}
+	</a>
+</div>
+{% endif %}
 
-            <div class="slider-nav-wrap">
-              <button class="slide-arrow arrow-prev arrow-best"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7.12 11.41"><path d="M5.71,0,0,5.71l5.71,5.7L7.12,10,2.83,5.71l4.29-4.3Z"/></svg></button>
-              <button class="slide-arrow arrow-next arrow-best"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7.12 11.41"><path d="M5.71,0,0,5.71l5.71,5.7L7.12,10,2.83,5.71l4.29-4.3Z"/></svg></button>
-            </div>
-          </div>
-          
-          <a class="view-all-wrap" href="{{ collection.url }}" class="" aria-label="{{ 'collections.general.view_all_label' | t: collection_name: collection.title }}">
-              {{ 'collections.general.view_all' | t }}
-          </a>
-        </div>
-      {% endif %}
-      
-      <div class="swiper swiper-best-seller">
-        <div class="swiper-wrapper">
-          {% for product in collection.products limit: product_limit %}
-              {% include 'product-card', max_height: max_height %}
-          {% else %}
+<div class="swiper swiper-best-seller">
+	<div class="swiper-wrapper">
+		{% for product in collection.products limit: product_limit %} {% include
+		'product-card', max_height: max_height %} {% else %} {% for i in
+		(1..product_limit) %}
+		<li
+			class="grid__item grid__item--{{ section.id }} {{
+				grid_item_width
+			}} something"
+		>
+			<div class="grid-view-item product-card">
+				<a
+					class="grid-view-item__link grid-view-item__image-container full-width-link"
+					href="#"
+				>
+					<span class="visually-hidden">{{
+						"homepage.onboarding.product_title" | t
+					}}</span>
+				</a>
+				<div class="grid-view-item__image-wrapper">
+					{% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{%
+					endcapture %}
+					{{
+						"product-"
+							| append: current
+							| placeholder_svg_tag: "placeholder-svg"
+					}}
+				</div>
+				<div class="h4 grid-view-item__title" aria-hidden="true">
+					{{ "homepage.onboarding.product_title" | t }}
+				</div>
+				{% include 'product-price' %}
+			</div>
+		</li>
+		{% endfor %} {% endfor %}
+	</div>
+</div>
 
-            {% for i in (1..product_limit) %}
-              <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }} something">
-                <div class="grid-view-item product-card">
-                  <a class="grid-view-item__link grid-view-item__image-container full-width-link" href="#">
-                    <span class="visually-hidden">{{ 'homepage.onboarding.product_title' | t }}</span>
-                  </a>
-                  <div class="grid-view-item__image-wrapper">
-                    {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-                    {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
-                  </div>
-                  <div class="h4 grid-view-item__title" aria-hidden="true">{{ 'homepage.onboarding.product_title' | t }}</div>
-                  {% include 'product-price' %}
-                </div>
-              </li>
-            {% endfor %}
-          {% endfor %}
-        </div>  
-      </div>
-
+<!-- prettier-ignore -->
 {% schema %}
 {
   "name": {
